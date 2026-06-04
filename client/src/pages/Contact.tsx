@@ -1,24 +1,10 @@
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
-
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import FadeIn from "@/components/ui/FadeIn";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -72,10 +58,10 @@ export default function Contact() {
               },
               {
                 "@type": "PostalAddress",
-                "streetAddress": "3520 Auburn Way S, Suite 201",
-                "addressLocality": "Auburn",
+                "streetAddress": "1581 N. National Ave",
+                "addressLocality": "Chehalis",
                 "addressRegion": "WA",
-                "postalCode": "98002"
+                "postalCode": "98532"
               }
             ],
             "areaServed": "WA",
@@ -89,259 +75,231 @@ export default function Contact() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-white pt-[142px]">
+      <div className="min-h-screen bg-brand-linen pt-[142px]">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-32 bg-gradient-to-r from-[#3F4143] to-[#2a2c2e] text-white overflow-hidden">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Contact Heritage Restoration
+        <section className="relative py-20 md:py-32 bg-gradient-to-r from-[#3F4143] to-[#252628] text-white overflow-hidden border-b border-[#8DBD42]/20">
+          <Container>
+            <FadeIn className="max-w-2xl" direction="up">
+              <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-4">
+                GET IN TOUCH
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif mb-6">
+                Connect With Heritage
               </h1>
-              <p className="text-lg text-white/90 mb-8 leading-relaxed">
-                Available 24/7 for emergency response. Contact us immediately for fire, water, or storm damage. We're here to help.
+              <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light">
+                Available 24/7 for emergency dispatch and structural secures. For non-emergencies, submit an intake form below and our office team will follow up within 2 hours.
               </p>
-            </FadeUp>
-          </div>
+            </FadeIn>
+          </Container>
         </section>
 
-        {/* Contact Info Cards */}
-        <section className="py-20 md:py-32 bg-white">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-              {[
-                {
-                  icon: <Phone size={32} />,
-                  title: "Emergency Hotline",
-                  content: "+1(360)851-1407",
-                  subtext: "24/7 Available"
-                },
-                {
-                  icon: <Mail size={32} />,
-                  title: "Email",
-                  content: "office@firewaterstorm.com",
-                  subtext: "Response within 2 hours"
-                },
-                {
-                  icon: <Clock size={32} />,
-                  title: "Hours",
-                  content: "24 Hours a Day",
-                  subtext: "7 Days a Week"
-                },
-                {
-                  icon: <MapPin size={32} />,
-                  title: "Service Area",
-                  content: "Federal Way to Olympia",
-                  subtext: "All of Washington State"
-                }
-              ].map((item, idx) => (
-                <FadeUp key={idx} delay={idx * 0.1} className="bg-[#F5F7FA] rounded-lg p-8 text-center hover:shadow-lg transition-all duration-300">
-                  <div className="text-[#8DBD42] mb-4 flex justify-center">{item.icon}</div>
-                  <h3 className="font-bold text-[#3F4143] mb-2 text-lg">{item.title}</h3>
-                  <p className="text-[#3F4143] font-semibold mb-1">{item.content}</p>
-                  <p className="text-[#3F4143]/60 text-sm">{item.subtext}</p>
-                </FadeUp>
-              ))}
-            </div>
+        {/* Asymmetric Form & Info Section */}
+        <Section bg="none">
+          <Container>
+            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+              
+              {/* Left Column (5 cols) — High-Density Sticky Editorial Block */}
+              <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-8">
+                {/* Emergency Block */}
+                <FadeIn className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] rounded-none space-y-6 relative overflow-hidden" direction="up">
+                  <div className="absolute right-[-30px] bottom-[-30px] w-48 h-48 bg-[#8DBD42]/8 rounded-full blur-2xl pointer-events-none" />
+                  
+                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
+                    EMERGENCY DISPATCH
+                  </span>
+                  
+                  <h3 className="text-2xl font-serif font-bold text-white leading-tight">
+                    24/7 Urgent Hotline
+                  </h3>
+                  
+                  <div className="space-y-4 pt-2">
+                    <a
+                      href="tel:+13608511407"
+                      className="flex items-center gap-3 text-xl md:text-2xl font-bold text-[#8DBD42] hover:text-[#9fd546] transition-colors font-sans"
+                    >
+                      <Phone size={24} className="flex-shrink-0" />
+                      <span>+1 (360) 851-1407</span>
+                    </a>
+                    
+                    <a
+                      href="mailto:office@firewaterstorm.com"
+                      className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors font-sans"
+                    >
+                      <Mail size={16} className="text-[#8DBD42] flex-shrink-0" />
+                      <span>office@firewaterstorm.com</span>
+                    </a>
 
-            {/* Offices */}
-            <FadeUp className="mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-12 text-center" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Our Offices
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {[
-                  {
-                    name: "North Office (Lacey)",
-                    address: "7895 Martin Way E, Unit 103",
-                    city: "Lacey, WA 98516",
-                    phone: "+1(360)851-1407"
-                  },
-                  {
-                    name: "South Office (Auburn)",
-                    address: "3520 Auburn Way S, Suite 201",
-                    city: "Auburn, WA 98002",
-                    phone: "+1(360)851-1407"
-                  }
-                ].map((office, idx) => (
-                  <FadeUp key={idx} delay={idx * 0.1} className="bg-[#F5F7FA] rounded-lg p-8 border border-gray-200 hover:border-[#8DBD42] transition-all duration-300">
-                    <h3 className="font-bold text-[#3F4143] text-lg mb-4">{office.name}</h3>
-                    <div className="space-y-3">
-                      <div className="flex gap-3 items-start">
-                        <MapPin size={20} className="text-[#8DBD42] flex-shrink-0 mt-0.5" />
+                    <div className="flex items-center gap-3 text-sm text-white/80 font-sans">
+                      <Clock size={16} className="text-[#8DBD42] flex-shrink-0" />
+                      <span>Immediate 45-minute response in service area</span>
+                    </div>
+                  </div>
+                </FadeIn>
+
+                {/* Office Locations */}
+                <FadeIn className="bg-white p-8 border border-[#3F4143]/8 shadow-sm space-y-6 rounded-none" direction="up">
+                  <h3 className="text-xl font-serif font-bold text-[#3F4143] border-b border-[#3F4143]/10 pb-3">
+                    Office Locations
+                  </h3>
+                  
+                  <div className="space-y-6 font-sans">
+                    {/* Lacey */}
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                        North Office (Lacey)
+                      </h4>
+                      <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
+                        <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="text-[#3F4143] font-semibold">{office.address}</p>
-                          <p className="text-[#3F4143]/70">{office.city}</p>
+                          <p className="font-semibold text-[#3F4143]">7895 Martin Way E, Unit 103</p>
+                          <p>Lacey, WA 98516</p>
                         </div>
                       </div>
-                      <div className="flex gap-3 items-center">
-                        <Phone size={20} className="text-[#8DBD42] flex-shrink-0" />
-                        <a href={`tel:${office.phone}`} className="text-[#3F4143] font-semibold hover:text-[#8DBD42] transition-colors">{office.phone}</a>
+                    </div>
+
+                    {/* Chehalis */}
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                        South Office (Chehalis)
+                      </h4>
+                      <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
+                        <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-semibold text-[#3F4143]">1581 N. National Ave</p>
+                          <p>Chehalis, WA 98532</p>
+                        </div>
                       </div>
                     </div>
-                  </FadeUp>
-                ))}
+                  </div>
+                </FadeIn>
               </div>
-            </FadeUp>
-          </div>
-        </section>
 
-        {/* Contact Form */}
-        <section className="py-20 md:py-32 bg-[#F5F7FA]">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="mb-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Send us a Message
-              </h2>
-              <p className="text-lg text-[#3F4143]/70 max-w-2xl mx-auto">
-                For non-emergency inquiries, fill out the form below and we'll respond within 2 hours.
-              </p>
-            </FadeUp>
+              {/* Right Column (7 cols) — Secure Intake Form */}
+              <div className="lg:col-span-7">
+                <FadeIn className="bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8" direction="up">
+                  <div className="space-y-2">
+                    <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
+                      SECURE PORTAL
+                    </span>
+                    <h2 className="text-3xl font-serif font-bold text-[#3F4143] leading-tight">
+                      Submit an Intake Inquiry
+                    </h2>
+                    <p className="text-sm text-[#3F4143]/60 font-sans">
+                      Please enter your contact details and claim details below.
+                    </p>
+                  </div>
 
-            <FadeUp className="max-w-2xl mx-auto">
-              <form onSubmit={handleSubmit} className="bg-white rounded-lg p-8 shadow-lg">
-                {submitted && (
-                  <div className="mb-6 p-4 bg-[#7BB843] text-white rounded-lg text-center font-semibold">
-                    Thank you! We'll contact you soon.
-                  </div>
-                )}
+                  <form onSubmit={handleSubmit} className="space-y-6 font-sans">
+                    {submitted && (
+                      <div className="p-4 bg-[#8DBD42] text-white font-bold text-center rounded-none shadow-sm transition-all duration-300">
+                        Intake Received. We will contact you shortly.
+                      </div>
+                    )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label className="block text-[#3F4143] font-bold mb-2 text-sm">Full Name *</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#8DBD42] transition-colors"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[#3F4143] font-bold mb-2 text-sm">Email *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#8DBD42] transition-colors"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Name */}
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                        />
+                      </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label className="block text-[#3F4143] font-bold mb-2 text-sm">Phone *</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#8DBD42] transition-colors"
-                      placeholder="+1(360)000-0000"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[#3F4143] font-bold mb-2 text-sm">Service Type</label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#8DBD42] transition-colors"
+                      {/* Phone */}
+                      <div className="space-y-2">
+                        <label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Email */}
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                        />
+                      </div>
+
+                      {/* Service Choice */}
+                      <div className="space-y-2">
+                        <label htmlFor="service" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                          Restoration Service
+                        </label>
+                        <select
+                          id="service"
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none appearance-none cursor-pointer"
+                        >
+                          <option value="">Select a service category...</option>
+                          <option value="fire">Fire Damage Restoration</option>
+                          <option value="water">Water Damage Mitigation</option>
+                          <option value="storm">Storm Damage Recovery</option>
+                          <option value="contents">Contents Pack-Out & Clean</option>
+                          <option value="other">General Inquiry / Assessment</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                        Describe the Loss or Request *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none resize-y"
+                        placeholder="Please details the current situation (e.g. active water leak, soot damage, insurance claim opened)..."
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      className="bg-[#3F4143] hover:bg-[#252628] text-white font-bold py-4 px-8 uppercase tracking-[0.15em] text-xs transition-colors rounded-none w-full flex items-center justify-center gap-2"
                     >
-                      <option value="">Select a service...</option>
-                      <option value="fire">Fire Restoration</option>
-                      <option value="water">Water Restoration</option>
-                      <option value="storm">Storm Recovery</option>
-                      <option value="contents">Contents Services</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-[#3F4143] font-bold mb-2 text-sm">Message *</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#8DBD42] transition-colors resize-none"
-                    placeholder="Tell us about your situation..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#8DBD42] hover:bg-white hover:text-[#292b2d] border border-[#8DBD42] hover:border-[#3F4143]/20 text-white font-bold py-4 uppercase tracking-[0.16em] text-xs transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01] shadow-[0_10px_20px_-10px_rgba(141,189,66,0.4)] cursor-pointer"
-                >
-                  <Send size={14} /> Send Message
-                </button>
-
-                <p className="text-[#3F4143]/60 text-xs mt-4 text-center">
-                  For emergencies, call +1(360)851-1407 immediately.
-                </p>
-              </form>
-            </FadeUp>
-          </div>
-        </section>
-
-        {/* Service Areas */}
-        <section className="py-20 md:py-32 bg-white">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="mb-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Service Areas
-              </h2>
-              <p className="text-lg text-[#3F4143]/70">
-                We serve the entire Washington State region with rapid emergency response.
-              </p>
-            </FadeUp>
-
-            <FadeUp className="bg-[#F5F7FA] rounded-lg p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  "Federal Way",
-                  "Auburn",
-                  "Tacoma",
-                  "Puyallup",
-                  "Lacey",
-                  "Olympia",
-                  "Chehalis",
-                  "Centralia",
-                  "Surrounding Areas"
-                ].map((area, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <MapPin size={20} className="text-[#8DBD42] flex-shrink-0" />
-                    <span className="text-[#3F4143] font-semibold">{area}</span>
-                  </div>
-                ))}
+                      <Send size={14} /> Submit Secured Intake
+                    </button>
+                  </form>
+                </FadeIn>
               </div>
-            </FadeUp>
-          </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-20 md:py-32 bg-[#7BB843] text-white">
-          <div className="max-w-[1280px] mx-auto px-6 text-center">
-            <FadeUp>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                Emergency? Call Now
-              </h2>
-              <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                For immediate emergency response, call our 24/7 hotline right away.
-              </p>
-              <a href="tel:+13608511407" className="inline-flex items-center justify-center gap-2 bg-white text-[#3F4143] font-bold px-8 py-4 rounded hover:bg-[#F5F7FA] transition-all duration-300 text-lg">
-                <Phone size={20} /> +1(360)851-1407
-              </a>
-            </FadeUp>
-          </div>
-        </section>
+            </div>
+          </Container>
+        </Section>
       </div>
     </Layout>
   );

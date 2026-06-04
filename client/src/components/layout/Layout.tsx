@@ -8,7 +8,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-white text-[#3F4143] flex flex-col" style={{ fontFamily: "'Lato', sans-serif" }}>
+    <div className="min-h-screen bg-white text-[#3F4143] flex flex-col">
       <Header />
 
       {/* Main content */}

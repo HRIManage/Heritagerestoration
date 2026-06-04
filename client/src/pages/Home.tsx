@@ -36,6 +36,8 @@ const DECK_STAIRS = "/photo/Before-After-staircase.jpg";
 const BEFORE_IMAGE = "/photo/Monnett Fire Before.jpg";
 const AFTER_IMAGE = "/photo/Monnett Fire After.jpg";
 
+import FadeIn from "@/components/ui/FadeIn";
+
 function FadeUp({
   children,
   delay = 0,
@@ -49,20 +51,15 @@ function FadeUp({
   style?: React.CSSProperties;
   triggerImmediately?: boolean;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const shouldAnimate = triggerImmediately || inView;
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={shouldAnimate ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.21, 1, 0.36, 1] }}
+    <FadeIn
+      delay={delay}
       className={className}
       style={style}
+      triggerImmediately={triggerImmediately}
     >
       {children}
-    </motion.div>
+    </FadeIn>
   );
 }
 
@@ -563,47 +560,56 @@ export default function Home() {
               <div className="absolute top-0 left-0 h-full bg-[#8DBD42] w-1/4 rounded-full" />
             </div>
 
-            {/* Service grid grids without photos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
-              {services.map((service, idx) => (
-                <FadeUp
-                  key={service.title}
-                  delay={idx * 0.07}
-                  className="group"
-                >
-                  <Link href={service.href}>
-                    <div className="cursor-pointer">
-                      <div className="mb-6 inline-flex w-12 h-12 items-center justify-center rounded-full bg-[#8DBD42]/10 text-[#8DBD42] group-hover:bg-[#8DBD42] group-hover:text-white transition-all duration-300">
-                        {service.icon}
+            {/* Service grid grids without photos — Premium Asymmetric Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12 md:gap-y-16">
+              {services.map((service, idx) => {
+                const colSpanClass = idx === 0 || idx === 3 ? "md:col-span-7" : "md:col-span-5";
+                const staggeredClass = 
+                  idx === 1 ? "md:translate-y-12" : 
+                  idx === 2 ? "md:-translate-y-6" : "";
+
+                return (
+                  <FadeUp
+                    key={service.title}
+                    delay={idx * 0.08}
+                    className={`${colSpanClass} ${staggeredClass} group h-full`}
+                  >
+                    <Link href={service.href}>
+                      <div className="h-full p-8 md:p-10 border border-[#3F4143]/12 bg-gradient-to-b from-[#FBFBF9] to-[#F7F4EE] hover:bg-[#3F4143] hover:border-[#3F4143] transition-all duration-500 rounded-none cursor-pointer flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)]">
+                        <div>
+                          <div className="mb-8 w-14 h-14 flex items-center justify-center rounded-none bg-[#8DBD42]/10 text-[#8DBD42] group-hover:bg-white group-hover:text-[#3F4143] transition-colors duration-300">
+                            {service.icon}
+                          </div>
+                          <p
+                            className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-bold mb-2 group-hover:text-[#8DBD42]/90"
+                            style={bodyStyle}
+                          >
+                            {service.number}
+                          </p>
+                          <h3
+                            className="text-2xl md:text-3xl leading-snug text-[#3F4143] group-hover:text-white transition-colors mb-4"
+                            style={headlineStyle}
+                          >
+                            {service.title}
+                          </h3>
+                          <p
+                            className="text-[#3F4143]/70 group-hover:text-white/80 text-sm leading-relaxed mb-8 max-w-[32ch]"
+                            style={bodyStyle}
+                          >
+                            {service.description}
+                          </p>
+                        </div>
+                        <p
+                          className="uppercase tracking-[0.14em] text-xs font-bold inline-flex items-center gap-1.5 text-[#3F4143]/80 group-hover:text-[#8DBD42] group-hover:translate-x-2 transition-all duration-300"
+                          style={bodyStyle}
+                        >
+                          Explore <ArrowRight size={13} />
+                        </p>
                       </div>
-                      <p
-                        className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-bold mb-2"
-                        style={bodyStyle}
-                      >
-                        {service.number}
-                      </p>
-                      <h3
-                        className="text-2xl leading-snug text-[#3F4143] group-hover:text-[#8DBD42] transition-colors"
-                        style={headlineStyle}
-                      >
-                        {service.title}
-                      </h3>
-                      <p
-                        className="text-[#3F4143]/70 text-sm mt-3 leading-relaxed max-w-[24ch]"
-                        style={bodyStyle}
-                      >
-                        {service.description}
-                      </p>
-                      <p
-                        className="mt-6 uppercase tracking-[0.14em] text-xs font-bold inline-flex items-center gap-1.5 text-[#3F4143]/80 group-hover:text-[#8DBD42] group-hover:translate-x-1.5 transition-all duration-300"
-                        style={bodyStyle}
-                      >
-                        Explore <ArrowRight size={13} />
-                      </p>
-                    </div>
-                  </Link>
-                </FadeUp>
-              ))}
+                    </Link>
+                  </FadeUp>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -710,121 +716,136 @@ export default function Home() {
         <section
           className="py-24 md:py-32 overflow-hidden relative"
           id="process"
-          style={{ background: "linear-gradient(180deg, #eef2ea 0%, #ffffff 30%, #ffffff 100%)" }}
+          style={{ background: "linear-gradient(180deg, #F7F4EE 0%, #ffffff 30%, #ffffff 100%)" }}
         >
-          <div className="absolute left-[-120px] top-[12%] w-[380px] h-[380px] rounded-full bg-[#8DBD42]/8 blur-[140px] pointer-events-none" />
-          <div className="absolute right-[-120px] bottom-[10%] w-[420px] h-[420px] rounded-full bg-[#3F4143]/6 blur-[150px] pointer-events-none" />
+          {/* Subtle background glows */}
+          <div className="absolute left-[-120px] top-[12%] w-[380px] h-[380px] rounded-full bg-[#8DBD42]/6 blur-[140px] pointer-events-none" />
+          <div className="absolute right-[-120px] bottom-[10%] w-[420px] h-[420px] rounded-full bg-[#3F4143]/5 blur-[150px] pointer-events-none" />
+          
           <div className="max-w-[1200px] mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-14 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-20 relative z-10">
               <p
-                className="text-[#7BB843] uppercase tracking-[0.15em] text-xs font-extrabold"
+                className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
                 style={bodyStyle}
               >
                 What To Expect
               </p>
               <h2
-                className="text-[27px] md:text-[36px] mt-3 text-[#3F4143] font-bold"
+                className="text-[32px] md:text-[45px] mt-3 text-[#3F4143] font-bold leading-tight"
                 style={headlineStyle}
               >
-                Restoration Process
+                Restoration Journey
               </h2>
               <p
-                className="text-[#3F4143]/72 mt-4 leading-relaxed text-sm md:text-base max-w-xl mx-auto"
+                className="text-[#3F4143]/70 mt-4 leading-relaxed text-sm md:text-base max-w-xl mx-auto"
                 style={bodyStyle}
               >
-                While each project is unique, this process keeps your
+                While each project is unique, this organic journey keeps your
                 restoration efficient and transparent from first call to final
                 walkthrough.
               </p>
             </div>
 
-            {/* Elegant Vertical Timeline */}
-            <div className="relative hidden lg:block my-10">
-              {/* Central vertical line */}
-              <div className="absolute left-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#7BB843]/5 via-[#7BB843]/20 to-[#7BB843]/5 -translate-x-1/2" />
+            {/* Elegant Vertical Timeline (Desktop) */}
+            <div className="relative hidden lg:block my-16">
+              <div className="space-y-0">
+                {process.map((step, idx) => {
+                  const isLeft = idx % 2 === 0;
+                  const isLast = idx === process.length - 1;
 
-              <div className="space-y-6">
-                {Array.from({ length: 4 }).map((_, pairIdx) => {
-                  const step1 = process[pairIdx * 2];
-                  const step2 = process[pairIdx * 2 + 1];
                   return (
                     <div
-                      key={step1.title}
-                      className="relative grid grid-cols-9 gap-8 items-start group"
+                      key={step.title}
+                      className="relative grid grid-cols-9 gap-8 items-start group min-h-[160px]"
                     >
-                      {/* Left Side Content */}
+                      {/* Left Column (Card if isLeft, else empty) */}
                       <div className="col-span-4 flex flex-col items-end">
-                        <FadeUp
-                          delay={0.05}
-                          className="group/card flex flex-col items-end w-full"
-                        >
-                          <div className="bg-white/92 backdrop-blur-md rounded-2xl p-6 shadow-[0_16px_35px_rgba(0,0,0,0.07)] hover:shadow-[0_22px_45px_rgba(123,184,67,0.16)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] text-left relative overflow-hidden border border-[#3F4143]/8">
-                            {/* Watermark Number */}
-                            <div className="absolute top-4 right-4 text-3xl font-extrabold text-[#7BB843]/15 select-none font-serif">
-                              {step1.number}
+                        {isLeft && (
+                          <FadeUp
+                            delay={0.05}
+                            className="group/card flex flex-col items-end w-full"
+                          >
+                            <div className="bg-white p-8 border border-[#3F4143]/10 hover:border-[#8DBD42] transition-all duration-300 max-w-[460px] text-left relative overflow-hidden rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(141,189,66,0.08)]">
+                              {/* Watermark Number */}
+                              <div className="absolute top-4 right-4 text-3xl font-bold text-[#8DBD42]/15 select-none font-serif" style={headlineStyle}>
+                                {step.number}
+                              </div>
+                              <div className="w-12 h-12 rounded-none bg-[#8DBD42]/10 text-[#8DBD42] flex items-center justify-center mb-5 transition-transform duration-300 group-hover/card:scale-110">
+                                {step.icon}
+                              </div>
+                              <h3
+                                className="text-xl text-[#3F4143] font-bold group-hover/card:text-[#8DBD42] transition-colors duration-300"
+                                style={headlineStyle}
+                              >
+                                {step.title}
+                              </h3>
+                              <p
+                                className="text-sm text-[#3F4143]/70 leading-relaxed mt-3"
+                                style={bodyStyle}
+                              >
+                                {step.description}
+                              </p>
                             </div>
-                            <div className="w-12 h-12 rounded-full bg-[#7BB843]/10 text-[#7BB843] flex items-center justify-center mb-4 transition-transform duration-300 group-hover/card:scale-110">
-                              {step1.icon}
-                            </div>
-                            <h3
-                              className="text-xl text-[#3F4143] font-bold group-hover/card:text-[#7BB843] transition-colors duration-300"
-                              style={bodyStyle}
-                            >
-                              {step1.title}
-                            </h3>
-                            <p
-                              className="text-sm text-[#3F4143]/70 leading-relaxed mt-2"
-                              style={bodyStyle}
-                            >
-                              {step1.description}
-                            </p>
-                          </div>
-                        </FadeUp>
+                          </FadeUp>
+                        )}
                       </div>
 
-                      {/* Center Node */}
+                      {/* Center Timeline Node */}
                       <div className="col-span-1 flex flex-col items-center justify-start h-full relative">
-                        {/* Left Card Horizontal Line Connector */}
-                        <div className="absolute right-1/2 top-[42px] w-[calc(50%+32px)] h-[2px] bg-[#7BB843]/15 group-hover:bg-[#7BB843]/40 transition-colors duration-300 pointer-events-none" />
+                        {/* Connecting Bezier Curve Path */}
+                        {!isLast && (
+                          <div className="absolute top-[56px] bottom-[-24px] left-1/2 -translate-x-1/2 w-[160px] overflow-visible z-0 pointer-events-none">
+                            <svg className="w-full h-full" viewBox="0 0 200 200" preserveAspectRatio="none">
+                              <path
+                                d={isLeft ? "M 100 0 C 20 60, 20 140, 100 200" : "M 100 0 C 180 60, 180 140, 100 200"}
+                                fill="none"
+                                stroke="#8DBD42"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                className="opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                              />
+                            </svg>
+                          </div>
+                        )}
 
-                        {/* Dot 1 */}
-                        <div className="w-3.5 h-3.5 rounded-full bg-[#7BB843]/40 group-hover:bg-[#7BB843] group-hover:scale-125 transition-all duration-300 z-10 mt-[35px]" />
-
-                        {/* Right Card Horizontal Line Connector */}
-                        <div className="absolute left-1/2 top-[102px] w-[calc(50%+32px)] h-[2px] bg-[#7BB843]/15 group-hover:bg-[#7BB843]/40 transition-colors duration-300 pointer-events-none" />
-
-                        {/* Dot 2 */}
-                        <div className="w-3.5 h-3.5 rounded-full bg-[#7BB843]/40 group-hover:bg-[#7BB843] group-hover:scale-125 transition-all duration-300 z-10 mt-[46px]" />
+                        {/* Centered Icon Container */}
+                        <div className="w-14 h-14 bg-white text-[#8DBD42] border border-[#8DBD42]/20 flex items-center justify-center rounded-none z-10 shadow-[0_4px_12px_rgba(0,0,0,0.03)] group-hover:bg-[#8DBD42] group-hover:text-white transition-colors duration-300 relative">
+                          <span className="text-xs font-bold font-serif" style={headlineStyle}>
+                            {step.number}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Right Side Content */}
-                      <div className="col-span-4 flex flex-col items-start pt-16">
-                        <FadeUp
-                          delay={0.08}
-                          className="group/card flex flex-col items-start w-full"
-                        >
-                          <div className="bg-white/92 backdrop-blur-md rounded-2xl p-6 shadow-[0_16px_35px_rgba(0,0,0,0.07)] hover:shadow-[0_22px_45px_rgba(123,184,67,0.16)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] relative overflow-hidden border border-[#3F4143]/8">
-                            {/* Watermark Number */}
-                            <div className="absolute top-4 right-4 text-3xl font-extrabold text-[#7BB843]/15 select-none font-serif">
-                              {step2.number}
+                      {/* Right Column (Card if isRight, else empty) */}
+                      <div className="col-span-4 flex flex-col items-start pt-12">
+                        {!isLeft && (
+                          <FadeUp
+                            delay={0.05}
+                            className="group/card flex flex-col items-start w-full"
+                          >
+                            <div className="bg-white p-8 border border-[#3F4143]/10 hover:border-[#8DBD42] transition-all duration-300 max-w-[460px] text-left relative overflow-hidden rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(141,189,66,0.08)]">
+                              {/* Watermark Number */}
+                              <div className="absolute top-4 right-4 text-3xl font-bold text-[#8DBD42]/15 select-none font-serif" style={headlineStyle}>
+                                {step.number}
+                              </div>
+                              <div className="w-12 h-12 rounded-none bg-[#8DBD42]/10 text-[#8DBD42] flex items-center justify-center mb-5 transition-transform duration-300 group-hover/card:scale-110">
+                                {step.icon}
+                              </div>
+                              <h3
+                                className="text-xl text-[#3F4143] font-bold group-hover/card:text-[#8DBD42] transition-colors duration-300"
+                                style={headlineStyle}
+                              >
+                                {step.title}
+                              </h3>
+                              <p
+                                className="text-sm text-[#3F4143]/70 leading-relaxed mt-3"
+                                style={bodyStyle}
+                              >
+                                {step.description}
+                              </p>
                             </div>
-                            <div className="w-12 h-12 rounded-full bg-[#7BB843]/10 text-[#7BB843] flex items-center justify-center mb-4 transition-transform duration-300 group-hover/card:scale-110">
-                              {step2.icon}
-                            </div>
-                            <h3
-                              className="text-xl text-[#3F4143] font-bold group-hover/card:text-[#7BB843] transition-colors duration-300"
-                              style={bodyStyle}
-                            >
-                              {step2.title}
-                            </h3>
-                            <p
-                              className="text-sm text-[#3F4143]/70 leading-relaxed mt-2"
-                              style={bodyStyle}
-                            >
-                              {step2.description}
-                            </p>
-                          </div>
-                        </FadeUp>
+                          </FadeUp>
+                        )}
                       </div>
                     </div>
                   );
@@ -832,51 +853,68 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mobile/Tablet Vertical Timeline */}
-            <div className="lg:hidden relative pl-8 sm:pl-12 space-y-5 my-8">
-              {/* Vertical timeline line */}
-              <div className="absolute left-[16px] sm:left-[20px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-[#7BB843]/10 via-[#7BB843]/20 to-[#7BB843]/10" />
+            {/* Elegant Mobile Winding Timeline */}
+            <div className="lg:hidden relative pl-12 sm:pl-16 space-y-6 my-10">
+              {process.map((step, idx) => {
+                const isLast = idx === process.length - 1;
 
-              {process.map((step, idx) => (
-                <FadeUp
-                  key={step.title}
-                  delay={idx * 0.05}
-                  className="relative group"
-                >
-                  {/* Circle dot on the timeline track */}
-                  <div className="absolute -left-8 sm:-left-12 top-[18px] w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#7BB843]/30 bg-white flex items-center justify-center z-10 shadow-sm transition-all duration-300 group-hover:border-[#7BB843] group-hover:scale-105">
-                    <span className="text-[11px] font-bold text-[#7BB843]">
-                      {step.number}
-                    </span>
-                  </div>
+                return (
+                  <FadeUp
+                    key={step.title}
+                    delay={idx * 0.05}
+                    className="relative group"
+                  >
+                    {/* Winding Connecting Bezier Curve (Left aligned) */}
+                    {!isLast && (
+                      <div className="absolute top-[40px] bottom-[-24px] left-[-38px] sm:left-[-46px] w-[60px] overflow-visible z-0 pointer-events-none">
+                        <svg className="w-full h-full" viewBox="0 0 100 200" preserveAspectRatio="none">
+                          <path
+                            d="M 20 0 C 80 50, 80 150, 20 200"
+                            fill="none"
+                            stroke="#8DBD42"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            className="opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+                          />
+                        </svg>
+                      </div>
+                    )}
 
-                  {/* Card Container */}
-                  <div className="bg-white rounded-2xl p-6 shadow-[0_8px_25px_rgba(0,0,0,0.015)] hover:shadow-[0_12px_30px_rgba(123,184,67,0.06)] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden border border-[#3F4143]/5">
-                    {/* Watermark Number on mobile */}
-                    <div className="absolute top-4 right-4 text-2xl font-extrabold text-[#7BB843]/15 select-none font-serif">
-                      {step.number}
+                    {/* Timeline Left Node */}
+                    <div className="absolute -left-12 sm:-left-14 top-1 w-9 h-9 sm:w-10 sm:h-10 border border-[#8DBD42]/30 bg-white text-[#8DBD42] flex items-center justify-center z-10 shadow-sm transition-all duration-300 rounded-none group-hover:bg-[#8DBD42] group-hover:text-white">
+                      <span className="text-[11px] font-bold font-serif" style={headlineStyle}>
+                        {step.number}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-[#7BB843]/10 text-[#7BB843] flex items-center justify-center shrink-0">
-                        {step.icon}
+                    {/* Card Container */}
+                    <div className="bg-white rounded-none p-6 border border-[#3F4143]/10 hover:border-[#8DBD42] transition-all duration-300 relative overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.01)]">
+                      {/* Watermark Number on mobile */}
+                      <div className="absolute top-4 right-4 text-2xl font-bold text-[#8DBD42]/12 select-none font-serif" style={headlineStyle}>
+                        {step.number}
                       </div>
-                      <h3
-                        className="text-base text-[#3F4143] font-bold"
+
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 rounded-none bg-[#8DBD42]/10 text-[#8DBD42] flex items-center justify-center shrink-0">
+                          {step.icon}
+                        </div>
+                        <h3
+                          className="text-base text-[#3F4143] font-bold"
+                          style={headlineStyle}
+                        >
+                          {step.title}
+                        </h3>
+                      </div>
+                      <p
+                        className="text-sm text-[#3F4143]/70 leading-relaxed"
                         style={bodyStyle}
                       >
-                        {step.title}
-                      </h3>
+                        {step.description}
+                      </p>
                     </div>
-                    <p
-                      className="text-sm text-[#3F4143]/70 leading-relaxed"
-                      style={bodyStyle}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </FadeUp>
-              ))}
+                  </FadeUp>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -1071,7 +1109,7 @@ export default function Home() {
                 },
               ].map((testimonial, idx) => (
                 <FadeUp key={testimonial.name} delay={idx * 0.06}>
-                  <article className="relative h-full rounded-2xl border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.045)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
+                  <article className="relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.045)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
                     {/* Big Decorative Quote Mark */}
                     <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-300 group-hover:scale-110">
                       “

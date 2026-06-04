@@ -1,48 +1,10 @@
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import {
-  Phone,
-  Camera,
-  Package,
-  Wind,
-  Warehouse,
-  ClipboardCheck,
-  Sparkles,
-  Cpu,
-  MapPin,
-  Shirt,
-  Palette,
-  HardDrive,
-  ChevronLeft,
-  ChevronRight
-} from "lucide-react";
+import { Camera, Package, Wind, Warehouse, ClipboardCheck, Sparkles, Cpu, MapPin, Shirt, Palette, HardDrive, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import FadeIn from "@/components/ui/FadeIn";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
 
 export default function ContentsServices() {
   return (
@@ -69,7 +31,7 @@ export default function ContentsServices() {
             name: "Heritage Restoration - Contents Services",
             description:
               "Professional contents pack-out, cleaning, and storage services",
-            telephone: "+1-360-345-1015",
+            telephone: "+1-360-851-1407",
             email: "office@firewaterstorm.com",
             areaServed: "WA",
             serviceType: "Contents Services",
@@ -77,74 +39,69 @@ export default function ContentsServices() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[98px]">
+      <div className="min-h-screen bg-brand-linen pt-[98px]">
         {/* Editorial Collage Hero Section */}
         <section className="relative bg-[#292b2d] text-white border-b border-[#8DBD42]/20 overflow-hidden">
           <div className="max-w-[1280px] mx-auto px-6 py-20 md:py-28 relative z-10">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
               <div className="col-span-12 md:col-span-6 lg:col-span-7 space-y-8 text-white">
-                <FadeUp className="inline-flex items-center gap-2.5">
-                  <span className="w-2 h-2 rounded-full bg-[#8DBD42] animate-pulse" />
+                <FadeIn className="inline-flex items-center gap-2.5" direction="up">
+                  <span className="w-2 h-2 rounded-none bg-[#8DBD42] animate-pulse" />
                   <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black">
                     SPECIALIZED CARE
                   </span>
-                </FadeUp>
+                </FadeIn>
                 
-                <FadeUp delay={0.1} className="space-y-6">
+                <FadeIn delay={0.1} className="space-y-6" direction="up">
                   <h1
-                    className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
-                    style={{ fontFamily: "'Libre Caslon Text', serif" }}
+                    className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight font-serif"
                   >
                     Contents <span className="text-[#8DBD42]">Services</span>
                   </h1>
-                  <p className="text-base text-white/80 leading-relaxed max-w-xl font-medium">
+                  <p className="text-base text-white/85 leading-relaxed max-w-xl font-sans font-light">
                     When disaster strikes your property, your personal belongings need the same level of professional care as the building structure itself. We provide a streamlined, end-to-end contents management system—handling everything from digital inventory tracking and specialized cleaning to secure, climate-stabilized storage while your home is being rebuilt.
                   </p>
-                </FadeUp>
+                </FadeIn>
 
-                <FadeUp delay={0.2} className="pt-2">
+                <FadeIn delay={0.2} className="pt-2" direction="up">
                   <a
-                    href="tel:+13603451015"
-                    className="inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#7BB843] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                    href="tel:+13608511407"
+                    className="inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#72a232] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5 rounded-none"
                   >
-                    Contact Us: 360-345-1015
+                    Contact Us: (360) 851-1407
                   </a>
-                </FadeUp>
+                </FadeIn>
               </div>
 
-              {/* Right Column: Smaller collage image displayed on the right for desktop, centered below for mobile */}
+              {/* Right Column: Smaller collage image */}
               <div className="col-span-12 md:col-span-6 lg:col-span-5 flex justify-center lg:justify-end">
-                <FadeUp delay={0.15} className="w-full max-w-md lg:max-w-full">
-                  <div className="overflow-hidden rounded-2xl border border-neutral-200/60 shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-300 bg-white p-2">
+                <FadeIn delay={0.15} className="w-full max-w-md lg:max-w-full" direction="up">
+                  <div className="overflow-hidden rounded-none border border-neutral-200/60 shadow-lg bg-white p-2">
                     <img
                       src="/photo/contents-hero.png"
                       alt="Contents restoration services collage showing packaging and inventory"
-                      className="w-full h-auto object-contain rounded-xl"
+                      className="w-full h-auto object-contain rounded-none"
                     />
                   </div>
-                </FadeUp>
+                </FadeIn>
               </div>
-
             </div>
           </div>
         </section>
 
         {/* Complete Contents Management - 2-Column Asymmetric Split-List */}
-        <section className="py-24 md:py-32 bg-transparent">
-          <div className="max-w-[1280px] mx-auto px-6">
+        <Section bg="none">
+          <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 max-w-5xl mx-auto items-start">
               
               {/* Left Column - 40% Width Sticky Text Anchor */}
               <div className="lg:col-span-5 lg:sticky lg:top-40 space-y-6">
-                <FadeUp>
+                <FadeIn direction="up">
                   <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black block">
                     TRUSTED CUSTODY
                   </span>
-                  <h2
-                    className="text-3xl md:text-4xl font-bold text-[#3F4143] leading-tight"
-                    style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                  >
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] leading-tight font-serif">
                     Complete Contents Management
                   </h2>
                   
@@ -162,10 +119,10 @@ export default function ContentsServices() {
                       </div>
                     ))}
                   </div>
-                </FadeUp>
+                </FadeIn>
               </div>
 
-              {/* Right Column - 60% Width Vertical Stack (No Card Boxes, Premium Interactive Rows) */}
+              {/* Right Column - 60% Width Vertical Stack */}
               <div className="lg:col-span-7 space-y-10">
                 {[
                   {
@@ -193,14 +150,15 @@ export default function ContentsServices() {
                     icon: <Warehouse size={20} />,
                   },
                 ].map((item, idx) => (
-                  <FadeUp
+                  <FadeIn
                     key={idx}
                     delay={idx * 0.08}
                     className="group border-b border-[#3F4143]/10 pb-10 last:border-0 last:pb-0"
+                    direction="up"
                   >
                     <div className="flex items-start gap-4">
                       {/* Icon & Index Module */}
-                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white border border-[#3F4143]/10 text-[#8DBD42] flex items-center justify-center shadow-sm group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42]/5 transition-all duration-300">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-none bg-white border border-[#3F4143]/10 text-[#8DBD42] flex items-center justify-center shadow-sm group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42]/5 transition-all duration-300">
                         {item.icon}
                       </div>
                       
@@ -208,37 +166,34 @@ export default function ContentsServices() {
                         <div className="text-xs font-black text-[#8DBD42] tracking-widest uppercase">
                           {item.num} / PROCESS MODULE
                         </div>
-                        <h3 className="font-bold text-xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+                        <h3 className="font-bold text-xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors font-serif">
                           {item.title}
                         </h3>
-                        <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1">
+                        <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1 font-sans font-light">
                           {item.desc}
                         </p>
                       </div>
                     </div>
-                  </FadeUp>
+                  </FadeIn>
                 ))}
               </div>
 
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         {/* The Process Timeline - Left-Aligned Vertical Axis Timeline */}
-        <section className="py-24 md:py-32 bg-transparent border-t border-[#3F4143]/5">
-          <div className="max-w-[1280px] mx-auto px-6">
+        <Section bg="white" className="border-t border-gray-100">
+          <Container>
             <div className="max-w-3xl mx-auto">
-              <FadeUp className="mb-20">
+              <FadeIn className="mb-20" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-3">
                   THE PATH TO RESTORATION
                 </span>
-                <h2
-                  className="text-3xl md:text-5xl font-bold text-[#3F4143]"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                >
+                <h2 className="text-3xl md:text-5xl font-bold text-[#3F4143] font-serif">
                   A Seamless Five-Phase Journey
                 </h2>
-              </FadeUp>
+              </FadeIn>
 
               {/* Vertical axis line */}
               <div className="relative pl-10 border-l-2 border-[#8DBD42]/20 space-y-12 py-4">
@@ -274,13 +229,14 @@ export default function ContentsServices() {
                     icon: <MapPin size={14} />,
                   },
                 ].map((item, idx) => (
-                  <FadeUp
+                  <FadeIn
                     key={idx}
                     delay={idx * 0.06}
-                    className="relative group bg-white/40 hover:bg-white/90 border border-[#3F4143]/5 hover:border-[#8DBD42]/20 p-6 sm:p-8 rounded-2xl transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1"
+                    className="relative group bg-white/40 hover:bg-white/90 border border-[#3F4143]/5 hover:border-[#8DBD42]/20 p-6 sm:p-8 rounded-none transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1"
+                    direction="up"
                   >
                     {/* Node badge centered exactly on the border line */}
-                    <div className="absolute left-[-58px] top-7 w-8 h-8 rounded-full bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-md z-10 group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute left-[-58px] top-7 w-8 h-8 rounded-none bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-md z-10 group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
                     </div>
                     
@@ -288,34 +244,31 @@ export default function ContentsServices() {
                       <div className="text-xs font-bold text-[#8DBD42] tracking-wider uppercase flex items-center gap-2">
                         <span>PHASE {item.num}</span>
                       </div>
-                      <h3 className="font-bold text-[#3F4143] text-xl group-hover:text-[#8DBD42] transition-colors" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+                      <h3 className="font-bold text-[#3F4143] text-xl group-hover:text-[#8DBD42] transition-colors font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1">
+                      <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1 font-sans">
                         {item.desc}
                       </p>
                     </div>
-                  </FadeUp>
+                  </FadeIn>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         {/* Specialized Portfolios - 3-Column Horizontal Grid */}
-        <section className="py-24 md:py-32 bg-transparent border-t border-[#3F4143]/5">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="mb-20 text-center">
+        <Section bg="none" className="border-t border-gray-100">
+          <Container>
+            <FadeIn className="mb-20 text-center" direction="up">
               <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-3">
                 ASSETS WE PROTECT
               </span>
-              <h2
-                className="text-3xl md:text-5xl font-bold text-[#3F4143]"
-                style={{ fontFamily: "'Libre Caslon Text', serif" }}
-              >
+              <h2 className="text-3xl md:text-5xl font-bold text-[#3F4143] font-serif">
                 Items We Professionally Clean & Restore
               </h2>
-            </FadeUp>
+            </FadeIn>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
               {[
@@ -338,29 +291,30 @@ export default function ContentsServices() {
                   icon: <Palette size={28} className="text-[#8DBD42]" />
                 },
               ].map((item, idx) => (
-                <FadeUp
+                <FadeIn
                   key={idx}
                   delay={idx * 0.08}
-                  className="group bg-white/80 border border-[#3F4143]/10 hover:border-[#8DBD42] rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                  className="group bg-white border border-[#3F4143]/10 hover:border-[#8DBD42] rounded-none p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                  direction="up"
                 >
                   <div className="space-y-5">
                     {/* Header Module */}
-                    <div className="w-12 h-12 rounded-2xl bg-[#8DBD42]/5 flex items-center justify-center group-hover:bg-[#8DBD42]/10 transition-colors">
+                    <div className="w-12 h-12 rounded-none bg-[#8DBD42]/5 flex items-center justify-center group-hover:bg-[#8DBD42]/10 transition-colors">
                       {item.icon}
                     </div>
                     
                     <div className="space-y-3">
-                      <h3 className="font-bold text-2xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+                      <h3 className="font-bold text-2xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed">
+                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
                         {item.desc}
                       </p>
                     </div>
                   </div>
                   
                   {/* Detailed list inclusions */}
-                  <div className="pt-6 mt-6 border-t border-[#3F4143]/10">
+                  <div className="pt-6 mt-6 border-t border-[#3F4143]/10 font-sans">
                     <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-widest mb-3">
                       Includes:
                     </h4>
@@ -368,14 +322,14 @@ export default function ContentsServices() {
                       {item.includes}
                     </p>
                   </div>
-                </FadeUp>
+                </FadeIn>
               ))}
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         {/* CTA Section */}
-        <section className="relative bg-white pt-24 pb-36 overflow-hidden">
+        <section className="relative bg-white pt-24 pb-36 overflow-hidden border-t border-gray-100">
           {/* Background image banner */}
           <div className="absolute top-0 left-0 w-full h-[450px] md:h-[550px]">
             <img
@@ -384,23 +338,17 @@ export default function ContentsServices() {
               className="w-full h-full object-cover object-center brightness-75"
             />
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/35" />
+            <div className="absolute inset-0 bg-black/40" />
           </div>
 
           {/* Centered Overlapping Card Container */}
           <div className="relative max-w-[960px] mx-auto px-6 pt-[260px] md:pt-[340px] z-10">
-            <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 rounded-2xl p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.08)] text-center">
-                <h2
-                  className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                >
+            <FadeIn direction="up">
+              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
+                <h2 className="text-2xl md:text-3.5xl font-bold text-[#3F4143] mb-6 font-serif">
                   Protect Your Valuables
                 </h2>
-                <div
-                  className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
                     We understand that your personal belongings represent a lifetime of memories and investments. When disaster strikes, it's not just the building structure that needs care—it's the cherished contents inside.
                   </p>
@@ -409,25 +357,22 @@ export default function ContentsServices() {
                   </p>
                 </div>
 
-                <div
-                  className="mt-8 flex flex-wrap gap-4 justify-center"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2"
+                    href="tel:+13608511407"
+                    className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now
                   </a>
                   <Link
                     href="/resources/faq"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md"
+                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md"
                   >
                     FAQ & Resources
                   </Link>
                 </div>
               </div>
-            </FadeUp>
+            </FadeIn>
           </div>
         </section>
       </div>

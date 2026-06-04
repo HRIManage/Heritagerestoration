@@ -1,33 +1,10 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import { Flame, Shield, Clock, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import FadeIn from "@/components/ui/FadeIn";
+import Section from "@/components/ui/Section";
+import Container from "@/components/ui/Container";
 
 export default function FireRestoration() {
   const services = [
@@ -61,29 +38,26 @@ export default function FireRestoration() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[142px]">
-        {/* Hero Section */}
+      <div className="min-h-screen bg-brand-linen pt-[142px]">
+        {/* Hero Section — 7:5 Asymmetric Split Layout */}
         <section className="relative bg-[#292b2d] text-white overflow-hidden border-b border-[#8DBD42]/20">
           <div className="grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
-            {/* Left Content Column */}
+            {/* Left Content Column (7 Columns) */}
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-16 md:py-24 max-w-[720px] mx-auto lg:mx-0 lg:pl-16 relative z-10">
-              <FadeUp className="space-y-6">
-                <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black flex items-center gap-2">
+              <FadeIn className="space-y-6" direction="up">
+                <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
                   <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
                 </span>
-                <h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                >
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
                   Fire Restoration
                 </h1>
-                <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl">
+                <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl font-sans font-light">
                   When fire strikes, every moment counts. Heritage Restoration responds immediately to secure your property, mitigate soot damage, and guide you through complete reconstruction to modern standards.
                 </p>
-              </FadeUp>
+              </FadeIn>
             </div>
             
-            {/* Right Photo Column - Asymmetrical Crop */}
+            {/* Right Photo Column (5 Columns) — Dark Framed Imagery */}
             <div className="lg:col-span-5 relative h-[250px] lg:h-auto overflow-hidden">
               <img
                 src="/photo/Monnett Fire Before.jpg"
@@ -91,82 +65,78 @@ export default function FireRestoration() {
                 className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.7]"
               />
               <div className="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-[#292b2d] to-transparent hidden lg:block" />
-              <div className="absolute inset-0 bg-[#292b2d]/10" />
+              <div className="absolute inset-0 bg-[#292b2d]/15" />
             </div>
           </div>
         </section>
 
-        {/* Specialized Services - Hot Highlight Featured Layout */}
-        <section className="py-20 md:py-32 bg-transparent">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="mb-16 text-center">
-              <h2
-                className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-6"
-                style={{ fontFamily: "'Libre Caslon Text', serif" }}
-              >
-                Our Specialized Services
+        {/* Specialized Services — Staggered, Non-Traditional Grid */}
+        <Section bg="none">
+          <Container>
+            <FadeIn className="mb-20 text-center" direction="up">
+              <span className="overline-label">Our Capabilities</span>
+              <h2 className="text-3xl md:text-4.5xl font-bold text-[#3F4143] mt-2 font-serif">
+                Specialized Fire Services
               </h2>
-            </FadeUp>
+            </FadeIn>
 
             <div className="space-y-16">
-              {/* Featured Full-Width Top Service */}
-              <FadeUp className="bg-white rounded-2xl overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.03)] border border-[#3F4143]/5 grid lg:grid-cols-12 gap-0 items-stretch">
-                <div className="lg:col-span-6 relative min-h-[300px] lg:min-h-auto">
+              {/* Featured Asymmetric Top Service */}
+              <FadeIn className="bg-white border border-[#3F4143]/8 grid lg:grid-cols-12 gap-0 items-stretch rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.04)] transition-all duration-300" direction="up">
+                <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-auto">
                   <img src={services[0].img} alt={services[0].title} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
-                <div className="lg:col-span-6 p-8 md:p-12 flex flex-col justify-center space-y-4">
+                <div className="lg:col-span-5 p-8 md:p-12 flex flex-col justify-center space-y-4">
                   <div className="text-[#8DBD42]">{services[0].icon}</div>
-                  <span className="text-[#8DBD42] uppercase tracking-[0.15em] text-xs font-bold">Featured Specialty</span>
-                  <h3 className="font-bold text-[#3F4143] text-2xl md:text-3xl" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-bold">Featured Specialty</span>
+                  <h3 className="font-bold text-[#3F4143] text-2xl md:text-3xl font-serif">
                     {services[0].title}
                   </h3>
-                  <p className="text-[#3F4143]/70 text-base leading-relaxed">
+                  <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
                     {services[0].desc}
                   </p>
                 </div>
-              </FadeUp>
+              </FadeIn>
 
-              {/* Stacked Sub-Columns */}
-              <div className="grid md:grid-cols-2 gap-8">
+              {/* Staggered Column Splitting */}
+              <div className="grid md:grid-cols-2 gap-10">
                 {services.slice(1).map((item, idx) => (
-                  <FadeUp
+                  <FadeIn
                     key={idx}
                     delay={idx * 0.1}
-                    className="bg-white rounded-2xl p-8 shadow-[0_10px_25px_rgba(0,0,0,0.02)] border-b-4 border-b-[#8DBD42]/20 border border-[#3F4143]/5 flex flex-col justify-between"
+                    className="bg-white p-8 border border-[#3F4143]/8 flex flex-col justify-between rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.04)] transition-all duration-300"
+                    direction="up"
                   >
-                    <div className="space-y-4">
-                      <div className="relative h-[200px] rounded-xl overflow-hidden mb-6 shadow-sm">
+                    <div className="space-y-5">
+                      <div className="relative h-[220px] overflow-hidden mb-6 rounded-none border border-gray-100 shadow-sm">
                         <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
                       </div>
                       <div className="text-[#8DBD42]">{item.icon}</div>
-                      <h3 className="font-bold text-[#3F4143] text-xl" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+                      <h3 className="font-bold text-[#3F4143] text-xl md:text-2xl font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed">
+                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
                         {item.desc}
                       </p>
                     </div>
-                  </FadeUp>
+                  </FadeIn>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* Process Winding Timeline Section */}
-        <section className="py-20 md:py-32 bg-transparent">
-          <div className="max-w-[1280px] mx-auto px-6">
-            <FadeUp className="mb-20 text-center">
-              <h2
-                className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-6"
-                style={{ fontFamily: "'Libre Caslon Text', serif" }}
-              >
-                Our Fire Restoration Process
+        {/* Process Timeline Section (Bespoke Borderless Steps) */}
+        <Section bg="white" className="border-t border-gray-100">
+          <Container>
+            <FadeIn className="mb-20 text-center" direction="up">
+              <span className="overline-label">The Journey</span>
+              <h2 className="text-3xl md:text-4.5xl font-bold text-[#3F4143] mt-2 font-serif">
+                Our Restoration Steps
               </h2>
-            </FadeUp>
+            </FadeIn>
 
             <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">
-              {/* Central vertical line */}
               <div className="absolute top-0 bottom-0 left-0 md:left-1/2 w-[2px] bg-[#8DBD42]/20" />
               
               <div className="space-y-16">
@@ -202,48 +172,47 @@ export default function FireRestoration() {
                     desc: "Building code compliance verification and final walkthrough of your fully restored property.",
                   },
                 ].map((item, idx) => (
-                  <FadeUp
+                  <FadeIn
                     key={idx}
                     delay={idx * 0.05}
                     className={`relative grid md:grid-cols-2 gap-8 md:gap-16 ${idx % 2 !== 0 ? "md:text-right" : ""}`}
+                    direction="up"
                   >
                     {/* Circle Node */}
-                    <div className="absolute left-[-41px] md:left-1/2 md:translate-x-[-16px] top-1 w-8 h-8 rounded-full bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center font-bold text-xs shadow-sm z-10">
+                    <div className="absolute left-[-41px] md:left-1/2 md:translate-x-[-16px] top-1 w-8 h-8 rounded-none bg-white border border-[#8DBD42] text-[#8DBD42] flex items-center justify-center font-bold text-xs shadow-sm z-10 font-serif">
                       {item.step}
                     </div>
                     
                     {/* Content Column */}
                     <div className={`${idx % 2 !== 0 ? "md:col-start-1" : "md:col-start-2"}`}>
-                      <h3 className="font-bold text-[#3F4143] text-lg mb-2">
+                      <h3 className="font-bold text-[#3F4143] text-lg mb-2 font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed">
+                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
                         {item.desc}
                       </p>
                     </div>
-                  </FadeUp>
+                  </FadeIn>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         {/* Why Choose Us & Stats Block */}
-        <section className="py-20 md:py-32 bg-transparent">
-          <div className="max-w-[1280px] mx-auto px-6">
+        <Section bg="none" className="border-t border-gray-100">
+          <Container>
             <div className="grid lg:grid-cols-12 gap-12 items-center">
               {/* Checklist Column */}
-              <div className="lg:col-span-7 space-y-12">
-                <FadeUp>
-                  <h2
-                    className="text-3xl md:text-4xl font-bold text-[#3F4143]"
-                    style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                  >
+              <div className="lg:col-span-7 space-y-10">
+                <FadeIn direction="up">
+                  <span className="overline-label">Our Standards</span>
+                  <h2 className="text-3xl md:text-4.5xl font-bold text-[#3F4143] mt-2 font-serif">
                     Why Choose Heritage Restoration
                   </h2>
-                </FadeUp>
+                </FadeIn>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
                   {[
                     "60-minute emergency response time, 24/7 availability",
                     "IICRC certified restoration professionals",
@@ -254,24 +223,25 @@ export default function FireRestoration() {
                     "5-year warranty on all restoration work",
                     "Local expertise serving Washington State",
                   ].map((item, idx) => (
-                    <FadeUp
+                    <FadeIn
                       key={idx}
                       delay={idx * 0.05}
                       className="flex gap-4 items-start pl-2"
+                      direction="up"
                     >
                       <CheckCircle
-                        size={20}
+                        size={18}
                         className="text-[#8DBD42] flex-shrink-0 mt-1"
                       />
-                      <p className="text-[#3F4143] font-bold text-base">{item}</p>
-                    </FadeUp>
+                      <p className="text-[#3F4143] font-bold text-base leading-snug">{item}</p>
+                    </FadeIn>
                   ))}
                 </div>
               </div>
 
               {/* Stats Grid Column */}
               <div className="lg:col-span-5">
-                <FadeUp className="bg-[#3F4143] text-white rounded-2xl p-8 shadow-[0_15px_30px_rgba(0,0,0,0.06)] grid grid-cols-2 gap-6 relative overflow-hidden">
+                <FadeIn className="bg-[#3F4143] text-white p-8 shadow-[0_15px_30px_rgba(0,0,0,0.06)] grid grid-cols-2 gap-6 relative overflow-hidden rounded-none" direction="up">
                   <div className="absolute right-[-40px] bottom-[-40px] w-48 h-48 bg-[#8DBD42]/10 rounded-full blur-2xl pointer-events-none" />
                   {[
                     { val: "60m", lbl: "Response Time" },
@@ -279,16 +249,16 @@ export default function FireRestoration() {
                     { val: "5yr", lbl: "Work Warranty" },
                     { val: "100%", lbl: "Bonded & Insured" }
                   ].map((stat, idx) => (
-                    <div key={idx} className="space-y-2 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#8DBD42]/30 transition-colors">
-                      <div className="text-3xl md:text-4xl font-bold text-[#8DBD42]" style={{ fontFamily: "'Libre Caslon Text', serif" }}>{stat.val}</div>
-                      <div className="text-xs text-white/70 uppercase tracking-wider font-semibold">{stat.lbl}</div>
+                    <div key={idx} className="space-y-2 p-5 bg-white/5 border border-white/10 hover:border-[#8DBD42]/30 transition-colors rounded-none">
+                      <div className="text-3xl md:text-4xl font-bold text-[#8DBD42] font-serif">{stat.val}</div>
+                      <div className="text-[10px] text-white/60 uppercase tracking-widest font-semibold">{stat.lbl}</div>
                     </div>
                   ))}
-                </FadeUp>
+                </FadeIn>
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         {/* CTA Section */}
         <section className="relative bg-white pt-24 pb-36 overflow-hidden">
@@ -300,30 +270,24 @@ export default function FireRestoration() {
               className="w-full h-full object-cover object-center brightness-75"
             />
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/35" />
+            <div className="absolute inset-0 bg-black/40" />
 
             {/* Diagonal graphic stripes on the right */}
             <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block overflow-hidden pointer-events-none">
-              <div className="absolute right-[-100px] top-[-100px] w-[180px] h-[600px] bg-[#3F4143] transform rotate-[35deg] opacity-90 shadow-2xl" />
-              <div className="absolute right-[100px] top-[-100px] w-[80px] h-[600px] bg-[#8DBD42] transform rotate-[35deg] opacity-75" />
-              <div className="absolute right-[200px] top-[-100px] w-[40px] h-[600px] bg-[#7BB843] transform rotate-[35deg] opacity-60" />
+              <div className="absolute right-[-100px] top-[-100px] w-[180px] h-[600px] bg-[#3F4143] transform rotate-[35deg] opacity-95 shadow-2xl" />
+              <div className="absolute right-[100px] top-[-100px] w-[80px] h-[600px] bg-[#8DBD42] transform rotate-[35deg] opacity-80" />
+              <div className="absolute right-[200px] top-[-100px] w-[40px] h-[600px] bg-[#7BB843] transform rotate-[35deg] opacity-65" />
             </div>
           </div>
 
           {/* Centered Overlapping Card Container */}
           <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
-            <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 rounded-2xl p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.08)] text-center">
-                <h2
-                  className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                >
+            <FadeIn direction="up">
+              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
+                <h2 className="text-2xl md:text-3.5xl font-bold text-[#3F4143] mb-6 font-serif">
                   Your Fire Damage Restoration Experts
                 </h2>
-                <div
-                  className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
                     We understand the profound challenges and emotional toll
                     that arise in the aftermath of a fire disaster. Your world
@@ -337,25 +301,22 @@ export default function FireRestoration() {
                   </p>
                 </div>
 
-                <div
-                  className="mt-8 flex flex-wrap gap-4 justify-center"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2"
+                    href="tel:+13608511407"
+                    className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now
                   </a>
                   <Link
                     href="/resources/faq"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md"
+                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md"
                   >
                     What do I need to know?
                   </Link>
                 </div>
               </div>
-            </FadeUp>
+            </FadeIn>
           </div>
         </section>
       </div>
