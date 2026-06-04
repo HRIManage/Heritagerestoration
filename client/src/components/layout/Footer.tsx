@@ -22,9 +22,9 @@ export default function Footer({
   ];
 
   const resourceItems = [
-    { label: "FAQ", action: onFaqClick },
-    { label: "Blogs", action: onBlogsClick },
-    { label: "Homeowner Bill of Rights", action: onBillOfRightsClick },
+    { label: "FAQ", href: "/resources/faq", action: onFaqClick },
+    { label: "Blogs", href: "/resources/blog", action: onBlogsClick },
+    { label: "Homeowner Bill of Rights", href: "/resources/bill-of-rights", action: onBillOfRightsClick },
   ];
 
   return (
@@ -63,9 +63,9 @@ export default function Footer({
             <ul className="space-y-4">
               {resourceItems.map(item => (
                 <li key={item.label}>
-                  <button onClick={item.action} className="text-white/60 hover:text-[#8DBD42] text-sm font-bold transition-colors cursor-pointer">
+                  <Link href={item.href} className="text-white/60 hover:text-[#8DBD42] text-sm font-bold transition-colors">
                     {item.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
               <li>
