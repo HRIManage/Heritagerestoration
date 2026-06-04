@@ -63,6 +63,7 @@ export default function Header({
   ];
 
   const resourceItems = [
+    { label: "Our Projects", sub: "Recent restoration case studies", href: "/projects" },
     { label: "FAQ", sub: "Common insurance & process questions", href: "/resources/faq", handler: onFaqClick },
     { label: "Blogs", sub: "Guides & restoration articles", href: "/resources/blog", handler: onBlogsClick },
     { label: "Homeowner Bill of Rights", sub: "Know your rights after a loss", href: "/resources/bill-of-rights", handler: onBillOfRightsClick },
@@ -133,10 +134,6 @@ export default function Header({
             <div className="hidden lg:flex items-center gap-1 xl:gap-3 h-full">
               <Link href="/" className={navLinkCls}>
                 Home
-                <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
-              </Link>
-              <Link href="/projects" className={navLinkCls}>
-                Our Projects
                 <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
               </Link>
               <div ref={servicesRef} className="relative h-full flex items-center">
@@ -215,7 +212,6 @@ export default function Header({
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="lg:hidden bg-[#3F4143] border-t border-white/10 overflow-hidden shadow-lg">
                 <div className="flex flex-col divide-y divide-white/10 max-h-[70vh] overflow-y-auto">
                   <Link href="/" className="px-6 py-4 text-white font-bold text-base hover:text-[#8DBD42]" onClick={() => setMobileOpen(false)}>Home</Link>
-                  <Link href="/projects" className="px-6 py-4 text-white font-bold text-base hover:text-[#8DBD42]" onClick={() => setMobileOpen(false)}>Our Projects</Link>
                   <div>
                     <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="w-full text-left px-6 py-4 text-white font-bold text-base flex justify-between items-center">
                       <span>Services</span>
