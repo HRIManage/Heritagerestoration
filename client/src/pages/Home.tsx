@@ -319,29 +319,32 @@ export default function Home() {
 
       <div className="bg-white">
         {/* Homepage Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-[#FBFBF9] pt-32">
+        <section className="relative min-h-screen overflow-hidden bg-[#F4F6F2] pt-32">
           <img
             src={HERO_IMAGE}
             alt="Professional restoration specialist"
             className="absolute inset-0 h-full w-full object-cover object-left"
           />
           {/* Delicate, high-end warm off-white light overlay gradient (reduced by 30% for more background image visibility) */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FBFBF9]/66 via-[#FBFBF9]/56 to-[#FBFBF9]/14" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FBFBF9] via-transparent to-transparent opacity-[0.28] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f4f6f2]/82 via-[#f4f6f2]/65 to-[#f4f6f2]/18" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#f4f6f2]/12 to-[#eef2ea] pointer-events-none" />
+          <div className="absolute -left-20 top-24 w-72 h-72 rounded-full bg-[#8DBD42]/20 blur-[110px] pointer-events-none" />
+          <div className="absolute right-[-70px] bottom-10 w-72 h-72 rounded-full bg-[#3F4143]/14 blur-[120px] pointer-events-none" />
 
           <div className="relative z-10 max-w-[1200px] mx-auto px-6 py-24 lg:py-32 min-h-[calc(100vh-8rem)]">
-            <div className="max-w-[780px] text-[#3F4143]">
+            <div className="max-w-[760px] text-[#3F4143]">
               <FadeUp triggerImmediately={true} delay={0.1}>
                 <p
-                  className="border-l-4 border-[#8DBD42] pl-4 uppercase tracking-[0.14em] text-xs font-extrabold mb-6 text-[#8DBD42]"
+                  className="inline-flex items-center gap-3 border border-[#8DBD42]/35 bg-white/55 backdrop-blur-sm px-4 py-2 uppercase tracking-[0.14em] text-[11px] font-extrabold mb-6 text-[#7BB843]"
                   style={bodyStyle}
                 >
+                  <span className="w-5 h-[2px] bg-[#8DBD42]" />
                   Professional Property Restoration
                 </p>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.25}>
                 <h1
-                  className="text-4xl md:text-6xl leading-[1.05] text-[#3F4143]"
+                  className="text-4xl md:text-6xl leading-[1.02] text-[#2f3133]"
                   style={headlineStyle}
                 >
                   Restoring Your Home.
@@ -351,7 +354,7 @@ export default function Home() {
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.4}>
                 <p
-                  className="mt-6 text-lg text-[#3F4143]/85 max-w-xl leading-relaxed font-medium"
+                  className="mt-6 text-lg text-[#2f3133]/82 max-w-xl leading-relaxed font-medium"
                   style={bodyStyle}
                 >
                   As dedicated homeowner advocates, we handle the complexity of
@@ -367,14 +370,14 @@ export default function Home() {
               >
                 <a
                   href="tel:+13603451015"
-                  className="bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors shadow-sm"
+                  className="bg-[#8DBD42] hover:bg-[#2f3133] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors shadow-[0_12px_30px_rgba(141,189,66,0.35)]"
                   style={bodyStyle}
                 >
                   Start Your Recovery
                 </a>
                 <Link
                   href="/projects"
-                  className="border-2 border-[#3F4143] hover:bg-[#3F4143]/5 px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors text-[#3F4143]"
+                  className="border-2 border-[#2f3133] bg-white/70 hover:bg-[#2f3133] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors text-[#2f3133] hover:text-white"
                   style={bodyStyle}
                 >
                   View Our Work
@@ -386,7 +389,7 @@ export default function Home() {
             <div className="mt-12 xl:mt-0 xl:absolute xl:-right-14 2xl:-right-20 xl:bottom-44 2xl:bottom-48 w-full xl:w-[500px] relative z-20">
               <FadeUp triggerImmediately={true} delay={0.7}>
                 <motion.div 
-                  className="bg-white/55 backdrop-blur-md border border-neutral-200/80 border-t-4 border-t-[#8DBD42] rounded-2xl p-6 md:p-8 shadow-[0_24px_60px_rgba(141,189,66,0.06),0_4px_12px_rgba(0,0,0,0.02)] text-[#3F4143]"
+                  className="bg-[#2b2d2f]/84 backdrop-blur-lg border border-white/15 border-t-4 border-t-[#8DBD42] rounded-2xl p-6 md:p-8 shadow-[0_24px_60px_rgba(0,0,0,0.32)] text-white"
                   whileHover={{
                     scale: 1.015,
                     y: -10,
@@ -411,16 +414,16 @@ export default function Home() {
                     
                     {/* North Office */}
                     <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#3F4143] flex items-center gap-2" style={headlineStyle}>
+                      <h3 className="text-lg font-bold text-white flex items-center gap-2" style={headlineStyle}>
                         North Office
                       </h3>
-                      <p className="text-[#3F4143]/80 text-xs leading-relaxed" style={bodyStyle}>
+                      <p className="text-white/85 text-xs leading-relaxed" style={bodyStyle}>
                         <MapPin size={12} className="inline mr-1 text-[#8DBD42]" />
                         <a
                           href="https://maps.google.com/?q=7895%20Martin%20Way%20E%2C%20Unit%20103%2C%20Lacey%20WA%2098516"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:underline text-[#3F4143] font-semibold"
+                          className="hover:underline text-white font-semibold"
                         >
                           7895 Martin Way E, Unit 103<br />Lacey WA 98516
                         </a>
@@ -439,16 +442,16 @@ export default function Home() {
 
                     {/* South Office */}
                     <div className="space-y-4">
-                      <h3 className="text-lg font-bold text-[#3F4143] flex items-center gap-2" style={headlineStyle}>
+                      <h3 className="text-lg font-bold text-white flex items-center gap-2" style={headlineStyle}>
                         South Office
                       </h3>
-                      <p className="text-[#3F4143]/80 text-xs leading-relaxed" style={bodyStyle}>
+                      <p className="text-white/85 text-xs leading-relaxed" style={bodyStyle}>
                         <MapPin size={12} className="inline mr-1 text-[#8DBD42]" />
                         <a
                           href="https://maps.google.com/?q=1581%20N.%20National%20Ave%2C%20Chehalis%20WA%2098532"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:underline text-[#3F4143] font-semibold"
+                          className="hover:underline text-white font-semibold"
                         >
                           1581 N. National Ave<br />Chehalis WA 98532
                         </a>
@@ -707,8 +710,10 @@ export default function Home() {
         <section
           className="py-24 md:py-32 overflow-hidden relative"
           id="process"
-          style={{ background: "#FFFFFF" }}
+          style={{ background: "linear-gradient(180deg, #eef2ea 0%, #ffffff 30%, #ffffff 100%)" }}
         >
+          <div className="absolute left-[-120px] top-[12%] w-[380px] h-[380px] rounded-full bg-[#8DBD42]/8 blur-[140px] pointer-events-none" />
+          <div className="absolute right-[-120px] bottom-[10%] w-[420px] h-[420px] rounded-full bg-[#3F4143]/6 blur-[150px] pointer-events-none" />
           <div className="max-w-[1200px] mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-14 relative z-10">
               <p
@@ -724,7 +729,7 @@ export default function Home() {
                 Restoration Process
               </h2>
               <p
-                className="text-[#3F4143]/70 mt-4 leading-relaxed text-sm md:text-base max-w-xl mx-auto"
+                className="text-[#3F4143]/72 mt-4 leading-relaxed text-sm md:text-base max-w-xl mx-auto"
                 style={bodyStyle}
               >
                 While each project is unique, this process keeps your
@@ -753,7 +758,7 @@ export default function Home() {
                           delay={0.05}
                           className="group/card flex flex-col items-end w-full"
                         >
-                          <div className="bg-white rounded-2xl p-6 shadow-[0_8px_25px_rgba(0,0,0,0.015)] hover:shadow-[0_16px_36px_rgba(123,184,67,0.06)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] text-left relative overflow-hidden border border-[#3F4143]/5">
+                          <div className="bg-white/92 backdrop-blur-md rounded-2xl p-6 shadow-[0_16px_35px_rgba(0,0,0,0.07)] hover:shadow-[0_22px_45px_rgba(123,184,67,0.16)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] text-left relative overflow-hidden border border-[#3F4143]/8">
                             {/* Watermark Number */}
                             <div className="absolute top-4 right-4 text-3xl font-extrabold text-[#7BB843]/15 select-none font-serif">
                               {step1.number}
@@ -798,7 +803,7 @@ export default function Home() {
                           delay={0.08}
                           className="group/card flex flex-col items-start w-full"
                         >
-                          <div className="bg-white rounded-2xl p-6 shadow-[0_8px_25px_rgba(0,0,0,0.015)] hover:shadow-[0_16px_36px_rgba(123,184,67,0.06)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] relative overflow-hidden border border-[#3F4143]/5">
+                          <div className="bg-white/92 backdrop-blur-md rounded-2xl p-6 shadow-[0_16px_35px_rgba(0,0,0,0.07)] hover:shadow-[0_22px_45px_rgba(123,184,67,0.16)] hover:-translate-y-1 transition-all duration-300 max-w-[460px] relative overflow-hidden border border-[#3F4143]/8">
                             {/* Watermark Number */}
                             <div className="absolute top-4 right-4 text-3xl font-extrabold text-[#7BB843]/15 select-none font-serif">
                               {step2.number}

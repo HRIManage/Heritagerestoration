@@ -8,6 +8,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -69,9 +70,9 @@ export default function Header({
     { label: "Homeowner Bill of Rights", sub: "Know your rights after a loss", href: "/resources/bill-of-rights", handler: onBillOfRightsClick },
   ];
 
-  const navLinkCls = "px-4 py-2 text-[18px] font-bold text-white/90 hover:text-[#8DBD42] transition-colors relative group whitespace-nowrap tracking-wide flex items-center gap-1.5";
+  const navLinkCls = "px-4 py-2 text-[15px] uppercase font-extrabold text-white/90 hover:text-[#8DBD42] transition-colors relative group whitespace-nowrap tracking-[0.08em] flex items-center gap-1.5";
   const dropdownPanelCls =
-    "absolute top-[calc(100%+10px)] left-0 rounded-2xl bg-[#2f3133]/98 backdrop-blur-md shadow-[0_24px_48px_rgba(0,0,0,0.35)] border border-white/10 z-50 origin-top py-2";
+    "absolute top-[calc(100%+14px)] left-0 rounded-2xl bg-[#252729]/98 backdrop-blur-xl shadow-[0_30px_70px_rgba(0,0,0,0.45)] border border-white/15 z-50 origin-top py-2";
 
   const logoContainerStyle = {
     width: "calc(max(416px, 50% - 224px))",
@@ -152,16 +153,19 @@ export default function Header({
                     <motion.div
                       variants={dropdownVariants}
                       initial="hidden" animate="visible" exit="exit"
-                      className={`${dropdownPanelCls} w-[340px]`}
+                      className={`${dropdownPanelCls} w-[390px]`}
                     >
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.18em] font-extrabold text-[#8DBD42]">
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-white/10 mb-1">
                         Service Solutions
                       </div>
                       {serviceItems.map((item) => (
                         <Link key={item.label} href={item.href} onClick={() => setDesktopServicesOpen(false)}
-                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/16 hover:border-[#8DBD42]/45 transition-all duration-200 group">
-                          <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <span className="text-white/70 text-xs mt-0.5">{item.sub}</span>
+                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/14 hover:border-[#8DBD42]/45 transition-all duration-200 group">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
+                            <ChevronRight size={14} className="text-white/40 group-hover:text-[#8DBD42] transition-colors" />
+                          </div>
+                          <span className="text-white/75 text-xs mt-0.5 block">{item.sub}</span>
                         </Link>
                       ))}
                     </motion.div>
@@ -182,16 +186,19 @@ export default function Header({
                     <motion.div
                       variants={dropdownVariants}
                       initial="hidden" animate="visible" exit="exit"
-                      className={`${dropdownPanelCls} w-[360px]`}
+                      className={`${dropdownPanelCls} w-[410px]`}
                     >
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.18em] font-extrabold text-[#8DBD42]">
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-white/10 mb-1">
                         Knowledge Center
                       </div>
                       {resourceItems.map((item) => (
                         <Link key={item.label} href={item.href} onClick={(e) => { handleResourceClick(e, item); setDesktopResourcesOpen(false); }}
-                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/16 hover:border-[#8DBD42]/45 transition-all duration-200 group cursor-pointer">
-                          <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <span className="text-white/70 text-xs mt-0.5">{item.sub}</span>
+                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/14 hover:border-[#8DBD42]/45 transition-all duration-200 group cursor-pointer">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
+                            <ChevronRight size={14} className="text-white/40 group-hover:text-[#8DBD42] transition-colors" />
+                          </div>
+                          <span className="text-white/75 text-xs mt-0.5 block">{item.sub}</span>
                         </Link>
                       ))}
                     </motion.div>
