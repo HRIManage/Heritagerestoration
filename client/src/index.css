@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ==========================================================================
+   TAILWIND V4 THEME — LIGHT MODE
+   White canvas · Heritage Green accent · Charcoal text
+   ========================================================================== */
+@theme {
+  /* Brand Tokens */
+  --color-brand-linen:    #F7F4EE;   /* Warm organic background */
+  --color-brand-charcoal: #3F4143;   /* Anchor for headlines & buttons */
+  --color-brand-green:    #8DBD42;   /* 10% Interactive accent */
+  --color-brand-moss:     #55664A;   /* Stats and Footer base */
+  --color-brand-ink:      #262728;   /* High readability body copy */
+  --color-brand-stone:    #EBE6DF;   /* Ultra-fine division lines */
+
+  /* Legacy aliases for compatibility */
+  --color-green:          #8DBD42;
+  --color-green-dark:     #55664A;
+  --color-white:          #ffffff;
+  --color-border:         #EBE6DF;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'Jost', Montserrat, sans-serif;
+
+  /* Letter spacing */
+  --tracking-nav:     0.05em;
+  --tracking-wide:    0.12em;
+  --tracking-widest:  0.18em;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-brand-linen);
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-brand-charcoal);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+::selection {
+  background-color: var(--color-brand-green);
+  color: var(--color-brand-linen);
+}
+
+/* ==========================================================================
+   REUSABLE UTILITY CLASSES
+   ========================================================================== */
+
+/* Overline text */
+.overline-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-green);
+}
+
+/* Section padding */
+.section-pad {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+@media (min-width: 1024px) {
+  .section-pad { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+}
+
+/* Page max-width container */
+.page-container {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Green accent divider line */
+.green-divider {
+  display: block;
+  width: 52px;
+  height: 3px;
+  background-color: var(--color-green);
+  border-radius: 0px;
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Scroll bounce */
+.scroll-indicator { animation: scrollBounce 2s infinite; }
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-brand-linen); }
+::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 0px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-green); }

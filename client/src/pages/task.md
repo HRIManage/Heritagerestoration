@@ -1,0 +1,22 @@
+# Tasks - Differentiated Service Page Layouts
+
+- [ ] Redesign Fire Restoration (`FireRestoration.tsx`): "Hot Highlight"
+  - [ ] Implement Top Featured Service (Soot & Smoke Remediation) as a full-width row
+  - [ ] Implement the remaining 2 services side-by-side in high-depth, bottom-bordered columns
+  - [ ] Keep vertical winding timeline
+  - [ ] Implement "Heritage by the Numbers" statistics panel next to the "Why Choose Us" checklist
+- [ ] Redesign Water Restoration (`WaterRestoration.tsx`): "Fluid Flow"
+  - [ ] Implement centered editorial typography hero
+  - [ ] Implement 3-image overlapping layered collage below the hero text
+  - [ ] Implement vertical listing format for services with hover glows and green left borders
+  - [ ] Implement horizontal progress step grid (3 columns, 2 rows) connected by lines
+- [ ] Redesign Storm Recovery (`StormRecovery.tsx`): "Staggered Editorial"
+  - [ ] Implement specialized services as alternating rows with custom vertical offsets
+  - [ ] Implement timeline process as a grid with massive translucent watermarked background numbers
+  - [ ] Implement "Why Choose Us" checklist as a horizontal strip of white certification cards
+- [ ] Redesign Contents Services (`ContentsServices.tsx`): "Restoration Catalog"
+  - [ ] Implement backdrop photo hero overlayed with a floating glassmorphism card
+  - [ ] Implement 2x2 specialized services grid of minimalist card blocks with top-border strips
+  - [ ] Implement process timeline with square warehouse-status nodes
+  - [ ] Re-theme "What We Clean" into a multi-column staggered list with left borders on hover
+- [ ] Run build checks and verify compilation
