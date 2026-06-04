@@ -70,6 +70,8 @@ export default function Header({
   ];
 
   const navLinkCls = "px-4 py-2 text-[18px] font-bold text-white/90 hover:text-[#8DBD42] transition-colors relative group whitespace-nowrap tracking-wide flex items-center gap-1.5";
+  const dropdownPanelCls =
+    "absolute top-[calc(100%+10px)] left-0 rounded-2xl bg-[#2f3133]/98 backdrop-blur-md shadow-[0_24px_48px_rgba(0,0,0,0.35)] border border-white/10 z-50 origin-top py-2";
 
   const logoContainerStyle = {
     width: "calc(max(416px, 50% - 224px))",
@@ -150,13 +152,16 @@ export default function Header({
                     <motion.div
                       variants={dropdownVariants}
                       initial="hidden" animate="visible" exit="exit"
-                      className="absolute top-full left-0 w-64 bg-[#3F4143] shadow-2xl border border-white/10 z-50 origin-top py-1"
+                      className={`${dropdownPanelCls} w-[340px]`}
                     >
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.18em] font-extrabold text-[#8DBD42]">
+                        Service Solutions
+                      </div>
                       {serviceItems.map((item) => (
                         <Link key={item.label} href={item.href} onClick={() => setDesktopServicesOpen(false)}
-                          className="flex flex-col px-5 py-3.5 hover:bg-white/5 transition-colors duration-150 border-l-[3px] border-transparent hover:border-[#8DBD42] group">
+                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/16 hover:border-[#8DBD42]/45 transition-all duration-200 group">
                           <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <span className="text-white/50 text-xs mt-0.5">{item.sub}</span>
+                          <span className="text-white/70 text-xs mt-0.5">{item.sub}</span>
                         </Link>
                       ))}
                     </motion.div>
@@ -177,13 +182,16 @@ export default function Header({
                     <motion.div
                       variants={dropdownVariants}
                       initial="hidden" animate="visible" exit="exit"
-                      className="absolute top-full left-0 w-72 bg-[#3F4143] shadow-2xl border border-white/10 z-50 origin-top py-1"
+                      className={`${dropdownPanelCls} w-[360px]`}
                     >
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.18em] font-extrabold text-[#8DBD42]">
+                        Knowledge Center
+                      </div>
                       {resourceItems.map((item) => (
                         <Link key={item.label} href={item.href} onClick={(e) => { handleResourceClick(e, item); setDesktopResourcesOpen(false); }}
-                          className="w-full text-left flex flex-col px-5 py-3.5 hover:bg-white/5 transition-colors duration-150 border-l-[3px] border-transparent hover:border-[#8DBD42] group cursor-pointer">
+                          className="mx-2 mb-1.5 rounded-xl border border-transparent px-4 py-3.5 bg-white/[0.02] hover:bg-[#8DBD42]/16 hover:border-[#8DBD42]/45 transition-all duration-200 group cursor-pointer">
                           <span className="text-white font-bold text-sm group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <span className="text-white/50 text-xs mt-0.5">{item.sub}</span>
+                          <span className="text-white/70 text-xs mt-0.5">{item.sub}</span>
                         </Link>
                       ))}
                     </motion.div>
@@ -219,9 +227,9 @@ export default function Header({
                     </button>
                     <AnimatePresence>
                       {mobileServicesOpen && (
-                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-white/5">
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-[#2f3133] border-t border-white/10">
                           {serviceItems.map((item) => (
-                            <Link key={item.label} href={item.href} className="block px-10 py-3 text-sm text-white/90 font-semibold hover:text-[#8DBD42]" onClick={() => setMobileOpen(false)}>{item.label}</Link>
+                            <Link key={item.label} href={item.href} className="block px-10 py-3.5 text-sm text-white/95 font-bold hover:text-white hover:bg-[#8DBD42]/18 transition-colors" onClick={() => setMobileOpen(false)}>{item.label}</Link>
                           ))}
                         </motion.div>
                       )}
@@ -234,9 +242,9 @@ export default function Header({
                     </button>
                     <AnimatePresence>
                       {mobileResourcesOpen && (
-                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-white/5">
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="bg-[#2f3133] border-t border-white/10">
                           {resourceItems.map((item) => (
-                            <Link key={item.label} href={item.href} className="w-full text-left block px-10 py-3 text-sm text-white/90 font-semibold hover:text-[#8DBD42]" onClick={(e) => { handleResourceClick(e, item); setMobileOpen(false); }}>{item.label}</Link>
+                            <Link key={item.label} href={item.href} className="w-full text-left block px-10 py-3.5 text-sm text-white/95 font-bold hover:text-white hover:bg-[#8DBD42]/18 transition-colors" onClick={(e) => { handleResourceClick(e, item); setMobileOpen(false); }}>{item.label}</Link>
                           ))}
                         </motion.div>
                       )}

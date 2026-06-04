@@ -367,7 +367,7 @@ export default function Home() {
               >
                 <a
                   href="tel:+13603451015"
-                  className="bg-[#8DBD42] hover:bg-[#3F4143] text-[#3F4143] hover:text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors shadow-sm"
+                  className="bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-colors shadow-sm"
                   style={bodyStyle}
                 >
                   Start Your Recovery
@@ -428,7 +428,7 @@ export default function Home() {
                       <div className="flex items-center gap-3 pt-2">
                         <a
                           href="tel:+13603451015"
-                          className="bg-[#8DBD42] hover:bg-[#3F4143] text-[#3F4143] hover:text-white px-3 py-2 uppercase tracking-wider text-[9px] font-bold transition-colors shadow-sm"
+                          className="bg-[#8DBD42] hover:bg-[#3F4143] text-white px-3 py-2 uppercase tracking-wider text-[9px] font-bold transition-colors shadow-sm"
                           style={bodyStyle}
                         >
                           Call North
@@ -456,7 +456,7 @@ export default function Home() {
                       <div className="flex items-center gap-3 pt-2">
                         <a
                           href="tel:+13603451015"
-                          className="bg-[#8DBD42] hover:bg-[#3F4143] text-[#3F4143] hover:text-white px-3 py-2 uppercase tracking-wider text-[9px] font-bold transition-colors shadow-sm"
+                          className="bg-[#8DBD42] hover:bg-[#3F4143] text-white px-3 py-2 uppercase tracking-wider text-[9px] font-bold transition-colors shadow-sm"
                           style={bodyStyle}
                         >
                           Call South
