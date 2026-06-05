@@ -1,7 +1,16 @@
 import { HelmetProvider } from "react-helmet-async";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [location]);
+  return null;
+}
 
 // Pages
 import Home from "@/pages/Home";
@@ -46,6 +55,7 @@ function App() {
     <HelmetProvider>
       <ErrorBoundary>
         <ThemeProvider defaultTheme="light">
+          <ScrollToTop />
           <Router />
         </ThemeProvider>
       </ErrorBoundary>

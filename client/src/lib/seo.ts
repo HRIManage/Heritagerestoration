@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SEO utilities for structured data and meta tags
  */
 
@@ -64,7 +64,7 @@ export const BUSINESS_SCHEMA = {
       "name": "Heritage Restoration - North Office",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "7895 Martin Way E, Unit 103",
+        "streetAddress": "8695 Martin Way E, Unit 102",
         "addressLocality": "Lacey",
         "addressRegion": "WA",
         "postalCode": "98516",

@@ -1,9 +1,9 @@
-
+﻿
 export default function Offices() {
   const offices = [
     {
       title: 'North Office — Lacey',
-      address1: '7895 Martin Way E, Unit 103',
+      address1: '8695 Martin Way E, Unit 102',
       address2: 'Lacey, WA 98516',
       phone: '(360) 456-1015',
       phoneRaw: '3604561015',

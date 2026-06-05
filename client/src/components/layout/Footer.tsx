@@ -82,16 +82,18 @@ export default function Footer({
                 <MapPin size={18} className="text-[#8DBD42] flex-shrink-0 mt-1" />
                 <span className="text-[#3F4143]/65 font-medium">
                   <strong className="text-[#2f3133] block mb-1">North (Lacey · Olympia):</strong>
-                  7895 Martin Way E, Unit 103<br />
-                  Lacey, WA 98516
+                  <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#8DBD42] hover:underline transition-colors">
+                    8695 Martin Way E, Unit 102<br />Lacey, WA 98516
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#8DBD42] flex-shrink-0 mt-1" />
                 <span className="text-[#3F4143]/65 font-medium">
                   <strong className="text-[#2f3133] block mb-1">South (Chehalis · Lewis County):</strong>
-                  1581 N. National Ave<br />
-                  Chehalis, WA 98532
+                  <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#8DBD42] hover:underline transition-colors">
+                    1581 N. National Ave<br />Chehalis, WA 98532
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">

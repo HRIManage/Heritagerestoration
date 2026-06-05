@@ -1,4 +1,4 @@
-
+﻿
 
 export default function Footer() {
   return (
@@ -39,7 +39,7 @@ export default function Footer() {
               North Office — Lacey
             </h5>
             <div className="font-sans text-brand-ink/80 text-sm font-light leading-loose">
-              <p>7895 Martin Way E, Unit 103</p>
+              <p>8695 Martin Way E, Unit 102</p>
               <p>Lacey, WA 98516</p>
               
               <div className="pt-4 space-y-2">

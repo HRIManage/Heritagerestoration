@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Heritage Restoration — SEO & Structured Data Utilities
  * Covers: LocalBusiness, Service, FAQPage, BreadcrumbList, Article schemas
  */
@@ -32,7 +32,7 @@ export const BUSINESS_SCHEMA = {
     {
       "@type": "PostalAddress",
       "@id": `${BASE_URL}/#address-lacey`,
-      streetAddress: "7895 Martin Way E, Unit 103",
+      streetAddress: "8695 Martin Way E, Unit 102",
       addressLocality: "Lacey",
       addressRegion: "WA",
       postalCode: "98516",

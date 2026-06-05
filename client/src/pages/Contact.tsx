@@ -25,12 +25,16 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    const subject = encodeURIComponent(`Intake Inquiry – ${formData.service || "General"} – ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:office@firewaterstorm.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => {
       setFormData({ name: "", email: "", phone: "", service: "", message: "" });
       setSubmitted(false);
-    }, 3000);
+    }, 4000);
   };
 
   return (
@@ -51,7 +55,7 @@ export default function Contact() {
             "address": [
               {
                 "@type": "PostalAddress",
-                "streetAddress": "7895 Martin Way E, Unit 103",
+                "streetAddress": "8695 Martin Way E, Unit 102",
                 "addressLocality": "Lacey",
                 "addressRegion": "WA",
                 "postalCode": "98516"
@@ -152,12 +156,12 @@ export default function Contact() {
                         <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
                         <div>
                           <a
-                            href="https://maps.google.com/?q=7895+Martin+Way+E+Unit+103+Lacey+WA+98516"
+                            href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-semibold text-[#3F4143] hover:text-[#8DBD42] hover:underline block"
                           >
-                            7895 Martin Way E, Unit 103
+                            8695 Martin Way E, Unit 102
                           </a>
                           <p>Lacey, WA 98516</p>
                         </div>

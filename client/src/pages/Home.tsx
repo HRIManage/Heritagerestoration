@@ -473,8 +473,8 @@ export default function Home() {
                       </div>
                       <p className="text-white/80 text-[13px] leading-relaxed min-h-[44px]" style={bodyStyle}>
                         <MapPin size={11} className="inline mr-1 text-[#8DBD42] align-text-top mt-0.5" />
-                        <a href="https://maps.google.com/?q=7895+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                          7895 Martin Way E<br />Unit 103, Lacey WA 98516
+                        <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                          8695 Martin Way E<br />Unit 102, Lacey WA 98516
                         </a>
                       </p>
                       <a href="tel:+13603451015" className="flex items-center justify-center gap-1.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#2b2d2f] px-3 py-2.5 rounded-none uppercase tracking-wider text-[11px] font-black transition-colors w-full" style={bodyStyle}>
@@ -499,7 +499,7 @@ export default function Home() {
                   </div>
                   <div className="bg-[#2e3032] px-6 py-3.5 flex items-center gap-2">
                     <Clock size={11} className="text-[#8DBD42]" />
-                    <span className="text-[#8DBD42] uppercase tracking-[0.18em] text-[11px] font-extrabold" style={bodyStyle}>24 Hours a Day Â· 7 Days a Week</span>
+                    <span className="text-[#8DBD42] uppercase tracking-[0.18em] text-[11px] font-extrabold" style={bodyStyle}>24 Hours a Day · 7 Days a Week</span>
                   </div>
                 </div>
               </FadeUp>
@@ -597,9 +597,9 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start relative z-10">
 
             {/* LEFT: Photo deck + quote below it */}
-            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start gap-6 mt-8 lg:mt-8">
+            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start gap-10 mt-8 lg:mt-8">
               <PhotoDeck />
-              <div className="border-l-4 border-[#8DBD42] pl-6 py-4 bg-[#FAF9F6] border border-[#3F4143]/5 rounded-none italic text-lg md:text-xl text-[#3F4143]/90 font-sans font-light leading-relaxed w-full">
+              <div className="border-l-4 border-[#8DBD42] pl-6 pr-6 py-5 bg-[#FAF9F6] border border-[#3F4143]/5 rounded-none italic text-lg md:text-xl text-[#3F4143]/90 font-sans font-light leading-relaxed w-full mx-0">
                 Most importantly, we are advocates for you. Our priority is
                 protecting your home and your best interests, not the insurance
                 company.
