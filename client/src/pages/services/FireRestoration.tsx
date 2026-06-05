@@ -39,11 +39,21 @@ export default function FireRestoration() {
       </Helmet>
 
       <div className="min-h-screen bg-brand-linen pt-[142px]">
-        {/* Hero Section — 7:5 Asymmetric Split Layout */}
-        <section className="relative bg-[#292b2d] text-white overflow-hidden border-b border-[#8DBD42]/20">
-          <div className="grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
-            {/* Left Content Column (7 Columns) */}
-            <div className="lg:col-span-7 flex flex-col justify-center px-6 py-16 md:py-24 max-w-[720px] mx-auto lg:mx-0 lg:pl-16 relative z-10">
+        {/* Hero Section */}
+        <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
+          {/* Full-bleed background photo */}
+          <img
+            src="/photo/Monnett Fire Before.jpg"
+            alt="Fire damage restoration scene"
+            className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
+          />
+          {/* Dark green wash — heavier on left, fades right */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
+          {/* Bottom vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
+
+          <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
+            <div className="lg:col-span-7 flex flex-col justify-center px-6 py-16 md:py-24 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
                   <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
@@ -55,17 +65,6 @@ export default function FireRestoration() {
                   When fire strikes, every moment counts. Heritage Restoration responds immediately to secure your property, mitigate soot damage, and guide you through complete reconstruction to modern standards.
                 </p>
               </FadeIn>
-            </div>
-            
-            {/* Right Photo Column (5 Columns) — Dark Framed Imagery */}
-            <div className="lg:col-span-5 relative h-[250px] lg:h-auto overflow-hidden">
-              <img
-                src="/photo/Monnett Fire Before.jpg"
-                alt="Fire damage restoration scene"
-                className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.7]"
-              />
-              <div className="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-[#292b2d] to-transparent hidden lg:block" />
-              <div className="absolute inset-0 bg-[#292b2d]/15" />
             </div>
           </div>
         </section>

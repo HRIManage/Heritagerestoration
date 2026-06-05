@@ -46,7 +46,7 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Heritage Restoration",
-            "telephone": "+1-360-851-1407",
+            "telephone": "+1-360-345-1015",
             "email": "office@firewaterstorm.com",
             "address": [
               {
@@ -75,9 +75,9 @@ export default function Contact() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[142px]">
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-32 bg-gradient-to-r from-[#3F4143] to-[#252628] text-white overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative pt-[calc(142px+2rem)] pb-12 md:pt-[calc(142px+3rem)] md:pb-16 bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white overflow-hidden border-b border-[#8DBD42]/20">
           <Container>
             <FadeIn className="max-w-2xl" direction="up">
               <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-4">
@@ -101,7 +101,7 @@ export default function Contact() {
               {/* Left Column (5 cols) — High-Density Sticky Editorial Block */}
               <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-8">
                 {/* Emergency Block */}
-                <FadeIn className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] rounded-none space-y-6 relative overflow-hidden" direction="up">
+                <FadeIn className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] border-t-4 border-[#8DBD42] rounded-none space-y-6 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out" direction="up">
                   <div className="absolute right-[-30px] bottom-[-30px] w-48 h-48 bg-[#8DBD42]/8 rounded-full blur-2xl pointer-events-none" />
                   
                   <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
@@ -114,11 +114,11 @@ export default function Contact() {
                   
                   <div className="space-y-4 pt-2">
                     <a
-                      href="tel:+13608511407"
+                      href="tel:+13603451015"
                       className="flex items-center gap-3 text-xl md:text-2xl font-bold text-[#8DBD42] hover:text-[#9fd546] transition-colors font-sans"
                     >
                       <Phone size={24} className="flex-shrink-0" />
-                      <span>+1 (360) 851-1407</span>
+                      <span>+1 (360) 345-1015</span>
                     </a>
                     
                     <a
@@ -131,13 +131,13 @@ export default function Contact() {
 
                     <div className="flex items-center gap-3 text-sm text-white/80 font-sans">
                       <Clock size={16} className="text-[#8DBD42] flex-shrink-0" />
-                      <span>Immediate 45-minute response in service area</span>
+                      <span>Immediate 60-minute response in service area</span>
                     </div>
                   </div>
                 </FadeIn>
 
                 {/* Office Locations */}
-                <FadeIn className="bg-white p-8 border border-[#3F4143]/8 shadow-sm space-y-6 rounded-none" direction="up">
+                <FadeIn className="bg-white p-8 border border-[#3F4143]/8 shadow-sm space-y-6 rounded-none hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500" direction="up">
                   <h3 className="text-xl font-serif font-bold text-[#3F4143] border-b border-[#3F4143]/10 pb-3">
                     Office Locations
                   </h3>
@@ -151,7 +151,14 @@ export default function Contact() {
                       <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
                         <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-[#3F4143]">7895 Martin Way E, Unit 103</p>
+                          <a
+                            href="https://maps.google.com/?q=7895+Martin+Way+E+Unit+103+Lacey+WA+98516"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-[#3F4143] hover:text-[#8DBD42] hover:underline block"
+                          >
+                            7895 Martin Way E, Unit 103
+                          </a>
                           <p>Lacey, WA 98516</p>
                         </div>
                       </div>
@@ -165,7 +172,14 @@ export default function Contact() {
                       <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
                         <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-[#3F4143]">1581 N. National Ave</p>
+                          <a
+                            href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-[#3F4143] hover:text-[#8DBD42] hover:underline block"
+                          >
+                            1581 N. National Ave
+                          </a>
                           <p>Chehalis, WA 98532</p>
                         </div>
                       </div>
@@ -176,7 +190,9 @@ export default function Contact() {
 
               {/* Right Column (7 cols) — Secure Intake Form */}
               <div className="lg:col-span-7">
-                <FadeIn className="bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8" direction="up">
+                <FadeIn className="relative bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8 hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 overflow-hidden" direction="up">
+                  {/* Top brand green accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#8DBD42]" />
                   <div className="space-y-2">
                     <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
                       SECURE PORTAL
@@ -197,7 +213,6 @@ export default function Contact() {
                     )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Name */}
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
                           Full Name *
@@ -209,7 +224,7 @@ export default function Contact() {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
 
@@ -225,7 +240,7 @@ export default function Contact() {
                           required
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
                     </div>
@@ -243,7 +258,7 @@ export default function Contact() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none"
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
 
@@ -257,7 +272,7 @@ export default function Contact() {
                           name="service"
                           value={formData.service}
                           onChange={handleChange}
-                          className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none appearance-none cursor-pointer"
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 appearance-none cursor-pointer"
                         >
                           <option value="">Select a service category...</option>
                           <option value="fire">Fire Damage Restoration</option>
@@ -281,7 +296,7 @@ export default function Contact() {
                         rows={6}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full bg-brand-linen/40 border border-[#3F4143]/15 focus:border-[#8DBD42] focus:outline-none p-3.5 transition-colors text-sm rounded-none resize-y"
+                        className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 resize-y"
                         placeholder="Please details the current situation (e.g. active water leak, soot damage, insurance claim opened)..."
                       />
                     </div>

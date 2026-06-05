@@ -31,7 +31,7 @@ export default function ContentsServices() {
             name: "Heritage Restoration - Contents Services",
             description:
               "Professional contents pack-out, cleaning, and storage services",
-            telephone: "+1-360-851-1407",
+            telephone: "+1-360-345-1015",
             email: "office@firewaterstorm.com",
             areaServed: "WA",
             serviceType: "Contents Services",
@@ -39,9 +39,9 @@ export default function ContentsServices() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[98px]">
+      <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-[#292b2d] text-white border-b border-[#8DBD42]/20 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[142px]">
           <div className="max-w-[1280px] mx-auto px-6 py-20 md:py-28 relative z-10">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
@@ -66,10 +66,10 @@ export default function ContentsServices() {
 
                 <FadeIn delay={0.2} className="pt-2" direction="up">
                   <a
-                    href="tel:+13608511407"
+                    href="tel:+13603451015"
                     className="inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#72a232] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5 rounded-none"
                   >
-                    Contact Us: (360) 851-1407
+                    Contact Us: (360) 345-1015
                   </a>
                 </FadeIn>
               </div>
@@ -77,13 +77,11 @@ export default function ContentsServices() {
               {/* Right Column: Smaller collage image */}
               <div className="col-span-12 md:col-span-6 lg:col-span-5 flex justify-center lg:justify-end">
                 <FadeIn delay={0.15} className="w-full max-w-md lg:max-w-full" direction="up">
-                  <div className="overflow-hidden rounded-none border border-neutral-200/60 shadow-lg bg-white p-2">
-                    <img
-                      src="/photo/contents-hero.png"
-                      alt="Contents restoration services collage showing packaging and inventory"
-                      className="w-full h-auto object-contain rounded-none"
-                    />
-                  </div>
+                  <img
+                    src="/photo/contents-hero.png"
+                    alt="Contents restoration services collage showing packaging and inventory"
+                    className="w-full h-auto object-contain"
+                  />
                 </FadeIn>
               </div>
             </div>
@@ -359,7 +357,7 @@ export default function ContentsServices() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13608511407"
+                    href="tel:+13603451015"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

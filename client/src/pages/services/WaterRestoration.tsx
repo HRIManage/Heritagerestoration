@@ -45,29 +45,30 @@ export default function WaterRestoration() {
       </Helmet>
 
       <div className="min-h-screen bg-brand-linen pt-[142px]">
-        {/* Editorial Hero Section */}
-        <section className="relative bg-[#292b2d] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
-          <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
-            <FadeIn className="inline-flex items-center gap-2" direction="up">
-              <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
-              <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black">
-                24/7 Response Dispatch
-              </span>
-            </FadeIn>
-            <FadeIn delay={0.1} direction="up">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
-                Water Restoration
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2} direction="up">
-              <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl mx-auto font-sans font-light">
-                Water damage requires immediate action to prevent mold growth and structural deterioration. Our 24/7 team deploys advanced extraction and dehumidification systems to save your property.
-              </p>
-            </FadeIn>
-          </div>
+        {/* Hero Section */}
+        <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
+          <img
+            src="/photo/water-flooded-hallway.jpg"
+            alt="Water damage restoration"
+            className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
-          <div className="absolute top-0 left-0 bottom-0 right-0 opacity-[0.02] pointer-events-none">
-            <div className="absolute w-[500px] h-[500px] bg-white rounded-none -top-64 -left-64" />
+          <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
+            <div className="lg:col-span-7 flex flex-col justify-center px-6 py-16 md:py-24 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
+              <FadeIn className="space-y-6" direction="up">
+                <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
+                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
+                </span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
+                  Water Restoration
+                </h1>
+                <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl font-sans font-light">
+                  Water damage requires immediate action to prevent mold growth and structural deterioration. Our 24/7 team deploys advanced extraction and dehumidification systems to save your property.
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </section>
 

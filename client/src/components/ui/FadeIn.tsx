@@ -19,21 +19,21 @@ export default function FadeIn({
   style,
 }: FadeInProps) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
   const shouldAnimate = triggerImmediately || inView;
 
   const getDirectionOffset = () => {
     switch (direction) {
       case "up":
-        return { y: 30 };
+        return { y: 48, scale: 0.97 };
       case "down":
-        return { y: -30 };
+        return { y: -48, scale: 0.97 };
       case "left":
-        return { x: 30 };
+        return { x: 48, scale: 0.97 };
       case "right":
-        return { x: -30 };
+        return { x: -48, scale: 0.97 };
       default:
-        return {};
+        return { scale: 0.98 };
     }
   };
 
@@ -41,8 +41,8 @@ export default function FadeIn({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, ...getDirectionOffset() }}
-      animate={shouldAnimate ? { opacity: 1, x: 0, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.21, 1, 0.36, 1] }}
+      animate={shouldAnimate ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
       style={style}
     >

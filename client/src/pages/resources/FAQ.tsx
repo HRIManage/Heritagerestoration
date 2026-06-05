@@ -284,9 +284,9 @@ const faqCategories: FAQCategory[] = [
                   cities: "Chehalis, Centralia, Morton, Mossyrock, Napavine, Pe Ell, Toledo, Vader, Winlock, Mineral, Packwood, Onalaska, Fords Prairie, Adna, Boistfort, Cinebar, Curtis, Doty, Ethel, Evaline, Galvin, Glenoma, Marys Corner, Mayfield, Randle, Salkum, Silver Creek, and surrounding South Sound rural regions.",
                 },
               ].map((hub, i) => (
-                <div key={i} className="bg-[#3F4143]/5 border border-[#3F4143]/10 p-4">
-                  <p className="font-bold text-[#3F4143] text-sm mb-1">{hub.hub}</p>
-                  <p className="text-xs text-[#3F4143]/70 leading-relaxed">{hub.cities}</p>
+                <div key={i} className="bg-[#3F4143]/5 border border-[#3F4143]/10 p-4 rounded-none font-sans">
+                  <p className="font-bold text-[#3F4143] text-sm mb-1 font-serif">{hub.hub}</p>
+                  <p className="text-xs text-[#3F4143]/70 leading-relaxed font-sans">{hub.cities}</p>
                 </div>
               ))}
             </div>
@@ -332,45 +332,42 @@ export default function FAQ() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[142px]">
+      <div className="min-h-screen bg-[#FAF9F6] pt-[142px]">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-28 bg-[#3F4143] text-white overflow-hidden">
-          <img
-            src="/photo/recent-project-2.jpg"
-            alt="Mitigation equipment and restoration process FAQ background"
-            className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.35]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#292b2d]/90 via-[#292b2d]/60 to-[#292b2d]/30" />
-          <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-            <FadeUp className="max-w-2xl">
-              <h1
-                className="text-4xl md:text-5xl font-bold mb-4"
-                style={{ fontFamily: "'Libre Caslon Text', serif" }}
-              >
-                Frequently Asked{" "}
-                <span className="text-[#8DBD42]">Questions</span>
-              </h1>
-              <p className="text-lg text-white/90 leading-relaxed">
-                Everything you need to know about the restoration process,
-                insurance claims, mold remediation, and your rights as a
-                homeowner across Western Washington.
-              </p>
+        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
+          <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
+            <FadeUp className="inline-flex items-center gap-2 justify-center">
+              <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
+              <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black">
+                Frequently Asked Questions
+              </span>
             </FadeUp>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif mt-2">
+              Restoration <span className="text-[#8DBD42]">FAQ</span>
+            </h1>
+
+            <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl mx-auto font-sans font-light">
+              Everything you need to know about the restoration process,
+              insurance claims, mold remediation, and your rights as a
+              homeowner across Western Washington.
+            </p>
+          </div>
+          {/* Background pattern */}
+          <div className="absolute top-0 left-0 bottom-0 right-0 opacity-[0.02] pointer-events-none">
+            <div className="absolute w-[500px] h-[500px] bg-white rounded-none -top-64 -left-64" />
           </div>
         </section>
 
         {/* FAQ Accordions Section */}
-        <section className="py-20 md:py-28 bg-transparent">
+        <section className="py-20 md:py-28 bg-[#FAF9F6]">
           <div className="max-w-[960px] mx-auto px-6 space-y-14">
             {faqCategories.map((cat, catIdx) => (
               <FadeUp key={catIdx} delay={catIdx * 0.04}>
                 {/* Category heading */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-1 h-6 bg-[#8DBD42] flex-shrink-0" />
-                  <h2
-                    className="text-lg md:text-xl font-bold text-[#3F4143] uppercase tracking-wide"
-                    style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                  >
+                  <div className="w-3 h-3 rounded-none bg-[#8DBD42] flex-shrink-0" />
+                  <h2 className="text-lg md:text-xl font-bold text-[#3F4143] uppercase tracking-wide font-sans">
                     {cat.category}
                   </h2>
                 </div>
@@ -383,11 +380,11 @@ export default function FAQ() {
                     return (
                       <div
                         key={itemIdx}
-                        className="relative border-b border-[#3F4143]/10 group transition-all duration-300"
+                        className="relative border-b border-[#3F4143]/10 group transition-all duration-300 rounded-none"
                       >
                         {/* Green left bar */}
                         <div
-                          className={`absolute left-0 top-5 bottom-5 w-[3px] bg-[#8DBD42] transition-transform duration-300 origin-left ${
+                          className={`absolute left-0 top-5 bottom-5 w-[3px] bg-[#8DBD42] transition-transform duration-300 origin-left rounded-none ${
                             isOpen
                               ? "scale-y-100"
                               : "scale-y-0 group-hover:scale-y-100 group-hover:opacity-40"
@@ -396,15 +393,14 @@ export default function FAQ() {
                         <button
                           id={`faq-${catIdx}-${itemIdx}`}
                           onClick={() => toggle(key)}
-                          className="w-full flex items-center justify-between pl-6 pr-2 py-5 text-left transition-colors group cursor-pointer"
+                          className="w-full flex items-center justify-between pl-6 pr-2 py-5 text-left transition-colors group cursor-pointer rounded-none"
                         >
                           <span
-                            className={`text-base md:text-lg font-bold transition-colors duration-300 pr-4 ${
+                            className={`text-base md:text-lg font-bold transition-colors duration-300 pr-4 font-serif ${
                               isOpen
                                 ? "text-[#8DBD42]"
                                 : "text-[#3F4143] group-hover:text-[#8DBD42]"
                             }`}
-                            style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
                           >
                             {faq.question}
                           </span>
@@ -425,10 +421,7 @@ export default function FAQ() {
                               transition={{ duration: 0.25, ease: "easeInOut" }}
                               className="overflow-hidden"
                             >
-                              <div
-                                className="pl-6 pr-4 pb-5 text-[#3F4143]/80 leading-relaxed text-sm md:text-base"
-                                style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                              >
+                              <div className="pl-6 pr-4 pb-5 text-[#3F4143]/80 leading-relaxed text-sm md:text-base font-sans">
                                 {faq.answer}
                               </div>
                             </motion.div>
@@ -444,7 +437,7 @@ export default function FAQ() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative bg-white pt-24 pb-36 overflow-hidden">
+        <section className="relative bg-[#FAF9F6] pt-24 pb-36 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
             <img
               src="/photo/emergency-cta-banner.jpg"
@@ -456,17 +449,11 @@ export default function FAQ() {
 
           <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
             <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 rounded-2xl p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.08)] text-center">
-                <h2
-                  className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
-                >
+              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6 font-serif">
                   Need Immediate Assistance?
                 </h2>
-                <div
-                  className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
                     Heritage Restoration is available 24/7, 365 days a year.
                     Our emergency response team will deploy and arrive within 60
@@ -474,21 +461,18 @@ export default function FAQ() {
                   </p>
                 </div>
 
-                <div
-                  className="mt-8 flex flex-wrap gap-4 justify-center"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
-                >
+                <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
                   <a
                     href="tel:+13603451015"
                     id="faq-call-cta"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2"
+                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none"
                   >
                     <Phone size={14} /> Call 360-345-1015
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"
                     id="faq-email-cta"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md"
+                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md rounded-none"
                   >
                     Email Us Now
                   </a>
