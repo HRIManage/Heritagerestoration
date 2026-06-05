@@ -122,10 +122,10 @@ export default function Header({
       {/* ── GREEN UTILITY BAR ── */}
       <div className="bg-[#8DBD42] text-white relative z-50">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center justify-between h-10 sm:h-11">
-          {/* Mobile: phone only | Desktop: phone + email + tagline */}
+          {/* Desktop left: phone + email + tagline | Mobile: empty left side */}
           <div className="flex items-center gap-4">
-            <a href="tel:+13603451015" className="flex items-center gap-1.5 text-[14px] sm:text-[15.5px] font-bold hover:text-[#3F4143] transition-colors">
-              <Phone size={14} /><span>(360) 345-1015</span>
+            <a href="tel:+13603451015" className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors">
+              <Phone size={15} /><span>(360) 345-1015</span>
             </a>
             <span className="text-white/30 hidden sm:block">|</span>
             <a href="mailto:office@firewaterstorm.com" className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors">
@@ -137,30 +137,31 @@ export default function Header({
               Full Service Restoration – 24/7 Emergency Response
             </span>
           </div>
-          {/* Social icons — hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a href="https://www.facebook.com/heritagerestorationinc/" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors" aria-label="Facebook"><Facebook size={15} /></a>
-            <a href="https://www.instagram.com/heritagerestorationwa/" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors" aria-label="Instagram"><Instagram size={15} /></a>
+          {/* Right side: social icons on desktop | phone number on mobile */}
+          <div className="flex items-center gap-3">
+            <a href="tel:+13603451015" className="sm:hidden flex items-center gap-1.5 text-[13px] font-bold">
+              <Phone size={13} /><span>(360) 345-1015</span>
+            </a>
+            <a href="https://www.facebook.com/heritagerestorationinc/" target="_blank" rel="noopener noreferrer" className="hidden sm:block hover:text-[#3F4143] transition-colors" aria-label="Facebook"><Facebook size={15} /></a>
+            <a href="https://www.instagram.com/heritagerestorationwa/" target="_blank" rel="noopener noreferrer" className="hidden sm:block hover:text-[#3F4143] transition-colors" aria-label="Instagram"><Instagram size={15} /></a>
           </div>
         </div>
       </div>
 
       {/* ── MOBILE NAV (< lg) ── */}
-      <nav className={`lg:hidden fixed left-0 right-0 z-40 transition-all duration-500 ${scrolled ? "top-0" : "top-[40px] sm:top-[44px]"}`}>
+      <nav className={`lg:hidden fixed left-0 right-0 z-40 transition-all duration-500 ${scrolled ? "top-0" : "top-[40px] sm:top-[44px]"}`} style={{ WebkitOverflowScrolling: "touch" }}>
         {/* Mobile top bar */}
         <div
-          className="relative h-[60px] flex items-center justify-between px-3 w-full overflow-hidden"
+          className="relative h-[72px] flex items-center justify-between px-4 w-full overflow-hidden"
           style={{
-            background: scrolled ? "rgba(20,22,23,0.97)" : "rgba(63,65,67,1)",
-            backdropFilter: scrolled ? "blur(12px)" : "none",
-            WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-            borderBottom: scrolled ? "1px solid rgba(141,189,66,0.3)" : "1px solid rgba(255,255,255,0.08)",
-            boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.35)" : "0 2px 8px rgba(0,0,0,0.15)",
+            background: "rgba(255,255,255,1)",
+            borderBottom: "2px solid #8DBD42",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.10)",
           }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center h-[40px] flex-shrink-0">
-            <img src={LOGO} alt="Heritage Restoration" className="h-full w-auto object-contain max-w-[140px]" />
+          <Link href="/" className="flex items-center h-[60px] flex-shrink-0">
+            <img src={LOGO} alt="Heritage Restoration" className="h-full w-auto object-contain max-w-[200px]" />
           </Link>
 
           {/* Right side: Hamburger */}
@@ -172,17 +173,17 @@ export default function Header({
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
-              className="block w-6 h-[2px] bg-white group-hover:bg-[#8DBD42] transition-colors"
+              className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.2 }}
-              className="block w-6 h-[2px] bg-white group-hover:bg-[#8DBD42] transition-colors"
+              className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
-              className="block w-6 h-[2px] bg-white group-hover:bg-[#8DBD42] transition-colors"
+              className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
           </button>
         </div>

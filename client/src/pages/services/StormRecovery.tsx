@@ -44,7 +44,7 @@ export default function StormRecovery() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[100px] lg:pt-[142px]">
+      <div className="min-h-screen bg-brand-linen pt-[72px] lg:pt-[142px]">
         {/* Hero Section */}
         <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
           {/* Full-bleed background photo */}
@@ -59,7 +59,7 @@ export default function StormRecovery() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
           <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
-            <div className="lg:col-span-7 flex flex-col justify-center px-6 py-16 md:py-24 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
+            <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
                   <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
@@ -318,4 +318,5 @@ export default function StormRecovery() {
     </Layout>
   );
 }
+
 

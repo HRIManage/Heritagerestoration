@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+﻿import { useRef, useState, useEffect } from "react";
 import { motion, useInView, animate, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -374,7 +374,7 @@ export default function Home() {
   return (
     <Layout>
       <Helmet>
-        <title>Heritage Restoration | Fire, Water &amp; Storm Damage Experts – Washington State</title>
+        <title>Heritage Restoration | Fire, Water &amp; Storm Damage Experts — Washington State</title>
         <meta name="description" content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Federal Way &amp; more." />
         <meta name="keywords" content="fire damage restoration Washington, water damage restoration Tacoma, storm damage repair Olympia, emergency restoration 24/7, mold remediation Thurston County, IICRC certified restoration contractor" />
         <link rel="canonical" href="https://www.firewaterstorm.com/" />
@@ -393,7 +393,7 @@ export default function Home() {
 
       <div className="bg-[#FAF9F5]">
         {/* Homepage Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-white pt-[100px] lg:pt-[142px]">
+        <section className="relative min-h-screen overflow-hidden bg-white pt-[72px] lg:pt-[142px]">
           <img
             src="/photo/hero-tarp.jpg"
             alt="Heritage Restoration - Tarping damage recovery"
@@ -405,6 +405,8 @@ export default function Home() {
           <div className="absolute inset-0" style={{background: 'linear-gradient(to left, rgba(30,32,33,0.45) 0%, transparent 35%)'}} />
           {/* Subtle bottom gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60 pointer-events-none" />
+          {/* Mobile-only extra white overlay so text is readable on small screens */}
+          <div className="absolute inset-0 bg-white/55 lg:hidden pointer-events-none" />
 
           <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 min-h-[calc(100vh-142px)] flex flex-col justify-between pt-8 pb-14 lg:pt-10 lg:pb-20">
             {/* Main content row */}
@@ -497,7 +499,7 @@ export default function Home() {
                   </div>
                   <div className="bg-[#2e3032] px-6 py-3.5 flex items-center gap-2">
                     <Clock size={11} className="text-[#8DBD42]" />
-                    <span className="text-[#8DBD42] uppercase tracking-[0.18em] text-[11px] font-extrabold" style={bodyStyle}>24 Hours a Day · 7 Days a Week</span>
+                    <span className="text-[#8DBD42] uppercase tracking-[0.18em] text-[11px] font-extrabold" style={bodyStyle}>24 Hours a Day Â· 7 Days a Week</span>
                   </div>
                 </div>
               </FadeUp>
@@ -506,9 +508,9 @@ export default function Home() {
         </section>
 
         {/* Specialized Restoration Cards Section */}
-        <section className="pt-16 pb-16 md:pt-24 md:pb-24 bg-[#FAF9F6]" id="services">
+        <section className="pt-10 pb-10 md:pt-16 md:pb-16 bg-[#FAF9F6]" id="services">
           <div className="max-w-[1200px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-16">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8 md:mb-12">
               <FadeUp>
                 <p
                   className="text-[#8DBD42] uppercase tracking-[0.15em] text-sm font-extrabold"
@@ -538,7 +540,7 @@ export default function Home() {
             </div>
 
             {/* Clean minimalist divider */}
-            <hr className="border-[#3F4143]/10 mb-12" />
+            <hr className="border-[#3F4143]/10 mb-6 md:mb-10" />
 
             {/* Service grid - Premium Typography Cards (No Photos) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -549,7 +551,7 @@ export default function Home() {
                   className="group h-full"
                 >
                   <Link href={service.href}>
-                    <div className={`relative h-full p-8 bg-transparent border border-transparent transition-all duration-300 flex flex-col justify-between cursor-pointer rounded-none overflow-hidden group min-h-[300px] hover:bg-white hover:ring-4 ${service.colorClass}`}>
+                    <div className={`relative h-full p-6 md:p-8 bg-transparent border border-transparent transition-all duration-300 flex flex-col justify-between cursor-pointer rounded-none overflow-hidden group min-h-[220px] md:min-h-[300px] hover:bg-white hover:ring-4 ${service.colorClass}`}>
                       
                       {/* Hover expanding top accent line */}
                       <div className={`absolute top-0 left-0 right-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${service.accentBarClass}`} />
@@ -588,7 +590,7 @@ export default function Home() {
         </section>
 
         {/* Our Promise Section */}
-        <section className="pb-16 md:pb-24 pt-10 md:pt-16 text-[#3F4143] relative overflow-hidden" style={{ background: "#FFFFFF" }}>
+        <section className="pb-10 md:pb-16 pt-8 md:pt-12 text-[#3F4143] relative overflow-hidden" style={{ background: "#FFFFFF" }}>
 
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
@@ -664,7 +666,7 @@ export default function Home() {
 
         {/* Process Timeline Section (Light Minimalist Milestones) */}
         <section
-          className="py-16 md:py-24 overflow-hidden relative bg-[#FAF9F6]"
+          className="py-10 md:py-16 overflow-hidden relative bg-[#FAF9F6]"
           id="process"
         >
           {/* Subtle background glows */}
@@ -672,7 +674,7 @@ export default function Home() {
           <div className="absolute right-[-120px] bottom-[10%] w-[420px] h-[420px] rounded-full bg-[#8DBD42]/3 blur-[150px] pointer-events-none" />
           
           <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-20 relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 relative z-10">
               <p
                 className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-extrabold"
                 style={bodyStyle}
@@ -695,7 +697,7 @@ export default function Home() {
               </p>
             </div>
             {/* Winding Vertical Roadmap (Journey from 1 to 8) */}
-            <div ref={containerRef} className="relative my-20 max-w-[960px] mx-auto">
+            <div ref={containerRef} className="relative my-8 md:my-16 max-w-[960px] mx-auto">
               
               {/* Dynamic SVG Connection Line for Desktop */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" fill="none">
@@ -851,7 +853,7 @@ export default function Home() {
         </section>
 
         {/* Case Study Header (Light Section) */}
-        <section className="pt-16 md:pt-24 pb-0 text-[#3F4143] relative overflow-hidden" id="case-study" style={{ background: "#FFFFFF" }}>
+        <section className="pt-10 md:pt-16 pb-0 text-[#3F4143] relative overflow-hidden" id="case-study" style={{ background: "#FFFFFF" }}>
 
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/4 blur-[140px] pointer-events-none select-none z-0" />
@@ -896,7 +898,7 @@ export default function Home() {
         </section>
 
         {/* Case Study Content (Centered on Canvas Base) */}
-        <section className="pt-4 pb-24 relative z-20" style={{ background: "#FFFFFF" }}>
+        <section className="pt-4 pb-12 relative z-20" style={{ background: "#FFFFFF" }}>
 
           {/* Ambient Background Glow behind slider */}
           <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/2.5 blur-[140px] pointer-events-none select-none z-0" />
@@ -997,7 +999,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials (Editorial Layout) */}
-        <section className="py-16 md:py-24 bg-[#FAF9F6] border-y border-gray-200/40 relative overflow-hidden">
+        <section className="py-10 md:py-16 bg-[#FAF9F6] border-y border-gray-200/40 relative overflow-hidden">
           {/* Ambient Background Glow behind Testimonials frame */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#8DBD42]/3.5 blur-[140px] pointer-events-none select-none z-0" />
           <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
@@ -1043,7 +1045,7 @@ export default function Home() {
                   <article className="relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.045)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
                     {/* Big Decorative Quote Mark */}
                     <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-300 group-hover:scale-110">
-                      “
+                      "
                     </span>
 
                     <div>
@@ -1094,7 +1096,7 @@ export default function Home() {
         </section>
 
         {/* Bottom Statistics Banner (Single Row Column Layout) */}
-        <section className="py-20 md:py-28 border-t-2 border-[#8DBD42] relative overflow-hidden bg-[#1E2021] text-white">
+        <section className="py-12 md:py-20 border-t-2 border-[#8DBD42] relative overflow-hidden bg-[#1E2021] text-white">
 
           {/* Soft ambient green radial glow for depth */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(141,189,66,0.08)_0%,transparent_60%)] pointer-events-none" />
@@ -1175,3 +1177,4 @@ export default function Home() {
     </Layout>
   );
 }
+

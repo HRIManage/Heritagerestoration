@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+﻿import { useRef, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
@@ -98,7 +98,7 @@ export default function Contact() {
           <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               
-              {/* Left Column (5 cols) — High-Density Sticky Editorial Block */}
+              {/* Left Column (5 cols) â€” High-Density Sticky Editorial Block */}
               <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-8">
                 {/* Emergency Block */}
                 <FadeIn className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] border-t-4 border-[#8DBD42] rounded-none space-y-6 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out" direction="up">
@@ -188,7 +188,7 @@ export default function Contact() {
                 </FadeIn>
               </div>
 
-              {/* Right Column (7 cols) — Secure Intake Form */}
+              {/* Right Column (7 cols) â€” Secure Intake Form */}
               <div className="lg:col-span-7">
                 <FadeIn className="relative bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8 hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 overflow-hidden" direction="up">
                   {/* Top brand green accent line */}
@@ -319,3 +319,4 @@ export default function Contact() {
     </Layout>
   );
 }
+

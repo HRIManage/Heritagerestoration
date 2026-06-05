@@ -103,9 +103,9 @@ export default function BillOfRights() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[100px] lg:pt-[142px]">
+      <div className="min-h-screen bg-canvas-textured pt-[72px] lg:pt-[142px]">
         {/* â”€â”€ Hero â”€â”€ */}
-        <section className="relative py-24 md:py-36 bg-[#3F4143] text-white overflow-hidden">
+        <section className="relative py-12 md:py-20 bg-[#3F4143] text-white overflow-hidden">
           <img
             src="/photo/bill-of-rights-hero.jpg"
             alt="Disaster recovery team supporting homeowner"
@@ -223,7 +223,7 @@ export default function BillOfRights() {
         </section>
 
         {/* â”€â”€ 12 Rights Grid â”€â”€ */}
-        <section className="py-20 md:py-28 bg-transparent">
+        <section className="py-10 md:py-16 bg-transparent">
           <div className="max-w-[1280px] mx-auto px-6">
 
             {/* Section label */}
@@ -240,12 +240,12 @@ export default function BillOfRights() {
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid md:grid-cols-2 gap-3 lg:gap-4">
               {rights.map((right, idx) => (
                 <FadeUp
                   key={idx}
                   delay={Math.min(idx * 0.05, 0.3)}
-                  className="group relative bg-white/50 backdrop-blur-[2px] border border-[#3F4143]/10 hover:border-[#8DBD42]/60 transition-all duration-500 p-7 flex gap-5 shadow-sm hover:shadow-md"
+                  className="group relative bg-white/50 backdrop-blur-[2px] border border-[#3F4143]/10 hover:border-[#8DBD42]/60 transition-all duration-500 p-4 md:p-5 flex gap-4 shadow-sm hover:shadow-md"
                 >
                   {/* Left accent bar */}
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#3F4143]/10 group-hover:bg-[#8DBD42] transition-colors duration-500" />
@@ -346,4 +346,5 @@ export default function BillOfRights() {
     </Layout>
   );
 }
+
 

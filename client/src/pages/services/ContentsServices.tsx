@@ -41,8 +41,8 @@ export default function ContentsServices() {
 
       <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[100px] lg:pt-[142px]">
-          <div className="max-w-[1280px] mx-auto px-6 py-20 md:py-28 relative z-10">
+        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[72px] lg:pt-[142px]">
+          <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-16 relative z-10">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
               <div className="col-span-12 md:col-span-6 lg:col-span-7 space-y-8 text-white">
@@ -125,8 +125,8 @@ export default function ContentsServices() {
                 {[
                   {
                     num: "01",
-                    title: "Assured Pack-Outâ„¢ Inventory",
-                    desc: "Before a single box is packed, we map your home using Assured PackOutâ„¢ software. Every item is photographed in place and barcoded, creating a transparent, insurance-approved digital record that prevents claims disputes.",
+                    title: "Assured Pack-Out™ Inventory",
+                    desc: "Before a single box is packed, we map your home using Assured PackOut™ software. Every item is photographed in place and barcoded, creating a transparent, insurance-approved digital record that prevents claims disputes.",
                     icon: <Camera size={20} />,
                   },
                   {
@@ -377,4 +377,5 @@ export default function ContentsServices() {
     </Layout>
   );
 }
+
 
