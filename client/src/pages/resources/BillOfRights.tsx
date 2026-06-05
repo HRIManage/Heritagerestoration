@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+﻿import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { ShieldCheck, Phone } from "lucide-react";
 import { useRef } from "react";
@@ -103,8 +103,8 @@ export default function BillOfRights() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[142px]">
-        {/* ── Hero ── */}
+      <div className="min-h-screen bg-canvas-textured pt-[100px] lg:pt-[142px]">
+        {/* â”€â”€ Hero â”€â”€ */}
         <section className="relative py-24 md:py-36 bg-[#3F4143] text-white overflow-hidden">
           <img
             src="/photo/bill-of-rights-hero.jpg"
@@ -140,7 +140,7 @@ export default function BillOfRights() {
                 Fire and water damage disrupts the normal pattern of life and
                 can involve a lot of emotional stress. People often feel
                 confused and vulnerable after events of this type. However, it
-                is important to make good decisions — you will be living with
+                is important to make good decisions â€” you will be living with
                 the results long after the stress and confusion have passed.
               </p>
 
@@ -156,7 +156,7 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* ── Before You Sign Banner ── */}
+        {/* â”€â”€ Before You Sign Banner â”€â”€ */}
         <section className="relative overflow-hidden bg-[#3A3D3A] text-white">
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 bg-[url('/photo/hero-new.jpg')] bg-cover bg-center brightness-[0.08] opacity-40 pointer-events-none" />
@@ -214,7 +214,7 @@ export default function BillOfRights() {
                         <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <p className="text-white">Know your rights — all 12 of which are outlined below.</p>
+                    <p className="text-white">Know your rights â€” all 12 of which are outlined below.</p>
                   </div>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* ── 12 Rights Grid ── */}
+        {/* â”€â”€ 12 Rights Grid â”€â”€ */}
         <section className="py-20 md:py-28 bg-transparent">
           <div className="max-w-[1280px] mx-auto px-6">
 
@@ -279,7 +279,7 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* ── CTA Banner ── */}
+        {/* â”€â”€ CTA Banner â”€â”€ */}
         <section className="relative bg-white pt-24 pb-36 overflow-hidden">
           {/* Background image */}
           <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
@@ -313,7 +313,7 @@ export default function BillOfRights() {
                   style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
                 >
                   Don't let the insurance company dictate your recovery. Heritage
-                  Restoration will fight for every right listed above — from the
+                  Restoration will fight for every right listed above â€” from the
                   first emergency call through your final settlement. Contact us
                   today for a free, no-pressure consultation.
                 </p>
@@ -346,3 +346,4 @@ export default function BillOfRights() {
     </Layout>
   );
 }
+

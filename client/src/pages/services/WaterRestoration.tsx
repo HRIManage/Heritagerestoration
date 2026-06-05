@@ -1,4 +1,4 @@
-import { Zap, Thermometer, Droplets, CheckCircle, Phone } from "lucide-react";
+﻿import { Zap, Thermometer, Droplets, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -44,7 +44,7 @@ export default function WaterRestoration() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[142px]">
+      <div className="min-h-screen bg-brand-linen pt-[100px] lg:pt-[142px]">
         {/* Hero Section */}
         <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
           <img
@@ -72,7 +72,7 @@ export default function WaterRestoration() {
           </div>
         </section>
 
-        {/* Specialized Services — 6:6 Alternating Checkerboard Layout */}
+        {/* Specialized Services â€” 6:6 Alternating Checkerboard Layout */}
         <Section bg="none">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
@@ -323,3 +323,4 @@ export default function WaterRestoration() {
     </Layout>
   );
 }
+

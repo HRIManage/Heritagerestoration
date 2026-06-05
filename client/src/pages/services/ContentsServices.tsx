@@ -1,4 +1,4 @@
-import { Camera, Package, Wind, Warehouse, ClipboardCheck, Sparkles, Cpu, MapPin, Shirt, Palette, HardDrive, Phone } from "lucide-react";
+﻿import { Camera, Package, Wind, Warehouse, ClipboardCheck, Sparkles, Cpu, MapPin, Shirt, Palette, HardDrive, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -41,7 +41,7 @@ export default function ContentsServices() {
 
       <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[142px]">
+        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[100px] lg:pt-[142px]">
           <div className="max-w-[1280px] mx-auto px-6 py-20 md:py-28 relative z-10">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
@@ -60,7 +60,7 @@ export default function ContentsServices() {
                     Contents <span className="text-[#8DBD42]">Services</span>
                   </h1>
                   <p className="text-base text-white/85 leading-relaxed max-w-xl font-sans font-light">
-                    When disaster strikes your property, your personal belongings need the same level of professional care as the building structure itself. We provide a streamlined, end-to-end contents management system—handling everything from digital inventory tracking and specialized cleaning to secure, climate-stabilized storage while your home is being rebuilt.
+                    When disaster strikes your property, your personal belongings need the same level of professional care as the building structure itself. We provide a streamlined, end-to-end contents management systemâ€”handling everything from digital inventory tracking and specialized cleaning to secure, climate-stabilized storage while your home is being rebuilt.
                   </p>
                 </FadeIn>
 
@@ -125,14 +125,14 @@ export default function ContentsServices() {
                 {[
                   {
                     num: "01",
-                    title: "Assured Pack-Out™ Inventory",
-                    desc: "Before a single box is packed, we map your home using Assured PackOut™ software. Every item is photographed in place and barcoded, creating a transparent, insurance-approved digital record that prevents claims disputes.",
+                    title: "Assured Pack-Outâ„¢ Inventory",
+                    desc: "Before a single box is packed, we map your home using Assured PackOutâ„¢ software. Every item is photographed in place and barcoded, creating a transparent, insurance-approved digital record that prevents claims disputes.",
                     icon: <Camera size={20} />,
                   },
                   {
                     num: "02",
                     title: "Protective Extraction",
-                    desc: "Your belongings are wrapped in conservation-grade materials and safely moved. To prevent cross-contamination, items are immediately sorted by material class—keeping fragile electronics, fabrics, and furniture separated in transit.",
+                    desc: "Your belongings are wrapped in conservation-grade materials and safely moved. To prevent cross-contamination, items are immediately sorted by material classâ€”keeping fragile electronics, fabrics, and furniture separated in transit.",
                     icon: <Package size={20} />,
                   },
                   {
@@ -144,7 +144,7 @@ export default function ContentsServices() {
                   {
                     num: "04",
                     title: "Climate-Controlled Warehouse Storage",
-                    desc: "Restored items are stored in secure storage units within our monitored warehouse facility. We maintain strict climate controls (40–60% relative humidity) to protect sensitive woods, artwork, and fabrics from environmental damage and warping while your property is being rebuilt.",
+                    desc: "Restored items are stored in secure storage units within our monitored warehouse facility. We maintain strict climate controls (40â€“60% relative humidity) to protect sensitive woods, artwork, and fabrics from environmental damage and warping while your property is being rebuilt.",
                     icon: <Warehouse size={20} />,
                   },
                 ].map((item, idx) => (
@@ -348,7 +348,7 @@ export default function ContentsServices() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    We understand that your personal belongings represent a lifetime of memories and investments. When disaster strikes, it's not just the building structure that needs care—it's the cherished contents inside.
+                    We understand that your personal belongings represent a lifetime of memories and investments. When disaster strikes, it's not just the building structure that needs careâ€”it's the cherished contents inside.
                   </p>
                   <p>
                     Our professional contents pack-out, digital inventory, and specialized cleaning services ensure that your valuables are protected, restored, and securely stored in our climate-controlled vaults while reconstruction is underway.
@@ -377,3 +377,4 @@ export default function ContentsServices() {
     </Layout>
   );
 }
+

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+﻿import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Calendar, User, ArrowRight, Phone } from "lucide-react";
 import { useRef } from "react";
@@ -66,7 +66,7 @@ export default function Blog() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-[#FAF9F6] pt-[142px]">
+      <div className="min-h-screen bg-[#FAF9F6] pt-[100px] lg:pt-[142px]">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
@@ -209,3 +209,4 @@ export default function Blog() {
     </Layout>
   );
 }
+

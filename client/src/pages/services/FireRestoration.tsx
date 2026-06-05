@@ -1,4 +1,4 @@
-import { Flame, Shield, Clock, CheckCircle, Phone } from "lucide-react";
+﻿import { Flame, Shield, Clock, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -38,7 +38,7 @@ export default function FireRestoration() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[142px]">
+      <div className="min-h-screen bg-brand-linen pt-[100px] lg:pt-[142px]">
         {/* Hero Section */}
         <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
           {/* Full-bleed background photo */}
@@ -47,7 +47,7 @@ export default function FireRestoration() {
             alt="Fire damage restoration scene"
             className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
           />
-          {/* Dark green wash — heavier on left, fades right */}
+          {/* Dark green wash â€” heavier on left, fades right */}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
           {/* Bottom vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
@@ -69,7 +69,7 @@ export default function FireRestoration() {
           </div>
         </section>
 
-        {/* Specialized Services — Staggered, Non-Traditional Grid */}
+        {/* Specialized Services â€” Staggered, Non-Traditional Grid */}
         <Section bg="none">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
@@ -322,3 +322,4 @@ export default function FireRestoration() {
     </Layout>
   );
 }
+

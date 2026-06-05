@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+﻿import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Plus, Minus, Phone } from "lucide-react";
@@ -110,7 +110,7 @@ const faqCategories: FAQCategory[] = [
         question:
           "How quickly can water damage lead to toxic mold growth?",
         answer:
-          "The 24–48 Hour Window: Mold spores activate and begin colonizing damp organic materials (drywall, carpet padding, plywood framing) within 24 to 48 hours of initial water exposure. To prevent toxic indoor air quality issues, professional structural drying must begin immediately.",
+          "The 24â€“48 Hour Window: Mold spores activate and begin colonizing damp organic materials (drywall, carpet padding, plywood framing) within 24 to 48 hours of initial water exposure. To prevent toxic indoor air quality issues, professional structural drying must begin immediately.",
       },
       {
         question:
@@ -179,7 +179,7 @@ const faqCategories: FAQCategory[] = [
         question:
           "Do you work directly with major homeowners insurance companies?",
         answer:
-          "Yes. We have over two decades of experience coordinating directly with all major insurance carriers (including State Farm, Allstate, Liberty Mutual, Farmers, and USAA). We use Xactimate — the exact estimating software preferred by insurance adjusters — providing them with digital moisture maps, dry logs, and photographic evidence to ensure your claim is processed smoothly, maximizing your eligible coverage.",
+          "Yes. We have over two decades of experience coordinating directly with all major insurance carriers (including State Farm, Allstate, Liberty Mutual, Farmers, and USAA). We use Xactimate â€” the exact estimating software preferred by insurance adjusters â€” providing them with digital moisture maps, dry logs, and photographic evidence to ensure your claim is processed smoothly, maximizing your eligible coverage.",
       },
       {
         question: "Do you offer direct billing to my insurance company?",
@@ -268,19 +268,19 @@ const faqCategories: FAQCategory[] = [
             <div className="grid md:grid-cols-2 gap-4 mt-2">
               {[
                 {
-                  hub: "Lacey & Olympia Hub — Thurston County",
+                  hub: "Lacey & Olympia Hub â€” Thurston County",
                   cities: "Lacey, Olympia, Tumwater, Yelm, Tenino, Rainier, Bucoda, Rochester, Grand Mound, Tanglewilde, Boston Harbor, Littlerock, Maytown, and all surrounding unincorporated neighborhoods.",
                 },
                 {
-                  hub: "Tacoma & Puyallup Hub — Pierce County",
+                  hub: "Tacoma & Puyallup Hub â€” Pierce County",
                   cities: "Tacoma, Puyallup, Lakewood, Gig Harbor, Bonney Lake, University Place, Sumner, Edgewood, Fife, Milton, Fircrest, Steilacoom, Orting, Buckley, Eatonville, DuPont, Carbonado, South Prairie, Wilkeson, Spanaway, Graham, Parkland, Frederickson, Elk Plain, Midland, Fox Island, Anderson Island, Ashford, Elbe, Alder, McKenna, Roy, Key Center, Longbranch, Vaughn, Home, Wauna, and surrounding areas.",
                 },
                 {
-                  hub: "Federal Way & Auburn Hub — South King County",
+                  hub: "Federal Way & Auburn Hub â€” South King County",
                   cities: "Federal Way, Auburn, Kent, Des Moines, Pacific, Algona, Black Diamond, Covington, Maple Valley, and adjacent South King County residential and industrial sectors.",
                 },
                 {
-                  hub: "Chehalis & Centralia Hub — Lewis County",
+                  hub: "Chehalis & Centralia Hub â€” Lewis County",
                   cities: "Chehalis, Centralia, Morton, Mossyrock, Napavine, Pe Ell, Toledo, Vader, Winlock, Mineral, Packwood, Onalaska, Fords Prairie, Adna, Boistfort, Cinebar, Curtis, Doty, Ethel, Evaline, Galvin, Glenoma, Marys Corner, Mayfield, Randle, Salkum, Silver Creek, and surrounding South Sound rural regions.",
                 },
               ].map((hub, i) => (
@@ -313,7 +313,7 @@ export default function FAQ() {
   return (
     <Layout>
       <Helmet>
-        <title>Frequently Asked Questions | Heritage Restoration – Washington Restoration Experts</title>
+        <title>Frequently Asked Questions | Heritage Restoration â€“ Washington Restoration Experts</title>
         <meta name="description" content="Get answers to 27 common questions about fire, water, and storm damage restoration, mold remediation, insurance claims, and your rights as a homeowner across Western Washington." />
         <meta name="keywords" content="restoration FAQ, water damage questions, fire restoration help, mold remediation questions, insurance claims restoration, Washington restoration contractor FAQ" />
         <link rel="canonical" href="https://www.firewaterstorm.com/resources/faq" />
@@ -332,7 +332,7 @@ export default function FAQ() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-[#FAF9F6] pt-[142px]">
+      <div className="min-h-screen bg-[#FAF9F6] pt-[100px] lg:pt-[142px]">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
@@ -485,3 +485,4 @@ export default function FAQ() {
     </Layout>
   );
 }
+

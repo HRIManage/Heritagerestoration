@@ -393,7 +393,7 @@ export default function Home() {
 
       <div className="bg-[#FAF9F5]">
         {/* Homepage Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-white pt-[142px]">
+        <section className="relative min-h-screen overflow-hidden bg-white pt-[100px] lg:pt-[142px]">
           <img
             src="/photo/hero-tarp.jpg"
             alt="Heritage Restoration - Tarping damage recovery"
