@@ -1,4 +1,4 @@
-﻿import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, animate, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -393,7 +393,7 @@ export default function Home() {
 
       <div className="bg-[#FAF9F5]">
         {/* Homepage Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-white pt-[72px] lg:pt-[142px]">
+        <section className="relative min-h-screen overflow-hidden bg-white pt-[112px] sm:pt-[116px] lg:pt-[152px]">
           <img
             src="/photo/hero-tarp.jpg"
             alt="Heritage Restoration - Tarping damage recovery"

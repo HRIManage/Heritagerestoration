@@ -103,7 +103,7 @@ export default function BillOfRights() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[72px] lg:pt-[142px]">
+      <div className="min-h-screen bg-canvas-textured pt-[112px] sm:pt-[116px] lg:pt-[152px]">
         {/* â”€â”€ Hero â”€â”€ */}
         <section className="relative py-12 md:py-20 bg-[#3F4143] text-white overflow-hidden">
           <img

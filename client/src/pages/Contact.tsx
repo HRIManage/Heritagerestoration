@@ -1,4 +1,4 @@
-﻿import { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
@@ -81,7 +81,7 @@ export default function Contact() {
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative pt-[calc(142px+2rem)] pb-12 md:pt-[calc(142px+3rem)] md:pb-16 bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-12 md:pb-16 bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white overflow-hidden border-b border-[#8DBD42]/20">
           <Container>
             <FadeIn className="max-w-2xl" direction="up">
               <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-4">

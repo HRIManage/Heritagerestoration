@@ -41,7 +41,7 @@ export default function ContentsServices() {
 
       <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[72px] lg:pt-[142px]">
+        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[112px] sm:pt-[116px] lg:pt-[152px]">
           <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-16 relative z-10">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}

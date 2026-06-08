@@ -44,7 +44,7 @@ export default function StormRecovery() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[72px] lg:pt-[142px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
         {/* Hero Section */}
         <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
           {/* Full-bleed background photo */}

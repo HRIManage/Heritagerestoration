@@ -149,7 +149,14 @@ export default function Header({
       </div>
 
       {/* ── MOBILE NAV (< lg) ── */}
-      <nav className={`lg:hidden fixed left-0 right-0 z-40 transition-all duration-500 ${scrolled ? "top-0" : "top-[40px] sm:top-[44px]"}`} style={{ WebkitOverflowScrolling: "touch" }}>
+      <nav 
+        className={`lg:hidden left-0 right-0 z-40 ${
+          scrolled 
+            ? "fixed top-0" 
+            : "absolute top-10 sm:top-11"
+        }`} 
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
         {/* Mobile top bar */}
         <div
           className="relative h-[72px] flex items-center justify-between px-4 w-full overflow-hidden"
@@ -303,7 +310,11 @@ export default function Header({
 
       {/* ── DESKTOP NAV (lg+) ── */}
       <nav
-        className={`hidden lg:block fixed left-0 right-0 z-40 transition-all duration-500 ${scrolled ? "top-0" : "top-[44px]"}`}
+        className={`hidden lg:block left-0 right-0 z-40 ${
+          scrolled 
+            ? "fixed top-0" 
+            : "absolute top-11"
+        }`}
         style={{
           boxShadow: scrolled
             ? "0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(141,189,66,0.35)"
