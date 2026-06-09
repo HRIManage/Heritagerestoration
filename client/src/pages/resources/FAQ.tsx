@@ -54,19 +54,44 @@ const faqCategories: FAQCategory[] = [
           "What should I do immediately after discovering emergency water, fire, or storm damage?",
         answer: (
           <div className="space-y-3">
-            <p className="font-semibold text-[#3F4143]">Immediate Safety Actions for Homeowners and Property Managers:</p>
+            <p className="font-semibold text-[#3F4143]">
+              Immediate Safety Actions for Homeowners and Property Managers:
+            </p>
             <ul className="space-y-2">
               {[
-                { label: "Check Structural Safety:", text: "Evacuate immediately if there is a threat of ceiling collapse, structural shifting, or severe fire damage." },
-                { label: "Avoid Electrical Hazards:", text: "Do not walk through standing water if your electrical panel or outlets are submerged or exposed to moisture." },
-                { label: "Take Photographic Documentation:", text: "Photograph and video all affected property and structural damage for your insurance claims adjuster before any cleanup begins." },
-                { label: "Shut Off Main Utilities:", text: "If safe to access, shut off your property's main water valve or main electrical breaker." },
-                { label: "Do NOT Attempt DIY Cleanup:", text: "Avoid tearing down wet drywall or cleaning soot yourself. Untrained disturbance can spread toxic black mold spores or microscopic soot toxins throughout your HVAC system." },
-                { label: "Call Our Emergency Dispatch:", text: "Contact us immediately to deploy certified technicians to secure your property." },
+                {
+                  label: "Check Structural Safety:",
+                  text: "Evacuate immediately if there is a threat of ceiling collapse, structural shifting, or severe fire damage.",
+                },
+                {
+                  label: "Avoid Electrical Hazards:",
+                  text: "Do not walk through standing water if your electrical panel or outlets are submerged or exposed to moisture.",
+                },
+                {
+                  label: "Take Photographic Documentation:",
+                  text: "Photograph and video all affected property and structural damage for your insurance claims adjuster before any cleanup begins.",
+                },
+                {
+                  label: "Shut Off Main Utilities:",
+                  text: "If safe to access, shut off your property's main water valve or main electrical breaker.",
+                },
+                {
+                  label: "Do NOT Attempt DIY Cleanup:",
+                  text: "Avoid tearing down wet drywall or cleaning soot yourself. Untrained disturbance can spread toxic black mold spores or microscopic soot toxins throughout your HVAC system.",
+                },
+                {
+                  label: "Call Our Emergency Dispatch:",
+                  text: "Contact us immediately to deploy certified technicians to secure your property.",
+                },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-[#8DBD42]" />
-                  <span><span className="font-semibold text-[#3F4143]">{item.label}</span> {item.text}</span>
+                  <span>
+                    <span className="font-semibold text-[#3F4143]">
+                      {item.label}
+                    </span>{" "}
+                    {item.text}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -89,28 +114,48 @@ const faqCategories: FAQCategory[] = [
           "What types of water damage repairs do you handle in Washington State?",
         answer: (
           <div className="space-y-3">
-            <p>We handle all residential and commercial water extraction and dry-out emergencies, specifically targeting:</p>
+            <p>
+              We handle all residential and commercial water extraction and
+              dry-out emergencies, specifically targeting:
+            </p>
             <ul className="space-y-2">
               {[
-                { label: "Plumbing Failures:", text: "Burst pipes, frozen pipe lines, slab leaks, and leaking water heaters." },
-                { label: "Appliance Overflows:", text: "Washing machine hose failures, dishwasher leaks, and toilet overflows." },
-                { label: "Environmental & Sewage Disasters:", text: "Sewer backup cleanup, crawl space water extraction, heavy storm runoff, and basement flooding." },
+                {
+                  label: "Plumbing Failures:",
+                  text: "Burst pipes, frozen pipe lines, slab leaks, and leaking water heaters.",
+                },
+                {
+                  label: "Appliance Overflows:",
+                  text: "Washing machine hose failures, dishwasher leaks, and toilet overflows.",
+                },
+                {
+                  label: "Environmental & Sewage Disasters:",
+                  text: "Sewer backup cleanup, crawl space water extraction, heavy storm runoff, and basement flooding.",
+                },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 list-none">
                   <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-[#8DBD42]" />
-                  <span><span className="font-semibold text-[#3F4143]">{item.label}</span> {item.text}</span>
+                  <span>
+                    <span className="font-semibold text-[#3F4143]">
+                      {item.label}
+                    </span>{" "}
+                    {item.text}
+                  </span>
                 </li>
               ))}
             </ul>
-            <p>Our comprehensive water mitigation includes rapid water removal, industrial dehumidification, thermal moisture mapping, and complete structural reconstruction.</p>
+            <p>
+              Our comprehensive water mitigation includes rapid water removal,
+              industrial dehumidification, thermal moisture mapping, and
+              complete structural reconstruction.
+            </p>
           </div>
         ),
       },
       {
-        question:
-          "How quickly can water damage lead to toxic mold growth?",
+        question: "How quickly can water damage lead to toxic mold growth?",
         answer:
-          "The 24â€“48 Hour Window: Mold spores activate and begin colonizing damp organic materials (drywall, carpet padding, plywood framing) within 24 to 48 hours of initial water exposure. To prevent toxic indoor air quality issues, professional structural drying must begin immediately.",
+          "The 24–48 Hour Window: Mold spores activate and begin colonizing damp organic materials (drywall, carpet padding, plywood framing) within 24 to 48 hours of initial water exposure. To prevent toxic indoor air quality issues, professional structural drying must begin immediately.",
       },
       {
         question:
@@ -119,8 +164,7 @@ const faqCategories: FAQCategory[] = [
           "Yes. We deploy industrial-grade truck-mounted water extractors, commercial low-grain refrigerant (LGR) dehumidifiers, and high-velocity axial air movers. Our IICRC-certified restoration technicians utilize advanced infrared thermal imaging cameras and moisture meters to track hidden water pockets behind walls and beneath flooring to ensure your property reaches certified dry standards.",
       },
       {
-        question:
-          "Can I handle water damage cleanup myself with a shop vac?",
+        question: "Can I handle water damage cleanup myself with a shop vac?",
         answer:
           "We strongly advise against DIY water extraction. Standard consumer vacuums and household fans cannot pull deep moisture trapped inside structural wood framing or subfloors. Leaving hidden moisture behind leads to structural wood rot, hidden mold blooms, and can void your homeowner's insurance policy coverage for failing to take proper mitigating steps.",
       },
@@ -136,8 +180,7 @@ const faqCategories: FAQCategory[] = [
           "Yes. We provide complete end-to-end fire damage cleanup and reconstruction services. Our certified specialists manage everything: structural stabilization, emergency board-ups, soot and char removal, structural framing repairs, and complete cosmetic rebuilds back to pre-loss condition.",
       },
       {
-        question:
-          "Can smoke damage affect rooms that weren't touched by fire?",
+        question: "Can smoke damage affect rooms that weren't touched by fire?",
         answer:
           "Yes. Smoke, ash, and soot act as acidic, pressurized gases. They travel freely through residential and commercial HVAC ductwork, settling into distant rooms. This causes invisible odor penetration, yellowing walls, and corrosive soot damage on electronics and metal fixtures throughout the entire property, requiring specialized chemical smoke remediation.",
       },
@@ -165,8 +208,7 @@ const faqCategories: FAQCategory[] = [
           "Yes. We are fully certified mold remediation experts. Our remediation protocols follow strict industry standards: we isolate the affected space using negative-pressure plastic containment barriers, run industrial HEPA air scrubbers to trap airborne spores, physically extract the mold growth, apply specialized EPA-registered antimicrobials, and fix the underlying moisture source to ensure long-term protection.",
       },
       {
-        question:
-          "Is mold exposure dangerous to my family's health?",
+        question: "Is mold exposure dangerous to my family's health?",
         answer:
           "Yes. Active indoor mold colonies release mycotoxins into the air that can trigger persistent coughing, sinus infections, chronic headaches, skin rashes, and severe asthma attacks. Children, the elderly, pregnant women, and individuals with compromised immune systems or pre-existing respiratory conditions face the highest health risks.",
       },
@@ -179,7 +221,7 @@ const faqCategories: FAQCategory[] = [
         question:
           "Do you work directly with major homeowners insurance companies?",
         answer:
-          "Yes. We have over two decades of experience coordinating directly with all major insurance carriers (including State Farm, Allstate, Liberty Mutual, Farmers, and USAA). We use Xactimate â€” the exact estimating software preferred by insurance adjusters â€” providing them with digital moisture maps, dry logs, and photographic evidence to ensure your claim is processed smoothly, maximizing your eligible coverage.",
+          "Yes. We have over two decades of experience coordinating directly with all major insurance carriers (including State Farm, Allstate, Liberty Mutual, Farmers, and USAA). We use Xactimate, the exact estimating software preferred by insurance adjusters, to provide them with digital moisture maps, dry logs, and photographic evidence to ensure your claim is processed smoothly, maximizing your eligible coverage.",
       },
       {
         question: "Do you offer direct billing to my insurance company?",
@@ -213,23 +255,40 @@ const faqCategories: FAQCategory[] = [
         question:
           "Do you handle both the initial emergency cleanup and the final rebuild construction?",
         answer:
-          "Yes. We utilize a highly efficient \"One Team\" workflow. Unlike companies that only perform water extraction and leave you to find a separate general contractor, we manage the entire project from midnight emergency response through structural drying, content pack-outs, final structural framing, drywall patching, flooring installation, and finishing trim.",
+          'Yes. We utilize a highly efficient "One Team" workflow. Unlike companies that only perform water extraction and leave you to find a separate general contractor, we manage the entire project from midnight emergency response through structural drying, content pack-outs, final structural framing, drywall patching, flooring installation, and finishing trim.',
       },
       {
         question:
           "How long does a typical property water damage restoration project take?",
         answer: (
           <div className="space-y-2">
-            <p>While every structural loss varies, a standard timeline generally follows this structure:</p>
+            <p>
+              While every structural loss varies, a standard timeline generally
+              follows this structure:
+            </p>
             <ul className="space-y-2 mt-2">
               {[
-                { label: "Emergency Water Extraction & Cleanup:", text: "1 to 2 Days." },
-                { label: "Structural Drying & Dehumidification:", text: "3 to 5 Days." },
-                { label: "Property Reconstruction & Cosmetic Rebuild:", text: "1 to 3 Weeks (depending on the scope of material replacement required)." },
+                {
+                  label: "Emergency Water Extraction & Cleanup:",
+                  text: "1 to 2 Days.",
+                },
+                {
+                  label: "Structural Drying & Dehumidification:",
+                  text: "3 to 5 Days.",
+                },
+                {
+                  label: "Property Reconstruction & Cosmetic Rebuild:",
+                  text: "1 to 3 Weeks (depending on the scope of material replacement required).",
+                },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-2 list-none">
                   <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-[#8DBD42]" />
-                  <span><span className="font-semibold text-[#3F4143]">{item.label}</span> {item.text}</span>
+                  <span>
+                    <span className="font-semibold text-[#3F4143]">
+                      {item.label}
+                    </span>{" "}
+                    {item.text}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -264,29 +323,45 @@ const faqCategories: FAQCategory[] = [
           "Which cities and communities do you serve across Western Washington?",
         answer: (
           <div className="space-y-4">
-            <p>We provide complete 24/7 emergency dispatch coverage throughout four primary county hubs across Western Washington and South King County. Our strategically placed teams ensure a 60-minute or less physical response arrival to all emergency calls.</p>
+            <p>
+              We provide complete 24/7 emergency dispatch coverage throughout
+              four primary county hubs across Western Washington and South King
+              County. Our strategically placed teams ensure a 60-minute or less
+              physical response arrival to all emergency calls.
+            </p>
             <div className="grid md:grid-cols-2 gap-4 mt-2">
               {[
                 {
-                  hub: "Lacey & Olympia Hub â€” Thurston County",
-                  cities: "Lacey, Olympia, Tumwater, Yelm, Tenino, Rainier, Bucoda, Rochester, Grand Mound, Tanglewilde, Boston Harbor, Littlerock, Maytown, and all surrounding unincorporated neighborhoods.",
+                  hub: "Lacey & Olympia Hub (Thurston County)",
+                  cities:
+                    "Lacey, Olympia, Tumwater, Yelm, Tenino, Rainier, Bucoda, Rochester, Grand Mound, Tanglewilde, Boston Harbor, Littlerock, Maytown, and all surrounding unincorporated neighborhoods.",
                 },
                 {
-                  hub: "Tacoma & Puyallup Hub â€” Pierce County",
-                  cities: "Tacoma, Puyallup, Lakewood, Gig Harbor, Bonney Lake, University Place, Sumner, Edgewood, Fife, Milton, Fircrest, Steilacoom, Orting, Buckley, Eatonville, DuPont, Carbonado, South Prairie, Wilkeson, Spanaway, Graham, Parkland, Frederickson, Elk Plain, Midland, Fox Island, Anderson Island, Ashford, Elbe, Alder, McKenna, Roy, Key Center, Longbranch, Vaughn, Home, Wauna, and surrounding areas.",
+                  hub: "Tacoma & Puyallup Hub (Pierce County)",
+                  cities:
+                    "Tacoma, Puyallup, Lakewood, Gig Harbor, Bonney Lake, University Place, Sumner, Edgewood, Fife, Milton, Fircrest, Steilacoom, Orting, Buckley, Eatonville, DuPont, Carbonado, South Prairie, Wilkeson, Spanaway, Graham, Parkland, Frederickson, Elk Plain, Midland, Fox Island, Anderson Island, Ashford, Elbe, Alder, McKenna, Roy, Key Center, Longbranch, Vaughn, Home, Wauna, and surrounding areas.",
                 },
                 {
-                  hub: "Federal Way & Auburn Hub â€” South King County",
-                  cities: "Federal Way, Auburn, Kent, Des Moines, Pacific, Algona, Black Diamond, Covington, Maple Valley, and adjacent South King County residential and industrial sectors.",
+                  hub: "Federal Way & Auburn Hub (South King County)",
+                  cities:
+                    "Federal Way, Auburn, Kent, Des Moines, Pacific, Algona, Black Diamond, Covington, Maple Valley, and adjacent South King County residential and industrial sectors.",
                 },
                 {
-                  hub: "Chehalis & Centralia Hub â€” Lewis County",
-                  cities: "Chehalis, Centralia, Morton, Mossyrock, Napavine, Pe Ell, Toledo, Vader, Winlock, Mineral, Packwood, Onalaska, Fords Prairie, Adna, Boistfort, Cinebar, Curtis, Doty, Ethel, Evaline, Galvin, Glenoma, Marys Corner, Mayfield, Randle, Salkum, Silver Creek, and surrounding South Sound rural regions.",
+                  hub: "Chehalis & Centralia Hub (Lewis County)",
+                  cities:
+                    "Chehalis, Centralia, Morton, Mossyrock, Napavine, Pe Ell, Toledo, Vader, Winlock, Mineral, Packwood, Onalaska, Fords Prairie, Adna, Boistfort, Cinebar, Curtis, Doty, Ethel, Evaline, Galvin, Glenoma, Marys Corner, Mayfield, Randle, Salkum, Silver Creek, and surrounding South Sound rural regions.",
                 },
               ].map((hub, i) => (
-                <div key={i} className="bg-[#3F4143]/5 border border-[#3F4143]/10 p-4 rounded-none font-sans">
-                  <p className="font-bold text-[#3F4143] text-sm mb-1 font-serif">{hub.hub}</p>
-                  <p className="text-xs text-[#3F4143]/70 leading-relaxed font-sans">{hub.cities}</p>
+                <div
+                  key={i}
+                  className="bg-[#3F4143]/5 border border-[#3F4143]/10 p-4 rounded-none font-sans"
+                >
+                  <p className="font-bold text-[#3F4143] text-sm mb-1 font-serif">
+                    {hub.hub}
+                  </p>
+                  <p className="text-xs text-[#3F4143]/70 leading-relaxed font-sans">
+                    {hub.cities}
+                  </p>
                 </div>
               ))}
             </div>
@@ -308,27 +383,47 @@ export default function FAQ() {
   const [openKey, setOpenKey] = useState<string | null>("0-0");
 
   const toggle = (key: string) =>
-    setOpenKey((prev) => (prev === key ? null : key));
+    setOpenKey(prev => (prev === key ? null : key));
 
   return (
     <Layout>
       <Helmet>
-        <title>Frequently Asked Questions | Heritage Restoration â€“ Washington Restoration Experts</title>
-        <meta name="description" content="Get answers to 27 common questions about fire, water, and storm damage restoration, mold remediation, insurance claims, and your rights as a homeowner across Western Washington." />
-        <meta name="keywords" content="restoration FAQ, water damage questions, fire restoration help, mold remediation questions, insurance claims restoration, Washington restoration contractor FAQ" />
-        <link rel="canonical" href="https://www.firewaterstorm.com/resources/faq" />
+        <title>
+          Frequently Asked Questions | Heritage Restoration – Washington
+          Restoration Experts
+        </title>
+        <meta
+          name="description"
+          content="Get answers to 27 common questions about fire, water, and storm damage restoration, mold remediation, insurance claims, and your rights as a homeowner across Western Washington."
+        />
+        <meta
+          name="keywords"
+          content="restoration FAQ, water damage questions, fire restoration help, mold remediation questions, insurance claims restoration, Washington restoration contractor FAQ"
+        />
+        <link
+          rel="canonical"
+          href="https://www.firewaterstorm.com/resources/faq"
+        />
         <meta property="og:title" content="FAQ | Heritage Restoration" />
-        <meta property="og:description" content="Answers to 27 common questions about restoration services, insurance claims, mold remediation, and homeowner rights across Western Washington." />
-        <meta property="og:url" content="https://www.firewaterstorm.com/resources/faq" />
+        <meta
+          property="og:description"
+          content="Answers to 27 common questions about restoration services, insurance claims, mold remediation, and homeowner rights across Western Washington."
+        />
+        <meta
+          property="og:url"
+          content="https://www.firewaterstorm.com/resources/faq"
+        />
         <script type="application/ld+json">
           {JSON.stringify(buildFAQSchema(FAQ_SCHEMA_ITEMS))}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildBreadcrumbSchema([
-            { name: "Home", url: "/" },
-            { name: "Resources", url: "/resources/faq" },
-            { name: "FAQ", url: "/resources/faq" },
-          ]))}
+          {JSON.stringify(
+            buildBreadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "Resources", url: "/resources/faq" },
+              { name: "FAQ", url: "/resources/faq" },
+            ])
+          )}
         </script>
       </Helmet>
 
@@ -349,8 +444,8 @@ export default function FAQ() {
 
             <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl mx-auto font-sans font-light">
               Everything you need to know about the restoration process,
-              insurance claims, mold remediation, and your rights as a
-              homeowner across Western Washington.
+              insurance claims, mold remediation, and your rights as a homeowner
+              across Western Washington.
             </p>
           </div>
           {/* Background pattern */}
@@ -455,8 +550,8 @@ export default function FAQ() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    Heritage Restoration is available 24/7, 365 days a year.
-                    Our emergency response team will deploy and arrive within 60
+                    Heritage Restoration is available 24/7, 365 days a year. Our
+                    emergency response team will deploy and arrive within 60
                     minutes of dispatch to secure your home.
                   </p>
                 </div>
@@ -485,5 +580,3 @@ export default function FAQ() {
     </Layout>
   );
 }
-
-

@@ -12,25 +12,25 @@ export default function WaterRestoration() {
       icon: <Zap size={32} />,
       title: "24/7 Water Extraction",
       desc: "High-capacity truck-mounted pumps and commercial sub-surface extractors deployed immediately to extract standing water and halt structural mitigation spread.",
-      img: "/photo/water2-flooded-hall.jpg"
+      img: "/photo/water2-flooded-hall.jpg",
     },
     {
       icon: <Thermometer size={32} />,
       title: "Thermal Moisture Mapping",
       desc: "Advanced FLIR infrared imaging cameras and non-penetrating moisture meters to trace migration corridors hidden within walls, flooring, and structural sub-assemblies.",
-      img: "/photo/water2-flir-meter.jpg"
+      img: "/photo/water2-flir-meter.jpg",
     },
     {
       icon: <Droplets size={32} />,
       title: "Industrial Dehumidification",
       desc: "LGR (Low Grain Refrigerant) dehumidifiers and high-velocity axial air movers dynamically balance humidity levels to dry structural timbers rapidly.",
-      img: "/photo/water2-air-movers.jpg"
+      img: "/photo/water2-air-movers.jpg",
     },
     {
       icon: <CheckCircle size={32} />,
       title: "Mold Prevention & Sanitization",
       desc: "EPA-approved anti-microbial treatments combined with negative air pressure HEPA filtration capture spores and clean secondary structural mold growth.",
-      img: "/photo/water2-containment.jpg"
+      img: "/photo/water2-containment.jpg",
     },
   ];
 
@@ -52,27 +52,36 @@ export default function WaterRestoration() {
             alt="Water damage restoration"
             className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)",
+            }}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
           <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
-                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
+                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency
+                  Service
                 </span>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
                   Water Restoration
                 </h1>
                 <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl font-sans font-light">
-                  Water damage requires immediate action to prevent mold growth and structural deterioration. Our 24/7 team deploys advanced extraction and dehumidification systems to save your property.
+                  Water damage requires immediate action to prevent mold growth
+                  and structural deterioration. Our 24/7 team deploys advanced
+                  extraction and dehumidification systems to save your property.
                 </p>
               </FadeIn>
             </div>
           </div>
         </section>
 
-        {/* Specialized Services â€” 6:6 Alternating Checkerboard Layout */}
+        {/* Specialized Services — 6:6 Alternating Checkerboard Layout */}
         <Section bg="none">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
@@ -93,7 +102,9 @@ export default function WaterRestoration() {
                     direction="up"
                   >
                     {/* Image Column - Alternates Left / Right */}
-                    <div className={`md:col-span-6 relative min-h-[220px] md:min-h-auto overflow-hidden ${!isEven ? "md:order-1" : "md:order-2"}`}>
+                    <div
+                      className={`md:col-span-6 relative min-h-[220px] md:min-h-auto overflow-hidden ${!isEven ? "md:order-1" : "md:order-2"}`}
+                    >
                       <img
                         src={item.img}
                         alt={item.title}
@@ -102,7 +113,9 @@ export default function WaterRestoration() {
                     </div>
 
                     {/* Text Column */}
-                    <div className={`md:col-span-6 p-8 md:p-12 flex flex-col justify-center space-y-4 ${isEven ? "md:order-1" : "md:order-2"}`}>
+                    <div
+                      className={`md:col-span-6 p-8 md:p-12 flex flex-col justify-center space-y-4 ${isEven ? "md:order-1" : "md:order-2"}`}
+                    >
                       <div className="flex items-center gap-3">
                         <div className="text-[#8DBD42]">{item.icon}</div>
                         <h3 className="font-bold text-[#3F4143] text-xl md:text-2xl font-serif">
@@ -133,32 +146,59 @@ export default function WaterRestoration() {
                     Advanced LGR Drying Technology
                   </h2>
                 </FadeIn>
-                <FadeIn delay={0.1} direction="up" className="space-y-4 text-white/80 font-sans font-light">
+                <FadeIn
+                  delay={0.1}
+                  direction="up"
+                  className="space-y-4 text-white/80 font-sans font-light"
+                >
                   <p className="text-base md:text-lg leading-relaxed">
-                    At Heritage Restoration, we employ state-of-the-art <strong>Low Grain Refrigerant (LGR) Dehumidifiers</strong> to achieve maximum drying efficiency. Unlike standard consumer-grade units, LGR systems pull significantly more moisture from the air, enabling them to dry dense building materials like structural timbers, concrete subfloors, and thick plaster walls.
+                    At Heritage Restoration, we employ state-of-the-art{" "}
+                    <strong>Low Grain Refrigerant (LGR) Dehumidifiers</strong>{" "}
+                    to achieve maximum drying efficiency. Unlike standard
+                    consumer-grade units, LGR systems pull significantly more
+                    moisture from the air, enabling them to dry dense building
+                    materials like structural timbers, concrete subfloors, and
+                    thick plaster walls.
                   </p>
                   <p className="text-sm leading-relaxed">
-                    By lowering the grain-per-pound (GPP) moisture level, we create a vapor pressure differential that forces embedded moisture out of saturated materials and into the dry air, where it is instantly condensed and pumped away. This prevents secondary swelling, warping, and bacterial mold growth.
+                    By lowering the grain-per-pound (GPP) moisture level, we
+                    create a vapor pressure differential that forces embedded
+                    moisture out of saturated materials and into the dry air,
+                    where it is instantly condensed and pumped away. This
+                    prevents secondary swelling, warping, and bacterial mold
+                    growth.
                   </p>
                 </FadeIn>
               </div>
               <div className="lg:col-span-5">
-                <FadeIn direction="up" className="border border-white/10 p-8 bg-white/5 space-y-6 rounded-none">
+                <FadeIn
+                  direction="up"
+                  className="border border-white/10 p-8 bg-white/5 space-y-6 rounded-none"
+                >
                   <h3 className="text-lg font-bold text-[#8DBD42] uppercase tracking-wider font-serif">
                     Mitigation Protocols
                   </h3>
                   <ul className="space-y-4 font-sans text-sm text-white/90">
                     <li className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42] mt-2 flex-shrink-0" />
-                      <span><strong>Thermal Diagnostics:</strong> Mapping hidden moisture plumes with infrared scanners.</span>
+                      <span>
+                        <strong>Thermal Diagnostics:</strong> Mapping hidden
+                        moisture plumes with infrared scanners.
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42] mt-2 flex-shrink-0" />
-                      <span><strong>Pressure Mapping:</strong> Injecting dry air under cabinets and subfloors.</span>
+                      <span>
+                        <strong>Pressure Mapping:</strong> Injecting dry air
+                        under cabinets and subfloors.
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42] mt-2 flex-shrink-0" />
-                      <span><strong>Daily Tracking:</strong> Documenting relative humidity (RH) and moisture content.</span>
+                      <span>
+                        <strong>Daily Tracking:</strong> Documenting relative
+                        humidity (RH) and moisture content.
+                      </span>
                     </li>
                   </ul>
                 </FadeIn>
@@ -216,7 +256,9 @@ export default function WaterRestoration() {
                   className="bg-white p-8 border border-[#3F4143]/8 shadow-[0_6px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)] transition-all duration-300 relative rounded-none"
                   direction="up"
                 >
-                  <span className="absolute top-6 right-6 text-4xl font-black text-[#8DBD42]/10 select-none font-serif">{item.step}</span>
+                  <span className="absolute top-6 right-6 text-4xl font-black text-[#8DBD42]/10 select-none font-serif">
+                    {item.step}
+                  </span>
                   <div className="w-10 h-10 rounded-none bg-[#8DBD42]/10 text-[#8DBD42] flex items-center justify-center font-bold text-sm mb-4 font-serif">
                     {idx + 1}
                   </div>
@@ -263,7 +305,9 @@ export default function WaterRestoration() {
                     size={18}
                     className="text-[#8DBD42] flex-shrink-0 mt-1"
                   />
-                  <p className="text-[#3F4143] font-bold text-base md:text-lg leading-snug">{item}</p>
+                  <p className="text-[#3F4143] font-bold text-base md:text-lg leading-snug">
+                    {item}
+                  </p>
                 </FadeIn>
               ))}
             </div>
@@ -293,10 +337,15 @@ export default function WaterRestoration() {
                   </h2>
                   <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                     <p>
-                      Water damage is incredibly invasive and can quickly cause severe structural issues if left unaddressed. We map out all moisture using thermal imaging and deploy LGR dryout systems immediately.
+                      Water damage is incredibly invasive and can quickly cause
+                      severe structural issues if left unaddressed. We map out
+                      all moisture using thermal imaging and deploy LGR dryout
+                      systems immediately.
                     </p>
                     <p>
-                      Our certified team manages the entire scope of claims, coordinate dryout reports for adjusters, and handles the reconstruction of flooring and walls back to code.
+                      Our certified team manages the entire scope of claims,
+                      coordinate dryout reports for adjusters, and handles the
+                      reconstruction of flooring and walls back to code.
                     </p>
                   </div>
 
@@ -323,5 +372,3 @@ export default function WaterRestoration() {
     </Layout>
   );
 }
-
-

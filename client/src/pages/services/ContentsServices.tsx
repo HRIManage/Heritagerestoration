@@ -1,4 +1,17 @@
-﻿import { Camera, Package, Wind, Warehouse, ClipboardCheck, Sparkles, Cpu, MapPin, Shirt, Palette, HardDrive, Phone } from "lucide-react";
+﻿import {
+  Camera,
+  Package,
+  Wind,
+  Warehouse,
+  ClipboardCheck,
+  Sparkles,
+  Cpu,
+  MapPin,
+  Shirt,
+  Palette,
+  HardDrive,
+  Phone,
+} from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -46,21 +59,28 @@ export default function ContentsServices() {
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
               <div className="col-span-12 md:col-span-6 lg:col-span-7 space-y-8 text-white">
-                <FadeIn className="inline-flex items-center gap-2.5" direction="up">
+                <FadeIn
+                  className="inline-flex items-center gap-2.5"
+                  direction="up"
+                >
                   <span className="w-2 h-2 rounded-none bg-[#8DBD42] animate-pulse" />
                   <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black">
                     SPECIALIZED CARE
                   </span>
                 </FadeIn>
-                
+
                 <FadeIn delay={0.1} className="space-y-6" direction="up">
-                  <h1
-                    className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight font-serif"
-                  >
+                  <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight font-serif">
                     Contents <span className="text-[#8DBD42]">Services</span>
                   </h1>
                   <p className="text-base text-white/85 leading-relaxed max-w-xl font-sans font-light">
-                    When disaster strikes your property, your personal belongings need the same level of professional care as the building structure itself. We provide a streamlined, end-to-end contents management systemâ€”handling everything from digital inventory tracking and specialized cleaning to secure, climate-stabilized storage while your home is being rebuilt.
+                    When disaster strikes your property, your personal
+                    belongings need the same level of professional care as the
+                    building structure itself. We provide a streamlined,
+                    end-to-end contents management system, handling everything
+                    from digital inventory tracking and specialized cleaning to
+                    secure, climate-stabilized storage while your home is being
+                    rebuilt.
                   </p>
                 </FadeIn>
 
@@ -76,7 +96,11 @@ export default function ContentsServices() {
 
               {/* Right Column: Smaller collage image */}
               <div className="col-span-12 md:col-span-6 lg:col-span-5 flex justify-center lg:justify-end">
-                <FadeIn delay={0.15} className="w-full max-w-md lg:max-w-full" direction="up">
+                <FadeIn
+                  delay={0.15}
+                  className="w-full max-w-md lg:max-w-full"
+                  direction="up"
+                >
                   <img
                     src="/photo/contents-hero.png"
                     alt="Contents restoration services collage showing packaging and inventory"
@@ -92,7 +116,6 @@ export default function ContentsServices() {
         <Section bg="none">
           <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 max-w-5xl mx-auto items-start">
-              
               {/* Left Column - 40% Width Sticky Text Anchor */}
               <div className="lg:col-span-5 lg:sticky lg:top-40 space-y-6">
                 <FadeIn direction="up">
@@ -102,17 +125,22 @@ export default function ContentsServices() {
                   <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] leading-tight font-serif">
                     Complete Contents Management
                   </h2>
-                  
+
                   {/* Progress Sidebar Tracker */}
                   <div className="hidden lg:block relative mt-8 pl-4 border-l border-[#3F4143]/10 space-y-6">
                     {[
                       { index: "01", label: "Inventory Logging" },
                       { index: "02", label: "Careful Extraction" },
                       { index: "03", label: "Molecular Cleaning" },
-                      { index: "04", label: "Climate Storage" }
+                      { index: "04", label: "Climate Storage" },
                     ].map((step, i) => (
-                      <div key={i} className="flex items-center gap-3 text-xs tracking-wider uppercase font-bold text-[#3F4143]/40 hover:text-[#8DBD42] transition-colors cursor-default">
-                        <span className="font-mono text-[10px]">{step.index}</span>
+                      <div
+                        key={i}
+                        className="flex items-center gap-3 text-xs tracking-wider uppercase font-bold text-[#3F4143]/40 hover:text-[#8DBD42] transition-colors cursor-default"
+                      >
+                        <span className="font-mono text-[10px]">
+                          {step.index}
+                        </span>
                         <span>{step.label}</span>
                       </div>
                     ))}
@@ -132,7 +160,7 @@ export default function ContentsServices() {
                   {
                     num: "02",
                     title: "Protective Extraction",
-                    desc: "Your belongings are wrapped in conservation-grade materials and safely moved. To prevent cross-contamination, items are immediately sorted by material classâ€”keeping fragile electronics, fabrics, and furniture separated in transit.",
+                    desc: "Your belongings are wrapped in conservation-grade materials and safely moved. To prevent cross-contamination, items are immediately sorted by material class, keeping fragile electronics, fabrics, and furniture separated in transit.",
                     icon: <Package size={20} />,
                   },
                   {
@@ -144,7 +172,7 @@ export default function ContentsServices() {
                   {
                     num: "04",
                     title: "Climate-Controlled Warehouse Storage",
-                    desc: "Restored items are stored in secure storage units within our monitored warehouse facility. We maintain strict climate controls (40â€“60% relative humidity) to protect sensitive woods, artwork, and fabrics from environmental damage and warping while your property is being rebuilt.",
+                    desc: "Restored items are stored in secure storage units within our monitored warehouse facility. We maintain strict climate controls (40–60% relative humidity) to protect sensitive woods, artwork, and fabrics from environmental damage and warping while your property is being rebuilt.",
                     icon: <Warehouse size={20} />,
                   },
                 ].map((item, idx) => (
@@ -159,7 +187,7 @@ export default function ContentsServices() {
                       <div className="flex-shrink-0 w-10 h-10 rounded-none bg-white border border-[#3F4143]/10 text-[#8DBD42] flex items-center justify-center shadow-sm group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42]/5 transition-all duration-300">
                         {item.icon}
                       </div>
-                      
+
                       <div className="space-y-2">
                         <div className="text-xs font-black text-[#8DBD42] tracking-widest uppercase">
                           {item.num} / PROCESS MODULE
@@ -175,7 +203,6 @@ export default function ContentsServices() {
                   </FadeIn>
                 ))}
               </div>
-
             </div>
           </Container>
         </Section>
@@ -237,7 +264,7 @@ export default function ContentsServices() {
                     <div className="absolute left-[-58px] top-7 w-8 h-8 rounded-none bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-md z-10 group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <div className="text-xs font-bold text-[#8DBD42] tracking-wider uppercase flex items-center gap-2">
                         <span>PHASE {item.num}</span>
@@ -273,20 +300,23 @@ export default function ContentsServices() {
                 {
                   title: "Advanced Textile Remediation",
                   desc: "Removing soot, water stains, and embedded smoke odors from delicate fabrics.",
-                  includes: "Formalwear, suits, dresses, outerwear, fine linens, bedding, and specialty leathers.",
-                  icon: <Shirt size={28} className="text-[#8DBD42]" />
+                  includes:
+                    "Formalwear, suits, dresses, outerwear, fine linens, bedding, and specialty leathers.",
+                  icon: <Shirt size={28} className="text-[#8DBD42]" />,
                 },
                 {
                   title: "Electronics & Data Recovery",
                   desc: "Counteracting internal corrosion from soot and water to save critical hardware and files.",
-                  includes: "Computers, data drives, mobile devices, game consoles, and home appliances.",
-                  icon: <HardDrive size={28} className="text-[#8DBD42]" />
+                  includes:
+                    "Computers, data drives, mobile devices, game consoles, and home appliances.",
+                  icon: <HardDrive size={28} className="text-[#8DBD42]" />,
                 },
                 {
                   title: "Art & Collectibles Preservation",
                   desc: "Low-moisture, conservator-approved cleaning techniques for high-value items.",
-                  includes: "Paintings, prints, family photographs, antiques, ceramics, and rare books.",
-                  icon: <Palette size={28} className="text-[#8DBD42]" />
+                  includes:
+                    "Paintings, prints, family photographs, antiques, ceramics, and rare books.",
+                  icon: <Palette size={28} className="text-[#8DBD42]" />,
                 },
               ].map((item, idx) => (
                 <FadeIn
@@ -300,7 +330,7 @@ export default function ContentsServices() {
                     <div className="w-12 h-12 rounded-none bg-[#8DBD42]/5 flex items-center justify-center group-hover:bg-[#8DBD42]/10 transition-colors">
                       {item.icon}
                     </div>
-                    
+
                     <div className="space-y-3">
                       <h3 className="font-bold text-2xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors font-serif">
                         {item.title}
@@ -310,7 +340,7 @@ export default function ContentsServices() {
                       </p>
                     </div>
                   </div>
-                  
+
                   {/* Detailed list inclusions */}
                   <div className="pt-6 mt-6 border-t border-[#3F4143]/10 font-sans">
                     <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-widest mb-3">
@@ -348,10 +378,16 @@ export default function ContentsServices() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    We understand that your personal belongings represent a lifetime of memories and investments. When disaster strikes, it's not just the building structure that needs careâ€”it's the cherished contents inside.
+                    We understand that your personal belongings represent a
+                    lifetime of memories and investments. When disaster strikes,
+                    it's not just the building structure that needs care; it's
+                    the cherished contents inside.
                   </p>
                   <p>
-                    Our professional contents pack-out, digital inventory, and specialized cleaning services ensure that your valuables are protected, restored, and securely stored in our climate-controlled vaults while reconstruction is underway.
+                    Our professional contents pack-out, digital inventory, and
+                    specialized cleaning services ensure that your valuables are
+                    protected, restored, and securely stored in our
+                    climate-controlled vaults while reconstruction is underway.
                   </p>
                 </div>
 
@@ -377,5 +413,3 @@ export default function ContentsServices() {
     </Layout>
   );
 }
-
-

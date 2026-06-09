@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -8,27 +8,27 @@
    ========================================================================== */
 @theme {
   /* Brand Tokens */
-  --color-brand-linen:    #F7F4EE;   /* Warm organic background */
-  --color-brand-charcoal: #3F4143;   /* Anchor for headlines & buttons */
-  --color-brand-green:    #8DBD42;   /* 10% Interactive accent */
-  --color-brand-moss:     #55664A;   /* Stats and Footer base */
-  --color-brand-ink:      #262728;   /* High readability body copy */
-  --color-brand-stone:    #EBE6DF;   /* Ultra-fine division lines */
+  --color-brand-linen: #f7f4ee; /* Warm organic background */
+  --color-brand-charcoal: #3f4143; /* Anchor for headlines & buttons */
+  --color-brand-green: #8dbd42; /* 10% Interactive accent */
+  --color-brand-moss: #55664a; /* Stats and Footer base */
+  --color-brand-ink: #262728; /* High readability body copy */
+  --color-brand-stone: #ebe6df; /* Ultra-fine division lines */
 
   /* Legacy aliases for compatibility */
-  --color-green:          #8DBD42;
-  --color-green-dark:     #55664A;
-  --color-white:          #ffffff;
-  --color-border:         #EBE6DF;
+  --color-green: #8dbd42;
+  --color-green-dark: #55664a;
+  --color-white: #ffffff;
+  --color-border: #ebe6df;
 
   /* Typography */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'Jost', Montserrat, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Jost", Montserrat, sans-serif;
 
   /* Letter spacing */
-  --tracking-nav:     0.05em;
-  --tracking-wide:    0.12em;
-  --tracking-widest:  0.18em;
+  --tracking-nav: 0.05em;
+  --tracking-wide: 0.12em;
+  --tracking-widest: 0.18em;
 }
 
 /* ==========================================================================
@@ -50,7 +50,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   color: var(--color-brand-charcoal);
   font-weight: 600;
@@ -83,7 +88,10 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 5.5rem;
 }
 @media (min-width: 1024px) {
-  .section-pad { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+  .section-pad {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+  }
 }
 
 /* Page max-width container */
@@ -107,16 +115,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Scroll bounce */
-.scroll-indicator { animation: scrollBounce 2s infinite; }
+.scroll-indicator {
+  animation: scrollBounce 2s infinite;
+}
 @keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 
 /* ==========================================================================
    SCROLLBAR
    ========================================================================== */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-brand-linen); }
-::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 0px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-green); }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-linen);
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green);
+}

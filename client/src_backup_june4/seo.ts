@@ -55,7 +55,15 @@ export const BUSINESS_SCHEMA = {
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
     opens: "00:00",
     closes: "23:59",
   },
@@ -63,12 +71,36 @@ export const BUSINESS_SCHEMA = {
     "@type": "OfferCatalog",
     name: "Restoration Services",
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fire Damage Restoration" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Water Damage Restoration" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Storm Damage Recovery" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mold Remediation" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Contents Services & Pack-Out" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Emergency Board-Up (1-800-BOARDUP)" } },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Fire Damage Restoration" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Water Damage Restoration" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Storm Damage Recovery" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Mold Remediation" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Contents Services & Pack-Out",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Emergency Board-Up (1-800-BOARDUP)",
+        },
+      },
     ],
   },
   sameAs: [
@@ -120,7 +152,7 @@ export const buildFAQSchema = (
 ) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: items.map((item) => ({
+  mainEntity: items.map(item => ({
     "@type": "Question",
     name: item.question,
     acceptedAnswer: {
@@ -176,86 +208,130 @@ export const FIRE_SERVICE_SCHEMA = buildServiceSchema(
   "Fire Damage Restoration",
   "Complete fire damage cleanup and reconstruction by IICRC-certified specialists. Emergency board-ups, soot removal, smoke odor elimination, structural repairs, and full cosmetic rebuilds across Western Washington.",
   "/services/fire-restoration",
-  ["fire damage restoration", "smoke damage cleanup", "soot removal", "fire restoration Washington"]
+  [
+    "fire damage restoration",
+    "smoke damage cleanup",
+    "soot removal",
+    "fire restoration Washington",
+  ]
 );
 
 export const WATER_SERVICE_SCHEMA = buildServiceSchema(
   "Water Damage Restoration & Structural Drying",
   "24/7 emergency water extraction, industrial dehumidification, thermal moisture mapping, and complete structural drying by IICRC-certified technicians in Washington State.",
   "/services/water-restoration",
-  ["water damage restoration", "water extraction", "structural drying", "flood cleanup Washington"]
+  [
+    "water damage restoration",
+    "water extraction",
+    "structural drying",
+    "flood cleanup Washington",
+  ]
 );
 
 export const STORM_SERVICE_SCHEMA = buildServiceSchema(
   "Storm Damage Recovery",
   "Emergency storm damage recovery including roof tarping, tree removal coordination, structural stabilization, and full reconstruction for homes and businesses in Western Washington.",
   "/services/storm-recovery",
-  ["storm damage repair", "roof tarping", "wind damage restoration", "storm recovery Washington"]
+  [
+    "storm damage repair",
+    "roof tarping",
+    "wind damage restoration",
+    "storm recovery Washington",
+  ]
 );
 
 export const CONTENTS_SERVICE_SCHEMA = buildServiceSchema(
   "Contents Services & Pack-Out",
   "Professional content pack-out, cleaning, deodorization, and climate-controlled storage for your personal belongings during property restoration.",
   "/services/contents-services",
-  ["contents pack-out", "personal property restoration", "content cleaning", "climate controlled storage"]
+  [
+    "contents pack-out",
+    "personal property restoration",
+    "content cleaning",
+    "climate controlled storage",
+  ]
 );
 
 // ─── FAQ items for JSON-LD (plain text only — no JSX) ───────────────────────
 export const FAQ_SCHEMA_ITEMS = [
   {
-    question: "How quickly can you respond to a property emergency in Lewis, Pierce, or Thurston County?",
-    answer: "We guarantee a fast emergency response time of 60 minutes or less across our entire service area. Our disaster restoration crews are on standby 24/7, 365 days a year, including nights, weekends, and holidays.",
+    question:
+      "How quickly can you respond to a property emergency in Lewis, Pierce, or Thurston County?",
+    answer:
+      "We guarantee a fast emergency response time of 60 minutes or less across our entire service area. Our disaster restoration crews are on standby 24/7, 365 days a year, including nights, weekends, and holidays.",
   },
   {
-    question: "What should I do immediately after discovering emergency water, fire, or storm damage?",
-    answer: "Check structural safety and evacuate if needed. Avoid electrical hazards near standing water. Photograph all damage before cleanup. Shut off main utilities if safe. Do not attempt DIY cleanup as this can spread mold or soot. Call our emergency dispatch immediately.",
+    question:
+      "What should I do immediately after discovering emergency water, fire, or storm damage?",
+    answer:
+      "Check structural safety and evacuate if needed. Avoid electrical hazards near standing water. Photograph all damage before cleanup. Shut off main utilities if safe. Do not attempt DIY cleanup as this can spread mold or soot. Call our emergency dispatch immediately.",
   },
   {
-    question: "Do you provide emergency board-up services on weekends and holidays?",
-    answer: "Yes, our property restoration teams operate with zero days off, including all major holidays. Through our 1-800-BOARDUP division, we provide rapid structural security, commercial roof tarping, and window/door board-ups 24/7.",
+    question:
+      "Do you provide emergency board-up services on weekends and holidays?",
+    answer:
+      "Yes, our property restoration teams operate with zero days off, including all major holidays. Through our 1-800-BOARDUP division, we provide rapid structural security, commercial roof tarping, and window/door board-ups 24/7.",
   },
   {
     question: "How quickly can water damage lead to toxic mold growth?",
-    answer: "Mold spores activate and begin colonizing damp organic materials within 24 to 48 hours of initial water exposure. Professional structural drying must begin immediately to prevent toxic indoor air quality issues.",
+    answer:
+      "Mold spores activate and begin colonizing damp organic materials within 24 to 48 hours of initial water exposure. Professional structural drying must begin immediately to prevent toxic indoor air quality issues.",
   },
   {
-    question: "Do you provide professional water extraction and structural drying?",
-    answer: "Yes. We deploy industrial-grade truck-mounted water extractors, commercial LGR dehumidifiers, and high-velocity air movers. Our IICRC-certified technicians use infrared thermal imaging and moisture meters to track hidden water pockets.",
+    question:
+      "Do you provide professional water extraction and structural drying?",
+    answer:
+      "Yes. We deploy industrial-grade truck-mounted water extractors, commercial LGR dehumidifiers, and high-velocity air movers. Our IICRC-certified technicians use infrared thermal imaging and moisture meters to track hidden water pockets.",
   },
   {
-    question: "Can you completely eliminate smoke odors after a structural fire?",
-    answer: "Yes. We use thermal fogging, industrial ozone treatments, and hydroxyl generators to permanently destroy smoke odors at the molecular level — no masking agents or perfumes.",
+    question:
+      "Can you completely eliminate smoke odors after a structural fire?",
+    answer:
+      "Yes. We use thermal fogging, industrial ozone treatments, and hydroxyl generators to permanently destroy smoke odors at the molecular level — no masking agents or perfumes.",
   },
   {
-    question: "Do you offer certified mold removal and black mold remediation services?",
-    answer: "Yes. We are fully certified mold remediation experts. Our protocols include negative-pressure containment, industrial HEPA air scrubbers, EPA-registered antimicrobials, and fixing the underlying moisture source.",
+    question:
+      "Do you offer certified mold removal and black mold remediation services?",
+    answer:
+      "Yes. We are fully certified mold remediation experts. Our protocols include negative-pressure containment, industrial HEPA air scrubbers, EPA-registered antimicrobials, and fixing the underlying moisture source.",
   },
   {
     question: "Do you work directly with major homeowners insurance companies?",
-    answer: "Yes. We have over two decades of experience coordinating with all major insurance carriers including State Farm, Allstate, Liberty Mutual, Farmers, and USAA. We use Xactimate — the exact estimating software preferred by insurance adjusters.",
+    answer:
+      "Yes. We have over two decades of experience coordinating with all major insurance carriers including State Farm, Allstate, Liberty Mutual, Farmers, and USAA. We use Xactimate — the exact estimating software preferred by insurance adjusters.",
   },
   {
     question: "Do you offer direct billing to my insurance company?",
-    answer: "Yes. We handle direct insurance billing to remove the financial stress from your shoulders. You are typically only responsible for your standard policy deductible.",
+    answer:
+      "Yes. We handle direct insurance billing to remove the financial stress from your shoulders. You are typically only responsible for your standard policy deductible.",
   },
   {
-    question: "Are your property restoration technicians licensed, bonded, and certified?",
-    answer: "Yes. We are a fully licensed, bonded, and insured general contractor in Washington State. Every field technician is IICRC-certified in water damage restoration, fire/smoke cleanup, or microbial remediation.",
+    question:
+      "Are your property restoration technicians licensed, bonded, and certified?",
+    answer:
+      "Yes. We are a fully licensed, bonded, and insured general contractor in Washington State. Every field technician is IICRC-certified in water damage restoration, fire/smoke cleanup, or microbial remediation.",
   },
   {
     question: "How long have you been serving local Washington communities?",
-    answer: "We have been proudly serving local property owners, landlords, and commercial businesses since 2004 — over 20 years of local history restoring thousands of properties.",
+    answer:
+      "We have been proudly serving local property owners, landlords, and commercial businesses since 2004 — over 20 years of local history restoring thousands of properties.",
   },
   {
-    question: "How long does a typical property water damage restoration project take?",
-    answer: "Emergency water extraction takes 1-2 days. Structural drying and dehumidification takes 3-5 days. Property reconstruction and cosmetic rebuild typically takes 1-3 weeks depending on the scope of damage.",
+    question:
+      "How long does a typical property water damage restoration project take?",
+    answer:
+      "Emergency water extraction takes 1-2 days. Structural drying and dehumidification takes 3-5 days. Property reconstruction and cosmetic rebuild typically takes 1-3 weeks depending on the scope of damage.",
   },
   {
-    question: "Do you offer a warranty on your structural restoration and repair work?",
-    answer: "Yes. We back our craftsmanship, structural repairs, and reconstruction services with a comprehensive 5-year warranty.",
+    question:
+      "Do you offer a warranty on your structural restoration and repair work?",
+    answer:
+      "Yes. We back our craftsmanship, structural repairs, and reconstruction services with a comprehensive 5-year warranty.",
   },
   {
-    question: "Do you serve communities and housing near Joint Base Lewis-McChord (JBLM)?",
-    answer: "Yes, absolutely. We proudly support military families and veterans surrounding JBLM including Lakewood, Tacoma, DuPont, Parkland, Spanaway, and Federal Way. We work directly with USAA and other military insurance providers.",
+    question:
+      "Do you serve communities and housing near Joint Base Lewis-McChord (JBLM)?",
+    answer:
+      "Yes, absolutely. We proudly support military families and veterans surrounding JBLM including Lakewood, Tacoma, DuPont, Parkland, Spanaway, and Federal Way. We work directly with USAA and other military insurance providers.",
   },
 ];

@@ -50,7 +50,9 @@ export default function Header({
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -61,8 +63,16 @@ export default function Header({
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setDesktopServicesOpen(false);
-      if (resourcesRef.current && !resourcesRef.current.contains(e.target as Node)) setDesktopResourcesOpen(false);
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(e.target as Node)
+      )
+        setDesktopServicesOpen(false);
+      if (
+        resourcesRef.current &&
+        !resourcesRef.current.contains(e.target as Node)
+      )
+        setDesktopResourcesOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -70,8 +80,18 @@ export default function Header({
 
   const dropdownVariants = {
     hidden: { opacity: 0, y: -6, scale: 0.98 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-    exit: { opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.13, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
+    exit: {
+      opacity: 0,
+      y: -4,
+      scale: 0.98,
+      transition: { duration: 0.13, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
   };
 
   const serviceItems = [
@@ -85,11 +105,19 @@ export default function Header({
     { label: "Our Projects", href: "/projects" },
     { label: "FAQ", href: "/resources/faq", handler: onFaqClick },
     { label: "Blogs", href: "/resources/blog", handler: onBlogsClick },
-    { label: "Homeowner Bill of Rights", href: "/resources/bill-of-rights", handler: onBillOfRightsClick },
+    {
+      label: "Homeowner Bill of Rights",
+      href: "/resources/bill-of-rights",
+      handler: onBillOfRightsClick,
+    },
   ];
 
   const navLinkCls = (href?: string) => {
-    const isActive = href ? (href === "/" ? location === "/" : location.startsWith(href)) : false;
+    const isActive = href
+      ? href === "/"
+        ? location === "/"
+        : location.startsWith(href)
+      : false;
     return `px-4 py-2 text-[15px] uppercase font-extrabold transition-colors relative group whitespace-nowrap tracking-[0.08em] flex items-center gap-1.5 ${isActive ? "text-[#8DBD42]" : "text-white/90 hover:text-[#8DBD42]"}`;
   };
 
@@ -110,7 +138,10 @@ export default function Header({
   const navHeight = scrolled ? "h-[72px]" : "h-[108px]";
   const logoHeight = scrolled ? "h-[58px]" : "h-[94px]";
 
-  const handleResourceClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof resourceItems[0]) => {
+  const handleResourceClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: (typeof resourceItems)[0]
+  ) => {
     if (item.handler) {
       e.preventDefault();
       item.handler();
@@ -124,12 +155,20 @@ export default function Header({
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center justify-between h-10 sm:h-11">
           {/* Desktop left: phone + email + tagline | Mobile: empty left side */}
           <div className="flex items-center gap-4">
-            <a href="tel:+13603451015" className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors">
-              <Phone size={15} /><span>(360) 345-1015</span>
+            <a
+              href="tel:+13603451015"
+              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors"
+            >
+              <Phone size={15} />
+              <span>(360) 345-1015</span>
             </a>
             <span className="text-white/30 hidden sm:block">|</span>
-            <a href="mailto:office@firewaterstorm.com" className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors">
-              <Mail size={15} /><span>office@firewaterstorm.com</span>
+            <a
+              href="mailto:office@firewaterstorm.com"
+              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors"
+            >
+              <Mail size={15} />
+              <span>office@firewaterstorm.com</span>
             </a>
             <span className="text-white/30 hidden lg:block">|</span>
             <span className="hidden lg:flex items-center gap-2 text-[15px] font-semibold tracking-[0.06em] text-white/95">
@@ -139,22 +178,40 @@ export default function Header({
           </div>
           {/* Right side: social icons on desktop | phone number on mobile */}
           <div className="flex items-center gap-3">
-            <a href="tel:+13603451015" className="sm:hidden flex items-center gap-1.5 text-[13px] font-bold">
-              <Phone size={13} /><span>(360) 345-1015</span>
+            <a
+              href="tel:+13603451015"
+              className="sm:hidden flex items-center gap-1.5 text-[13px] font-bold"
+            >
+              <Phone size={13} />
+              <span>(360) 345-1015</span>
             </a>
-            <a href="https://www.facebook.com/heritagerestorationinc/" target="_blank" rel="noopener noreferrer" className="hidden sm:block hover:text-[#3F4143] transition-colors" aria-label="Facebook"><Facebook size={15} /></a>
-            <a href="https://www.instagram.com/heritagerestorationwa/" target="_blank" rel="noopener noreferrer" className="hidden sm:block hover:text-[#3F4143] transition-colors" aria-label="Instagram"><Instagram size={15} /></a>
+            <a
+              href="https://www.facebook.com/heritagerestorationinc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:block hover:text-[#3F4143] transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook size={15} />
+            </a>
+            <a
+              href="https://www.instagram.com/heritagerestorationwa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:block hover:text-[#3F4143] transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={15} />
+            </a>
           </div>
         </div>
       </div>
 
       {/* ── MOBILE NAV (< lg) ── */}
-      <nav 
+      <nav
         className={`lg:hidden left-0 right-0 z-40 ${
-          scrolled 
-            ? "fixed top-0" 
-            : "absolute top-10 sm:top-11"
-        }`} 
+          scrolled ? "fixed top-0" : "absolute top-10 sm:top-11"
+        }`}
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {/* Mobile top bar */}
@@ -168,7 +225,11 @@ export default function Header({
         >
           {/* Logo */}
           <Link href="/" className="flex items-center h-[60px] flex-shrink-0">
-            <img src={LOGO} alt="Heritage Restoration" className="h-full w-auto object-contain max-w-[200px]" />
+            <img
+              src={LOGO}
+              alt="Heritage Restoration"
+              className="h-full w-auto object-contain max-w-[200px]"
+            />
           </Link>
 
           {/* Right side: Hamburger */}
@@ -183,12 +244,18 @@ export default function Header({
               className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
             <motion.span
-              animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              animate={
+                mobileOpen
+                  ? { opacity: 0, scaleX: 0 }
+                  : { opacity: 1, scaleX: 1 }
+              }
               transition={{ duration: 0.2 }}
               className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
             <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              animate={
+                mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }
+              }
               transition={{ duration: 0.25 }}
               className="block w-6 h-[2.5px] bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors"
             />
@@ -204,11 +271,17 @@ export default function Header({
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="bg-[#2a2c2e] overflow-y-auto"
-              style={{ maxHeight: "calc(100vh - 100px)", WebkitOverflowScrolling: "touch" }}
+              style={{
+                maxHeight: "calc(100vh - 100px)",
+                WebkitOverflowScrolling: "touch",
+              }}
             >
               {/* Nav links */}
               <div className="divide-y divide-white/8">
-                <Link href="/" className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10">
+                <Link
+                  href="/"
+                  className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
+                >
                   Home
                 </Link>
 
@@ -219,7 +292,10 @@ export default function Header({
                     className="w-full flex items-center justify-between px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
                   >
                     <span>Services</span>
-                    <motion.span animate={{ rotate: mobileServicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                    <motion.span
+                      animate={{ rotate: mobileServicesOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <ChevronDown size={18} className="text-[#8DBD42]" />
                     </motion.span>
                   </button>
@@ -232,13 +308,16 @@ export default function Header({
                         transition={{ duration: 0.22 }}
                         className="overflow-hidden bg-[#222426]"
                       >
-                        {serviceItems.map((item) => (
+                        {serviceItems.map(item => (
                           <Link
                             key={item.label}
                             href={item.href}
                             className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
                           >
-                            <ChevronRight size={14} className="text-[#8DBD42] flex-shrink-0" />
+                            <ChevronRight
+                              size={14}
+                              className="text-[#8DBD42] flex-shrink-0"
+                            />
                             {item.label}
                           </Link>
                         ))}
@@ -254,7 +333,10 @@ export default function Header({
                     className="w-full flex items-center justify-between px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
                   >
                     <span>Resources</span>
-                    <motion.span animate={{ rotate: mobileResourcesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                    <motion.span
+                      animate={{ rotate: mobileResourcesOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <ChevronDown size={18} className="text-[#8DBD42]" />
                     </motion.span>
                   </button>
@@ -267,14 +349,17 @@ export default function Header({
                         transition={{ duration: 0.22 }}
                         className="overflow-hidden bg-[#222426]"
                       >
-                        {resourceItems.map((item) => (
+                        {resourceItems.map(item => (
                           <Link
                             key={item.label}
                             href={item.href}
-                            onClick={(e) => handleResourceClick(e, item)}
+                            onClick={e => handleResourceClick(e, item)}
                             className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
                           >
-                            <ChevronRight size={14} className="text-[#8DBD42] flex-shrink-0" />
+                            <ChevronRight
+                              size={14}
+                              className="text-[#8DBD42] flex-shrink-0"
+                            />
                             {item.label}
                           </Link>
                         ))}
@@ -283,7 +368,10 @@ export default function Header({
                   </AnimatePresence>
                 </div>
 
-                <Link href="/contact" className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10">
+                <Link
+                  href="/contact"
+                  className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
+                >
                   Contact Us
                 </Link>
               </div>
@@ -311,9 +399,7 @@ export default function Header({
       {/* ── DESKTOP NAV (lg+) ── */}
       <nav
         className={`hidden lg:block left-0 right-0 z-40 ${
-          scrolled 
-            ? "fixed top-0" 
-            : "absolute top-11"
+          scrolled ? "fixed top-0" : "absolute top-11"
         }`}
         style={{
           boxShadow: scrolled
@@ -327,13 +413,26 @@ export default function Header({
             background: scrolled ? "rgba(20,22,23,0.97)" : "rgba(63,65,67,1)",
             backdropFilter: scrolled ? "blur(12px)" : "none",
             WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-            borderBottom: scrolled ? "1px solid rgba(141,189,66,0.25)" : "1px solid rgba(255,255,255,0.08)",
-            transition: "background 0.5s ease, border-color 0.5s ease, height 0.5s ease",
+            borderBottom: scrolled
+              ? "1px solid rgba(141,189,66,0.25)"
+              : "1px solid rgba(255,255,255,0.08)",
+            transition:
+              "background 0.5s ease, border-color 0.5s ease, height 0.5s ease",
           }}
         >
-          <div className="absolute left-0 top-0 bottom-0 bg-[#8DBD42] z-10 transition-all duration-400" style={greenAccentStyle} />
-          <div className="absolute left-0 top-0 bottom-0 bg-white z-20 flex items-center transition-all duration-400" style={logoContainerStyle}>
-            <Link href="/" className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400`} style={logoStyle}>
+          <div
+            className="absolute left-0 top-0 bottom-0 bg-[#8DBD42] z-10 transition-all duration-400"
+            style={greenAccentStyle}
+          />
+          <div
+            className="absolute left-0 top-0 bottom-0 bg-white z-20 flex items-center transition-all duration-400"
+            style={logoContainerStyle}
+          >
+            <Link
+              href="/"
+              className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400`}
+              style={logoStyle}
+            >
               <img
                 src={LOGO}
                 alt="Heritage Restoration Logo"
@@ -354,23 +453,52 @@ export default function Header({
               <div
                 ref={servicesRef}
                 className="relative h-full flex items-center"
-                onMouseEnter={() => { setDesktopServicesOpen(true); setDesktopResourcesOpen(false); }}
+                onMouseEnter={() => {
+                  setDesktopServicesOpen(true);
+                  setDesktopResourcesOpen(false);
+                }}
                 onMouseLeave={() => setDesktopServicesOpen(false)}
               >
-                <button onClick={() => { setDesktopServicesOpen(v => !v); setDesktopResourcesOpen(false); }} className={navLinkCls("/services")}>
+                <button
+                  onClick={() => {
+                    setDesktopServicesOpen(v => !v);
+                    setDesktopResourcesOpen(false);
+                  }}
+                  className={navLinkCls("/services")}
+                >
                   Services
-                  <ChevronDown size={13} className={`transition-transform duration-200 ${desktopServicesOpen ? "rotate-180 text-[#8DBD42]" : ""}`} />
+                  <ChevronDown
+                    size={13}
+                    className={`transition-transform duration-200 ${desktopServicesOpen ? "rotate-180 text-[#8DBD42]" : ""}`}
+                  />
                   <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
                 </button>
                 <AnimatePresence>
                   {desktopServicesOpen && (
-                    <motion.div variants={dropdownVariants} initial="hidden" animate="visible" exit="exit" className={`${dropdownPanelCls} w-[340px]`}>
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">Service Solutions</div>
-                      {serviceItems.map((item) => (
-                        <Link key={item.label} href={item.href} onClick={() => setDesktopServicesOpen(false)}
-                          className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group flex items-center justify-between gap-3">
-                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <ChevronRight size={15} className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0" />
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className={`${dropdownPanelCls} w-[340px]`}
+                    >
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">
+                        Service Solutions
+                      </div>
+                      {serviceItems.map(item => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setDesktopServicesOpen(false)}
+                          className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group flex items-center justify-between gap-3"
+                        >
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                            {item.label}
+                          </span>
+                          <ChevronRight
+                            size={15}
+                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                          />
                         </Link>
                       ))}
                     </motion.div>
@@ -382,23 +510,55 @@ export default function Header({
               <div
                 ref={resourcesRef}
                 className="relative h-full flex items-center"
-                onMouseEnter={() => { setDesktopResourcesOpen(true); setDesktopServicesOpen(false); }}
+                onMouseEnter={() => {
+                  setDesktopResourcesOpen(true);
+                  setDesktopServicesOpen(false);
+                }}
                 onMouseLeave={() => setDesktopResourcesOpen(false)}
               >
-                <button onClick={() => { setDesktopResourcesOpen(v => !v); setDesktopServicesOpen(false); }} className={navLinkCls("/resources")}>
+                <button
+                  onClick={() => {
+                    setDesktopResourcesOpen(v => !v);
+                    setDesktopServicesOpen(false);
+                  }}
+                  className={navLinkCls("/resources")}
+                >
                   Resources
-                  <ChevronDown size={13} className={`transition-transform duration-200 ${desktopResourcesOpen ? "rotate-180 text-[#8DBD42]" : ""}`} />
+                  <ChevronDown
+                    size={13}
+                    className={`transition-transform duration-200 ${desktopResourcesOpen ? "rotate-180 text-[#8DBD42]" : ""}`}
+                  />
                   <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
                 </button>
                 <AnimatePresence>
                   {desktopResourcesOpen && (
-                    <motion.div variants={dropdownVariants} initial="hidden" animate="visible" exit="exit" className={`${dropdownPanelCls} w-[360px]`}>
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">Knowledge Center</div>
-                      {resourceItems.map((item) => (
-                        <Link key={item.label} href={item.href} onClick={(e) => { handleResourceClick(e, item); setDesktopResourcesOpen(false); }}
-                          className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group cursor-pointer flex items-center justify-between gap-3">
-                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">{item.label}</span>
-                          <ChevronRight size={15} className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0" />
+                    <motion.div
+                      variants={dropdownVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className={`${dropdownPanelCls} w-[360px]`}
+                    >
+                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">
+                        Knowledge Center
+                      </div>
+                      {resourceItems.map(item => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={e => {
+                            handleResourceClick(e, item);
+                            setDesktopResourcesOpen(false);
+                          }}
+                          className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group cursor-pointer flex items-center justify-between gap-3"
+                        >
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                            {item.label}
+                          </span>
+                          <ChevronRight
+                            size={15}
+                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                          />
                         </Link>
                       ))}
                     </motion.div>
@@ -413,14 +573,16 @@ export default function Header({
             </div>
 
             <div className="flex items-center ml-auto">
-              <a href="tel:+13603451015" className="flex items-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-5 py-2.5 font-bold text-base transition-all duration-200 shadow-sm hover:shadow-md hover:scale-105">
+              <a
+                href="tel:+13603451015"
+                className="flex items-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-5 py-2.5 font-bold text-base transition-all duration-200 shadow-sm hover:shadow-md hover:scale-105"
+              >
                 <Phone size={16} /> (360) 345-1015
               </a>
             </div>
           </div>
         </div>
       </nav>
-
     </>
   );
 }

@@ -127,10 +127,12 @@ export default function Projects() {
                   className="grid lg:grid-cols-2 gap-16 items-center"
                 >
                   {/* Staggered Overlapping Image collage */}
-                  <div className={`relative flex items-center justify-center min-h-[380px] md:min-h-[480px] ${idx % 2 !== 0 ? "lg:order-2" : ""}`}>
+                  <div
+                    className={`relative flex items-center justify-center min-h-[380px] md:min-h-[480px] ${idx % 2 !== 0 ? "lg:order-2" : ""}`}
+                  >
                     {/* Ambient Glow behind images */}
                     <div className="absolute w-[280px] h-[280px] rounded-none bg-[#8DBD42]/5 blur-[80px] pointer-events-none -z-10" />
-                    
+
                     {/* Before Image - Left/Back */}
                     <div className="absolute left-6 md:left-12 top-6 w-[55%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-white/50 brightness-75 transition-all duration-500 hover:z-20 hover:scale-105 hover:brightness-100 group/before">
                       <img
@@ -142,7 +144,7 @@ export default function Projects() {
                         Before
                       </div>
                     </div>
-                    
+
                     {/* After Image - Right/Front overlapping */}
                     <div className="absolute right-6 md:right-12 bottom-6 w-[60%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border-[6px] border-white z-10 transition-all duration-500 hover:scale-105 group/after">
                       <img
@@ -157,7 +159,9 @@ export default function Projects() {
                   </div>
 
                   {/* Editorial project details */}
-                  <div className={`flex flex-col justify-center ${idx % 2 !== 0 ? "lg:order-1 lg:pr-12" : "lg:pl-12"}`}>
+                  <div
+                    className={`flex flex-col justify-center ${idx % 2 !== 0 ? "lg:order-1 lg:pr-12" : "lg:pl-12"}`}
+                  >
                     <span className="text-[#8DBD42] font-extrabold uppercase text-xs tracking-[0.2em] mb-4 block font-sans">
                       {project.type}
                     </span>
@@ -225,7 +229,9 @@ export default function Projects() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    Heritage Restoration is available 24/7, 365 days a year. Our emergency response team will deploy and arrive within 60 minutes of dispatch to secure your home.
+                    Heritage Restoration is available 24/7, 365 days a year. Our
+                    emergency response team will deploy and arrive within 60
+                    minutes of dispatch to secure your home.
                   </p>
                 </div>
 
@@ -251,5 +257,3 @@ export default function Projects() {
     </Layout>
   );
 }
-
-

@@ -12,20 +12,26 @@ export default function Contact() {
     email: "",
     phone: "",
     service: "",
-    message: ""
+    message: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Intake Inquiry – ${formData.service || "General"} – ${formData.name}`);
+    const subject = encodeURIComponent(
+      `Intake Inquiry – ${formData.service || "General"} – ${formData.name}`
+    );
     const body = encodeURIComponent(
       `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
     );
@@ -41,40 +47,54 @@ export default function Contact() {
     <Layout>
       <Helmet>
         <title>Contact Us | Heritage Restoration</title>
-        <meta name="description" content="Contact Heritage Restoration for emergency response or free damage assessment. Available 24/7 in Washington." />
+        <meta
+          name="description"
+          content="Contact Heritage Restoration for emergency response or free damage assessment. Available 24/7 in Washington."
+        />
         <meta property="og:title" content="Contact Us | Heritage Restoration" />
-        <meta property="og:description" content="24/7 emergency contact for fire, water, and storm damage restoration services." />
+        <meta
+          property="og:description"
+          content="24/7 emergency contact for fire, water, and storm damage restoration services."
+        />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Heritage Restoration",
-            "telephone": "+1-360-345-1015",
-            "email": "office@firewaterstorm.com",
-            "address": [
+            name: "Heritage Restoration",
+            telephone: "+1-360-345-1015",
+            email: "office@firewaterstorm.com",
+            address: [
               {
                 "@type": "PostalAddress",
-                "streetAddress": "8695 Martin Way E, Unit 102",
-                "addressLocality": "Lacey",
-                "addressRegion": "WA",
-                "postalCode": "98516"
+                streetAddress: "8695 Martin Way E, Unit 102",
+                addressLocality: "Lacey",
+                addressRegion: "WA",
+                postalCode: "98516",
               },
               {
                 "@type": "PostalAddress",
-                "streetAddress": "1581 N. National Ave",
-                "addressLocality": "Chehalis",
-                "addressRegion": "WA",
-                "postalCode": "98532"
-              }
+                streetAddress: "1581 N. National Ave",
+                addressLocality: "Chehalis",
+                addressRegion: "WA",
+                postalCode: "98532",
+              },
             ],
-            "areaServed": "WA",
-            "openingHoursSpecification": {
+            areaServed: "WA",
+            openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-              "opens": "00:00",
-              "closes": "23:59"
-            }
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "00:00",
+              closes: "23:59",
+            },
           })}
         </script>
       </Helmet>
@@ -91,7 +111,9 @@ export default function Contact() {
                 Connect With Heritage
               </h1>
               <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light">
-                Available 24/7 for emergency dispatch and structural secures. For non-emergencies, submit an intake form below and our office team will follow up within 2 hours.
+                Available 24/7 for emergency dispatch and structural secures.
+                For non-emergencies, submit an intake form below and our office
+                team will follow up within 2 hours.
               </p>
             </FadeIn>
           </Container>
@@ -101,21 +123,23 @@ export default function Contact() {
         <Section bg="none">
           <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              
-              {/* Left Column (5 cols) â€” High-Density Sticky Editorial Block */}
+              {/* Left Column (5 cols): High-Density Sticky Editorial Block */}
               <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-8">
                 {/* Emergency Block */}
-                <FadeIn className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] border-t-4 border-[#8DBD42] rounded-none space-y-6 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out" direction="up">
+                <FadeIn
+                  className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] border-t-4 border-[#8DBD42] rounded-none space-y-6 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out"
+                  direction="up"
+                >
                   <div className="absolute right-[-30px] bottom-[-30px] w-48 h-48 bg-[#8DBD42]/8 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
                     EMERGENCY DISPATCH
                   </span>
-                  
+
                   <h3 className="text-2xl font-serif font-bold text-white leading-tight">
                     24/7 Urgent Hotline
                   </h3>
-                  
+
                   <div className="space-y-4 pt-2">
                     <a
                       href="tel:+13603451015"
@@ -124,28 +148,37 @@ export default function Contact() {
                       <Phone size={24} className="flex-shrink-0" />
                       <span>+1 (360) 345-1015</span>
                     </a>
-                    
+
                     <a
                       href="mailto:office@firewaterstorm.com"
                       className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors font-sans"
                     >
-                      <Mail size={16} className="text-[#8DBD42] flex-shrink-0" />
+                      <Mail
+                        size={16}
+                        className="text-[#8DBD42] flex-shrink-0"
+                      />
                       <span>office@firewaterstorm.com</span>
                     </a>
 
                     <div className="flex items-center gap-3 text-sm text-white/80 font-sans">
-                      <Clock size={16} className="text-[#8DBD42] flex-shrink-0" />
+                      <Clock
+                        size={16}
+                        className="text-[#8DBD42] flex-shrink-0"
+                      />
                       <span>Immediate 60-minute response in service area</span>
                     </div>
                   </div>
                 </FadeIn>
 
                 {/* Office Locations */}
-                <FadeIn className="bg-white p-8 border border-[#3F4143]/8 shadow-sm space-y-6 rounded-none hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500" direction="up">
+                <FadeIn
+                  className="bg-white p-8 border border-[#3F4143]/8 shadow-sm space-y-6 rounded-none hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500"
+                  direction="up"
+                >
                   <h3 className="text-xl font-serif font-bold text-[#3F4143] border-b border-[#3F4143]/10 pb-3">
                     Office Locations
                   </h3>
-                  
+
                   <div className="space-y-6 font-sans">
                     {/* Lacey */}
                     <div className="space-y-2">
@@ -153,7 +186,10 @@ export default function Contact() {
                         North Office (Lacey)
                       </h4>
                       <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
-                        <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
+                        <MapPin
+                          size={16}
+                          className="text-[#8DBD42] mt-0.5 flex-shrink-0"
+                        />
                         <div>
                           <a
                             href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516"
@@ -174,7 +210,10 @@ export default function Contact() {
                         South Office (Chehalis)
                       </h4>
                       <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
-                        <MapPin size={16} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
+                        <MapPin
+                          size={16}
+                          className="text-[#8DBD42] mt-0.5 flex-shrink-0"
+                        />
                         <div>
                           <a
                             href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
@@ -192,9 +231,12 @@ export default function Contact() {
                 </FadeIn>
               </div>
 
-              {/* Right Column (7 cols) â€” Secure Intake Form */}
+              {/* Right Column (7 cols): Secure Intake Form */}
               <div className="lg:col-span-7">
-                <FadeIn className="relative bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8 hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 overflow-hidden" direction="up">
+                <FadeIn
+                  className="relative bg-white p-8 md:p-12 border border-[#3F4143]/8 shadow-sm rounded-none space-y-8 hover:shadow-[0_15px_35px_rgba(0,0,0,0.03)] transition-all duration-500 overflow-hidden"
+                  direction="up"
+                >
                   {/* Top brand green accent line */}
                   <div className="absolute top-0 left-0 right-0 h-[4px] bg-[#8DBD42]" />
                   <div className="space-y-2">
@@ -218,7 +260,10 @@ export default function Contact() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                        <label
+                          htmlFor="name"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
                           Full Name *
                         </label>
                         <input
@@ -234,7 +279,10 @@ export default function Contact() {
 
                       {/* Phone */}
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                        <label
+                          htmlFor="phone"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
                           Phone Number *
                         </label>
                         <input
@@ -252,7 +300,10 @@ export default function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Email */}
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                        <label
+                          htmlFor="email"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
                           Email Address *
                         </label>
                         <input
@@ -268,7 +319,10 @@ export default function Contact() {
 
                       {/* Service Choice */}
                       <div className="space-y-2">
-                        <label htmlFor="service" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                        <label
+                          htmlFor="service"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
                           Restoration Service
                         </label>
                         <select
@@ -282,15 +336,22 @@ export default function Contact() {
                           <option value="fire">Fire Damage Restoration</option>
                           <option value="water">Water Damage Mitigation</option>
                           <option value="storm">Storm Damage Recovery</option>
-                          <option value="contents">Contents Pack-Out & Clean</option>
-                          <option value="other">General Inquiry / Assessment</option>
+                          <option value="contents">
+                            Contents Pack-Out & Clean
+                          </option>
+                          <option value="other">
+                            General Inquiry / Assessment
+                          </option>
                         </select>
                       </div>
                     </div>
 
                     {/* Message */}
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70">
+                      <label
+                        htmlFor="message"
+                        className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                      >
                         Describe the Loss or Request *
                       </label>
                       <textarea
@@ -315,7 +376,6 @@ export default function Contact() {
                   </form>
                 </FadeIn>
               </div>
-
             </div>
           </Container>
         </Section>
@@ -323,4 +383,3 @@ export default function Contact() {
     </Layout>
   );
 }
-

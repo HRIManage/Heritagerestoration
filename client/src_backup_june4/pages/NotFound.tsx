@@ -21,9 +21,17 @@ export default function NotFound() {
             </div>
           </div>
 
-          <h1 className="text-5xl font-bold text-[#3F4143] mb-2" style={{ fontFamily: "'Libre Caslon Text', serif" }}>404</h1>
+          <h1
+            className="text-5xl font-bold text-[#3F4143] mb-2"
+            style={{ fontFamily: "'Libre Caslon Text', serif" }}
+          >
+            404
+          </h1>
 
-          <h2 className="text-xl font-bold text-[#3F4143] mb-4" style={{ fontFamily: "'Libre Caslon Text', serif" }}>
+          <h2
+            className="text-xl font-bold text-[#3F4143] mb-4"
+            style={{ fontFamily: "'Libre Caslon Text', serif" }}
+          >
             Page Not Found
           </h2>
 

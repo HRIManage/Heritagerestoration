@@ -12,19 +12,19 @@ export default function FireRestoration() {
       icon: <Flame size={32} />,
       title: "Soot & Smoke Remediation",
       desc: "Advanced soot extraction, thermal fogging, and smoke odor neutralization to restore indoor air quality. We deploy specialized HEPA air scrubbers and hydroxyl generators to permanently neutralize smoke particles embedded in framing, finishes, and HVAC ducts.",
-      img: "/photo/Photo Jul 06 2024, 08 57 29.jpg"
+      img: "/photo/Photo Jul 06 2024, 08 57 29.jpg",
     },
     {
       icon: <Clock size={32} />,
       title: "Structural Cleaning & Debris",
       desc: "Removal of fire debris, securing structural integrity, and cleaning soot from all surfaces using eco-friendly carbon blasting and dry chemical sponge extraction.",
-      img: "/photo/fire-structural-cleaning.png"
+      img: "/photo/fire-structural-cleaning.png",
     },
     {
       icon: <Shield size={32} />,
       title: "Full Structural Rebuild",
       desc: "Complete framing, drywall, flooring, custom cabinetry, and finish work to modern building codes. We handle the process from structural engineering approvals to final occupancy permits.",
-      img: "/photo/fire-structural-rebuild.jpg"
+      img: "/photo/fire-structural-rebuild.jpg",
     },
   ];
 
@@ -47,8 +47,14 @@ export default function FireRestoration() {
             alt="Fire damage restoration scene"
             className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
           />
-          {/* Dark green wash â€” heavier on left, fades right */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
+          {/* Dark green wash — heavier on left, fades right */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)",
+            }}
+          />
           {/* Bottom vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
@@ -56,20 +62,24 @@ export default function FireRestoration() {
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
-                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
+                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency
+                  Service
                 </span>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
                   Fire Restoration
                 </h1>
                 <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl font-sans font-light">
-                  When fire strikes, every moment counts. Heritage Restoration responds immediately to secure your property, mitigate soot damage, and guide you through complete reconstruction to modern standards.
+                  When fire strikes, every moment counts. Heritage Restoration
+                  responds immediately to secure your property, mitigate soot
+                  damage, and guide you through complete reconstruction to
+                  modern standards.
                 </p>
               </FadeIn>
             </div>
           </div>
         </section>
 
-        {/* Specialized Services â€” Staggered, Non-Traditional Grid */}
+        {/* Specialized Services — Staggered, Non-Traditional Grid */}
         <Section bg="none">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
@@ -81,13 +91,22 @@ export default function FireRestoration() {
 
             <div className="space-y-16">
               {/* Featured Asymmetric Top Service */}
-              <FadeIn className="bg-white border border-[#3F4143]/8 grid lg:grid-cols-12 gap-0 items-stretch rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.04)] transition-all duration-300" direction="up">
+              <FadeIn
+                className="bg-white border border-[#3F4143]/8 grid lg:grid-cols-12 gap-0 items-stretch rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.04)] transition-all duration-300"
+                direction="up"
+              >
                 <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-auto">
-                  <img src={services[0].img} alt={services[0].title} className="absolute inset-0 w-full h-full object-cover" />
+                  <img
+                    src={services[0].img}
+                    alt={services[0].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
                 <div className="lg:col-span-5 p-8 md:p-12 flex flex-col justify-center space-y-4">
                   <div className="text-[#8DBD42]">{services[0].icon}</div>
-                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-bold">Featured Specialty</span>
+                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-bold">
+                    Featured Specialty
+                  </span>
                   <h3 className="font-bold text-[#3F4143] text-2xl md:text-3xl font-serif">
                     {services[0].title}
                   </h3>
@@ -108,7 +127,11 @@ export default function FireRestoration() {
                   >
                     <div className="space-y-5">
                       <div className="relative h-[220px] overflow-hidden mb-6 rounded-none border border-gray-100 shadow-sm">
-                        <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="text-[#8DBD42]">{item.icon}</div>
                       <h3 className="font-bold text-[#3F4143] text-xl md:text-2xl font-serif">
@@ -137,7 +160,7 @@ export default function FireRestoration() {
 
             <div className="relative max-w-4xl mx-auto pl-8 md:pl-0">
               <div className="absolute top-0 bottom-0 left-0 md:left-1/2 w-[2px] bg-[#8DBD42]/20" />
-              
+
               <div className="space-y-16">
                 {[
                   {
@@ -181,9 +204,11 @@ export default function FireRestoration() {
                     <div className="absolute left-[-41px] md:left-1/2 md:translate-x-[-16px] top-1 w-8 h-8 rounded-none bg-white border border-[#8DBD42] text-[#8DBD42] flex items-center justify-center font-bold text-xs shadow-sm z-10 font-serif">
                       {item.step}
                     </div>
-                    
+
                     {/* Content Column */}
-                    <div className={`${idx % 2 !== 0 ? "md:col-start-1" : "md:col-start-2"}`}>
+                    <div
+                      className={`${idx % 2 !== 0 ? "md:col-start-1" : "md:col-start-2"}`}
+                    >
                       <h3 className="font-bold text-[#3F4143] text-lg mb-2 font-serif">
                         {item.title}
                       </h3>
@@ -232,7 +257,9 @@ export default function FireRestoration() {
                         size={18}
                         className="text-[#8DBD42] flex-shrink-0 mt-1"
                       />
-                      <p className="text-[#3F4143] font-bold text-base leading-snug">{item}</p>
+                      <p className="text-[#3F4143] font-bold text-base leading-snug">
+                        {item}
+                      </p>
                     </FadeIn>
                   ))}
                 </div>
@@ -240,17 +267,27 @@ export default function FireRestoration() {
 
               {/* Stats Grid Column */}
               <div className="lg:col-span-5">
-                <FadeIn className="bg-[#3F4143] text-white p-8 shadow-[0_15px_30px_rgba(0,0,0,0.06)] grid grid-cols-2 gap-6 relative overflow-hidden rounded-none" direction="up">
+                <FadeIn
+                  className="bg-[#3F4143] text-white p-8 shadow-[0_15px_30px_rgba(0,0,0,0.06)] grid grid-cols-2 gap-6 relative overflow-hidden rounded-none"
+                  direction="up"
+                >
                   <div className="absolute right-[-40px] bottom-[-40px] w-48 h-48 bg-[#8DBD42]/10 rounded-full blur-2xl pointer-events-none" />
                   {[
                     { val: "60m", lbl: "Response Time" },
                     { val: "24/7", lbl: "Emergency Dispatch" },
                     { val: "5yr", lbl: "Work Warranty" },
-                    { val: "100%", lbl: "Bonded & Insured" }
+                    { val: "100%", lbl: "Bonded & Insured" },
                   ].map((stat, idx) => (
-                    <div key={idx} className="space-y-2 p-5 bg-white/5 border border-white/10 hover:border-[#8DBD42]/30 transition-colors rounded-none">
-                      <div className="text-3xl md:text-4xl font-bold text-[#8DBD42] font-serif">{stat.val}</div>
-                      <div className="text-[10px] text-white/60 uppercase tracking-widest font-semibold">{stat.lbl}</div>
+                    <div
+                      key={idx}
+                      className="space-y-2 p-5 bg-white/5 border border-white/10 hover:border-[#8DBD42]/30 transition-colors rounded-none"
+                    >
+                      <div className="text-3xl md:text-4xl font-bold text-[#8DBD42] font-serif">
+                        {stat.val}
+                      </div>
+                      <div className="text-[10px] text-white/60 uppercase tracking-widest font-semibold">
+                        {stat.lbl}
+                      </div>
                     </div>
                   ))}
                 </FadeIn>
@@ -296,7 +333,12 @@ export default function FireRestoration() {
                     like yet another mountain to climb.
                   </p>
                   <p>
-                    We're here to make sure you don't face this climb alone. Rather than positioning ourselves in opposition to insurance companies, we believe in collaboration. We work together with your insurance provider, approaching every situation with meticulous documentation and the utmost professionalism to ensure a seamless restoration process.
+                    We're here to make sure you don't face this climb alone.
+                    Rather than positioning ourselves in opposition to insurance
+                    companies, we believe in collaboration. We work together
+                    with your insurance provider, approaching every situation
+                    with meticulous documentation and the utmost professionalism
+                    to ensure a seamless restoration process.
                   </p>
                 </div>
 
@@ -322,5 +364,3 @@ export default function FireRestoration() {
     </Layout>
   );
 }
-
-

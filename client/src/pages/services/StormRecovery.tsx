@@ -1,4 +1,11 @@
-﻿import { CloudLightning, Wind, Hammer, Shield, CheckCircle, Phone } from "lucide-react";
+﻿import {
+  CloudLightning,
+  Wind,
+  Hammer,
+  Shield,
+  CheckCircle,
+  Phone,
+} from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -12,25 +19,25 @@ export default function StormRecovery() {
       icon: <Wind size={32} />,
       title: "Emergency Roof Tarping",
       desc: "Immediate heavy-duty tarping to seal damaged roofing structure, prevent active water entry, and protect your home contents from storm secondary impacts.",
-      img: "/photo/hero-tarp.jpg"
+      img: "/photo/hero-tarp.jpg",
     },
     {
       icon: <Hammer size={32} />,
       title: "Debris Removal & Cleanup",
       desc: "Safe extraction of fallen trees, blocking limbs, structural debris, and windblown hazards from building envelopes and property yards.",
-      img: "/photo/storm-debris-cleanup.jpg"
+      img: "/photo/storm-debris-cleanup.jpg",
     },
     {
       icon: <Shield size={32} />,
       title: "Window & Door Board-Ups",
       desc: "Secure structural board-up of breached windows, sliding glass sliders, and garage entries to prevent vandalism and atmospheric damage.",
-      img: "/photo/who-we-are.jpg"
+      img: "/photo/who-we-are.jpg",
     },
     {
       icon: <CheckCircle size={32} />,
       title: "Structural Reconstruction",
       desc: "Complete carpentry rebuild, roofing shingles installation, siding recovery, and interior structural finishing to pre-loss building codes.",
-      img: "/photo/storm-structural-rebuilding.jpg"
+      img: "/photo/storm-structural-rebuilding.jpg",
     },
   ];
 
@@ -53,8 +60,14 @@ export default function StormRecovery() {
             alt="Tree fallen on house causing storm damage"
             className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.75]"
           />
-          {/* Dark green wash â€” heavier on left, fades right */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)' }} />
+          {/* Dark green wash — heavier on left, fades right */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)",
+            }}
+          />
           {/* Bottom vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
@@ -62,13 +75,16 @@ export default function StormRecovery() {
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">
-                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency Service
+                  <span className="w-6 h-[2px] bg-[#8DBD42]" /> Emergency
+                  Service
                 </span>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif">
                   Storm Recovery
                 </h1>
                 <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-xl font-sans font-light">
-                  Severe weather can devastate your property in minutes. Our rapid response team handles emergency tarping, debris cleanup, and complete structural reconstruction to restore your home.
+                  Severe weather can devastate your property in minutes. Our
+                  rapid response team handles emergency tarping, debris cleanup,
+                  and complete structural reconstruction to restore your home.
                 </p>
               </FadeIn>
             </div>
@@ -97,7 +113,11 @@ export default function StormRecovery() {
                     direction="up"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="p-8 space-y-4">
                       <div className="text-[#8DBD42]">{item.icon}</div>
@@ -122,7 +142,11 @@ export default function StormRecovery() {
                     direction="up"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="p-8 space-y-4">
                       <div className="text-[#8DBD42]">{item.icon}</div>
@@ -144,7 +168,6 @@ export default function StormRecovery() {
         <Section bg="white" className="border-t border-gray-100" id="process">
           <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              
               {/* Left Column: Anchored/Sticky Header and Service Summary (40% width) */}
               <div className="lg:col-span-5 lg:sticky lg:top-32 self-start space-y-6">
                 <FadeIn direction="up">
@@ -155,7 +178,10 @@ export default function StormRecovery() {
                     Storm Recovery Process
                   </h2>
                   <p className="text-base md:text-lg text-[#3F4143]/75 leading-relaxed mt-6 font-sans font-light">
-                    We guide you through every stage of property restoration. From securing the initial envelope breach to negotiating claims and structural rebuilding, our roadmap is designed to protect your interests and restore your peace of mind.
+                    We guide you through every stage of property restoration.
+                    From securing the initial envelope breach to negotiating
+                    claims and structural rebuilding, our roadmap is designed to
+                    protect your interests and restore your peace of mind.
                   </p>
                 </FadeIn>
               </div>
@@ -233,15 +259,42 @@ export default function StormRecovery() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-16 py-12">
               {[
-                { title: "Rapid Response", desc: "Rapid emergency response with equipment and specialists ready to deploy 24/7." },
-                { title: "Tree & Debris Extraction", desc: "Professional extraction of fallen trees, limbs, and compromised structural elements." },
-                { title: "Property Protection", desc: "Heavy emergency roof tarping and window security board-ups to seal your home." },
-                { title: "Structural Rebuild", desc: "Complete structural repair, framing, siding, and roofing restoration back to code." },
-                { title: "Insurance Coordination", desc: "Direct coordination with insurance adjusters to ensure claim accuracy." },
-                { title: "Detailed Claim Records", desc: "Rigorous 3D Matterport scans, photo documentation, and Xactimate line-item estimates." },
-                { title: "Code Compliance", desc: "Professional engineering compliance, building permit management, and structural sign-offs." },
-                { title: "Warranty Guarantee", desc: "5-year comprehensive warranty on all structural restoration work." },
-                { title: "Local Presence", desc: "Serving Western Washington from our North and South offices in Lacey and Chehalis." },
+                {
+                  title: "Rapid Response",
+                  desc: "Rapid emergency response with equipment and specialists ready to deploy 24/7.",
+                },
+                {
+                  title: "Tree & Debris Extraction",
+                  desc: "Professional extraction of fallen trees, limbs, and compromised structural elements.",
+                },
+                {
+                  title: "Property Protection",
+                  desc: "Heavy emergency roof tarping and window security board-ups to seal your home.",
+                },
+                {
+                  title: "Structural Rebuild",
+                  desc: "Complete structural repair, framing, siding, and roofing restoration back to code.",
+                },
+                {
+                  title: "Insurance Coordination",
+                  desc: "Direct coordination with insurance adjusters to ensure claim accuracy.",
+                },
+                {
+                  title: "Detailed Claim Records",
+                  desc: "Rigorous 3D Matterport scans, photo documentation, and Xactimate line-item estimates.",
+                },
+                {
+                  title: "Code Compliance",
+                  desc: "Professional engineering compliance, building permit management, and structural sign-offs.",
+                },
+                {
+                  title: "Warranty Guarantee",
+                  desc: "5-year comprehensive warranty on all structural restoration work.",
+                },
+                {
+                  title: "Local Presence",
+                  desc: "Serving Western Washington from our North and South offices in Lacey and Chehalis.",
+                },
               ].map((item, idx) => (
                 <FadeIn
                   key={idx}
@@ -252,8 +305,12 @@ export default function StormRecovery() {
                   <span className="text-xs font-mono font-bold text-[#8DBD42] tracking-wider block">
                     0{idx + 1}
                   </span>
-                  <h3 className="font-bold text-[#3F4143] text-lg font-serif">{item.title}</h3>
-                  <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">{item.desc}</p>
+                  <h3 className="font-bold text-[#3F4143] text-lg font-serif">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
+                    {item.desc}
+                  </p>
                 </FadeIn>
               ))}
             </div>
@@ -289,10 +346,16 @@ export default function StormRecovery() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    Fallen trees, severe wind, and heavy rainfall can breach your home's envelope in minutes. Our 24/7 emergency dispatch team is ready to secure your property with immediate roof tarping and window board-ups.
+                    Fallen trees, severe wind, and heavy rainfall can breach
+                    your home's envelope in minutes. Our 24/7 emergency dispatch
+                    team is ready to secure your property with immediate roof
+                    tarping and window board-ups.
                   </p>
                   <p>
-                    Once the storm settles, we work hand-in-hand with your insurance provider, compiling detailed Matterport records and rebuilding your home back to code compliance and modern safety standards.
+                    Once the storm settles, we work hand-in-hand with your
+                    insurance provider, compiling detailed Matterport records
+                    and rebuilding your home back to code compliance and modern
+                    safety standards.
                   </p>
                 </div>
 
@@ -318,5 +381,3 @@ export default function StormRecovery() {
     </Layout>
   );
 }
-
-

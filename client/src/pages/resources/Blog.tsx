@@ -98,10 +98,9 @@ export default function Blog() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 items-start">
               {posts.map((post, idx) => {
                 // Staggered vertical margins for index-based offsets
-                const staggerClass = 
-                  idx === 1 ? "lg:mt-16" : 
-                  idx === 2 ? "lg:mt-8" : "";
-                  
+                const staggerClass =
+                  idx === 1 ? "lg:mt-16" : idx === 2 ? "lg:mt-8" : "";
+
                 return (
                   <FadeUp
                     key={idx}
@@ -118,28 +117,36 @@ export default function Blog() {
                         />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                       </div>
-                      
+
                       {/* Text content */}
                       <div className="p-8">
                         <div className="flex items-center gap-4 text-[10px] text-[#3F4143]/50 mb-4 font-bold uppercase tracking-wider font-sans">
                           <span className="flex items-center gap-1.5 flex-nowrap">
-                            <Calendar size={12} className="shrink-0 text-[#8DBD42]" /> {post.date}
+                            <Calendar
+                              size={12}
+                              className="shrink-0 text-[#8DBD42]"
+                            />{" "}
+                            {post.date}
                           </span>
                           <span className="flex items-center gap-1.5 flex-nowrap">
-                            <User size={12} className="shrink-0 text-[#8DBD42]" /> {post.author}
+                            <User
+                              size={12}
+                              className="shrink-0 text-[#8DBD42]"
+                            />{" "}
+                            {post.author}
                           </span>
                         </div>
-                        
+
                         <h3 className="text-xl font-bold text-[#3F4143] group-hover:text-[#8DBD42] transition-colors duration-300 leading-snug mb-3 font-serif">
                           {post.title}
                         </h3>
-                        
+
                         <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
                           {post.excerpt}
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* Read more footer with divider line */}
                     <div className="px-8 pb-8">
                       <div className="w-full h-[1px] bg-[#3F4143]/5 mb-6" />
@@ -183,7 +190,9 @@ export default function Blog() {
                 </h2>
                 <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
                   <p>
-                    Heritage Restoration is available 24/7, 365 days a year. Our emergency response team will deploy and arrive within 60 minutes of dispatch to secure your home.
+                    Heritage Restoration is available 24/7, 365 days a year. Our
+                    emergency response team will deploy and arrive within 60
+                    minutes of dispatch to secure your home.
                   </p>
                 </div>
 
@@ -209,5 +218,3 @@ export default function Blog() {
     </Layout>
   );
 }
-
-

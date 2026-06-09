@@ -12,9 +12,7 @@ export default function Layout({ children }: LayoutProps) {
       <Header />
 
       {/* Main content */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       <Footer />
     </div>

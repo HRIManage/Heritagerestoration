@@ -43,7 +43,9 @@
 }
 
 .service-card {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 .service-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -61,7 +63,7 @@
 
 /* Testimonial */
 .testimonial-card {
-  background: #3F4143;
+  background: #3f4143;
   color: #ffffff;
   border-radius: 6px;
   padding: 2rem;
@@ -82,7 +84,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -95,7 +98,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.8;
     box-shadow: 0 0 10px rgba(141, 189, 66, 0.4);
   }
@@ -124,7 +128,12 @@
   animation: slide-up 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}

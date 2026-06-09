@@ -63,7 +63,7 @@ const rights = [
   {
     number: "07",
     title: "No Obligation to Accept Lowest Bid",
-    body: "You are not required to accept the lowest bidder. Nowhere in your policy do the words \"cheapest,\" \"low\" or \"lowest price\" occur. However, repair rates should correspond to prevailing standards in your area for quality work.",
+    body: 'You are not required to accept the lowest bidder. Nowhere in your policy do the words "cheapest," "low" or "lowest price" occur. However, repair rates should correspond to prevailing standards in your area for quality work.',
   },
   {
     number: "08",
@@ -104,7 +104,7 @@ export default function BillOfRights() {
       </Helmet>
 
       <div className="min-h-screen bg-canvas-textured pt-[112px] sm:pt-[116px] lg:pt-[152px]">
-        {/* â”€â”€ Hero â”€â”€ */}
+        {/* ── Hero ── */}
         <section className="relative py-12 md:py-20 bg-[#3F4143] text-white overflow-hidden">
           <img
             src="/photo/bill-of-rights-hero.jpg"
@@ -132,16 +132,16 @@ export default function BillOfRights() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
                 style={{ fontFamily: "'Libre Caslon Text', serif" }}
               >
-                Homeowner{" "}
-                <span className="text-[#8DBD42]">Bill of Rights</span>
+                Homeowner <span className="text-[#8DBD42]">Bill of Rights</span>
               </h1>
 
               <p className="text-lg text-white/85 leading-relaxed max-w-2xl">
                 Fire and water damage disrupts the normal pattern of life and
                 can involve a lot of emotional stress. People often feel
                 confused and vulnerable after events of this type. However, it
-                is important to make good decisions â€” you will be living with
-                the results long after the stress and confusion have passed.
+                is important to make good decisions, since you will be living
+                with the results long after the stress and confusion have
+                passed.
               </p>
 
               <p
@@ -156,7 +156,7 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* â”€â”€ Before You Sign Banner â”€â”€ */}
+        {/* ── Before You Sign Banner ── */}
         <section className="relative overflow-hidden bg-[#3A3D3A] text-white">
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 bg-[url('/photo/hero-new.jpg')] bg-cover bg-center brightness-[0.08] opacity-40 pointer-events-none" />
@@ -166,7 +166,6 @@ export default function BillOfRights() {
           <div className="max-w-[1280px] mx-auto px-8 md:px-16 py-14 md:py-16 relative z-10">
             <FadeUp>
               <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
-
                 {/* Left: Title + label */}
                 <div className="md:w-2/5 flex-shrink-0">
                   <div
@@ -190,31 +189,58 @@ export default function BillOfRights() {
                   style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
                 >
                   <p className="text-base md:text-lg text-white">
-                    <span className="font-semibold">1-800-Board Up</span> is the only national disaster recovery company that works closely with first responders to assist with catastrophes.
+                    <span className="font-semibold">1-800-Board Up</span> is the
+                    only national disaster recovery company that works closely
+                    with first responders to assist with catastrophes.
                   </p>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path
+                          d="M1 4L3.5 6.5L9 1"
+                          stroke="white"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
-                    <p className="text-white">Talk to your Fire Chief about who is safe in securing your property.</p>
+                    <p className="text-white">
+                      Talk to your Fire Chief about who is safe in securing your
+                      property.
+                    </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path
+                          d="M1 4L3.5 6.5L9 1"
+                          stroke="white"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
-                    <p className="text-white">Do not feel pressured to sign anything on site.</p>
+                    <p className="text-white">
+                      Do not feel pressured to sign anything on site.
+                    </p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path
+                          d="M1 4L3.5 6.5L9 1"
+                          stroke="white"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
-                    <p className="text-white">Know your rights â€” all 12 of which are outlined below.</p>
+                    <p className="text-white">
+                      Know your rights; all 12 of which are outlined below.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -222,10 +248,9 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* â”€â”€ 12 Rights Grid â”€â”€ */}
+        {/* ── 12 Rights Grid ── */}
         <section className="py-10 md:py-16 bg-transparent">
           <div className="max-w-[1280px] mx-auto px-6">
-
             {/* Section label */}
             <FadeUp>
               <div className="flex items-center gap-4 mb-12">
@@ -279,7 +304,7 @@ export default function BillOfRights() {
           </div>
         </section>
 
-        {/* â”€â”€ CTA Banner â”€â”€ */}
+        {/* ── CTA Banner ── */}
         <section className="relative bg-white pt-24 pb-36 overflow-hidden">
           {/* Background image */}
           <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
@@ -312,10 +337,10 @@ export default function BillOfRights() {
                   className="text-sm md:text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-8"
                   style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
                 >
-                  Don't let the insurance company dictate your recovery. Heritage
-                  Restoration will fight for every right listed above â€” from the
-                  first emergency call through your final settlement. Contact us
-                  today for a free, no-pressure consultation.
+                  Don't let the insurance company dictate your recovery.
+                  Heritage Restoration will fight for every right listed above.
+                  from the first emergency call through your final settlement.
+                  Contact us today for a free, no-pressure consultation.
                 </p>
 
                 <div
@@ -346,5 +371,3 @@ export default function BillOfRights() {
     </Layout>
   );
 }
-
-
