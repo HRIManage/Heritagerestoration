@@ -511,12 +511,12 @@ export default function Home() {
 
                 {/* Trust badges inside left column */}
                 <FadeUp triggerImmediately={true} delay={0.65}>
-                  <div className="flex flex-wrap items-center gap-8 md:gap-10">
+                  <div className="flex flex-wrap items-center gap-4 md:gap-5">
                     <div className="flex flex-col items-center text-center group cursor-pointer">
                       <img
                         src="/photo/emergency-badge-new-2.png"
                         alt="Emergency response"
-                        className="h-[4.2rem] md:h-[4.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
+                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
                       />
                       <p
                         className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"
@@ -529,7 +529,7 @@ export default function Home() {
                       <img
                         src="/photo/iicrc-badge-new-3.png"
                         alt="IICRC certified"
-                        className="h-[4.2rem] md:h-[4.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
+                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
                       />
                       <p
                         className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"
@@ -542,7 +542,7 @@ export default function Home() {
                       <img
                         src="/photo/warranty-badge-new-3.png"
                         alt="5 year warranty"
-                        className="h-[4.2rem] md:h-[4.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
+                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
                       />
                       <p
                         className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"

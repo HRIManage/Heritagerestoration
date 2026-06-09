@@ -151,7 +151,7 @@ export default function Header({
   return (
     <>
       {/* ── GREEN UTILITY BAR ── */}
-      <div className="bg-[#8DBD42] text-white relative z-50">
+      <div className="bg-[#8DBD42] text-white absolute top-0 left-0 right-0 z-50">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center justify-between h-10 sm:h-11">
           {/* Desktop left: phone + email + tagline | Mobile: empty left side */}
           <div className="flex items-center gap-4">
