@@ -11,19 +11,19 @@ export default function FireRestoration() {
     {
       icon: <Flame size={32} />,
       title: "Soot & Smoke Remediation",
-      desc: "Advanced soot extraction, thermal fogging, and smoke odor neutralization to restore indoor air quality. We deploy specialized HEPA air scrubbers and hydroxyl generators to permanently neutralize smoke particles embedded in framing, finishes, and HVAC ducts.",
+      desc: "Advanced soot extraction, smoke odor neutralization, and structural decontamination to restore indoor air quality. We deploy specialized HEPA air scrubbers, thermal foggers, and hydroxyl generators to permanently neutralize smoke particles embedded in framing, finishes, and HVAC ducts.",
       img: "/photo/Photo Jul 06 2024, 08 57 29.jpg",
     },
     {
       icon: <Clock size={32} />,
       title: "Structural Cleaning & Debris",
-      desc: "Removal of fire debris, securing structural integrity, and cleaning soot from all surfaces using eco-friendly carbon blasting and dry chemical sponge extraction.",
+      desc: "Removal of fire debris, securing structural integrity, and cleaning soot from all surfaces using eco-friendly carbon blasting and dry sponge extraction.",
       img: "/photo/fire-structural-cleaning.png",
     },
     {
       icon: <Shield size={32} />,
       title: "Full Structural Rebuild",
-      desc: "Complete framing, drywall, flooring, custom cabinetry, and finish work to modern building codes. We handle the process from structural engineering approvals to final occupancy permits.",
+      desc: "Complete framing, drywall, flooring, custom cabinetry, and finish work to modern energy efficient building codes. We handle the process from structural engineering approvals to final occupancy permits.",
       img: "/photo/fire-structural-rebuild.jpg",
     },
   ];
@@ -83,9 +83,8 @@ export default function FireRestoration() {
         <Section bg="none">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
-              <span className="overline-label">Our Capabilities</span>
               <h2 className="text-3xl md:text-4.5xl font-bold text-[#3F4143] mt-2 font-serif">
-                Specialized Fire Services
+                Services Section
               </h2>
             </FadeIn>
 
@@ -165,33 +164,119 @@ export default function FireRestoration() {
                 {[
                   {
                     step: "1",
-                    title: "Emergency Response (60 mins)",
-                    desc: "We arrive immediately to assess damage, board up windows, tarp the roof, and secure the structure.",
+                    title: "Immediate Emergency Response (Day of Loss)",
+                    items: [
+                      {
+                        label: "Claim Initialization",
+                        text: "We guide you through the critical first steps of contacting your insurance carrier and properly opening your property claim.",
+                      },
+                      {
+                        label: "Emergency Asset Stabilization",
+                        text: "Our team immediately secures the property (tarping, board-ups, and structural stabilization) to prevent further environmental or physical damage.",
+                      },
+                    ],
                   },
                   {
                     step: "2",
-                    title: "Damage Documentation",
-                    desc: "3D Matterport scans and detailed photos create comprehensive records for insurance claims.",
+                    title: "Advanced Forensic Documentation",
+                    items: [
+                      {
+                        label: "Comprehensive 3D Site Mapping",
+                        text: "We execute a complete photographic documentation and high-definition 3D virtual tour of the unaffected and damaged areas to create an indisputable record for your adjuster.",
+                      },
+                      {
+                        label: "Environmental Hazard Testing",
+                        text: "Certified testing for asbestos and lead is immediately performed to ensure all hazardous materials are identified prior to disturbing any structures.",
+                      },
+                    ],
                   },
                   {
                     step: "3",
-                    title: "Mitigation & Dryout",
-                    desc: "Soot removal, smoke odor neutralization, and structural drying to prevent mold and further damage.",
+                    title: "Asset Preservation & Sentimental Salvage",
+                    items: [
+                      {
+                        label: "Sentimental Item Recovery",
+                        text: "We meticulously locate and extract irreplaceable personal and family heirlooms.",
+                      },
+                      {
+                        label: "Secure Document Retrieval",
+                        text: "Critical legal, financial, and business documents are carefully recovered and secured.",
+                      },
+                      {
+                        label: "Emergency Textile Cleaning",
+                        text: "Essential clothing and textile items are immediately triaged and sent for specialized restoration cleaning.",
+                      },
+                    ],
                   },
                   {
                     step: "4",
-                    title: "Insurance Negotiation",
-                    desc: "We work directly with adjusters and provide detailed Xactimate estimates to secure full claim approval.",
+                    title: "Scope Alignment & Regulatory Coordination",
+                    items: [
+                      {
+                        label: "Joint Preliminary Estimation",
+                        text: "We write a comprehensive scope of repairs and build a preliminary estimate directly alongside your insurance adjuster using industry-standard platforms.",
+                      },
+                      {
+                        label: "Jurisdictional Navigation & Fire Walk",
+                        text: 'We initiate the municipal permit process and conduct an official "Fire Walk" on-site with the local Building Official to establish baseline code requirements.',
+                      },
+                    ],
                   },
                   {
                     step: "5",
-                    title: "Full Reconstruction",
-                    desc: "Professional framing, drywall, flooring, cabinetry, and finishing to exceed pre-fire condition.",
+                    title: "Site Clearance & Content Auditing",
+                    items: [
+                      {
+                        label: "Strategic Debris Removal",
+                        text: "Safe, efficient extraction of non-salvageable structural materials and fire debris from the premises.",
+                      },
+                      {
+                        label: "Itemized Content Chain-of-Custody",
+                        text: "Every single item on the property is documented, cataloged, and classified as salvageable or non-salvageable for your contents claim.",
+                      },
+                    ],
                   },
                   {
                     step: "6",
-                    title: "Final Inspection & Handover",
-                    desc: "Building code compliance verification and final walkthrough of your fully restored property.",
+                    title: "Project Initiation & Design Selection",
+                    items: [
+                      {
+                        label: "Repair Process Activation",
+                        text: "Transitioning the project from the mitigation phase into active structural reconstruction.",
+                      },
+                      {
+                        label: "Alignment Meeting",
+                        text: "A formal job site alignment conference between the Homeowner, Property Manager, and your dedicated Project Manager to establish timelines and expectations.",
+                      },
+                      {
+                        label: "Material Selection & Customization",
+                        text: "The design phase begins. Clients choose finishes, cabinetry, and fixtures, allowing an opportunity to integrate desired modern upgrades or layout changes.",
+                      },
+                    ],
+                  },
+                  {
+                    step: "7",
+                    title: "Precision Reconstruction",
+                    items: [
+                      {
+                        label: "Structural Rebuild",
+                        text: "Execution of the approved scope of work under strict construction standards, featuring recurring milestone meetings with clients to review progress, framing, mechanicals, and finishes.",
+                      },
+                    ],
+                  },
+                  {
+                    step: "8",
+                    title: "Project Handover & Warranty Execution",
+                    items: [
+                      {
+                        label: "Closeout & Content Return",
+                        text: "Upon final inspection and completion of the work, a formal Certificate of Completion is executed, and your securely stored, restored contents are safely returned to the property.",
+                      },
+                      {
+                        label: "Industry-Leading Warranty Activation",
+                        text: "Your project transitions to our elite 5-Year Workmanship Warranty, guaranteeing the long-term integrity of our construction.",
+                      },
+                    ],
                   },
                 ].map((item, idx) => (
                   <FadeIn
@@ -209,12 +294,24 @@ export default function FireRestoration() {
                     <div
                       className={`${idx % 2 !== 0 ? "md:col-start-1" : "md:col-start-2"}`}
                     >
-                      <h3 className="font-bold text-[#3F4143] text-lg mb-2 font-serif">
+                      <h3 className="font-bold text-[#3F4143] text-lg mb-3 font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
-                        {item.desc}
-                      </p>
+                      <ul
+                        className={`space-y-3 font-sans ${idx % 2 !== 0 ? "md:text-left" : ""}`}
+                      >
+                        {item.items.map((sub, subIdx) => (
+                          <li key={subIdx} className="text-sm leading-relaxed">
+                            <span className="font-bold text-[#3F4143]">
+                              {sub.label}
+                            </span>
+                            <span className="text-[#3F4143]/70">
+                              {" "}
+                              &ndash; {sub.text}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </FadeIn>
                 ))}

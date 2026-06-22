@@ -62,7 +62,7 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             name: "Heritage Restoration",
-            telephone: "+1-360-345-1015",
+            telephone: "+1-360-456-1886",
             email: "office@firewaterstorm.com",
             address: [
               {
@@ -142,11 +142,11 @@ export default function Contact() {
 
                   <div className="space-y-4 pt-2">
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="flex items-center gap-3 text-xl md:text-2xl font-bold text-[#8DBD42] hover:text-[#9fd546] transition-colors font-sans"
                     >
                       <Phone size={24} className="flex-shrink-0" />
-                      <span>+1 (360) 345-1015</span>
+                      <span>+1 (360) 456-1886</span>
                     </a>
 
                     <a
@@ -165,7 +165,7 @@ export default function Contact() {
                         size={16}
                         className="text-[#8DBD42] flex-shrink-0"
                       />
-                      <span>Immediate 60-minute response in service area</span>
+                      <span>Immediate onsite 60-minute response in service area</span>
                     </div>
                   </div>
                 </FadeIn>
