@@ -339,7 +339,7 @@ export default function FireRestoration() {
                     "IICRC certified restoration professionals",
                     "Fully bonded and insured with comprehensive coverage",
                     "Direct insurance company negotiation and advocacy",
-                    "Matterport 3D documentation for claims",
+                    "DocuSketch 3D documentation for claims",
                     "Xactimate detailed estimates and scope management",
                     "5-year warranty on all restoration work",
                     "Local expertise serving Washington State",

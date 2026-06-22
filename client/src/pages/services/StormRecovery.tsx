@@ -207,7 +207,7 @@ export default function StormRecovery() {
                   {
                     step: "04",
                     title: "Damage Documentation",
-                    desc: "Rigorous 3D Matterport scans, high-resolution photo logs, and itemized content inventory for insurance transparency.",
+                    desc: "Rigorous 3D DocuSketch scans, high-resolution photo logs, and itemized content inventory for insurance transparency.",
                   },
                   {
                     step: "05",
@@ -281,7 +281,7 @@ export default function StormRecovery() {
                 },
                 {
                   title: "Detailed Claim Records",
-                  desc: "Rigorous 3D Matterport scans, photo documentation, and Xactimate line-item estimates.",
+                  desc: "Rigorous 3D DocuSketch scans, photo documentation, and Xactimate line-item estimates.",
                 },
                 {
                   title: "Code Compliance",
@@ -353,7 +353,7 @@ export default function StormRecovery() {
                   </p>
                   <p>
                     Once the storm settles, we work hand-in-hand with your
-                    insurance provider, compiling detailed Matterport records
+                    insurance provider, compiling detailed DocuSketch records
                     and rebuilding your home back to code compliance and modern
                     safety standards.
                   </p>
