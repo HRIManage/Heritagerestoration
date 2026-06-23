@@ -3,7 +3,7 @@
  * Covers: LocalBusiness, Service, FAQPage, BreadcrumbList, Article schemas
  */
 
-const BASE_URL = "https://www.firewaterstorm.com";
+export const BASE_URL = "https://www.firewaterstorm.com";
 
 // ─── Business Schema (inject on every page) ─────────────────────────────────
 export const BUSINESS_SCHEMA = {
@@ -251,6 +251,104 @@ export const CONTENTS_SERVICE_SCHEMA = buildServiceSchema(
     "climate controlled storage",
   ]
 );
+
+// ─── Location (city) landing page schema ────────────────────────────────────
+/**
+ * Builds a JSON-LD @graph for a city service-area page: a LocalBusiness node
+ * scoped to the city, the four core Services with areaServed = City, a
+ * BreadcrumbList, and a FAQPage. Returned as a single object ready to JSON
+ * stringify into one <script type="application/ld+json">.
+ */
+export const buildLocationSchema = (city: {
+  name: string;
+  full: string;
+  county: string;
+  slug: string;
+  lat: number;
+  lng: number;
+}) => {
+  const url = `${BASE_URL}/service-area/${city.slug}`;
+  const cityNode = {
+    "@type": "City",
+    name: city.name,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: city.name,
+      addressRegion: "WA",
+      addressCountry: "US",
+    },
+  };
+
+  const services = [
+    {
+      name: `Fire Damage Restoration in ${city.name}, WA`,
+      path: "/services/fire-restoration",
+    },
+    {
+      name: `Water Damage Restoration in ${city.name}, WA`,
+      path: "/services/water-restoration",
+    },
+    {
+      name: `Storm Damage Recovery in ${city.name}, WA`,
+      path: "/services/storm-recovery",
+    },
+    {
+      name: `Contents Pack-Out & Cleaning in ${city.name}, WA`,
+      path: "/services/contents-services",
+    },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+        "@id": `${url}#business`,
+        name: `Heritage Restoration — ${city.full}`,
+        description: `24/7 emergency fire, water, and storm damage restoration in ${city.full}. IICRC-certified technicians, 60-minute response, and direct insurance billing serving ${city.county} since 2004.`,
+        url,
+        telephone: "+1-360-345-1015",
+        email: "office@firewaterstorm.com",
+        parentOrganization: { "@id": `${BASE_URL}/#business` },
+        priceRange: "$$",
+        areaServed: cityNode,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: city.lat,
+          longitude: city.lng,
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
+      },
+      ...services.map(s => ({
+        "@type": "Service",
+        name: s.name,
+        url: `${BASE_URL}${s.path}`,
+        serviceType: s.name,
+        provider: { "@id": `${url}#business` },
+        areaServed: cityNode,
+      })),
+      buildBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Service Areas", url: "/service-areas" },
+        { name: city.full, url: `/service-area/${city.slug}` },
+      ]),
+      buildFAQSchema(FAQ_SCHEMA_ITEMS.slice(0, 6)),
+    ],
+  };
+};
 
 // ─── FAQ items for JSON-LD (plain text only — no JSX) ───────────────────────
 export const FAQ_SCHEMA_ITEMS = [

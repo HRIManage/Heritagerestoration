@@ -24,6 +24,8 @@ import FireRestoration from "@/pages/services/FireRestoration";
 import WaterRestoration from "@/pages/services/WaterRestoration";
 import StormRecovery from "@/pages/services/StormRecovery";
 import ContentsServices from "@/pages/services/ContentsServices";
+import ServiceAreas from "@/pages/locations/ServiceAreas";
+import LocationPage from "@/pages/locations/LocationPage";
 
 function Router() {
   return (
@@ -44,6 +46,9 @@ function Router() {
       <Route path="/services/water-restoration" component={WaterRestoration} />
       <Route path="/services/storm-recovery" component={StormRecovery} />
       <Route path="/services/contents-services" component={ContentsServices} />
+
+      <Route path="/service-areas" component={ServiceAreas} />
+      <Route path="/service-area/:slug" component={LocationPage} />
 
       <Route component={NotFound} />
     </Switch>

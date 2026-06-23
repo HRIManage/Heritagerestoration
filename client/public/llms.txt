@@ -29,6 +29,20 @@ Emergency roof tarping, tree and debris removal, window and door board-ups, and 
 ### [Contents Services](/services/contents-services)
 Professional pack-out, digital inventory tracking, specialized cleaning, and climate-controlled secure storage for personal belongings during home reconstruction.
 
+## Service Areas
+Heritage Restoration serves cities along the I-5 corridor across Western Washington, from Lewis County north into south King County. Each city has a dedicated service page at /service-area/{city}-wa. Full index: [Service Areas](/service-areas).
+
+- [Olympia, WA](/service-area/olympia-wa) — Thurston County (state capital)
+- [Lacey, WA](/service-area/lacey-wa) — Thurston County (North office HQ)
+- [Tumwater, WA](/service-area/tumwater-wa) — Thurston County
+- [DuPont, WA](/service-area/dupont-wa) — Pierce County (JBLM area)
+- [Lakewood, WA](/service-area/lakewood-wa) — Pierce County (JBLM area)
+- [Tacoma, WA](/service-area/tacoma-wa) — Pierce County
+- [Puyallup, WA](/service-area/puyallup-wa) — Pierce County
+- [Federal Way, WA](/service-area/federal-way-wa) — King County
+- [Centralia, WA](/service-area/centralia-wa) — Lewis County
+- [Chehalis, WA](/service-area/chehalis-wa) — Lewis County (South office)
+
 ## Why Heritage
 - Locally owned — not an out-of-town franchise
 - We advocate for homeowners, not insurance companies

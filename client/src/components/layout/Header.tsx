@@ -369,6 +369,13 @@ export default function Header({
                 </div>
 
                 <Link
+                  href="/service-areas"
+                  className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
+                >
+                  Service Areas
+                </Link>
+
+                <Link
                   href="/contact"
                   className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
                 >
@@ -565,6 +572,14 @@ export default function Header({
                   )}
                 </AnimatePresence>
               </div>
+
+              <Link
+                href="/service-areas"
+                className={navLinkCls("/service-area")}
+              >
+                Service Areas
+                <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
+              </Link>
 
               <Link href="/contact" className={navLinkCls("/contact")}>
                 Contact Us

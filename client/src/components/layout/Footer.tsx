@@ -1,5 +1,6 @@
 import { Facebook, Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "wouter";
+import { LOCATIONS } from "@/data/locations";
 
 const LOGO = "/photo/heritage-logo.png";
 
@@ -178,6 +179,30 @@ export default function Footer({
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Service Areas */}
+        <div className="pt-10 mb-12 border-t border-[#3F4143]/15">
+          <h4 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            Service Areas
+          </h4>
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            {LOCATIONS.map(loc => (
+              <Link
+                key={loc.slug}
+                href={`/service-area/${loc.slug}`}
+                className="text-[#3F4143]/65 hover:text-[#8DBD42] text-sm font-bold transition-colors"
+              >
+                {loc.name}, WA
+              </Link>
+            ))}
+            <Link
+              href="/service-areas"
+              className="text-[#8DBD42] hover:underline text-sm font-black transition-colors"
+            >
+              View All Areas →
+            </Link>
           </div>
         </div>
 
