@@ -26,6 +26,9 @@ import StormRecovery from "@/pages/services/StormRecovery";
 import ContentsServices from "@/pages/services/ContentsServices";
 import ServiceAreas from "@/pages/locations/ServiceAreas";
 import LocationPage from "@/pages/locations/LocationPage";
+import Privacy from "@/pages/legal/Privacy";
+import Terms from "@/pages/legal/Terms";
+import ThankYou from "@/pages/ThankYou";
 
 function Router() {
   return (
@@ -49,6 +52,10 @@ function Router() {
 
       <Route path="/service-areas" component={ServiceAreas} />
       <Route path="/service-area/:slug" component={LocationPage} />
+
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/thank-you" component={ThankYou} />
 
       <Route component={NotFound} />
     </Switch>

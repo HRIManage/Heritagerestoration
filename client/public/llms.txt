@@ -4,7 +4,8 @@
 ## About
 Heritage Restoration Inc. is a full-service property restoration contractor serving Western Washington State. Founded in 2004 and locally owned, we handle the complete complexity of disaster recovery for homeowners — from emergency response and mitigation through full structural reconstruction.
 
-- **Phone:** (360) 345-1015
+- **Office (non-emergency):** (360) 345-1015
+- **24/7 Emergency Hotline:** (360) 456-1886
 - **Email:** office@firewaterstorm.com
 - **Emergency:** 24/7 dispatch available
 - **Response time:** 60 minutes in service area
@@ -12,7 +13,7 @@ Heritage Restoration Inc. is a full-service property restoration contractor serv
 - **Warranty:** 5-Year Workmanship Warranty
 
 ## Office Locations
-- **North Office:** 7895 Martin Way E, Unit 103, Lacey, WA 98516 (serving Lacey, Olympia, Tumwater, Tacoma, Federal Way)
+- **North Office:** 8695 Martin Way E, Unit 103, Lacey, WA 98516 (serving Lacey, Olympia, Tumwater, Tacoma, Federal Way)
 - **South Office:** 1581 N. National Ave, Chehalis, WA 98532 (serving Chehalis, Centralia, Lewis County)
 
 ## Services
@@ -48,7 +49,7 @@ Heritage Restoration serves cities along the I-5 corridor across Western Washing
 - We advocate for homeowners, not insurance companies
 - Direct access to local leadership and project managers
 - 1,800+ projects completed since 2004
-- 20+ years serving Western Washington
+- 22+ years serving Western Washington
 
 ## Resources
 - [FAQ](/resources/faq) — Common insurance and restoration process questions
@@ -58,5 +59,6 @@ Heritage Restoration serves cities along the I-5 corridor across Western Washing
 
 ## Contact
 - [Contact Form](/contact)
-- Phone: [(360) 345-1015](tel:+13603451015)
+- Office (non-emergency): [(360) 345-1015](tel:+13603451015)
+- 24/7 Emergency Hotline: [(360) 456-1886](tel:+13604561886)
 - Email: [office@firewaterstorm.com](mailto:office@firewaterstorm.com)

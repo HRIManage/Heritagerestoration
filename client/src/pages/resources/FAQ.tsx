@@ -249,7 +249,7 @@ const faqCategories: FAQCategory[] = [
         question:
           "How long have you been serving local Washington communities?",
         answer:
-          "We have been proudly serving local property owners, landlords, and commercial businesses since 2004. Over our 20+ years of local history, we have successfully restored thousands of properties devastated by frozen pipes, catastrophic fires, and severe Northwest windstorms.",
+          "We have been proudly serving local property owners, landlords, and commercial businesses since 2004. Over our 22 years of local history, we have successfully restored thousands of properties devastated by frozen pipes, catastrophic fires, and severe Northwest windstorms.",
       },
       {
         question:

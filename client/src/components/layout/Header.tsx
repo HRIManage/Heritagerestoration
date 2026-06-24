@@ -152,8 +152,8 @@ export default function Header({
     <>
       {/* ── GREEN UTILITY BAR ── */}
       <div className="bg-[#8DBD42] text-white absolute top-0 left-0 right-0 z-50">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 flex items-center justify-between h-10 sm:h-11">
-          {/* Desktop left: phone + email + tagline | Mobile: empty left side */}
+        <div className="max-w-[1280px] mx-auto pl-4 pr-0 sm:px-6 flex items-stretch sm:items-center justify-between h-10 sm:h-11">
+          {/* Desktop left: phone + email + tagline | Mobile: live tagline */}
           <div className="flex items-center gap-4">
             <a
               href="tel:+13603451015"
@@ -175,15 +175,21 @@ export default function Header({
               <span className="w-2 h-2 rounded-full bg-white animate-pulse inline-block" />
               Full Service Restoration – 24/7 Emergency Response
             </span>
+            {/* Mobile-only live tagline */}
+            <span className="sm:hidden flex items-center gap-2 text-[12px] font-bold tracking-[0.04em] text-white">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse inline-block" />
+              24/7 Emergency Response
+            </span>
           </div>
-          {/* Right side: social icons on desktop | phone number on mobile */}
-          <div className="flex items-center gap-3">
+          {/* Right side: social icons on desktop | red dispatch button on mobile */}
+          <div className="flex items-stretch sm:items-center gap-3">
             <a
               href="tel:+13603451015"
-              className="sm:hidden flex items-center gap-1.5 text-[13px] font-bold"
+              className="sm:hidden relative flex items-center gap-1.5 bg-[#E32B2B] text-white px-4 font-black text-[12px] uppercase tracking-[0.08em] overflow-hidden"
             >
-              <Phone size={13} />
-              <span>(360) 345-1015</span>
+              <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-30 pointer-events-none" />
+              <Phone size={13} className="relative" />
+              <span className="relative">24/7 Dispatch</span>
             </a>
             <a
               href="https://www.facebook.com/heritagerestorationinc/"
@@ -587,12 +593,14 @@ export default function Header({
               </Link>
             </div>
 
-            <div className="flex items-center ml-auto">
+            <div className="relative flex items-center ml-4 flex-shrink-0">
+              <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-25 pointer-events-none" />
               <a
                 href="tel:+13603451015"
-                className="flex items-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-5 py-2.5 font-bold text-base transition-all duration-200 shadow-sm hover:shadow-md hover:scale-105"
+                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-5 py-2.5 uppercase tracking-[0.1em] text-sm font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
               >
-                <Phone size={16} /> (360) 345-1015
+                <Phone size={14} />
+                24/7 Dispatch
               </a>
             </div>
           </div>

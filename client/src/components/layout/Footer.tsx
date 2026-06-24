@@ -128,12 +128,12 @@ export default function Footer({
                     North (Lacey · Olympia):
                   </strong>
                   <a
-                    href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516"
+                    href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#8DBD42] hover:underline transition-colors"
                   >
-                    8695 Martin Way E, Unit 102
+                    8695 Martin Way E, Unit 103
                     <br />
                     Lacey, WA 98516
                   </a>
@@ -212,10 +212,10 @@ export default function Footer({
             #HERITRI964J2 | IICRC Certified Firm
           </p>
           <div className="flex gap-6 text-[#3F4143]/40 text-[10px] font-black uppercase tracking-widest">
-            <Link href="#" className="hover:text-[#3F4143]">
+            <Link href="/privacy" className="hover:text-[#8DBD42] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-[#3F4143]">
+            <Link href="/terms" className="hover:text-[#8DBD42] transition-colors">
               Terms of Service
             </Link>
           </div>

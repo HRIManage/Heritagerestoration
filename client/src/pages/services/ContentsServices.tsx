@@ -18,6 +18,7 @@ import { Link } from "wouter";
 import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
+import { CONTENTS_SERVICE_SCHEMA, buildBreadcrumbSchema } from "@/seo";
 
 export default function ContentsServices() {
   return (
@@ -37,18 +38,32 @@ export default function ContentsServices() {
           content="Professional contents services with digital inventory tracking and secure climate-controlled storage."
         />
         <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.firewaterstorm.com/services/contents-services"
+        />
+        <meta
+          property="og:image"
+          content="https://www.firewaterstorm.com/photo/recent-project-4.jpg"
+        />
+        <link
+          rel="canonical"
+          href="https://www.firewaterstorm.com/services/contents-services"
+        />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            name: "Heritage Restoration - Contents Services",
-            description:
-              "Professional contents pack-out, cleaning, and storage services",
-            telephone: "+1-360-345-1015",
-            email: "office@firewaterstorm.com",
-            areaServed: "WA",
-            serviceType: "Contents Services",
-          })}
+          {JSON.stringify(CONTENTS_SERVICE_SCHEMA)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(
+            buildBreadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "Services", url: "/services/contents-services" },
+              {
+                name: "Contents Services",
+                url: "/services/contents-services",
+              },
+            ])
+          )}
         </script>
       </Helmet>
 

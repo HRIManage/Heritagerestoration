@@ -1,12 +1,20 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { useLocation } from "wouter";
 import Layout from "@/components/layout/Layout";
 import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 
+// ── Web3Forms ───────────────────────────────────────────────────────────────
+// Free, unlimited, no backend required (works on static Vercel hosting).
+// Get a free access key at https://web3forms.com (enter office@firewaterstorm.com)
+// and paste it below. Submissions are emailed to that address.
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+
 export default function Contact() {
+  const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,7 +22,8 @@ export default function Contact() {
     service: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -27,20 +36,62 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `Intake Inquiry – ${formData.service || "General"} – ${formData.name}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:office@firewaterstorm.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
-      setSubmitted(false);
-    }, 4000);
+    setError("");
+
+    // Honeypot — if filled, silently treat as spam success.
+    const botField = (
+      e.currentTarget.elements.namedItem("botcheck") as HTMLInputElement | null
+    )?.checked;
+    if (botField) return;
+
+    // If no key is configured yet, fall back to mailto so the form still works.
+    if (WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+      const subject = encodeURIComponent(
+        `Intake Inquiry - ${formData.service || "General"} - ${formData.name}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:office@firewaterstorm.com?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    setSending(true);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Intake Inquiry - ${formData.service || "General"} - ${formData.name}`,
+          from_name: "Heritage Restoration Website",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setLocation("/thank-you");
+      } else {
+        setError(
+          "Something went wrong submitting your request. Please call us at (360) 456-1886."
+        );
+      }
+    } catch {
+      setError(
+        "Network error. Please try again or call us directly at (360) 456-1886."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -67,7 +118,7 @@ export default function Contact() {
             address: [
               {
                 "@type": "PostalAddress",
-                streetAddress: "8695 Martin Way E, Unit 102",
+                streetAddress: "8695 Martin Way E, Unit 103",
                 addressLocality: "Lacey",
                 addressRegion: "WA",
                 postalCode: "98516",
@@ -110,14 +161,42 @@ export default function Contact() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-serif mb-6">
                 Connect With Heritage
               </h1>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light">
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-sans font-light">
                 Available 24/7 for emergency dispatch and structural secures.
                 For non-emergencies, submit an intake form below and our office
-                team will follow up within 2 hours.
+                team will follow up within 1 business day.
               </p>
             </FadeIn>
           </Container>
         </section>
+
+        {/* Ticker strip — lime green on contact page */}
+        <div className="relative z-10 bg-[#8DBD42] py-5 overflow-hidden">
+          <style>{`
+            @keyframes contact-ticker {
+              from { transform: translateX(0); }
+              to { transform: translateX(-50%); }
+            }
+            .contact-ticker { animation: contact-ticker 45s linear infinite; }
+          `}</style>
+          <div className="contact-ticker flex whitespace-nowrap w-max">
+            {[...Array(2)].map((_, setIdx) => (
+              <div key={setIdx} className="flex">
+                {[
+                  "Direct Insurance Billing",
+                  "Licensed & Bonded in WA",
+                  "22+ Years Serving Washington",
+                  "Locally Owned & Operated",
+                ].map(item => (
+                  <span key={item} className="flex items-center">
+                    <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#1A311F]">{item}</span>
+                    <span className="text-[#1A311F]/30 text-[10px]">✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Asymmetric Form & Info Section */}
         <Section bg="none">
@@ -127,47 +206,68 @@ export default function Contact() {
               <div className="lg:col-span-5 lg:sticky lg:top-36 space-y-8">
                 {/* Emergency Block */}
                 <FadeIn
-                  className="bg-[#3F4143] text-white p-8 md:p-10 shadow-[0_24px_50px_rgba(0,0,0,0.06)] border-t-4 border-[#8DBD42] rounded-none space-y-6 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out"
+                  className="relative overflow-hidden rounded-none"
                   direction="up"
                 >
-                  <div className="absolute right-[-30px] bottom-[-30px] w-48 h-48 bg-[#8DBD42]/8 rounded-full blur-2xl pointer-events-none" />
+                  {/* Dark green gradient background */}
+                  <div className="bg-[#1A311F] p-8 md:p-10 relative">
+                    {/* Glow accents */}
+                    <div className="absolute right-[-40px] top-[-40px] w-64 h-64 rounded-full bg-[#8DBD42]/12 blur-[80px] pointer-events-none" />
+                    <div className="absolute left-[-20px] bottom-[-20px] w-40 h-40 rounded-full bg-[#8DBD42]/8 blur-[60px] pointer-events-none" />
 
-                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black block">
-                    EMERGENCY DISPATCH
-                  </span>
+                    {/* Overline */}
+                    <div className="relative z-10 flex items-center gap-3 mb-6">
+                      <span className="w-6 h-[2px] bg-[#8DBD42]" />
+                      <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-[13px] font-black">
+                        Emergency Dispatch
+                      </span>
+                    </div>
 
-                  <h3 className="text-2xl font-serif font-bold text-white leading-tight">
-                    24/7 Urgent Hotline
-                  </h3>
+                    {/* Title */}
+                    <div className="relative z-10 mb-8">
+                      <h3 className="text-[32px] md:text-[36px] font-bold leading-tight font-serif" style={{ color: "#FFFFFF" }}>
+                        24/7 Urgent Hotline
+                      </h3>
+                      <p className="text-white text-[17px] mt-2">Available day, night, weekends &amp; holidays</p>
+                    </div>
 
-                  <div className="space-y-4 pt-2">
+                    {/* Phone — hero element */}
                     <a
                       href="tel:+13604561886"
-                      className="flex items-center gap-3 text-xl md:text-2xl font-bold text-[#8DBD42] hover:text-[#9fd546] transition-colors font-sans"
+                      className="relative z-10 flex items-center gap-4 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-6 py-5 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
                     >
-                      <Phone size={24} className="flex-shrink-0" />
-                      <span>+1 (360) 456-1886</span>
+                      <div className="w-10 h-10 rounded-full bg-[#1a1c1e]/15 flex items-center justify-center flex-shrink-0">
+                        <Phone size={20} className="stroke-[2.5]" />
+                      </div>
+                      <div>
+                        <p className="text-[13px] uppercase tracking-[0.18em] font-black opacity-70 mb-0.5">Call Now — Free</p>
+                        <p className="text-[24px] font-black tracking-tight leading-none">+1 (360) 456-1886</p>
+                      </div>
                     </a>
 
-                    <a
-                      href="mailto:office@firewaterstorm.com"
-                      className="flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors font-sans"
-                    >
-                      <Mail
-                        size={16}
-                        className="text-[#8DBD42] flex-shrink-0"
-                      />
-                      <span>office@firewaterstorm.com</span>
-                    </a>
+                    {/* Email + Response time */}
+                    <div className="relative z-10 space-y-4">
+                      <a
+                        href="mailto:office@firewaterstorm.com"
+                        className="flex items-center gap-3 text-[16px] text-white hover:text-[#8DBD42] transition-colors group"
+                      >
+                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#8DBD42]/20 transition-colors">
+                          <Mail size={16} className="text-[#8DBD42]" />
+                        </div>
+                        <span>office@firewaterstorm.com</span>
+                      </a>
 
-                    <div className="flex items-center gap-3 text-sm text-white/80 font-sans">
-                      <Clock
-                        size={16}
-                        className="text-[#8DBD42] flex-shrink-0"
-                      />
-                      <span>Immediate onsite 60-minute response in service area</span>
+                      <div className="flex items-center gap-3 text-[16px] text-white">
+                        <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                          <Clock size={16} className="text-[#8DBD42]" />
+                        </div>
+                        <span>60-min onsite response in service area</span>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Lime green accent bar at bottom */}
+                  <div className="h-1 w-full bg-[#8DBD42]" />
                 </FadeIn>
 
                 {/* Office Locations */}
@@ -182,22 +282,22 @@ export default function Contact() {
                   <div className="space-y-6 font-sans">
                     {/* Lacey */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                      <h4 className="text-sm font-black text-[#8DBD42] uppercase tracking-wider">
                         North Office (Lacey)
                       </h4>
-                      <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
+                      <div className="flex gap-3 items-start text-base text-[#3F4143]/80">
                         <MapPin
                           size={16}
                           className="text-[#8DBD42] mt-0.5 flex-shrink-0"
                         />
                         <div>
                           <a
-                            href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516"
+                            href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-semibold text-[#3F4143] hover:text-[#8DBD42] hover:underline block"
                           >
-                            8695 Martin Way E, Unit 102
+                            8695 Martin Way E, Unit 103
                           </a>
                           <p>Lacey, WA 98516</p>
                         </div>
@@ -206,10 +306,10 @@ export default function Contact() {
 
                     {/* Chehalis */}
                     <div className="space-y-2">
-                      <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                      <h4 className="text-sm font-black text-[#8DBD42] uppercase tracking-wider">
                         South Office (Chehalis)
                       </h4>
-                      <div className="flex gap-3 items-start text-sm text-[#3F4143]/80">
+                      <div className="flex gap-3 items-start text-base text-[#3F4143]/80">
                         <MapPin
                           size={16}
                           className="text-[#8DBD42] mt-0.5 flex-shrink-0"
@@ -252,9 +352,19 @@ export default function Contact() {
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6 font-sans">
-                    {submitted && (
-                      <div className="p-4 bg-[#8DBD42] text-white font-bold text-center rounded-none shadow-sm transition-all duration-300">
-                        Intake Received. We will contact you shortly.
+                    {/* Honeypot anti-spam field (hidden from humans) */}
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      className="hidden"
+                      aria-hidden="true"
+                    />
+
+                    {error && (
+                      <div className="p-4 bg-red-50 border border-red-200 text-red-700 font-semibold text-sm text-center rounded-none">
+                        {error}
                       </div>
                     )}
 
@@ -369,9 +479,11 @@ export default function Contact() {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="bg-[#3F4143] hover:bg-[#252628] text-white font-bold py-4 px-8 uppercase tracking-[0.15em] text-xs transition-colors rounded-none w-full flex items-center justify-center gap-2"
+                      disabled={sending}
+                      className="bg-[#3F4143] hover:bg-[#252628] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 px-8 uppercase tracking-[0.15em] text-xs transition-colors rounded-none w-full flex items-center justify-center gap-2"
                     >
-                      <Send size={14} /> Submit Secured Intake
+                      <Send size={14} />{" "}
+                      {sending ? "Sending..." : "Submit Secured Intake"}
                     </button>
                   </form>
                 </FadeIn>
@@ -379,6 +491,51 @@ export default function Contact() {
             </div>
           </Container>
         </Section>
+
+        {/* Trust badges — bottom of page above footer */}
+        <div className="bg-white border-t border-gray-100">
+          <div className="max-w-[900px] mx-auto px-8 py-14 md:py-16 text-center">
+            <p className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42] mb-10">
+              Why Homeowners Trust Heritage
+            </p>
+            <div className="flex items-center justify-center gap-10 md:gap-20 mb-10">
+              {[
+                {
+                  src: "/photo/emergency-badge-new-2.png",
+                  alt: "24 HR Emergency Response",
+                  title: "24/7 Emergency Response",
+                  desc: "We answer every call — day or night, weekends and holidays.",
+                },
+                {
+                  src: "/photo/iicrc-badge-new-3.png",
+                  alt: "IICRC Certified",
+                  title: "IICRC Certified",
+                  desc: "Industry-leading certification for water, fire, and mold restoration.",
+                },
+                {
+                  src: "/photo/warranty-badge-new-3.png",
+                  alt: "5-Year Warranty",
+                  title: "5-Year Warranty",
+                  desc: "Every repair backed by our written 5-year workmanship guarantee.",
+                },
+              ].map((badge) => (
+                <div key={badge.alt} className="flex flex-col items-center gap-4">
+                  <img
+                    src={badge.src}
+                    alt={badge.alt}
+                    className="h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
+                  />
+                  <p className="text-[13px] font-black text-[#1a1c1e] uppercase tracking-[0.1em] text-center">
+                    {badge.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[13px] text-[#3F4143]/45 max-w-[520px] mx-auto leading-relaxed">
+              Heritage Restoration has served Western Washington since 2004 — locally owned, licensed &amp; bonded, and committed to protecting homeowners through every step of recovery.
+            </p>
+          </div>
+        </div>
       </div>
     </Layout>
   );

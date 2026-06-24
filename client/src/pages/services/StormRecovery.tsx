@@ -12,6 +12,7 @@ import { Link } from "wouter";
 import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
+import { STORM_SERVICE_SCHEMA, buildBreadcrumbSchema } from "@/seo";
 
 export default function StormRecovery() {
   const services = [
@@ -49,6 +50,39 @@ export default function StormRecovery() {
           name="description"
           content="Emergency storm damage recovery and wind damage restoration. Roof tarping, tree removal, and structural repair in Washington."
         />
+        <link
+          rel="canonical"
+          href="https://www.firewaterstorm.com/services/storm-recovery"
+        />
+        <meta
+          property="og:title"
+          content="Storm Damage Recovery | Heritage Restoration"
+        />
+        <meta
+          property="og:description"
+          content="Emergency roof tarping, debris removal, board-ups, and full structural reconstruction after severe Pacific Northwest storms. Available 24/7."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.firewaterstorm.com/services/storm-recovery"
+        />
+        <meta
+          property="og:image"
+          content="https://www.firewaterstorm.com/photo/hero-tarp.jpg"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(STORM_SERVICE_SCHEMA)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(
+            buildBreadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "Services", url: "/services/storm-recovery" },
+              { name: "Storm Recovery", url: "/services/storm-recovery" },
+            ])
+          )}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
@@ -361,7 +395,7 @@ export default function StormRecovery() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13608511407"
+                    href="tel:13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

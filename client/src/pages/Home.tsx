@@ -18,6 +18,9 @@ import {
   HardHat,
   BadgeCheck,
   Clock,
+  Trophy,
+  Shield,
+  Hammer,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
@@ -85,6 +88,38 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   }, [value, suffix, inView]);
 
   return <span ref={ref}>0{suffix}</span>;
+}
+
+function SpinCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-30px" });
+  const [display, setDisplay] = useState("0");
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, value, {
+      duration: 2,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(v) {
+        setDisplay(Math.round(v).toLocaleString());
+      },
+    });
+    return () => controls.stop();
+  }, [inView, value]);
+
+  return (
+    <div ref={ref} className="overflow-hidden" style={{ perspective: "400px" }}>
+      <motion.span
+        key={inView ? "active" : "idle"}
+        initial={{ rotateX: 90, opacity: 0, y: 20 }}
+        animate={inView ? { rotateX: 0, opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        style={{ display: "inline-block", transformOrigin: "50% 100%" }}
+      >
+        {display}{suffix}
+      </motion.span>
+    </div>
+  );
 }
 
 function PhotoDeck() {
@@ -435,228 +470,178 @@ export default function Home() {
 
       <div className="bg-[#FAF9F5]">
         {/* Homepage Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-white pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+        <section className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[120px]">
           <img
             src="/photo/hero-tarp.jpg"
             alt="Heritage Restoration - Tarping damage recovery"
-            className="absolute inset-0 h-full w-full object-cover object-[75%_bottom]"
+            className="absolute inset-0 h-full w-full object-cover object-[80%_bottom]"
           />
-          {/* Strong opaque white on left, clean fade right */}
+          {/* Left column: heavy white fade for text legibility */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.97) 35%, rgba(255,255,255,0.55) 52%, rgba(255,255,255,0.1) 68%, transparent 100%)",
+                "linear-gradient(105deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 28%, rgba(255,255,255,0.80) 44%, rgba(255,255,255,0.25) 60%, transparent 78%)",
             }}
           />
-          {/* Right edge darkening so image doesn't bleed into nothing */}
+          {/* Bottom fade into dark ticker */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to left, rgba(30,32,33,0.45) 0%, transparent 35%)",
+                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(26,49,31,1) 100%)",
             }}
           />
-          {/* Subtle bottom gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60 pointer-events-none" />
-          {/* Mobile-only extra white overlay so text is readable on small screens */}
-          <div className="absolute inset-0 bg-white/55 lg:hidden pointer-events-none" />
+          {/* Mobile-only extra white overlay */}
+          <div className="absolute inset-0 bg-white/60 lg:hidden pointer-events-none" />
 
-          <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 min-h-[calc(100vh-142px)] flex flex-col justify-between pt-8 pb-14 lg:pt-10 lg:pb-20">
-            {/* Main content row */}
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-              {/* LEFT: headline + description + service links + badges */}
-              <div className="max-w-[580px] text-[#3F4143]">
-                <FadeUp triggerImmediately={true} delay={0.05}>
-                  <p
-                    className="inline-flex items-center gap-3 uppercase tracking-[0.18em] text-xs font-extrabold mb-6 text-[#8DBD42]"
-                    style={bodyStyle}
-                  >
-                    <span className="w-6 h-[2px] bg-[#8DBD42]" />
-                    Professional Property Restoration
-                  </p>
-                </FadeUp>
-                <FadeUp triggerImmediately={true} delay={0.15}>
-                  <h1 className="leading-[1.04]" style={headlineStyle}>
-                    <span className="block text-[2.4rem] md:text-[3.2rem] lg:text-[3.8rem] xl:text-[4.4rem] text-[#2a2c2e] font-bold">
-                      Restoring
-                      <br />
-                      Your Home.
-                    </span>
-                    <span className="block text-[2.4rem] md:text-[3.2rem] lg:text-[3.8rem] xl:text-[4.4rem] text-[#8DBD42] font-bold mt-1">
-                      Restoring Your
-                      <br />
-                      Peace of Mind.
-                    </span>
-                  </h1>
-                </FadeUp>
-                <FadeUp triggerImmediately={true} delay={0.32}>
-                  <p
-                    className="mt-7 text-[17px] text-[#2f3133]/80 max-w-[500px] leading-relaxed font-medium"
-                    style={bodyStyle}
-                  >
-                    As dedicated homeowner advocates, we handle the full
-                    complexity of disaster recovery, so you don't have to.
-                    Locally owned and operated since 2004.
-                  </p>
-                </FadeUp>
-                {/* Divider line */}
-                <FadeUp
-                  triggerImmediately={true}
-                  delay={0.46}
-                  className="mt-6 mb-6"
+          {/* Hero content */}
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 py-8 lg:py-10">
+            <div className="max-w-[600px]">
+              <FadeUp triggerImmediately={true} delay={0.05}>
+                <p
+                  className="inline-flex items-center gap-3 uppercase tracking-[0.2em] text-[11px] font-extrabold mb-7 text-[#8DBD42]"
+                  style={bodyStyle}
                 >
-                  <hr className="border-[#3F4143]/15 w-full" />
-                </FadeUp>
-
-                {/* Trust badges inside left column */}
-                <FadeUp triggerImmediately={true} delay={0.65}>
-                  <div className="flex flex-wrap items-center gap-4 md:gap-5">
-                    <div className="flex flex-col items-center text-center group cursor-pointer">
-                      <img
-                        src="/photo/emergency-badge-new-2.png"
-                        alt="Emergency response"
-                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
-                      />
-                      <p
-                        className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"
-                        style={bodyStyle}
-                      >
-                        Emergency Response
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center group cursor-pointer">
-                      <img
-                        src="/photo/iicrc-badge-new-3.png"
-                        alt="IICRC certified"
-                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
-                      />
-                      <p
-                        className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"
-                        style={bodyStyle}
-                      >
-                        IICRC Certified
-                      </p>
-                    </div>
-                    <div className="flex flex-col items-center text-center group cursor-pointer">
-                      <img
-                        src="/photo/warranty-badge-new-3.png"
-                        alt="5 year warranty"
-                        className="h-[5.0rem] md:h-[5.8rem] w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-108 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out"
-                      />
-                      <p
-                        className="mt-2 font-bold uppercase tracking-[0.1em] text-xs text-[#3F4143]/70 group-hover:text-[#8DBD42] transition-colors duration-300"
-                        style={bodyStyle}
-                      >
-                        5 Year Warranty
-                      </p>
-                    </div>
-                  </div>
-                </FadeUp>
-              </div>
-
-              {/* RIGHT: floating office card */}
-              <FadeUp
-                triggerImmediately={true}
-                delay={0.55}
-                className="w-full lg:w-[360px] xl:w-[400px] 2xl:w-[420px] flex-shrink-0 lg:mt-[200px] xl:mt-[260px]"
-              >
-                <div className="bg-[#3F4143] border-t-4 border-t-[#8DBD42] shadow-[0_8px_32px_rgba(0,0,0,0.25)] text-white overflow-hidden rounded-none hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.35)] transition-all duration-500 ease-out group/office">
-                  <div className="px-6 pt-6 pb-2">
-                    <span
-                      className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-black"
-                      style={bodyStyle}
-                    >
-                      Local Office Locations
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-2 px-6 pb-6 pt-2">
-                    {/* North */}
-                    <div className="flex flex-col gap-3 pr-4">
-                      <div>
-                        <h3
-                          className="text-[16px] font-bold text-white"
-                          style={headlineStyle}
-                        >
-                          North Office
-                        </h3>
-                      </div>
-                      <p
-                        className="text-white/80 text-[13px] leading-relaxed min-h-[44px]"
-                        style={bodyStyle}
-                      >
-                        <MapPin
-                          size={11}
-                          className="inline mr-1 text-[#8DBD42] align-text-top mt-0.5"
-                        />
-                        <a
-                          href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+102+Lacey+WA+98516"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:underline"
-                        >
-                          8695 Martin Way E<br />
-                          Unit 102, Lacey WA 98516
-                        </a>
-                      </p>
-                      <a
-                        href="tel:+13603451015"
-                        className="flex items-center justify-center gap-1.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#2b2d2f] px-3 py-2.5 rounded-none uppercase tracking-wider text-[11px] font-black transition-colors w-full"
-                        style={bodyStyle}
-                      >
-                        <Phone size={10} className="stroke-[3]" /> Call North
-                      </a>
-                    </div>
-                    {/* South */}
-                    <div className="flex flex-col gap-3 pl-4 border-l border-white/10">
-                      <div>
-                        <h3
-                          className="text-[16px] font-bold text-white"
-                          style={headlineStyle}
-                        >
-                          South Office
-                        </h3>
-                      </div>
-                      <p
-                        className="text-white/80 text-[13px] leading-relaxed min-h-[44px]"
-                        style={bodyStyle}
-                      >
-                        <MapPin
-                          size={11}
-                          className="inline mr-1 text-[#8DBD42] align-text-top mt-0.5"
-                        />
-                        <a
-                          href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:underline"
-                        >
-                          1581 N. National Ave
-                          <br />
-                          Chehalis, WA 98532
-                        </a>
-                      </p>
-                      <a
-                        href="tel:+13603451015"
-                        className="flex items-center justify-center gap-1.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#2b2d2f] px-3 py-2.5 rounded-none uppercase tracking-wider text-[11px] font-black transition-colors w-full"
-                        style={bodyStyle}
-                      >
-                        <Phone size={10} className="stroke-[3]" /> Call South
-                      </a>
-                    </div>
-                  </div>
-                  <div className="bg-[#2e3032] px-6 py-3.5 flex items-center gap-2">
-                    <Clock size={11} className="text-[#8DBD42]" />
-                    <span
-                      className="text-[#8DBD42] uppercase tracking-[0.18em] text-[11px] font-extrabold"
-                      style={bodyStyle}
-                    >
-                      24 Hours a Day · 7 Days a Week
-                    </span>
-                  </div>
+                  <span className="w-8 h-[2px] bg-[#8DBD42]" />
+                  Professional Property Restoration
+                </p>
+              </FadeUp>
+              <FadeUp triggerImmediately={true} delay={0.15}>
+                <h1 className="leading-[1.03]" style={headlineStyle}>
+                  <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
+                    Restoring
+                    <br />
+                    Your Home.
+                  </span>
+                  <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#8DBD42] font-bold mt-1">
+                    Restoring Your
+                    <br />
+                    Peace of Mind.
+                  </span>
+                </h1>
+              </FadeUp>
+              <FadeUp triggerImmediately={true} delay={0.28}>
+                <p
+                  className="mt-6 text-[17px] text-[#2f3133]/75 max-w-[480px] leading-[1.7]"
+                  style={bodyStyle}
+                >
+                  As dedicated homeowner advocates, we handle the full complexity
+                  of disaster recovery, so you don't have to. Locally owned and
+                  operated since 2004.
+                </p>
+              </FadeUp>
+              {/* CTAs */}
+              <FadeUp triggerImmediately={true} delay={0.38}>
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <a
+                    href="tel:+13603451015"
+                    className="inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
+                    style={bodyStyle}
+                  >
+                    <Phone size={14} className="stroke-[3]" />
+                    (360) 345-1015
+                  </a>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center gap-2 border-2 border-[#2a2c2e]/30 hover:border-[#2a2c2e] text-[#2a2c2e] px-8 py-[14px] uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
+                    style={bodyStyle}
+                  >
+                    Free Assessment
+                    <span className="text-[#8DBD42] text-base leading-none ml-1 transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </a>
                 </div>
               </FadeUp>
             </div>
+          </div>
+
+          {/* Scrolling ticker strip */}
+          <div className="relative z-10 bg-[#1A311F] py-8 overflow-hidden">
+            <style>{`
+              @keyframes home-ticker {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+              }
+              .home-ticker { animation: home-ticker 45s linear infinite; }
+            `}</style>
+            <div className="home-ticker flex whitespace-nowrap w-max">
+              {[...Array(2)].map((_, setIdx) => (
+                <div key={setIdx} className="flex">
+                  {[
+                    "Direct Insurance Billing",
+                    "Licensed & Bonded in WA",
+                    "22+ Years Serving Washington",
+                    "Locally Owned & Operated",
+                  ].map(item => (
+                    <span key={item} className="flex items-center">
+                      <span className="px-12 font-semibold text-[26px] uppercase tracking-[0.22em] text-[#8DBD42]">{item}</span>
+                      <span className="text-[#8DBD42]/25 text-[18px]">✦</span>
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Office Locations + Trust Badges — unified section */}
+        <section className="bg-white border-t border-gray-100">
+          <div className="max-w-[860px] mx-auto px-8 pt-14 pb-0 md:pt-18">
+            {/* Label */}
+            <FadeUp>
+              <p className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-black text-center mb-10" style={bodyStyle}>
+                Local Office Locations
+              </p>
+            </FadeUp>
+
+            {/* Two offices */}
+            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#3F4143]/10">
+              <FadeUp delay={0.05} className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center">
+                <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>North Office</h3>
+                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
+                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
+                  <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
+                    8695 Martin Way E, Unit 103<br />Lacey, WA 98516
+                  </a>
+                </p>
+                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
+                  <Phone size={13} className="stroke-[3]" /> Call North Office
+                </a>
+              </FadeUp>
+              <FadeUp delay={0.1} className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center">
+                <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>South Office</h3>
+                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
+                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
+                  <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
+                    1581 N. National Ave<br />Chehalis, WA 98532
+                  </a>
+                </p>
+                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
+                  <Phone size={13} className="stroke-[3]" /> Call South Office
+                </a>
+              </FadeUp>
+            </div>
+
+            {/* 24hr bar + badges combined */}
+            <FadeUp delay={0.15}>
+              <div className="mt-10 border-t border-[#3F4143]/10 pt-8 pb-10 flex flex-col items-center gap-8">
+                <div className="flex items-center gap-2">
+                  <Clock size={15} className="text-[#8DBD42]" />
+                  <span className="text-[#3F4143]/60 uppercase tracking-[0.18em] text-[13px] font-extrabold" style={bodyStyle}>
+                    24 Hours a Day · 7 Days a Week · 365 Days a Year
+                  </span>
+                </div>
+                <div className="flex items-center justify-center gap-12 md:gap-20">
+                  {[
+                    { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response" },
+                    { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified" },
+                    { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty" },
+                  ].map((badge) => (
+                    <img key={badge.alt} src={badge.src} alt={badge.alt} className="h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]" />
+                  ))}
+                </div>
+              </div>
+            </FadeUp>
           </div>
         </section>
 
@@ -666,7 +651,7 @@ export default function Home() {
           id="services"
         >
           <div className="max-w-[1200px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8 md:mb-12">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8 md:mb-12">
               <FadeUp>
                 <p
                   className="text-[#8DBD42] uppercase tracking-[0.15em] text-sm font-extrabold"
@@ -689,13 +674,6 @@ export default function Home() {
                   matters.
                 </p>
               </FadeUp>
-              <Link
-                href="/services/fire-restoration"
-                className="border-b-2 border-[#3F4143] pb-1 uppercase tracking-[0.14em] text-sm font-bold hover:text-[#8DBD42] hover:border-[#8DBD42] transition-colors"
-                style={bodyStyle}
-              >
-                All Services
-              </Link>
             </div>
 
             {/* Clean minimalist divider */}
@@ -711,7 +689,7 @@ export default function Home() {
                 >
                   <Link href={service.href}>
                     <div
-                      className={`relative h-full p-6 md:p-8 bg-transparent border border-transparent transition-all duration-300 flex flex-col justify-between cursor-pointer rounded-none overflow-hidden group min-h-[220px] md:min-h-[300px] hover:bg-white hover:ring-4 ${service.colorClass}`}
+                      className={`relative h-full p-6 md:p-8 bg-transparent border border-transparent transition-all duration-300 flex flex-col justify-between cursor-pointer rounded-none overflow-hidden group min-h-[220px] md:min-h-[300px] hover:bg-white hover:ring-4 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] ${service.colorClass}`}
                     >
                       {/* Hover expanding top accent line */}
                       <div
@@ -774,7 +752,7 @@ export default function Home() {
         >
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start relative z-10">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start relative z-10">
             {/* LEFT: Photo deck + quote below it */}
             <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start gap-10 mt-8 lg:mt-8">
               <PhotoDeck />
@@ -805,13 +783,13 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
                 <a
                   href="tel:+13603451015"
-                  className="bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 inline-flex items-center gap-2 rounded-none shadow-md hover:shadow-lg hover:scale-[1.02]"
+                  className="bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 inline-flex items-center gap-2 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
                 >
                   <Phone size={12} /> Start Your Recovery
                 </a>
                 <a
                   href="mailto:office@firewaterstorm.com"
-                  className="border-2 border-[#3F4143] hover:bg-[#3F4143] hover:text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 text-[#3F4143] rounded-none hover:scale-[1.02] shadow-sm"
+                  className="border-2 border-[#3F4143]/40 hover:border-[#3F4143] text-[#3F4143] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
                 >
                   Email Us
                 </a>
@@ -1339,74 +1317,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bottom Statistics Banner (Single Row Column Layout) */}
-        <section className="py-12 md:py-20 border-t-2 border-[#8DBD42] relative overflow-hidden bg-[#1E2021] text-white">
-          {/* Soft ambient green radial glow for depth */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(141,189,66,0.08)_0%,transparent_60%)] pointer-events-none" />
-
-          <div className="max-w-[1100px] mx-auto px-6 relative z-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center text-white relative">
-              {[
-                {
-                  val: 20,
-                  suffix: "+",
-                  label: "Years Service",
-                },
-                {
-                  val: 2100,
-                  suffix: "+",
-                  label: "Projects Completed",
-                },
-                {
-                  val: 60,
-                  suffix: " mins",
-                  label: "Response Time",
-                },
-                {
-                  val: 100,
-                  suffix: "%",
-                  label: "Locally Owned",
-                },
-              ].map((stat, idx) => (
-                <FadeUp
-                  key={stat.label}
-                  delay={idx * 0.05}
-                  className="relative flex flex-col justify-center py-4"
-                >
-                  {/* Divider line for desktop */}
-                  {idx > 0 && (
-                    <div className="hidden md:block absolute left-0 top-1/4 bottom-1/4 w-[1px] bg-white/10" />
-                  )}
-
-                  <p
-                    className="text-4xl lg:text-5xl font-bold text-[#8DBD42]"
-                    style={headlineStyle}
-                  >
-                    <Counter value={stat.val} suffix={stat.suffix} />
-                  </p>
-                  <p
-                    className="uppercase tracking-[0.15em] text-sm text-white/70 mt-2 font-bold"
-                    style={bodyStyle}
-                  >
-                    {stat.label}
-                  </p>
-                </FadeUp>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <div className="fixed bottom-7 right-7 z-50">
-          <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-30 pointer-events-none rounded-none" />
-          <a
-            href="tel:+13603451015"
-            className="relative bg-[#E32B2B] text-white inline-flex items-center gap-2 px-5 py-4 uppercase tracking-[0.12em] text-sm font-bold shadow-2xl hover:scale-105 transition-transform"
-            style={bodyStyle}
-          >
-            <Phone size={16} />
-            24/7 Dispatch
-          </a>
-        </div>
 
         <section className="sr-only" id="resources">
           <div>

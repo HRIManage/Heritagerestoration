@@ -32,7 +32,7 @@ export const BUSINESS_SCHEMA = {
     {
       "@type": "PostalAddress",
       "@id": `${BASE_URL}/#address-lacey`,
-      streetAddress: "8695 Martin Way E, Unit 102",
+      streetAddress: "8695 Martin Way E, Unit 103",
       addressLocality: "Lacey",
       addressRegion: "WA",
       postalCode: "98516",
@@ -412,7 +412,7 @@ export const FAQ_SCHEMA_ITEMS = [
   {
     question: "How long have you been serving local Washington communities?",
     answer:
-      "We have been proudly serving local property owners, landlords, and commercial businesses since 2004 — over 20 years of local history restoring thousands of properties.",
+      "We have been proudly serving local property owners, landlords, and commercial businesses since 2004 — over 22 years of local history restoring thousands of properties.",
   },
   {
     question:

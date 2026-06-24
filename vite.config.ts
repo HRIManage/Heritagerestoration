@@ -209,17 +209,21 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [
-  react(),
-  tailwindcss(),
+// Manus editor/preview instrumentation is dev-only. Excluding it from the
+// production build keeps the deployed HTML small and free of editor tooling.
+const devOnlyPlugins = [
   jsxLocPlugin(),
   vitePluginManusRuntime(),
   vitePluginManusDebugCollector(),
   vitePluginStorageProxy(),
 ];
 
-export default defineConfig({
-  plugins,
+export default defineConfig(({ command }) => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(command === "serve" ? devOnlyPlugins : []),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -251,4 +255,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
+import { FIRE_SERVICE_SCHEMA, buildBreadcrumbSchema } from "@/seo";
 
 export default function FireRestoration() {
   const services = [
@@ -36,6 +37,39 @@ export default function FireRestoration() {
           name="description"
           content="Professional 24/7 fire damage restoration, soot cleaning, and smoke odor removal services in Washington State. Direct insurance coordination."
         />
+        <link
+          rel="canonical"
+          href="https://www.firewaterstorm.com/services/fire-restoration"
+        />
+        <meta
+          property="og:title"
+          content="Fire Damage Restoration | Heritage Restoration"
+        />
+        <meta
+          property="og:description"
+          content="Professional 24/7 fire damage restoration, soot cleaning, and smoke odor removal across Western Washington. IICRC certified, direct insurance billing."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.firewaterstorm.com/services/fire-restoration"
+        />
+        <meta
+          property="og:image"
+          content="https://www.firewaterstorm.com/photo/Monnett Fire After.jpg"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(FIRE_SERVICE_SCHEMA)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(
+            buildBreadcrumbSchema([
+              { name: "Home", url: "/" },
+              { name: "Services", url: "/services/fire-restoration" },
+              { name: "Fire Restoration", url: "/services/fire-restoration" },
+            ])
+          )}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
@@ -274,7 +308,7 @@ export default function FireRestoration() {
                       },
                       {
                         label: "Industry-Leading Warranty Activation",
-                        text: "Your project transitions to our elite 5-Year Workmanship Warranty, guaranteeing the long-term integrity of our construction.",
+                        text: "Your project transitions to our elite 5-Year Warranty, guaranteeing the long-term integrity of our construction.",
                       },
                     ],
                   },
@@ -441,7 +475,7 @@ export default function FireRestoration() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13608511407"
+                    href="tel:13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now
