@@ -786,7 +786,7 @@ export default function LocationPage() {
                   Serving {city.name} and the<br className="hidden sm:block" /> Greater {city.county} Area
                 </h2>
                 <p className="text-[#3F4143]/65 font-sans text-[15px] leading-relaxed mb-8 max-w-md">
-                  Heritage covers the full I-5 corridor through Western Washington — from Lewis County north into south King County. Every crew dispatched from our local Lacey headquarters.
+                  Heritage covers the I-5 corridor through Western Washington — from Lewis County north through Pierce County. Every crew dispatched from our local Lacey headquarters.
                 </p>
 
                 {/* Big counter */}

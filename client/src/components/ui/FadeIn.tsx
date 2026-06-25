@@ -25,15 +25,15 @@ export default function FadeIn({
   const getDirectionOffset = () => {
     switch (direction) {
       case "up":
-        return { y: 48, scale: 0.97 };
+        return { y: 34, scale: 0.985 };
       case "down":
-        return { y: -48, scale: 0.97 };
+        return { y: -34, scale: 0.985 };
       case "left":
-        return { x: 48, scale: 0.97 };
+        return { x: 34, scale: 0.985 };
       case "right":
-        return { x: -48, scale: 0.97 };
+        return { x: -34, scale: 0.985 };
       default:
-        return { scale: 0.98 };
+        return { scale: 0.992 };
     }
   };
 
@@ -42,7 +42,7 @@ export default function FadeIn({
       ref={ref}
       initial={{ opacity: 0, ...getDirectionOffset() }}
       animate={shouldAnimate ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.95, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
       style={style}
     >

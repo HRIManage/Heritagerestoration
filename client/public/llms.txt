@@ -13,7 +13,7 @@ Heritage Restoration Inc. is a full-service property restoration contractor serv
 - **Warranty:** 5-Year Workmanship Warranty
 
 ## Office Locations
-- **North Office:** 8695 Martin Way E, Unit 103, Lacey, WA 98516 (serving Lacey, Olympia, Tumwater, Tacoma, Federal Way)
+- **North Office:** 8695 Martin Way E, Unit 103, Lacey, WA 98516 (serving Lacey, Olympia, Tumwater, Tacoma, Puyallup)
 - **South Office:** 1581 N. National Ave, Chehalis, WA 98532 (serving Chehalis, Centralia, Lewis County)
 
 ## Services
@@ -31,7 +31,7 @@ Emergency roof tarping, tree and debris removal, window and door board-ups, and 
 Professional pack-out, digital inventory tracking, specialized cleaning, and climate-controlled secure storage for personal belongings during home reconstruction.
 
 ## Service Areas
-Heritage Restoration serves cities along the I-5 corridor across Western Washington, from Lewis County north into south King County. Each city has a dedicated service page at /service-area/{city}-wa. Full index: [Service Areas](/service-areas).
+Heritage Restoration serves cities along the I-5 corridor across Western Washington, from Lewis County north through Pierce County. Each city has a dedicated service page at /service-area/{city}-wa. Full index: [Service Areas](/service-areas).
 
 - [Olympia, WA](/service-area/olympia-wa) — Thurston County (state capital)
 - [Lacey, WA](/service-area/lacey-wa) — Thurston County (North office HQ)
@@ -40,7 +40,6 @@ Heritage Restoration serves cities along the I-5 corridor across Western Washing
 - [Lakewood, WA](/service-area/lakewood-wa) — Pierce County (JBLM area)
 - [Tacoma, WA](/service-area/tacoma-wa) — Pierce County
 - [Puyallup, WA](/service-area/puyallup-wa) — Pierce County
-- [Federal Way, WA](/service-area/federal-way-wa) — King County
 - [Centralia, WA](/service-area/centralia-wa) — Lewis County
 - [Chehalis, WA](/service-area/chehalis-wa) — Lewis County (South office)
 

@@ -1,5 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, animate, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useInView,
+  animate,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import {
   ArrowRight,
   Phone,
@@ -26,6 +33,10 @@ import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
 import { buildBreadcrumbSchema } from "@/seo";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HERO_IMAGE = "/photo/hero-new.jpg";
 const ABOUT_IMAGE = "/photo/who-we-are.jpg";
@@ -39,6 +50,38 @@ const DECK_KITCHEN = "/photo/Before-After-Kitchen.jpg";
 const DECK_STAIRS = "/photo/Before-After-staircase.jpg";
 const BEFORE_IMAGE = "/photo/Monnett Fire Before.jpg";
 const AFTER_IMAGE = "/photo/Monnett Fire After.jpg";
+
+type DisplayReview = {
+  name: string;
+  role: string;
+  quote: string;
+  rating?: number;
+  profilePhotoUrl?: string;
+};
+
+const fallbackTestimonials: DisplayReview[] = [
+  {
+    name: "D. Butler",
+    role: "Homeowner Restoration",
+    quote:
+      "From the start, you worked to make the process as easy and painless as possible. The restoration turned out much nicer than expected.",
+    rating: 5,
+  },
+  {
+    name: "Linda H.",
+    role: "Master Bath Fire Recovery",
+    quote:
+      "Thank you again for everything during a very stressful time. Their work was first rate and I would enthusiastically recommend Heritage.",
+    rating: 5,
+  },
+  {
+    name: "Skip & Alpha Beard",
+    role: "Dupont, WA",
+    quote:
+      "Heritage was on scene within 45 minutes. The end result was beautiful and better than before the fire. Professional and honest team.",
+    rating: 5,
+  },
+];
 
 import FadeIn from "@/components/ui/FadeIn";
 
@@ -122,6 +165,33 @@ function SpinCounter({ value, suffix = "" }: { value: number; suffix?: string })
   );
 }
 
+function Parallax({
+  children,
+  amount = 30,
+  className = "",
+}: {
+  children: React.ReactNode;
+  amount?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? [0, 0] : [amount, -amount]
+  );
+  return (
+    <motion.div ref={ref} style={{ y }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
 function PhotoDeck() {
   const images = [
     "/photo/contents-gallery-5.jpg",
@@ -194,7 +264,7 @@ function PhotoDeck() {
             whileHover={
               stackPos === 0 ? { scale: 1.02, rotate: rotate + 1 } : {}
             }
-            transition={{ type: "spring", stiffness: 220, damping: 20 }}
+            transition={{ type: "spring", stiffness: 120, damping: 24, mass: 0.9 }}
             className="absolute inset-0 rounded-none overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.08)] border border-[#3F4143]/8 bg-white p-3 md:p-4 flex items-center justify-center"
           >
             <img
@@ -214,19 +284,134 @@ function PhotoDeck() {
 
 export default function Home() {
   const [sliderPercent, setSliderPercent] = useState(50);
+  const [activeStep, setActiveStep] = useState(0);
+  const [reviews, setReviews] = useState<DisplayReview[]>(fallbackTestimonials);
+  const pageRef = useRef<HTMLDivElement | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
-  const [pathD, setPathD] = useState("");
-  const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(
-    null
-  );
-  const [endPoint, setEndPoint] = useState<{ x: number; y: number } | null>(
-    null
-  );
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const isSectionInView = useInView(containerRef, {
-    once: true,
-    margin: "-100px",
-  });
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadReviews() {
+      try {
+        const response = await fetch("/api/google-reviews", {
+          signal: controller.signal,
+        });
+        if (!response.ok) return;
+
+        const payload = (await response.json()) as {
+          reviews?: Array<{
+            name?: string;
+            quote?: string;
+            rating?: number;
+            relativeTime?: string;
+            profilePhotoUrl?: string;
+          }>;
+        };
+
+        const googleReviews = (payload.reviews || [])
+          .filter(review => review.quote)
+          .slice(0, 3)
+          .map(review => ({
+            name: review.name || "Google reviewer",
+            role: review.relativeTime
+              ? `Verified Google Review · ${review.relativeTime}`
+              : "Verified Google Review",
+            quote: review.quote || "",
+            rating: review.rating || 5,
+            profilePhotoUrl: review.profilePhotoUrl,
+          }));
+
+        if (googleReviews.length > 0) {
+          setReviews(googleReviews);
+        }
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.warn("Using fallback testimonials.", error);
+        }
+      }
+    }
+
+    loadReviews();
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || !heroRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      timeline
+        .fromTo(
+          "[data-gsap-hero-image]",
+          { scale: 1.08, xPercent: 1.5 },
+          { scale: 1, xPercent: 0, duration: 4.4, ease: "power2.out" }
+        )
+        .fromTo(
+          "[data-gsap-hero-item]",
+          { autoAlpha: 0, y: 28 },
+          { autoAlpha: 1, y: 0, duration: 1.35, stagger: 0.18 },
+          0.18
+        )
+        .fromTo(
+          "[data-gsap-hero-button]",
+          { autoAlpha: 0, y: 22, scale: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.16 },
+          0.9
+        )
+        .fromTo(
+          "[data-gsap-explore]",
+          { autoAlpha: 0, y: 16 },
+          { autoAlpha: 1, y: 0, duration: 1.15 },
+          1.35
+        );
+
+      gsap.utils.toArray<HTMLElement>("[data-gsap-section]").forEach(section => {
+        const items = section.querySelectorAll("[data-gsap-reveal]");
+
+        gsap.fromTo(
+          section,
+          { autoAlpha: 0.92, y: 34 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 78%",
+              once: true,
+            },
+          }
+        );
+
+        if (items.length) {
+          gsap.fromTo(
+            items,
+            { autoAlpha: 0, y: 26 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 1,
+              stagger: 0.12,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 72%",
+                once: true,
+              },
+            }
+          );
+        }
+      });
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, [reduceMotion]);
+
 
   const services = [
     {
@@ -298,120 +483,129 @@ export default function Home() {
   const process = [
     {
       number: "01",
-      title: "Day of Loss",
-      description:
-        "Contact your insurance company and open a claim. We will board up and secure your property as needed.",
-      position: "top",
-      icon: <Flame size={24} />,
+      title: "Immediate Emergency Response (Day of Loss)",
+      icon: <Flame size={20} />,
+      items: [
+        {
+          label: "Claim Initialization",
+          text: "We guide you through the critical first steps of contacting your insurance carrier and properly opening your property claim.",
+        },
+        {
+          label: "Emergency Asset Stabilization",
+          text: "Our team immediately secures the property (tarping, board-ups, and structural stabilization) to prevent further environmental or physical damage.",
+        },
+      ],
     },
     {
       number: "02",
-      title: "Testing",
-      description:
-        "We can provide testing for asbestos, lead and other hazardous materials if warranted.",
-      position: "bottom",
-      icon: <FlaskConical size={24} />,
+      title: "Advanced Forensic Documentation",
+      icon: <Layers size={20} />,
+      items: [
+        {
+          label: "Comprehensive 3D Site Mapping",
+          text: "We execute a complete photographic documentation and high-definition 3D virtual tour of the unaffected and damaged areas to create an indisputable record for your adjuster.",
+        },
+        {
+          label: "Environmental Hazard Testing",
+          text: "Certified testing for asbestos and lead is immediately performed to ensure all hazardous materials are identified prior to disturbing any structures.",
+        },
+      ],
     },
     {
       number: "03",
-      title: "3D Modeling",
-      description:
-        "Our all-in-one platform transforms real-life spaces into immersive digital twin models.",
-      position: "top",
-      icon: <Layers size={24} />,
+      title: "Asset Preservation & Sentimental Salvage",
+      icon: <ShieldCheck size={20} />,
+      items: [
+        {
+          label: "Sentimental Item Recovery",
+          text: "We meticulously locate and extract irreplaceable personal and family heirlooms.",
+        },
+        {
+          label: "Secure Document Retrieval",
+          text: "Critical legal, financial, and business documents are carefully recovered and secured.",
+        },
+        {
+          label: "Emergency Textile Cleaning",
+          text: "Essential clothing and textile items are immediately triaged and sent for specialized restoration cleaning.",
+        },
+      ],
     },
     {
       number: "04",
-      title: "Estimate",
-      description:
-        "We will write a scope of repairs and submit an estimate to your insurance provider.",
-      position: "bottom",
-      icon: <Calculator size={24} />,
+      title: "Scope Alignment & Regulatory Coordination",
+      icon: <Calculator size={20} />,
+      items: [
+        {
+          label: "Joint Preliminary Estimation",
+          text: "We write a comprehensive scope of repairs and build a preliminary estimate directly alongside your insurance adjuster using industry-standard platforms.",
+        },
+        {
+          label: "Jurisdictional Navigation & Fire Walk",
+          text: "We initiate the municipal permit process and conduct an official \"Fire Walk\" on-site with the local Building Official to establish baseline code requirements.",
+        },
+      ],
     },
     {
       number: "05",
-      title: "Contract",
-      description:
-        "Once an undisputed estimate is approved by your insurance provider a contract is signed and restoration begins. Start dates may vary.",
-      position: "top",
-      icon: <ClipboardCheck size={24} />,
+      title: "Site Clearance & Content Auditing",
+      icon: <HardHat size={20} />,
+      items: [
+        {
+          label: "Strategic Debris Removal",
+          text: "Safe, efficient extraction of non-salvageable structural materials and fire debris from the premises.",
+        },
+        {
+          label: "Itemized Content Chain-of-Custody",
+          text: "Every single item on the property is documented, cataloged, and classified as salvageable or non-salvageable for your contents claim.",
+        },
+      ],
     },
     {
       number: "06",
-      title: "Project Manager",
-      description:
-        "Once the contract is signed a project manager is assigned and will meet with you to discuss scheduling, repairs and materials to be used.",
-      position: "bottom",
-      icon: <HardHat size={24} />,
+      title: "Project Initiation & Design Selection",
+      icon: <Clock size={20} />,
+      items: [
+        {
+          label: "Repair Process Activation",
+          text: "Transitioning the project from the mitigation phase into active structural reconstruction.",
+        },
+        {
+          label: "Alignment Meeting",
+          text: "A formal job site alignment conference between the Homeowner, Property Manager, and your dedicated Project Manager to establish timelines and expectations.",
+        },
+        {
+          label: "Material Selection & Customization",
+          text: "The design phase begins. Clients choose finishes, cabinetry, and fixtures, allowing an opportunity to integrate desired modern upgrades or layout changes.",
+        },
+      ],
     },
     {
       number: "07",
-      title: "QA",
-      description:
-        "Our quality assurance team will inspect the quality of work at key times throughout construction.",
-      position: "top",
-      icon: <BadgeCheck size={24} />,
+      title: "Precision Reconstruction",
+      icon: <Hammer size={20} />,
+      items: [
+        {
+          label: "Structural Rebuild",
+          text: "Execution of the approved scope of work under strict construction standards, featuring recurring milestone meetings with clients to review progress, framing, mechanicals, and finishes.",
+        },
+      ],
     },
     {
       number: "08",
-      title: "Completion of Project",
-      description:
-        "Once the restoration of your home is completed and you are happy and satisfied with our work, a signed certificate of completion will be provided and your stored contents will be returned.",
-      position: "bottom",
-      icon: <House size={24} />,
+      title: "Project Handover & Warranty Execution",
+      icon: <House size={20} />,
+      items: [
+        {
+          label: "Closeout & Content Return",
+          text: "Upon final inspection and completion of the work, a formal Certificate of Completion is executed, and your securely stored, restored contents are safely returned to the property.",
+        },
+        {
+          label: "Industry-Leading Warranty Activation",
+          text: "Your project transitions to our elite 5-Year Warranty, guaranteeing the long-term integrity of our construction.",
+        },
+      ],
     },
   ];
-
-  useEffect(() => {
-    const updatePath = () => {
-      if (!containerRef.current) return;
-      const nodes = containerRef.current.querySelectorAll(".journey-node");
-      if (nodes.length === 0) return;
-
-      const points: { x: number; y: number }[] = [];
-      const containerRect = containerRef.current.getBoundingClientRect();
-
-      nodes.forEach(node => {
-        const rect = node.getBoundingClientRect();
-        const x = rect.left - containerRect.left + rect.width / 2;
-        const y = rect.top - containerRect.top + rect.height / 2;
-        points.push({ x, y });
-      });
-
-      if (points.length < 2) return;
-
-      const startX = points[0].x;
-      const startY = points[0].y - 35;
-      setStartPoint({ x: startX, y: startY });
-
-      const endX = points[points.length - 1].x;
-      const endY = points[points.length - 1].y + 35;
-      setEndPoint({ x: endX, y: endY });
-
-      let d = `M ${startX} ${startY}`;
-      d += ` L ${points[0].x} ${points[0].y}`;
-
-      for (let i = 0; i < points.length - 1; i++) {
-        const p0 = points[i];
-        const p1 = points[i + 1];
-        const cpY1 = p0.y + (p1.y - p0.y) / 2;
-        const cpY2 = p1.y - (p1.y - p0.y) / 2;
-        d += ` C ${p0.x} ${cpY1}, ${p1.x} ${cpY2}, ${p1.x} ${p1.y}`;
-      }
-
-      d += ` L ${endX} ${endY}`;
-      setPathD(d);
-    };
-
-    updatePath();
-    window.addEventListener("resize", updatePath);
-    const timer = setTimeout(updatePath, 350);
-
-    return () => {
-      window.removeEventListener("resize", updatePath);
-      clearTimeout(timer);
-    };
-  }, []);
 
   const updateSlider = (clientX: number) => {
     if (!sliderRef.current) return;
@@ -433,7 +627,7 @@ export default function Home() {
         </title>
         <meta
           name="description"
-          content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Federal Way &amp; more."
+          content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Puyallup &amp; more."
         />
         <meta
           name="keywords"
@@ -468,10 +662,15 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <div className="bg-[#FAF9F5]">
+      <div ref={pageRef} className="bg-[#FAF9F5]">
         {/* Homepage Hero */}
-        <section className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[120px]">
+        <section
+          id="home-hero"
+          ref={heroRef}
+          className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[120px]"
+        >
           <img
+            data-gsap-hero-image
             src="/photo/hero-tarp.jpg"
             alt="Heritage Restoration - Tarping damage recovery"
             className="absolute inset-0 h-full w-full object-cover object-[80%_bottom]"
@@ -492,14 +691,43 @@ export default function Home() {
                 "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(26,49,31,1) 100%)",
             }}
           />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at 10% 88%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.82) 20%, rgba(255,255,255,0.38) 42%, transparent 68%)",
+            }}
+          />
           {/* Mobile-only extra white overlay */}
           <div className="absolute inset-0 bg-white/60 lg:hidden pointer-events-none" />
 
+          <motion.a
+            data-gsap-explore
+            href="#services"
+            className="hidden lg:flex absolute right-8 bottom-[108px] z-20 flex-col items-center gap-4 text-[#2F3335]/65 hover:text-[#8DBD42] transition-colors duration-500"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span
+              className="text-[11px] font-black uppercase tracking-[0.26em] [writing-mode:vertical-rl]"
+              style={bodyStyle}
+            >
+              Explore
+            </span>
+            <motion.span
+              className="h-16 w-px bg-current origin-top"
+              animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.35, 0.9, 0.35] }}
+              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.a>
+
           {/* Hero content */}
-          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 py-8 lg:py-10">
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-0 py-8 lg:py-10">
             <div className="max-w-[600px]">
               <FadeUp triggerImmediately={true} delay={0.05}>
                 <p
+                  data-gsap-hero-item
                   className="inline-flex items-center gap-3 uppercase tracking-[0.2em] text-[11px] font-extrabold mb-7 text-[#8DBD42]"
                   style={bodyStyle}
                 >
@@ -508,7 +736,7 @@ export default function Home() {
                 </p>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
-                <h1 className="leading-[1.03]" style={headlineStyle}>
+                <h1 data-gsap-hero-item className="leading-[1.03]" style={headlineStyle}>
                   <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
                     Restoring
                     <br />
@@ -523,6 +751,7 @@ export default function Home() {
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.28}>
                 <p
+                  data-gsap-hero-item
                   className="mt-6 text-[17px] text-[#2f3133]/75 max-w-[480px] leading-[1.7]"
                   style={bodyStyle}
                 >
@@ -533,24 +762,48 @@ export default function Home() {
               </FadeUp>
               {/* CTAs */}
               <FadeUp triggerImmediately={true} delay={0.38}>
-                <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <a
+                <motion.div
+                  className="mt-9 flex flex-wrap items-center gap-4"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.18, delayChildren: 0.16 } },
+                  }}
+                >
+                  <motion.a
+                    data-gsap-hero-button
                     href="tel:+13603451015"
                     className="inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
                     style={bodyStyle}
+                    variants={{
+                      hidden: { opacity: 0, y: 18, scale: 0.92 },
+                      visible: { opacity: 1, y: 0, scale: 1 },
+                    }}
+                    transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -2, scale: 1.025 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <Phone size={14} className="stroke-[3]" />
-                    (360) 345-1015
-                  </a>
-                  <a
+                    Call 24/7 Dispatch
+                  </motion.a>
+                  <motion.a
+                    data-gsap-hero-button
                     href="/contact"
                     className="inline-flex items-center gap-2 border-2 border-[#2a2c2e]/30 hover:border-[#2a2c2e] text-[#2a2c2e] px-8 py-[14px] uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
                     style={bodyStyle}
+                    variants={{
+                      hidden: { opacity: 0, y: 18, scale: 0.92 },
+                      visible: { opacity: 1, y: 0, scale: 1 },
+                    }}
+                    transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -2, scale: 1.025 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Free Assessment
+                    Request Assessment
                     <span className="text-[#8DBD42] text-base leading-none ml-1 transition-transform duration-200 group-hover:translate-x-1">→</span>
-                  </a>
-                </div>
+                  </motion.a>
+                </motion.div>
               </FadeUp>
             </div>
           </div>
@@ -563,6 +816,7 @@ export default function Home() {
                 to { transform: translateX(-50%); }
               }
               .home-ticker { animation: home-ticker 45s linear infinite; }
+              .home-ticker:hover { animation-play-state: paused; }
             `}</style>
             <div className="home-ticker flex whitespace-nowrap w-max">
               {[...Array(2)].map((_, setIdx) => (
@@ -585,7 +839,7 @@ export default function Home() {
         </section>
 
         {/* Office Locations + Trust Badges — unified section */}
-        <section className="bg-white border-t border-gray-100">
+        <section data-gsap-section className="bg-white border-t border-gray-100">
           <div className="max-w-[860px] mx-auto px-8 pt-14 pb-0 md:pt-18">
             {/* Label */}
             <FadeUp>
@@ -597,6 +851,7 @@ export default function Home() {
             {/* Two offices */}
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#3F4143]/10">
               <FadeUp delay={0.05} className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center">
+                <div data-gsap-reveal className="contents">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>North Office</h3>
                 <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
                   <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
@@ -607,8 +862,10 @@ export default function Home() {
                 <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
                   <Phone size={13} className="stroke-[3]" /> Call North Office
                 </a>
+                </div>
               </FadeUp>
               <FadeUp delay={0.1} className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center">
+                <div data-gsap-reveal className="contents">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>South Office</h3>
                 <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
                   <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
@@ -619,6 +876,7 @@ export default function Home() {
                 <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
                   <Phone size={13} className="stroke-[3]" /> Call South Office
                 </a>
+                </div>
               </FadeUp>
             </div>
 
@@ -636,8 +894,18 @@ export default function Home() {
                     { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response" },
                     { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified" },
                     { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty" },
-                  ].map((badge) => (
-                    <img key={badge.alt} src={badge.src} alt={badge.alt} className="h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]" />
+                  ].map((badge, i) => (
+                    <motion.img
+                      key={badge.alt}
+                      src={badge.src}
+                      alt={badge.alt}
+                      initial={{ opacity: 0, scale: 0.7, y: 24 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.6 }}
+                      transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ scale: 1.04, y: -3 }}
+                      className="h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
+                    />
                   ))}
                 </div>
               </div>
@@ -645,108 +913,130 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Specialized Restoration Cards Section */}
+        {/* Specialized Restoration Section */}
         <section
-          className="pt-10 pb-10 md:pt-16 md:pb-16 bg-[#FAF9F6]"
+          data-gsap-section
+          className="relative py-16 md:py-24 overflow-hidden bg-[#F7F4EE]"
           id="services"
         >
-          <div className="max-w-[1200px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8 md:mb-12">
-              <FadeUp>
-                <p
-                  className="text-[#8DBD42] uppercase tracking-[0.15em] text-sm font-extrabold"
-                  style={bodyStyle}
-                >
-                  Our Expertise
-                </p>
-                <h2
-                  className="text-[27px] md:text-[45px] mt-2"
-                  style={headlineStyle}
-                >
-                  Specialized Restoration
-                </h2>
-                <p
-                  className="mt-4 text-[#3F4143]/70 text-base md:text-lg max-w-2xl leading-relaxed"
-                  style={bodyStyle}
-                >
-                  Select a service line to explore your options. Crafted for
-                  clarity, speed, and premium guidance when every decision
-                  matters.
-                </p>
-              </FadeUp>
-            </div>
+          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+            {/* Header */}
+            <FadeUp>
+              <p
+                className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
+                style={bodyStyle}
+              >
+                Chapter 02 / Our Expertise
+              </p>
+              <h2
+                className="mt-3 text-[40px] md:text-[56px] leading-[1.02] font-bold text-[#2F3335]"
+                style={headlineStyle}
+              >
+                Specialized Restoration
+              </h2>
+              <p
+                className="mt-5 max-w-[600px] text-[17px] leading-relaxed text-[#3F4143]/70"
+                style={bodyStyle}
+              >
+                Select a service line to explore your options. Crafted for
+                clarity, speed, and premium guidance when every decision matters.
+              </p>
+            </FadeUp>
 
-            {/* Clean minimalist divider */}
-            <hr className="border-[#3F4143]/10 mb-6 md:mb-10" />
+            <motion.div
+              className="mt-10 md:mt-12 h-px origin-left bg-[#3F4143]/12"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.65 }}
+              transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+            />
 
-            {/* Service grid - Premium Typography Cards (No Photos) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Service columns */}
+            <motion.div
+              className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.28 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.14, delayChildren: 0.18 } },
+              }}
+            >
               {services.map((service, idx) => (
-                <FadeUp
+                <motion.div
                   key={service.title}
-                  delay={idx * 0.05}
-                  className="group h-full"
+                  data-gsap-reveal
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Link href={service.href}>
-                    <div
-                      className={`relative h-full p-6 md:p-8 bg-transparent border border-transparent transition-all duration-300 flex flex-col justify-between cursor-pointer rounded-none overflow-hidden group min-h-[220px] md:min-h-[300px] hover:bg-white hover:ring-4 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.07)] ${service.colorClass}`}
+                  <Link
+                    href={service.href}
+                    className="group relative block transition-transform duration-700 ease-out hover:-translate-y-1"
+                  >
+                    {/* Ghost numeral — tints to the service color on hover */}
+                    <span
+                      className={`pointer-events-none absolute bottom-0 right-1 select-none font-bold leading-none text-[5.5rem] transition-colors duration-700 ${service.watermarkColor}`}
+                      style={headlineStyle}
                     >
-                      {/* Hover expanding top accent line */}
-                      <div
-                        className={`absolute top-0 left-0 right-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${service.accentBarClass}`}
-                      />
+                      {service.number}
+                    </span>
 
-                      {/* Massive typographic number watermark in bottom right */}
-                      <span
-                        className={`absolute right-4 bottom-2 text-7xl font-serif font-black select-none pointer-events-none transition-all duration-300 group-hover:scale-110 group-hover:-translate-x-1 ${service.watermarkColor}`}
-                      >
-                        {service.number}
+                    {/* Icon — fills with the service color and scales on hover */}
+                    <span
+                      className={`grid h-12 w-12 place-items-center rounded-full transition-colors duration-700 ${service.iconColor}`}
+                    >
+                      {service.icon}
+                    </span>
+
+                    <p
+                      className="mt-7 text-[12px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
+                      style={bodyStyle}
+                    >
+                      Service {service.number}
+                    </p>
+                    <h3
+                      className={`mt-2 text-[25px] md:text-[27px] leading-[1.06] font-bold text-[#2F3335] transition-colors duration-700 ${service.hoverTextColor}`}
+                      style={headlineStyle}
+                    >
+                      <span className="relative inline-block">
+                        {service.title}
+                        {/* Accent underline draws in on hover */}
+                        <span
+                          className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
+                        />
                       </span>
+                    </h3>
+                    <p
+                      className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/70"
+                      style={bodyStyle}
+                    >
+                      {service.description}
+                    </p>
 
-                      <div>
-                        {/* Elegant icon with soft background circle */}
-                        <div
-                          className={`mb-6 w-11 h-11 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300 ${service.iconColor}`}
-                        >
-                          {service.icon}
-                        </div>
-
-                        <p
-                          className="text-[#8DBD42] uppercase tracking-[0.2em] text-[10px] font-black mb-1"
-                          style={bodyStyle}
-                        >
-                          Service {service.number}
-                        </p>
-                        <h3
-                          className={`text-xl font-bold leading-snug text-[#3F4143] transition-colors mb-3 ${service.hoverTextColor}`}
-                          style={headlineStyle}
-                        >
-                          {service.title}
-                        </h3>
-                        <p
-                          className="text-[#3F4143]/70 text-[15px] leading-relaxed mb-6 font-light"
-                          style={bodyStyle}
-                        >
-                          {service.description}
-                        </p>
-                      </div>
-
-                      <p
-                        className={`uppercase tracking-[0.14em] text-xs font-black inline-flex items-center gap-1.5 text-[#3F4143]/80 group-hover:translate-x-1.5 transition-all duration-300 ${service.hoverTextColor}`}
-                        style={bodyStyle}
-                      >
-                        Explore Service <ArrowRight size={12} />
-                      </p>
-                    </div>
+                    <span
+                      className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                      style={bodyStyle}
+                    >
+                      Explore Service
+                      <ArrowRight
+                        size={14}
+                        className="motion-link-arrow"
+                      />
+                    </span>
                   </Link>
-                </FadeUp>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Our Promise Section */}
         <section
+          data-gsap-section
+          id="promise"
           className="pb-10 md:pb-16 pt-8 md:pt-12 text-[#3F4143] relative overflow-hidden"
           style={{ background: "#FFFFFF" }}
         >
@@ -755,8 +1045,10 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start relative z-10">
             {/* LEFT: Photo deck + quote below it */}
             <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start gap-10 mt-8 lg:mt-8">
-              <PhotoDeck />
-              <div className="border-l-4 border-[#8DBD42] pl-6 pr-6 py-5 bg-[#FAF9F6] border border-[#3F4143]/5 rounded-none italic text-lg md:text-xl text-[#3F4143]/90 font-sans font-light leading-relaxed w-full mx-0">
+              <Parallax amount={26} className="w-full flex justify-center lg:justify-start">
+                <PhotoDeck />
+              </Parallax>
+              <div className="motion-soft-lift border-l-4 border-[#8DBD42] pl-6 pr-6 py-5 bg-[#FAF9F6] border border-[#3F4143]/5 rounded-none italic text-lg md:text-xl text-[#3F4143]/90 font-sans font-light leading-relaxed w-full mx-0">
                 Most importantly, we are advocates for you. Our priority is
                 protecting your home and your best interests, not the insurance
                 company.
@@ -766,9 +1058,9 @@ export default function Home() {
             {/* RIGHT: text content + buttons */}
             <FadeUp delay={0.08} className="lg:col-span-6 order-1 lg:order-2">
               <p className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold font-sans">
-                Our Promise
+                Chapter 03 / Our Promise
               </p>
-              <h2 className="text-[27px] md:text-[45px] mt-3 leading-[1.08] text-[#3F4143] font-serif">
+              <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
                 We Are Not Just Technicians.
                 <br />
                 We Are Your Neighbors.
@@ -788,10 +1080,10 @@ export default function Home() {
                   <Phone size={12} /> Start Your Recovery
                 </a>
                 <a
-                  href="mailto:office@firewaterstorm.com"
+                  href="/contact"
                   className="border-2 border-[#3F4143]/40 hover:border-[#3F4143] text-[#3F4143] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
                 >
-                  Email Us
+                  Request Assessment
                 </a>
               </div>
 
@@ -821,238 +1113,131 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Process Timeline Section (Light Minimalist Milestones) */}
+        {/* Process Section */}
         <section
-          className="py-10 md:py-16 overflow-hidden relative bg-[#FAF9F6]"
+          data-gsap-section
+          className="py-14 md:py-20 overflow-hidden relative bg-[#FAF9F6]"
           id="process"
         >
-          {/* Subtle background glows */}
-          <div className="absolute left-[-120px] top-[12%] w-[380px] h-[380px] rounded-full bg-[#8DBD42]/3 blur-[140px] pointer-events-none" />
-          <div className="absolute right-[-120px] bottom-[10%] w-[420px] h-[420px] rounded-full bg-[#8DBD42]/3 blur-[150px] pointer-events-none" />
-
-          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 relative z-10">
-              <p
-                className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-extrabold"
-                style={bodyStyle}
-              >
-                What To Expect
-              </p>
-              <h2
-                className="text-[32px] md:text-[45px] mt-3 text-[#3F4143] font-bold leading-tight"
-                style={headlineStyle}
-              >
-                Restoration Journey
-              </h2>
-              <p
-                className="text-[#3F4143]/70 mt-4 leading-relaxed text-base md:text-lg max-w-xl mx-auto"
-                style={bodyStyle}
-              >
-                While each project is unique, this organic journey keeps your
-                restoration efficient and transparent from first call to final
-                walkthrough.
-              </p>
-            </div>
-            {/* Winding Vertical Roadmap (Journey from 1 to 8) */}
-            <div
-              ref={containerRef}
-              className="relative my-8 md:my-16 max-w-[960px] mx-auto"
+          <div className="max-w-[1180px] mx-auto px-6 relative z-10">
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 md:mb-12"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Dynamic SVG Connection Line for Desktop */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block"
-                fill="none"
-              >
-                {pathD && (
-                  <>
-                    {/* Shadow/Glow path */}
-                    <motion.path
-                      d={pathD}
-                      stroke="#8DBD42"
-                      strokeWidth="6"
-                      className="opacity-20"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={isSectionInView ? { pathLength: 1 } : {}}
-                      transition={{ duration: 2.2, ease: "easeInOut" }}
-                    />
-                    {/* Route dashed path (using deep forest green accent) */}
-                    <motion.path
-                      d={pathD}
-                      stroke="#1A311F"
-                      strokeWidth="3"
-                      strokeDasharray="8 6"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={isSectionInView ? { pathLength: 1 } : {}}
-                      transition={{ duration: 2.2, ease: "easeInOut" }}
-                    />
-                  </>
-                )}
-              </svg>
-
-              {/* Static Dashed Line for Mobile (left aligned with node center) */}
-              <div className="absolute left-[42px] top-6 bottom-6 w-[2px] border-l-2 border-dashed border-[#1A311F]/30 lg:hidden pointer-events-none" />
-
-              {/* Start Flag (Desktop) */}
-              {startPoint && (
-                <div
-                  className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 z-25 pointer-events-none hidden lg:flex"
-                  style={{ left: startPoint.x, top: startPoint.y }}
-                >
-                  <span
-                    className="bg-[#3F4143] text-white text-[10px] font-black px-2 py-0.5 rounded tracking-widest shadow"
-                    style={bodyStyle}
-                  >
-                    START
-                  </span>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#1A311F] border-2 border-white shadow" />
-                </div>
-              )}
-
-              {/* Start Flag (Mobile) */}
-              <div className="absolute left-[42px] -top-6 -translate-x-1/2 flex flex-col items-center gap-1 z-25 pointer-events-none lg:hidden">
-                <span
-                  className="bg-[#3F4143] text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider shadow"
+              <div className="lg:col-span-5">
+                <p
+                  className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
                   style={bodyStyle}
                 >
-                  START
-                </span>
-                <div className="w-2 h-2 rounded-full bg-[#1A311F] border border-white shadow" />
+                  Chapter 04 / What To Expect
+                </p>
+                <h2
+                  className="text-[30px] md:text-[44px] mt-2 text-[#3F4143] font-bold leading-tight"
+                  style={headlineStyle}
+                >
+                  What happens after you call.
+                </h2>
               </div>
+              <p
+                className="lg:col-span-6 lg:col-start-7 text-[#3F4143]/70 leading-relaxed text-[16px] md:text-[17px]"
+                style={bodyStyle}
+              >
+                Restoration is not one big event. It is a sequence of decisions:
+                stop the damage, document the loss, align the scope, then rebuild
+                carefully. This is the practical order we follow with homeowners.
+              </p>
+            </motion.div>
 
-              {/* Steps container - spacing reduced to space-y-3 */}
-              <div className="space-y-3 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-8 lg:gap-14 border-t border-[#3F4143]/12 pt-8 md:pt-10">
+              {/* LEFT — step titles (hover/tap to expand on the right) */}
+              <div className="flex flex-col">
                 {process.map((step, idx) => {
-                  const isLeft = idx % 2 === 0;
-
+                  const isActive = activeStep === idx;
                   return (
-                    <div
-                      key={step.title}
-                      className="relative grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-0 items-center min-h-[85px]"
+                    <motion.button
+                      key={step.number}
+                      data-gsap-reveal
+                      type="button"
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      transition={{ duration: 0.72, delay: idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                      onMouseEnter={() => setActiveStep(idx)}
+                      onFocus={() => setActiveStep(idx)}
+                      onClick={() => setActiveStep(idx)}
+                      aria-pressed={isActive}
+                      className={`group flex items-center gap-4 border-b border-[#3F4143]/10 py-4 md:py-[18px] text-left transition-colors duration-300 ${isActive ? "" : "hover:bg-white/50"}`}
                     >
-                      {/* Left Column (Desktop only: Step content if isLeft) */}
-                      <div
-                        className={`col-span-4 hidden lg:flex flex-col items-end text-right ${isLeft ? "opacity-100" : "pointer-events-none opacity-0"}`}
+                      <span
+                        className={`w-7 shrink-0 text-[13px] font-black uppercase tracking-[0.12em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#3F4143]/35"}`}
+                        style={bodyStyle}
                       >
-                        {isLeft && (
-                          <FadeUp delay={0.05} className="max-w-[360px]">
-                            <h3
-                              className="text-lg text-[#3F4143] font-bold mb-1.5"
-                              style={headlineStyle}
-                            >
-                              {step.title}
-                            </h3>
-                            <p
-                              className="text-[15px] md:text-base text-[#3F4143]/70 leading-relaxed font-light"
-                              style={bodyStyle}
-                            >
-                              {step.description}
-                            </p>
-                          </FadeUp>
-                        )}
-                      </div>
-
-                      {/* Center Node (Teardrop Map Pin using deep green accent) */}
-                      <div
-                        className={`col-span-4 flex items-center relative z-10 ${
-                          isLeft
-                            ? "lg:justify-start lg:pl-[12.5%]"
-                            : "lg:justify-end lg:pr-[12.5%]"
-                        } justify-start pl-[18px] lg:pl-0`}
+                        {step.number}
+                      </span>
+                      <span
+                        className={`flex-1 text-[18px] md:text-[21px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#1A311F]" : "text-[#3F4143]/55 group-hover:text-[#3F4143]/80"}`}
+                        style={headlineStyle}
                       >
-                        <div
-                          className="journey-node relative select-none group cursor-pointer"
-                          data-step={step.number}
-                        >
-                          {/* Teardrop map pin shape pointing down with deep green border/hover */}
-                          <div className="w-12 h-12 bg-white border-2 border-[#1A311F] rounded-full rounded-br-none rotate-45 flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-[#1A311F] group-hover:border-[#1A311F] group-hover:scale-110">
-                            <div className="-rotate-45 text-[#1A311F] group-hover:text-white transition-colors duration-300">
-                              {step.icon}
-                            </div>
-                          </div>
-                          {/* Floating badge for step number */}
-                          <div className="absolute -top-1 -right-1 bg-[#3F4143] text-white text-[9px] font-black px-1.5 py-0.5 rounded-full select-none shadow">
-                            {step.number}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Right Column (Step content if isRight on desktop, or ALWAYS on mobile) */}
-                      <div
-                        className={`col-span-4 flex flex-col items-start text-left pl-20 lg:pl-0 ${
-                          !isLeft
-                            ? "opacity-100"
-                            : "lg:pointer-events-none lg:opacity-0"
-                        }`}
+                        {step.title}
+                      </span>
+                      <span
+                        className={`shrink-0 transition-all duration-300 ${isActive ? "translate-x-0 text-[#8DBD42] opacity-100" : "-translate-x-1 text-[#3F4143]/30 opacity-0 group-hover:opacity-100"}`}
                       >
-                        {/* On desktop: show if isRight */}
-                        {!isLeft && (
-                          <div className="hidden lg:block">
-                            <FadeUp delay={0.05} className="max-w-[360px]">
-                              <h3
-                                className="text-lg text-[#3F4143] font-bold mb-1.5"
-                                style={headlineStyle}
-                              >
-                                {step.title}
-                              </h3>
-                              <p
-                                className="text-[15px] md:text-base text-[#3F4143]/70 leading-relaxed font-light"
-                                style={bodyStyle}
-                              >
-                                {step.description}
-                              </p>
-                            </FadeUp>
-                          </div>
-                        )}
-                        {/* On mobile: always show */}
-                        <div className="lg:hidden">
-                          <FadeUp delay={0.05} className="max-w-[400px]">
-                            <h3
-                              className="text-lg text-[#3F4143] font-bold mb-1"
-                              style={headlineStyle}
-                            >
-                              {step.title}
-                            </h3>
-                            <p
-                              className="text-[15px] md:text-base text-[#3F4143]/70 leading-relaxed font-light"
-                              style={bodyStyle}
-                            >
-                              {step.description}
-                            </p>
-                          </FadeUp>
-                        </div>
-                      </div>
-                    </div>
+                        <ArrowRight size={18} />
+                      </span>
+                    </motion.button>
                   );
                 })}
               </div>
 
-              {/* End Flag (Desktop) */}
-              {endPoint && (
-                <div
-                  className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 z-25 pointer-events-none hidden lg:flex"
-                  style={{ left: endPoint.x, top: endPoint.y }}
+              {/* RIGHT — active step detail expands here */}
+              <div className="lg:sticky lg:top-28 self-start">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, x: 18, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
+                  className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.28)]"
                 >
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#1A311F] border-2 border-white shadow" />
-                  <span
-                    className="bg-[#1A311F] text-white text-[10px] font-black px-2 py-0.5 rounded tracking-widest shadow flex items-center gap-1"
-                    style={bodyStyle}
+                  <div className="flex items-center gap-4">
+                    <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#1A311F]">
+                      {process[activeStep].icon}
+                    </span>
+                    <span
+                      className="text-[13px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
+                      style={bodyStyle}
+                    >
+                      Step {process[activeStep].number}
+                    </span>
+                  </div>
+                  <h3
+                    className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
+                    style={headlineStyle}
                   >
-                    <House size={10} /> HOME
-                  </span>
-                </div>
-              )}
-
-              {/* End Flag (Mobile) */}
-              <div className="absolute left-[42px] -bottom-8 -translate-x-1/2 flex flex-col items-center gap-1 z-25 pointer-events-none lg:hidden">
-                <div className="w-2 h-2 rounded-full bg-[#1A311F] border border-white shadow" />
-                <span
-                  className="bg-[#1A311F] text-white text-[9px] font-black px-1.5 py-0.5 rounded tracking-wider shadow flex items-center gap-1"
-                  style={bodyStyle}
-                >
-                  <House size={9} /> HOME
-                </span>
+                    {process[activeStep].title}
+                  </h3>
+                  <div className="mt-6 space-y-5">
+                    {process[activeStep].items.map(item => (
+                      <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
+                        <p
+                          className="text-[14px] font-black text-[#3F4143]"
+                          style={bodyStyle}
+                        >
+                          {item.label}
+                        </p>
+                        <p
+                          className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
+                          style={bodyStyle}
+                        >
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -1060,6 +1245,7 @@ export default function Home() {
 
         {/* Case Study Header (Light Section) */}
         <section
+          data-gsap-section
           className="pt-10 md:pt-16 pb-0 text-[#3F4143] relative overflow-hidden"
           id="case-study"
           style={{ background: "#FFFFFF" }}
@@ -1068,7 +1254,13 @@ export default function Home() {
           <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/4 blur-[140px] pointer-events-none select-none z-0" />
 
           <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="lg:col-span-7">
                 <FadeUp>
                   <p
@@ -1076,10 +1268,10 @@ export default function Home() {
                     style={bodyStyle}
                   >
                     <span className="w-6 h-[2px] bg-[#8DBD42] inline-block" />{" "}
-                    Case Study
+                    Chapter 05 / Case Study
                   </p>
                   <h2
-                    className="text-[27px] md:text-[45px] mt-3 leading-tight text-[#3F4143] font-bold"
+                    className="text-[30px] md:text-[44px] mt-3 leading-tight text-[#3F4143] font-bold"
                     style={headlineStyle}
                   >
                     Proven Transformation
@@ -1100,19 +1292,20 @@ export default function Home() {
                   </p>
                   <Link
                     href="/projects"
-                    className="mt-6 inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-sm font-bold transition-all duration-300"
+                    className="group mt-6 inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-sm font-bold premium-btn"
                     style={bodyStyle}
                   >
-                    Our Portfolio <ArrowRight size={13} />
+                    Our Portfolio <ArrowRight size={13} className="motion-link-arrow" />
                   </Link>
                 </FadeUp>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Case Study Content (Centered on Canvas Base) */}
         <section
+          data-gsap-section
           className="pt-4 pb-12 relative z-20"
           style={{ background: "#FFFFFF" }}
         >
@@ -1122,10 +1315,15 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6">
             {/* Before/After Slider container */}
             <div className="relative">
-              <FadeUp>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 36 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div
                   ref={sliderRef}
-                  className="relative rounded-2xl overflow-hidden select-none cursor-col-resize shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] border-4 border-white"
+                  className="motion-soft-lift relative rounded-2xl overflow-hidden select-none cursor-col-resize shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] border-4 border-white"
                   onMouseMove={event => updateSlider(event.clientX)}
                   onTouchMove={event => updateSlider(event.touches[0].clientX)}
                 >
@@ -1180,7 +1378,7 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
-              </FadeUp>
+              </motion.div>
             </div>
 
             {/* Testimonial Quote */}
@@ -1221,7 +1419,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials (Editorial Layout) */}
-        <section className="py-10 md:py-16 bg-[#FAF9F6] border-y border-gray-200/40 relative overflow-hidden">
+        <section data-gsap-section id="testimonials" className="py-10 md:py-16 bg-[#FAF9F6] border-y border-gray-200/40 relative overflow-hidden">
           {/* Ambient Background Glow behind Testimonials frame */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#8DBD42]/3.5 blur-[140px] pointer-events-none select-none z-0" />
           <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
@@ -1231,11 +1429,11 @@ export default function Home() {
                   className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
                   style={bodyStyle}
                 >
-                  Testimonials
+                  Chapter 06 / Testimonials
                 </p>
               </div>
               <h2
-                className="text-[27px] md:text-[36px] mt-3 text-[#3F4143] font-bold"
+                className="text-[30px] md:text-[40px] mt-3 text-[#3F4143] font-bold leading-tight"
                 style={headlineStyle}
               >
                 Rebuilding Dreams, One Story At A Time
@@ -1243,40 +1441,51 @@ export default function Home() {
             </FadeUp>
 
             <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left">
-              {[
-                {
-                  name: "D. Butler",
-                  role: "Homeowner Restoration",
-                  quote:
-                    "From the start, you worked to make the process as easy and painless as possible. The restoration turned out much nicer than expected.",
-                },
-                {
-                  name: "Linda H.",
-                  role: "Master Bath Fire Recovery",
-                  quote:
-                    "Thank you again for everything during a very stressful time. Their work was first rate and I would enthusiastically recommend Heritage.",
-                },
-                {
-                  name: "Skip & Alpha Beard",
-                  role: "Dupont, WA",
-                  quote:
-                    "Heritage was on scene within 45 minutes. The end result was beautiful and better than before the fire. Professional and honest team.",
-                },
-              ].map((testimonial, idx) => (
+              {reviews.map((testimonial, idx) => (
                 <FadeUp key={testimonial.name} delay={idx * 0.06}>
-                  <article className="relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.045)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
+                  <article data-gsap-reveal className="motion-soft-lift relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
                     {/* Big Decorative Quote Mark */}
-                    <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-300 group-hover:scale-110">
+                    <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
                       "
                     </span>
 
                     <div>
                       {/* Rating Stars */}
-                      <div className="flex text-[#8DBD42] gap-1">
+                      <motion.div
+                        className="flex text-[#8DBD42] gap-1"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.8 }}
+                        variants={{
+                          hidden: {},
+                          visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
+                        }}
+                      >
                         {Array.from({ length: 5 }).map((_, starIndex) => (
-                          <Star key={starIndex} size={16} fill="currentColor" />
+                          <motion.span
+                            key={starIndex}
+                            variants={{
+                              hidden: { opacity: 0, y: 6, scale: 0.8 },
+                              visible: { opacity: 1, y: 0, scale: 1 },
+                            }}
+                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <Star
+                              size={16}
+                              fill={
+                                starIndex < Math.round(testimonial.rating || 5)
+                                  ? "currentColor"
+                                  : "none"
+                              }
+                              className={
+                                starIndex < Math.round(testimonial.rating || 5)
+                                  ? ""
+                                  : "text-[#3F4143]/20"
+                              }
+                            />
+                          </motion.span>
                         ))}
-                      </div>
+                      </motion.div>
 
                       {/* Review Text */}
                       <p
@@ -1288,8 +1497,17 @@ export default function Home() {
                     </div>
 
                     {/* Reviewer Details */}
-                    <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between">
-                      <div>
+                    <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-700 group-hover:translate-x-1">
+                      <div className="flex items-center gap-3">
+                        {testimonial.profilePhotoUrl && (
+                          <img
+                            src={testimonial.profilePhotoUrl}
+                            alt=""
+                            className="h-10 w-10 rounded-full object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        )}
+                        <div>
                         <p
                           className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
                           style={bodyStyle}
@@ -1302,6 +1520,7 @@ export default function Home() {
                         >
                           {testimonial.role}
                         </p>
+                        </div>
                       </div>
                       <div
                         className="flex items-center gap-1.5 text-xs font-bold text-[#8DBD42] bg-[#8DBD42]/10 px-2 py-0.5 rounded-full select-none"

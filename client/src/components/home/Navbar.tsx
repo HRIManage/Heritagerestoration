@@ -190,6 +190,7 @@ export default function Navbar() {
                           style={{ width: 14, height: 14 }}
                           fill="currentColor"
                           viewBox="0 0 24 24"
+                          className="animate-wiggle-hover"
                         >
                           <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1L6.6 10.8z" />
                         </svg>
@@ -453,12 +454,13 @@ export default function Navbar() {
               <a
                 href="tel:3604561015"
                 style={{ borderRadius: 0 }}
-                className="inline-flex items-center justify-center gap-8 bg-brand-charcoal text-brand-linen font-sans font-semibold text-xs tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:bg-brand-green hover:text-brand-linen"
+                className="inline-flex items-center justify-center gap-8 bg-[#3f4143] text-white font-sans font-semibold text-xs tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:bg-[#8DBD42] hover:text-[#2b2d2f] premium-btn-charcoal group"
               >
                 <svg
                   style={{ width: 13, height: 13 }}
                   fill="currentColor"
                   viewBox="0 0 24 24"
+                  className="animate-wiggle-hover"
                 >
                   <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1L6.6 10.8z" />
                 </svg>
@@ -521,12 +523,14 @@ export default function Navbar() {
                   justifyContent: "center",
                   textDecoration: "none",
                 }}
+                className="group"
                 aria-label="Call 24/7 Line"
               >
                 <svg
                   style={{ width: 16, height: 16 }}
                   fill="currentColor"
                   viewBox="0 0 24 24"
+                  className="animate-wiggle-hover"
                 >
                   <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1L6.6 10.8z" />
                 </svg>
@@ -598,8 +602,9 @@ export default function Navbar() {
           justifyContent: "center",
           gap: "1.75rem",
           opacity: mobileOpen ? 1 : 0,
+          transform: mobileOpen ? "translateY(0)" : "translateY(-15px)",
           pointerEvents: mobileOpen ? "auto" : "none",
-          transition: "opacity 0.3s ease",
+          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
         }}
       >
         {/* Small top accent strip */}
@@ -623,7 +628,7 @@ export default function Navbar() {
           style={{ height: 81, width: "auto", marginBottom: "1rem" }}
         />
 
-        {navLinks.map(link => {
+        {navLinks.map((link, idx) => {
           const isActive = active === link.label;
           return (
             <a
@@ -641,7 +646,10 @@ export default function Navbar() {
                   ? "var(--color-brand-green)"
                   : "var(--color-brand-charcoal)",
                 textDecoration: "none",
-                transition: "color 0.2s ease",
+                transition: "color 0.2s ease, transform 0.4s ease, opacity 0.4s ease",
+                transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
+                opacity: mobileOpen ? 1 : 0,
+                transitionDelay: `${idx * 60}ms`,
               }}
               className="hover:text-brand-green"
             >
@@ -664,9 +672,12 @@ export default function Navbar() {
             padding: "14px 32px",
             borderRadius: 0, // strict 0px border radius
             textDecoration: "none",
-            transition: "all 0.3s ease",
+            transition: "all 0.3s ease, transform 0.4s ease, opacity 0.4s ease",
+            transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
+            opacity: mobileOpen ? 1 : 0,
+            transitionDelay: `${navLinks.length * 60}ms`,
           }}
-          className="hover:bg-brand-green hover:text-brand-linen"
+          className="hover:bg-brand-green hover:text-brand-linen group"
         >
           Call 24/7: (360) 456-1015
         </a>

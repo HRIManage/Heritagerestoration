@@ -204,28 +204,6 @@ export const LOCATIONS: CityLocation[] = [
     lng: -122.2929,
   },
   {
-    slug: "federal-way-wa",
-    name: "Federal Way",
-    full: "Federal Way, WA",
-    county: "King County",
-    office: "North",
-    distance: "the northern edge of our service corridor",
-    zips: ["98003", "98023", "98063"],
-    nearby: ["Tacoma", "Auburn", "Milton", "Des Moines"],
-    neighborhoods: [
-      "Twin Lakes",
-      "Mirror Lake",
-      "Lakeland",
-      "Dash Point",
-      "West Campus",
-    ],
-    landmark: "Dash Point and the Wild Waves area",
-    blurb:
-      "Federal Way marks the northern reach of our Western Washington corridor. From Twin Lakes to Dash Point, we bring the same certified crews, insurance advocacy, and warranty-backed reconstruction to King County's south end.",
-    lat: 47.3223,
-    lng: -122.3126,
-  },
-  {
     slug: "bonney-lake-wa",
     name: "Bonney Lake",
     full: "Bonney Lake, WA",

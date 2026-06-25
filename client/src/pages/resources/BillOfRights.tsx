@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { ShieldCheck, Phone } from "lucide-react";
 import { useRef } from "react";
@@ -103,39 +103,31 @@ export default function BillOfRights() {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-canvas-textured pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
         {/* ── Hero ── */}
-        <section className="relative py-12 md:py-20 bg-[#3F4143] text-white overflow-hidden">
+        <section className="relative py-16 md:py-24 bg-[#1e2020] text-white overflow-hidden">
           <img
             src="/photo/bill-of-rights-hero.jpg"
             alt="Disaster recovery team supporting homeowner"
-            className="absolute inset-0 h-full w-full object-cover object-[70%_45%] brightness-[0.32]"
+            className="absolute inset-0 h-full w-full object-cover object-[72%_45%] brightness-[0.65]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1e2020]/95 via-[#292b2d]/70 to-[#292b2d]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/10 to-transparent" />
 
-          {/* Decorative angled stripe (Aligned Left to clear the rescue scene on the right) */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/3 hidden md:block overflow-hidden pointer-events-none">
-            <div className="absolute left-[-80px] top-[-80px] w-[160px] h-[600px] bg-[#3F4143] rotate-[-28deg] opacity-90 shadow-2xl" />
-            <div className="absolute left-[90px] top-[-80px] w-[64px] h-[600px] bg-[#8DBD42] rotate-[-28deg] opacity-70" />
-            <div className="absolute left-[175px] top-[-80px] w-[32px] h-[600px] bg-[#7BB843] rotate-[-28deg] opacity-50" />
-          </div>
-
-          <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-            <FadeUp className="max-w-3xl">
+          <div className="relative z-10 w-full px-4 sm:px-8 lg:pl-[1in] lg:pr-0">
+            <FadeUp className="w-full max-w-[560px] bg-black/35 backdrop-blur-md border-y border-r border-white/10 p-7 sm:p-8 md:p-10 lg:p-12 shadow-2xl">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-[#8DBD42]/15 border border-[#8DBD42]/40 text-[#8DBD42] text-xs font-bold uppercase tracking-[0.18em] px-4 py-1.5 mb-6">
-                <ShieldCheck size={13} />
+                <ShieldCheck size={13} className="animate-pulse" />
                 <span>Know Your Rights</span>
               </div>
 
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight"
-                style={{ fontFamily: "'Libre Caslon Text', serif" }}
+                className="text-4xl md:text-5xl font-bold mb-5 leading-tight font-serif"
               >
-                Homeowner <span className="text-[#8DBD42]">Bill of Rights</span>
+                Homeowner <span className="text-[#8DBD42] drop-shadow-[0_0_12px_rgba(141,189,66,0.25)]">Bill of Rights</span>
               </h1>
 
-              <p className="text-lg text-white/85 leading-relaxed max-w-2xl">
+              <p className="text-base text-white/85 leading-relaxed font-sans font-light">
                 Fire and water damage disrupts the normal pattern of life and
                 can involve a lot of emotional stress. People often feel
                 confused and vulnerable after events of this type. However, it
@@ -145,8 +137,7 @@ export default function BillOfRights() {
               </p>
 
               <p
-                className="mt-4 text-white/65 text-sm leading-relaxed max-w-2xl"
-                style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                className="mt-4 text-white/65 text-xs md:text-sm leading-relaxed font-sans font-light"
               >
                 The standard homeowner's policy generally contains the same
                 provisions throughout the United States and Canada. Below are
@@ -157,9 +148,9 @@ export default function BillOfRights() {
         </section>
 
         {/* ── Before You Sign Banner ── */}
-        <section className="relative overflow-hidden bg-[#3A3D3A] text-white">
+        <section className="relative overflow-hidden bg-[#2B2D2B] text-white border-y border-[#3F4143]/20">
           {/* Subtle texture overlay */}
-          <div className="absolute inset-0 bg-[url('/photo/hero-new.jpg')] bg-cover bg-center brightness-[0.08] opacity-40 pointer-events-none" />
+          <div className="absolute inset-0 bg-[url('/photo/hero-new.jpg')] bg-cover bg-center brightness-[0.05] opacity-40 pointer-events-none" />
           {/* Green left border accent */}
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#8DBD42]" />
 
@@ -169,14 +160,12 @@ export default function BillOfRights() {
                 {/* Left: Title + label */}
                 <div className="md:w-2/5 flex-shrink-0">
                   <div
-                    className="inline-block text-[#8DBD42] text-xs font-bold uppercase tracking-[0.2em] mb-3"
-                    style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                    className="inline-block text-[#8DBD42] text-xs font-bold uppercase tracking-[0.2em] mb-3 font-sans"
                   >
                     Important Notice
                   </div>
                   <h2
-                    className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white"
-                    style={{ fontFamily: "'Libre Caslon Text', serif" }}
+                    className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white font-serif"
                   >
                     Before You Sign,{" "}
                     <span className="text-[#8DBD42]">Know Your Rights.</span>
@@ -185,16 +174,15 @@ export default function BillOfRights() {
 
                 {/* Right: Body copy */}
                 <div
-                  className="md:w-3/5 space-y-4 text-white leading-relaxed"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                  className="md:w-3/5 space-y-4 text-white leading-relaxed font-sans font-light"
                 >
-                  <p className="text-base md:text-lg text-white">
-                    <span className="font-semibold">1-800-Board Up</span> is the
+                  <p className="text-base md:text-lg text-white font-semibold">
+                    <span className="text-[#8DBD42]">1-800-Board Up</span> is the
                     only national disaster recovery company that works closely
                     with first responders to assist with catastrophes.
                   </p>
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
+                  <div className="flex items-start gap-3 group">
+                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center transition-transform group-hover:scale-110">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                         <path
                           d="M1 4L3.5 6.5L9 1"
@@ -205,13 +193,13 @@ export default function BillOfRights() {
                         />
                       </svg>
                     </div>
-                    <p className="text-white">
+                    <p className="text-white/90">
                       Talk to your Fire Chief about who is safe in securing your
                       property.
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
+                  <div className="flex items-start gap-3 group">
+                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center transition-transform group-hover:scale-110">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                         <path
                           d="M1 4L3.5 6.5L9 1"
@@ -222,12 +210,12 @@ export default function BillOfRights() {
                         />
                       </svg>
                     </div>
-                    <p className="text-white">
+                    <p className="text-white/90">
                       Do not feel pressured to sign anything on site.
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center">
+                  <div className="flex items-start gap-3 group">
+                    <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center transition-transform group-hover:scale-110">
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                         <path
                           d="M1 4L3.5 6.5L9 1"
@@ -238,7 +226,7 @@ export default function BillOfRights() {
                         />
                       </svg>
                     </div>
-                    <p className="text-white">
+                    <p className="text-white/90">
                       Know your rights; all 12 of which are outlined below.
                     </p>
                   </div>
@@ -249,15 +237,14 @@ export default function BillOfRights() {
         </section>
 
         {/* ── 12 Rights Grid ── */}
-        <section className="py-10 md:py-16 bg-transparent">
+        <section className="py-16 md:py-24 bg-transparent">
           <div className="max-w-[1280px] mx-auto px-6">
             {/* Section label */}
             <FadeUp>
-              <div className="flex items-center gap-4 mb-12">
+              <div className="flex items-center gap-4 mb-16">
                 <div className="h-px flex-1 bg-[#3F4143]/12" />
                 <span
-                  className="text-xs font-bold uppercase tracking-[0.2em] text-[#3F4143]/40"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                  className="text-xs font-bold uppercase tracking-[0.2em] text-[#3F4143]/40 font-sans"
                 >
                   12 Protected Rights
                 </span>
@@ -265,35 +252,37 @@ export default function BillOfRights() {
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 gap-3 lg:gap-4">
+            <div className="grid md:grid-cols-2 gap-6">
               {rights.map((right, idx) => (
                 <FadeUp
                   key={idx}
                   delay={Math.min(idx * 0.05, 0.3)}
-                  className="group relative bg-white/50 backdrop-blur-[2px] border border-[#3F4143]/10 hover:border-[#8DBD42]/60 transition-all duration-500 p-4 md:p-5 flex gap-4 shadow-sm hover:shadow-md"
+                  className="group relative bg-white/30 backdrop-blur-md border border-white/10 hover:border-[#8DBD42] hover:bg-white/70 hover:shadow-[0_20px_45px_rgba(63,65,67,0.06)] transition-all duration-300 p-6 md:p-8 flex gap-5 rounded-md hover:scale-105"
                 >
-                  {/* Left accent bar */}
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#3F4143]/10 group-hover:bg-[#8DBD42] transition-colors duration-500" />
+                  {/* Left accent bar (Framer-style animation on hover) */}
+                  <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[#3F4143]/10 group-hover:bg-[#8DBD42] transition-colors duration-300" />
 
-                  {/* Number */}
+                  {/* Elegant watermark number in background */}
+                  <span className="absolute right-6 bottom-1 text-[90px] font-serif font-black text-[#3F4143]/3 select-none pointer-events-none transition-colors duration-300 group-hover:text-[#8DBD42]/6 leading-none">
+                    {right.number}
+                  </span>
+
+                  {/* Circular Number Badge */}
                   <div
-                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[#3F4143] group-hover:bg-[#8DBD42] transition-colors duration-400 text-white font-black text-sm tracking-wide"
-                    style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                    className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#3F4143]/15 text-[#3F4143]/70 group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42] group-hover:text-white flex items-center justify-center transition-all duration-300 text-sm font-bold font-serif shadow-xs"
                   >
                     {right.number}
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 relative z-10">
                     <h3
-                      className="text-base md:text-lg font-bold text-[#3F4143] mb-2 leading-snug"
-                      style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                      className="text-lg md:text-xl font-bold text-[#3F4143] mb-3 leading-snug font-sans group-hover:text-[#8DBD42] transition-colors duration-300"
                     >
                       {right.title}
                     </h3>
                     <p
-                      className="text-[#3F4143]/70 text-sm leading-relaxed"
-                      style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                      className="text-[#3F4143]/70 text-[15px] leading-relaxed font-sans font-light"
                     >
                       {right.body}
                     </p>
@@ -311,9 +300,9 @@ export default function BillOfRights() {
             <img
               src="/photo/bill-of-rights-cta.jpg"
               alt="Heritage Restoration reconstruction team showing project progress to homeowners"
-              className="w-full h-full object-cover object-[center_28%] brightness-70"
+              className="w-full h-full object-cover object-[center_28%] brightness-65"
             />
-            <div className="absolute inset-0 bg-black/38" />
+            <div className="absolute inset-0 bg-black/40" />
 
             {/* Diagonal stripes (Aligned Left to clear the couple and house frame on the right) */}
             <div className="absolute left-0 top-0 bottom-0 w-1/2 hidden md:block overflow-hidden pointer-events-none">
@@ -326,39 +315,36 @@ export default function BillOfRights() {
           {/* Overlapping card */}
           <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
             <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.09)] text-center">
+              <div className="bg-white border border-[#3F4143]/8 p-8 md:p-16 shadow-[0_30px_70px_rgba(0,0,0,0.08)] text-center rounded-none">
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-5"
-                  style={{ fontFamily: "'Libre Caslon Text', serif" }}
+                  className="text-2xl md:text-4.5xl font-bold text-[#3F4143] mb-6 font-serif"
                 >
                   Need an Advocate on Your Side?
                 </h2>
                 <p
-                  className="text-sm md:text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-8"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                  className="text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-10 font-sans font-light"
                 >
                   Don't let the insurance company dictate your recovery.
-                  Heritage Restoration will fight for every right listed above.
+                  Heritage Restoration will fight for every right listed above,
                   from the first emergency call through your final settlement.
                   Contact us today for a free, no-pressure consultation.
                 </p>
 
                 <div
-                  className="flex flex-wrap gap-4 justify-center"
-                  style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+                  className="flex flex-wrap gap-4 justify-center font-sans"
                 >
                   <a
                     href="tel:+13603451015"
                     id="bor-call-cta"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2"
+                    className="bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 premium-btn group"
                   >
-                    <Phone size={14} />
+                    <Phone size={14} className="animate-wiggle-hover" />
                     Call 360-345-1015
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"
                     id="bor-email-cta"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md"
+                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md premium-btn-charcoal"
                   >
                     Email Us Now
                   </a>

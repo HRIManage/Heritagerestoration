@@ -101,7 +101,7 @@ export const BUSINESS_SCHEMA = {
     { "@type": "City", name: "Tacoma" },
     { "@type": "City", name: "Chehalis" },
     { "@type": "City", name: "Centralia" },
-    { "@type": "City", name: "Federal Way" },
+    { "@type": "City", name: "Puyallup" },
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",

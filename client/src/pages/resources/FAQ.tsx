@@ -342,9 +342,9 @@ const faqCategories: FAQCategory[] = [
                     "Tacoma, Puyallup, Lakewood, Gig Harbor, Bonney Lake, University Place, Sumner, Edgewood, Fife, Milton, Fircrest, Steilacoom, Orting, Buckley, Eatonville, DuPont, Carbonado, South Prairie, Wilkeson, Spanaway, Graham, Parkland, Frederickson, Elk Plain, Midland, Fox Island, Anderson Island, Ashford, Elbe, Alder, McKenna, Roy, Key Center, Longbranch, Vaughn, Home, Wauna, and surrounding areas.",
                 },
                 {
-                  hub: "Federal Way & Auburn Hub (South King County)",
+                  hub: "Puyallup & South Hill Hub (Pierce County)",
                   cities:
-                    "Federal Way, Auburn, Kent, Des Moines, Pacific, Algona, Black Diamond, Covington, Maple Valley, and adjacent South King County residential and industrial sectors.",
+                    "Puyallup, South Hill, Graham, Spanaway, Parkland, Bonney Lake, and adjacent Pierce County residential and industrial sectors.",
                 },
                 {
                   hub: "Chehalis & Centralia Hub (Lewis County)",
@@ -372,7 +372,7 @@ const faqCategories: FAQCategory[] = [
         question:
           "Do you serve communities and housing near Joint Base Lewis-McChord (JBLM)?",
         answer:
-          "Yes, absolutely. We proudly support military families, veterans, and military property communities located surrounding JBLM, including Lakewood, Tacoma, DuPont, Parkland, Spanaway, and Federal Way. Our administration teams are intimately familiar with standard military housing insurance policies and work directly with specialized military insurance providers like USAA to simplify and speed up the claims process. It is our absolute honor to serve those who serve our country.",
+          "Yes, absolutely. We proudly support military families, veterans, and military property communities located surrounding JBLM, including Lakewood, Tacoma, DuPont, Parkland, and Spanaway. Our administration teams are intimately familiar with standard military housing insurance policies and work directly with specialized military insurance providers like USAA to simplify and speed up the claims process. It is our absolute honor to serve those who serve our country.",
       },
     ],
   },

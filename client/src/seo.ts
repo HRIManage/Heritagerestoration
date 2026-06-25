@@ -26,7 +26,7 @@ export const BUSINESS_SCHEMA = {
     { "@type": "County", name: "Thurston County" },
     { "@type": "County", name: "Pierce County" },
     { "@type": "County", name: "Lewis County" },
-    { "@type": "County", name: "King County" },
+    { "@type": "County", name: "Mason County" },
   ],
   address: [
     {
@@ -430,6 +430,6 @@ export const FAQ_SCHEMA_ITEMS = [
     question:
       "Do you serve communities and housing near Joint Base Lewis-McChord (JBLM)?",
     answer:
-      "Yes, absolutely. We proudly support military families and veterans surrounding JBLM including Lakewood, Tacoma, DuPont, Parkland, Spanaway, and Federal Way. We work directly with USAA and other military insurance providers.",
+      "Yes, absolutely. We proudly support military families and veterans surrounding JBLM including Lakewood, Tacoma, DuPont, Parkland, and Spanaway. We work directly with USAA and other military insurance providers.",
   },
 ];

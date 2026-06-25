@@ -146,6 +146,94 @@ h6 {
 }
 
 /* ==========================================================================
+   MICRO-ANIMATIONS & PREMIUM TRANSITIONS
+   ========================================================================== */
+
+/* Wiggle keyframe for icons (e.g. phone icon) */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg) scale(1.08); }
+  75% { transform: rotate(10deg) scale(1.08); }
+}
+
+.animate-wiggle-hover {
+  transition: transform 0.2s ease-in-out;
+}
+.group:hover .animate-wiggle-hover,
+a:hover .animate-wiggle-hover,
+button:hover .animate-wiggle-hover {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Subtle glow pulse */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(141, 189, 66, 0.4);
+    border-color: rgba(141, 189, 66, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(141, 189, 66, 0.18);
+    border-color: rgba(141, 189, 66, 0.8);
+  }
+}
+.pulse-glow-hover:hover {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Premium Button Transition Utilities */
+.premium-btn {
+  transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(141, 189, 66, 0.3), 0 8px 10px -6px rgba(141, 189, 66, 0.3);
+}
+.premium-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Premium Dark Button (Charcoal) */
+.premium-btn-charcoal {
+  transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-btn-charcoal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(63, 65, 67, 0.25), 0 8px 10px -6px rgba(63, 65, 67, 0.25);
+}
+.premium-btn-charcoal:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Premium Card Transition Utilities */
+.premium-card {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px -18px rgba(63, 65, 67, 0.12), 0 0 0 1px rgba(141, 189, 66, 0.22);
+  background-color: #ffffff;
+}
+
+.motion-soft-lift {
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-soft-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 54px -28px rgba(63, 65, 67, 0.28);
+}
+
+.motion-link-arrow {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .motion-link-arrow,
+a:hover .motion-link-arrow {
+  transform: translateX(4px);
+}
+
+
+/* ==========================================================================
    LEGAL / PROSE PAGES
    ========================================================================== */
 .legal-prose h2 {
