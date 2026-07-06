@@ -776,7 +776,7 @@ export default function Home() {
                   <motion.a
                     data-gsap-hero-button
                     href="tel:+13603451015"
-                    className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)]"
+                    className="group inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
                     style={bodyStyle}
                     variants={{
                       hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -786,15 +786,13 @@ export default function Home() {
                     whileHover={{ y: -2, scale: 1.025 }}
                     whileTap={{ scale: 0.98 }}
                   >
+                    <Phone size={14} className="stroke-[3]" />
                     Call 24/7 Dispatch
-                    <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                      <Phone size={13} className="stroke-[3]" />
-                    </span>
                   </motion.a>
                   <motion.a
                     data-gsap-hero-button
                     href="/contact"
-                    className="group inline-flex items-center gap-4 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] pl-8 pr-4 py-[10px] rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] bg-white/60 hover:bg-white/90 hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-md"
+                    className="group inline-flex items-center gap-2 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-[14px] uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0"
                     style={bodyStyle}
                     variants={{
                       hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -805,9 +803,7 @@ export default function Home() {
                     whileTap={{ scale: 0.98 }}
                   >
                     Request Assessment
-                    <span className="w-8 h-8 rounded-none bg-[#145126]/6 text-[#145126] flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
-                      →
-                    </span>
+                    <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </motion.a>
                 </motion.div>
               </FadeUp>
@@ -980,49 +976,44 @@ export default function Home() {
                 >
                   <Link
                     href={service.href}
-                    className="block group"
+                    className="group relative block transition-transform duration-500 ease-out hover:-translate-y-1"
                   >
-                    <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] hover:shadow-[0_20px_45px_rgba(20,81,38,0.06)] h-full">
-                      <div className="bg-white rounded-none p-6 md:p-8 h-full border border-black/[0.015] shadow-[inset_0_1px_1px_rgba(255,255,255,1)] flex flex-col justify-between">
-                        <div>
-                          {/* Icon */}
-                          <span
-                            className={`grid h-12 w-12 place-items-center rounded-none transition-transform duration-500 group-hover:scale-110 ${service.iconColor}`}
-                          >
-                            {service.icon}
-                          </span>
+                    {/* Icon — fills with the service color and scales on hover */}
+                    <span
+                      className={`grid h-12 w-12 place-items-center rounded-none transition-transform duration-500 group-hover:scale-110 ${service.iconColor}`}
+                    >
+                      {service.icon}
+                    </span>
 
-                          <h3
-                            className={`mt-6 text-[21px] md:text-[23px] leading-[1.1] font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
-                            style={headlineStyle}
-                          >
-                            <span className="relative inline-block">
-                              {service.title}
-                              <span
-                                className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
-                              />
-                            </span>
-                          </h3>
-                          <p
-                            className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/70 font-light"
-                            style={bodyStyle}
-                          >
-                            {service.description}
-                          </p>
-                        </div>
-
+                    <h3
+                      className={`mt-6 text-[23px] md:text-[25px] leading-[1.08] font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                      style={headlineStyle}
+                    >
+                      <span className="relative inline-block">
+                        {service.title}
+                        {/* Accent underline draws in on hover */}
                         <span
-                          className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
-                          style={bodyStyle}
-                        >
-                          Explore Service
-                          <ArrowRight
-                            size={14}
-                            className="transition-transform duration-500 group-hover:translate-x-1"
-                          />
-                        </span>
-                      </div>
-                    </div>
+                          className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
+                        />
+                      </span>
+                    </h3>
+                    <p
+                      className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/70 font-light"
+                      style={bodyStyle}
+                    >
+                      {service.description}
+                    </p>
+
+                    <span
+                      className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                      style={bodyStyle}
+                    >
+                      Explore Service
+                      <ArrowRight
+                        size={14}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </span>
                   </Link>
                 </motion.div>
               ))}
@@ -1072,21 +1063,15 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
                 <a
                   href="tel:+13603451015"
-                  className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)]"
+                  className="bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 inline-flex items-center gap-2 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
                 >
-                  Start Your Recovery
-                  <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                    <Phone size={12} />
-                  </span>
+                  <Phone size={12} /> Start Your Recovery
                 </a>
                 <a
                   href="/contact"
-                  className="group inline-flex items-center gap-4 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] pl-8 pr-4 py-[10px] rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] bg-white/60 hover:bg-white/90 hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-md"
+                  className="border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0"
                 >
                   Request Assessment
-                  <span className="w-8 h-8 rounded-none bg-[#145126]/6 text-[#145126] flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
-                    →
-                  </span>
                 </a>
               </div>
 
@@ -1202,52 +1187,50 @@ export default function Home() {
                 <div className="absolute -inset-3 bg-[#8DBD42]/8 rounded-none z-0 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04]">
-                    <motion.div
-                      key={activeStep}
-                      initial={{ opacity: 0, x: 18, filter: "blur(6px)" }}
-                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                      className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.2)] rounded-none shadow-[inset_0_1px_1px_rgba(255,255,255,1)]"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-none border border-[#145126]/8">
-                          {process[activeStep].icon}
-                        </span>
-                        <span
-                          className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
-                          style={bodyStyle}
-                        >
-                          <span className="w-4 h-px bg-[#8DBD42] inline-block" />
-                          {process[activeStep].number} of {process.length}
-                        </span>
-                      </div>
-                      <h3
-                        className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
-                        style={headlineStyle}
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, x: 18, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                    className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_20px_50px_rgba(20,81,38,0.035)] rounded-none"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-none border border-[#145126]/8">
+                        {process[activeStep].icon}
+                      </span>
+                      <span
+                        className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
+                        style={bodyStyle}
                       >
-                        {process[activeStep].title}
-                      </h3>
-                      <div className="mt-6 space-y-5">
-                        {process[activeStep].items.map(item => (
-                          <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
-                            <p
-                              className="text-[14px] font-black text-[#3F4143]"
-                              style={bodyStyle}
-                            >
-                              {item.label}
-                            </p>
-                            <p
-                              className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
-                              style={bodyStyle}
-                            >
-                              {item.text}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  </div>
+                        <span className="w-4 h-px bg-[#8DBD42] inline-block" />
+                        {process[activeStep].number} of {process.length}
+                      </span>
+                    </div>
+                    <h3
+                      className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
+                      style={headlineStyle}
+                    >
+                      {process[activeStep].title}
+                    </h3>
+                    <div className="mt-6 space-y-5">
+                      {process[activeStep].items.map(item => (
+                        <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
+                          <p
+                            className="text-[14px] font-black text-[#3F4143]"
+                            style={bodyStyle}
+                          >
+                            {item.label}
+                          </p>
+                          <p
+                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
+                            style={bodyStyle}
+                          >
+                            {item.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -1459,95 +1442,96 @@ export default function Home() {
             <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left">
               {reviews.map((testimonial, idx) => (
                 <FadeUp key={testimonial.name} delay={idx * 0.06}>
-                  <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.02] hover:shadow-[0_20px_45px_rgba(20,81,38,0.06)] group h-full">
-                    <article data-gsap-reveal className="relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 flex flex-col justify-between overflow-hidden border border-[#3F4143]/5 border-l-0 shadow-[inset_0_1px_1px_rgba(255,255,255,1)]">
-                      {/* Big Decorative Quote Mark */}
-                      <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
-                        "
-                      </span>
+                  <article
+                    data-gsap-reveal
+                    className="relative h-full bg-white p-8 border border-[#3F4143]/5 border-l-4 border-l-[#8DBD42] shadow-[0_20px_50px_rgba(20,81,38,0.035)] flex flex-col justify-between overflow-hidden group"
+                  >
+                    {/* Big Decorative Quote Mark */}
+                    <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
+                      "
+                    </span>
 
-                      <div>
-                        {/* Rating Stars */}
-                        <motion.div
-                          className="flex text-[#8DBD42] gap-1"
-                          initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true, amount: 0.8 }}
-                          variants={{
-                            hidden: {},
-                            visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
-                          }}
-                        >
-                          {Array.from({ length: 5 }).map((_, starIndex) => (
-                            <motion.span
-                              key={starIndex}
-                              variants={{
-                                hidden: { opacity: 0, y: 6, scale: 0.8 },
-                                visible: { opacity: 1, y: 0, scale: 1 },
-                              }}
-                              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                            >
-                              <Star
-                                size={16}
-                                fill={
-                                  starIndex < Math.round(testimonial.rating || 5)
-                                    ? "currentColor"
-                                    : "none"
-                                }
-                                className={
-                                  starIndex < Math.round(testimonial.rating || 5)
-                                    ? ""
-                                    : "text-[#3F4143]/20"
-                                }
-                              />
-                            </motion.span>
-                          ))}
-                        </motion.div>
-
-                        {/* Review Text */}
-                        <p
-                          className="mt-6 text-[#3F4143]/85 text-base md:text-lg leading-relaxed italic"
-                          style={bodyStyle}
-                        >
-                          "{testimonial.quote}"
-                        </p>
-                      </div>
-
-                      {/* Reviewer Details */}
-                      <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-700 group-hover:translate-x-1">
-                        <div className="flex items-center gap-3">
-                          {testimonial.profilePhotoUrl && (
-                            <img
-                              src={testimonial.profilePhotoUrl}
-                              alt=""
-                              className="h-10 w-10 rounded-none object-cover border border-[#3F4143]/10"
-                              referrerPolicy="no-referrer"
+                    <div>
+                      {/* Rating Stars */}
+                      <motion.div
+                        className="flex text-[#8DBD42] gap-1"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.8 }}
+                        variants={{
+                          hidden: {},
+                          visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
+                        }}
+                      >
+                        {Array.from({ length: 5 }).map((_, starIndex) => (
+                          <motion.span
+                            key={starIndex}
+                            variants={{
+                              hidden: { opacity: 0, y: 6, scale: 0.8 },
+                              visible: { opacity: 1, y: 0, scale: 1 },
+                            }}
+                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <Star
+                              size={16}
+                              fill={
+                                starIndex < Math.round(testimonial.rating || 5)
+                                  ? "currentColor"
+                                  : "none"
+                              }
+                              className={
+                                starIndex < Math.round(testimonial.rating || 5)
+                                  ? ""
+                                  : "text-[#3F4143]/20"
+                              }
                             />
-                          )}
-                          <div>
-                            <p
-                              className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
-                              style={bodyStyle}
-                            >
-                              {testimonial.name}
-                            </p>
-                            <p
-                              className="text-[15px] text-[#3F4143]/65 mt-0.5"
-                              style={bodyStyle}
-                            >
-                              {testimonial.role}
-                            </p>
-                          </div>
-                        </div>
-                        <div
-                          className="flex items-center gap-1.5 text-xs font-bold text-[#145126] bg-[#8DBD42]/10 px-2.5 py-1 rounded-none select-none border border-[#145126]/8"
-                          style={bodyStyle}
-                        >
-                          <ShieldCheck size={11} /> Verified
+                          </motion.span>
+                        ))}
+                      </motion.div>
+
+                      {/* Review Text */}
+                      <p
+                        className="mt-6 text-[#3F4143]/85 text-base md:text-lg leading-relaxed italic"
+                        style={bodyStyle}
+                      >
+                        "{testimonial.quote}"
+                      </p>
+                    </div>
+
+                    {/* Reviewer Details */}
+                    <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-500 group-hover:translate-x-1">
+                      <div className="flex items-center gap-3">
+                        {testimonial.profilePhotoUrl && (
+                          <img
+                            src={testimonial.profilePhotoUrl}
+                            alt=""
+                            className="h-10 w-10 rounded-none object-cover border border-[#3F4143]/10"
+                            referrerPolicy="no-referrer"
+                          />
+                        )}
+                        <div>
+                          <p
+                            className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
+                            style={bodyStyle}
+                          >
+                            {testimonial.name}
+                          </p>
+                          <p
+                            className="text-[15px] text-[#3F4143]/65 mt-0.5"
+                            style={bodyStyle}
+                          >
+                            {testimonial.role}
+                          </p>
                         </div>
                       </div>
-                    </article>
-                  </div>
+                      <div
+                        className="flex items-center gap-1.5 text-xs font-bold text-[#145126] bg-[#8DBD42]/10 px-2.5 py-1 rounded-none select-none border border-[#145126]/8"
+                        style={bodyStyle}
+                      >
+                        <ShieldCheck size={11} /> Verified
+                      </div>
+                    </div>
+                  </article>
                 </FadeUp>
               ))}
             </div>
@@ -1679,12 +1663,9 @@ export default function Home() {
 
                     <button
                       type="submit"
-                      className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)] cursor-pointer"
+                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0 cursor-pointer"
                     >
-                      Send Message
-                      <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
-                        <Send size={13} />
-                      </span>
+                      <Send size={14} /> Send Message
                     </button>
                   </form>
                 </div>
