@@ -924,12 +924,13 @@ export default function Home() {
           <div className="max-w-[1280px] mx-auto px-6 md:px-8">
             {/* Header */}
             <FadeUp>
-              <span
-                className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none"
+              <p
+                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                 style={bodyStyle}
               >
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 Our Expertise
-              </span>
+              </p>
               <h2
                 className="mt-3 text-[40px] md:text-[56px] leading-[1.02] font-bold text-[#2F3335]"
                 style={headlineStyle}
@@ -1045,9 +1046,10 @@ export default function Home() {
 
             {/* RIGHT: text content + buttons */}
             <FadeUp delay={0.08} className="lg:col-span-6 order-1 lg:order-2">
-              <span className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none font-sans mb-4">
+              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold font-sans mb-4">
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 Our Promise
-              </span>
+              </p>
               <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
                 We Are Not Just Technicians.
                 <br />
@@ -1116,12 +1118,13 @@ export default function Home() {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="lg:col-span-5">
-                <span
-                  className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none mb-3"
+                <p
+                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold mb-3"
                   style={bodyStyle}
                 >
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                   What To Expect
-                </span>
+                </p>
                 <h2
                   className="text-[30px] md:text-[44px] mt-2 text-[#3F4143] font-bold leading-tight"
                   style={headlineStyle}
@@ -1424,12 +1427,14 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
             <FadeUp>
               <div className="flex flex-col items-center justify-center gap-3 mb-4">
-                <span
-                  className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none"
+                <p
+                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                   style={bodyStyle}
                 >
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                   Client Stories
-                </span>
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                </p>
               </div>
               <h2
                 className="text-[30px] md:text-[40px] mt-3 text-[#3F4143] font-bold leading-tight"
@@ -1544,12 +1549,12 @@ export default function Home() {
             <FadeUp>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
                 <div className="lg:col-span-7">
-                  <span
-                    className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none mb-4"
+                  <p
+                    className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold mb-4"
                     style={bodyStyle}
                   >
                     Request Help
-                  </span>
+                  </p>
                   <h2
                     className="mt-3 text-[34px] md:text-[52px] leading-[1.04] font-bold text-[#145126]"
                     style={headlineStyle}
