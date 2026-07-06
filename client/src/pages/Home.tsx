@@ -892,28 +892,29 @@ export default function Home() {
 
         {/* Specialized Restoration Section */}
         <section
-          data-gsap-section
           className="relative py-16 md:py-24 overflow-hidden bg-[#F7F4EE]"
           id="services"
         >
-          <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+          <div className="max-w-[1160px] mx-auto px-6 md:px-8">
             {/* Header */}
-            <FadeUp>
+            <FadeUp className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end mb-12 md:mb-0">
+              <div>
+                <p
+                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+                  style={bodyStyle}
+                >
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                  Our Expertise
+                </p>
+                <h2
+                  className="mt-3 text-[40px] md:text-[52px] leading-[1.02] font-bold text-[#2F3335]"
+                  style={headlineStyle}
+                >
+                  Specialized Restoration
+                </h2>
+              </div>
               <p
-                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
-                style={bodyStyle}
-              >
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                Our Expertise
-              </p>
-              <h2
-                className="mt-3 text-[40px] md:text-[56px] leading-[1.02] font-bold text-[#2F3335]"
-                style={headlineStyle}
-              >
-                Specialized Restoration
-              </h2>
-              <p
-                className="mt-5 max-w-[600px] text-[17px] leading-relaxed text-[#3F4143]/70"
+                className="text-[16px] leading-relaxed text-[#3F4143]/70 lg:pb-2"
                 style={bodyStyle}
               >
                 Select a service line to explore your options. Crafted for
@@ -921,80 +922,83 @@ export default function Home() {
               </p>
             </FadeUp>
 
-            <motion.div
-              className="mt-10 md:mt-12 h-px origin-left bg-[#3F4143]/12"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.65 }}
-              transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-            />
-
-            {/* Service columns */}
-            <motion.div
-              className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-              }}
-            >
+            {/* Service rows — editorial horizontal list */}
+            <div className="mt-0 md:mt-10">
               {services.map((service, idx) => (
                 <motion.div
                   key={service.title}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.65, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link
                     href={service.href}
-                    className="group relative block transition-transform duration-500 ease-out hover:-translate-y-1"
+                    className="group relative flex items-center gap-6 md:gap-10 py-7 md:py-8 border-t border-[#3F4143]/10 overflow-hidden cursor-pointer"
                   >
-                    {/* Icon — fills with the service color and scales on hover */}
+                    {/* Hover fill — slides in from left */}
+                    <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out bg-white/60 pointer-events-none" />
+
+                    {/* Index */}
                     <span
-                      className={`grid h-12 w-12 place-items-center rounded-none transition-transform duration-500 group-hover:scale-110 ${service.iconColor}`}
+                      className="relative z-10 shrink-0 text-[13px] font-black tracking-[0.18em] text-[#3F4143]/35 w-8 select-none"
+                      style={bodyStyle}
+                    >
+                      {service.number}
+                    </span>
+
+                    {/* Icon */}
+                    <span
+                      className={`relative z-10 shrink-0 grid h-10 w-10 place-items-center rounded-none transition-all duration-500 group-hover:scale-110 ${service.iconColor}`}
                     >
                       {service.icon}
                     </span>
 
-                    <h3
-                      className={`mt-6 text-[23px] md:text-[25px] leading-[1.08] font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
-                      style={headlineStyle}
-                    >
-                      <span className="relative inline-block">
+                    {/* Title + description */}
+                    <div className="relative z-10 flex-1 min-w-0">
+                      <h3
+                        className={`text-[20px] md:text-[26px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
+                        style={headlineStyle}
+                      >
                         {service.title}
-                        {/* Accent underline draws in on hover */}
-                        <span
-                          className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
-                        />
-                      </span>
-                    </h3>
-                    <p
-                      className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/70 font-light"
-                      style={bodyStyle}
-                    >
-                      {service.description}
-                    </p>
+                      </h3>
+                      <p
+                        className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/60 font-light max-w-[560px] hidden md:block"
+                        style={bodyStyle}
+                      >
+                        {service.description}
+                      </p>
+                    </div>
 
+                    {/* Accent bar + CTA arrow */}
+                    <div className="relative z-10 shrink-0 flex items-center gap-3 ml-auto">
+                      <span
+                        className={`hidden sm:block text-[11px] font-black uppercase tracking-[0.14em] text-[#3F4143]/40 group-hover:text-[#2F3335] transition-colors duration-400`}
+                        style={bodyStyle}
+                      >
+                        Explore
+                      </span>
+                      <span
+                        className={`flex items-center justify-center w-9 h-9 border border-[#3F4143]/15 group-hover:border-transparent transition-all duration-400 ${service.hoverTextColor}`}
+                      >
+                        <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+
+                    {/* Bottom accent line */}
                     <span
-                      className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
-                      style={bodyStyle}
-                    >
-                      Explore Service
-                      <ArrowRight
-                        size={14}
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      />
-                    </span>
+                      className={`absolute bottom-0 left-0 h-[1.5px] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out ${service.accentBarClass}`}
+                    />
                   </Link>
                 </motion.div>
               ))}
-            </motion.div>
+              {/* Final bottom border */}
+              <div className="border-t border-[#3F4143]/10" />
+            </div>
           </div>
         </section>
+
+
 
         {/* Our Promise Section */}
         <section
