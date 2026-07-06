@@ -927,21 +927,25 @@ export default function Home() {
                 >
                   <motion.div
                     className="group border border-transparent p-6 -mx-6 cursor-pointer"
-                    initial={{ borderColor: "transparent" }}
-                    whileHover={{ borderColor: service.accentColor }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    initial={{ borderColor: "rgba(0,0,0,0)", backgroundColor: "rgba(0,0,0,0)", y: 0 }}
+                    whileHover={{
+                      borderColor: service.accentColor,
+                      backgroundColor: "rgba(255,255,255,0.72)",
+                      y: -4,
+                    }}
+                    transition={{ type: "spring", stiffness: 140, damping: 20 }}
                   >
                     <Link href={service.href} className="block">
                       {/* Icon */}
                       <span
-                        className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-400 group-hover:scale-105 ${service.iconColor}`}
+                        className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-500 group-hover:scale-105 ${service.iconColor}`}
                       >
                         {service.icon}
                       </span>
 
                       {/* Title */}
                       <h3
-                        className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
+                        className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
                         style={headlineStyle}
                       >
                         {service.title}
@@ -957,14 +961,15 @@ export default function Home() {
 
                       {/* CTA */}
                       <span
-                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-400"
+                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-500"
                         style={bodyStyle}
                       >
                         Learn More
-                        <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                        <ArrowRight size={13} className="transition-transform duration-500 group-hover:translate-x-1" />
                       </span>
                     </Link>
                   </motion.div>
+
                 </motion.div>
               ))}
             </motion.div>
