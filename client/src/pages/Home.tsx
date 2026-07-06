@@ -197,95 +197,7 @@ function Parallax({
   );
 }
 
-function PhotoDeck() {
-  const images = [
-    "/photo/contents-gallery-5.jpg",
-    "/photo/contents-gallery-4.jpg",
-    "/photo/contents-gallery-9.jpg",
-    "/photo/contents-gallery-2.jpg",
-    "/photo/contents-gallery-10.jpg",
-    "/photo/contents-gallery-3.jpg",
-    "/photo/contents-gallery-8.jpg",
-    "/photo/contents-gallery-6.jpg",
-    "/photo/contents-gallery-11.jpg",
-    "/photo/contents-gallery-7.jpg",
-    "/photo/contents-gallery-12.jpg",
-    "/photo/contents-gallery-13.jpg",
-    "/photo/contents-gallery-14.jpg",
-    "/photo/contents-gallery-15.jpg",
-  ];
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % images.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [images.length]);
-
-  const handleNext = () => {
-    setCurrentIndex(prev => (prev + 1) % images.length);
-  };
-
-  return (
-    <div
-      className="relative w-full max-w-[710px] aspect-[1.5] cursor-pointer select-none group"
-      onClick={handleNext}
-    >
-      {images.map((img, idx) => {
-        const stackPos = (idx - currentIndex + images.length) % images.length;
-        const isVisible = stackPos < 4;
-
-        let rotate = 0;
-        let zIndex = 10 - stackPos;
-        let scale = 1 - stackPos * 0.03;
-        let translateY = stackPos * 10;
-        let translateX = stackPos * 6;
-
-        if (stackPos === 0) {
-          rotate = 5;
-        } else if (stackPos === 1) {
-          rotate = 1;
-        } else {
-          rotate = -3;
-        }
-
-        return (
-          <motion.div
-            key={img}
-            style={{
-              zIndex,
-              originX: 0.5,
-              originY: 0.5,
-              display: isVisible ? "flex" : "none",
-            }}
-            animate={{
-              rotate: rotate,
-              scale: scale,
-              y: translateY,
-              x: translateX,
-              opacity: stackPos === 3 ? 0.8 : 1,
-            }}
-            whileHover={
-              stackPos === 0 ? { scale: 1.02, rotate: rotate + 1 } : {}
-            }
-            transition={{ type: "spring", stiffness: 120, damping: 24, mass: 0.9 }}
-            className="absolute inset-0 rounded-none overflow-hidden shadow-[0_15px_45px_rgba(0,0,0,0.08)] border border-[#3F4143]/8 bg-white p-3 md:p-4 flex items-center justify-center"
-          >
-            <img
-              src={img}
-              alt={`Gallery image ${idx + 1}`}
-              className="w-full h-full object-contain rounded-none pointer-events-none"
-            />
-            {stackPos === 0 && (
-              <div className="absolute inset-0 bg-black/5 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
-            )}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
 
 export default function Home() {
   const [sliderPercent, setSliderPercent] = useState(50);
@@ -997,23 +909,25 @@ export default function Home() {
 
         {/* Our Promise Section */}
         <section
-          data-gsap-section
           id="promise"
-          className="pb-10 md:pb-16 pt-8 md:pt-12 text-[#3F4143] relative overflow-hidden"
+          className="pb-14 md:pb-20 pt-10 md:pt-14 text-[#3F4143] relative overflow-hidden"
           style={{ background: "#FFFFFF" }}
         >
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start relative z-10">
-            {/* LEFT: Photo deck + quote below it */}
-            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col items-center lg:items-start gap-10 mt-8 lg:mt-8">
-              <Parallax amount={26} className="w-full flex justify-center lg:justify-start">
-                <PhotoDeck />
-              </Parallax>
-              <div className="motion-soft-lift border-l-4 border-[#8DBD42] pl-6 pr-6 py-5 bg-[#FAF9F6] border border-[#3F4143]/5 rounded-none italic text-lg md:text-xl text-[#3F4143]/90 font-sans font-light leading-relaxed w-full mx-0">
-                Most importantly, we are advocates for you. Our priority is
-                protecting your home and your best interests, not the insurance
-                company.
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
+            {/* LEFT: Premium Editorial Image Frame */}
+            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0">
+              <div className="relative border border-[#3F4143]/12 shadow-[0_20px_50px_rgba(20,81,38,0.025)] bg-white p-2 rounded-none">
+                <img
+                  src="/photo/Before-After-Kitchen.jpg"
+                  alt="Finished structural kitchen reconstruction"
+                  className="w-full h-[320px] md:h-[420px] object-cover rounded-none"
+                />
+                <div className="mt-3 flex justify-between items-center text-[11px] text-[#3F4143]/55 uppercase tracking-[0.14em]" style={bodyStyle}>
+                  <span>Kitchen Reconstruction Project</span>
+                  <span>Lacey, WA</span>
+                </div>
               </div>
             </FadeUp>
 
@@ -1034,6 +948,10 @@ export default function Home() {
                 getting a team that lives in this community and stands behind
                 every repair decision.
               </p>
+
+              <div className="border-l-2 border-[#8DBD42] pl-5 italic text-[#3F4143]/90 text-[17px] leading-relaxed font-serif mt-8">
+                "Most importantly, we are advocates for you. Our priority is protecting your home and your best interests, not the insurance company."
+              </div>
 
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
                 <a
@@ -1209,81 +1127,45 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Case Study Header (Light Section) */}
+        {/* Case Study / Proven Results Section */}
         <section
-          data-gsap-section
-          className="pt-10 md:pt-16 pb-0 text-[#3F4143] relative overflow-hidden"
           id="case-study"
-          style={{ background: "#FFFFFF" }}
+          className="py-14 md:py-20 text-[#3F4143] relative overflow-hidden bg-white border-t border-gray-100"
         >
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/4 blur-[140px] pointer-events-none select-none z-0" />
 
-          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-              <div className="lg:col-span-7">
-                <FadeUp>
-                  <p
-                    className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
-                    style={bodyStyle}
-                  >
-                    <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                    Proven Results
-                  </p>
-                  <h2
-                    className="text-[30px] md:text-[44px] mt-3 leading-tight text-[#3F4143] font-bold"
-                    style={headlineStyle}
-                  >
-                    Proven Transformation
-                  </h2>
-                </FadeUp>
-              </div>
-              <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
-                <FadeUp
-                  delay={0.08}
-                  className="w-full flex flex-col items-start lg:items-end"
-                >
-                  <p
-                    className="text-[#3F4143]/80 text-base md:text-lg leading-relaxed lg:text-right max-w-xl"
-                    style={bodyStyle}
-                  >
-                    See the difference of meticulous craftsmanship and dedicated
-                    homeowner advocacy on a real fire damage rebuild project.
-                  </p>
-                  <Link
-                    href="/projects"
-                    className="group mt-6 inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-sm font-bold premium-btn"
-                    style={bodyStyle}
-                  >
-                    Our Portfolio <ArrowRight size={13} className="motion-link-arrow" />
-                  </Link>
-                </FadeUp>
-              </div>
-            </div>
-          </div>
-        </section>
+          <div className="max-w-[1080px] mx-auto px-6 relative z-10">
+            <FadeUp className="text-center max-w-2xl mx-auto mb-12">
+              <p
+                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+                style={bodyStyle}
+              >
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                Proven Results
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+              </p>
+              <h2
+                className="text-[34px] md:text-[46px] mt-4 leading-[1.1] text-[#3F4143] font-bold"
+                style={headlineStyle}
+              >
+                Proven Transformation
+              </h2>
+              <p
+                className="mt-4 text-[#3F4143]/70 text-base md:text-lg leading-relaxed"
+                style={bodyStyle}
+              >
+                Compare the detailed progress of a full structural rebuild. Drag the slider to reveal the craftsmanship that goes into every home restoration project.
+              </p>
+            </FadeUp>
 
-        {/* Case Study Content (Centered on Canvas Base) */}
-        <section
-          className="pt-4 pb-12 relative z-20"
-          style={{ background: "#FFFFFF" }}
-        >
-          {/* Ambient Background Glow behind slider */}
-          <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/2.5 blur-[140px] pointer-events-none select-none z-0" />
-
-          <div className="max-w-[1200px] mx-auto px-6">
             {/* Before/After Slider container */}
             <div className="relative">
               <div className="relative z-10">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98, y: 18 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                >
+                <FadeUp>
                   <div
                     ref={sliderRef}
-                    className="motion-soft-lift relative rounded-none overflow-hidden select-none cursor-col-resize shadow-[0_20px_50px_rgba(20,81,38,0.035)] border border-[#3F4143]/12"
+                    className="motion-soft-lift relative rounded-none overflow-hidden select-none cursor-col-resize shadow-[0_25px_60px_rgba(20,81,38,0.04)] border border-[#3F4143]/12"
                     onMouseMove={event => updateSlider(event.clientX)}
                     onTouchMove={event => updateSlider(event.touches[0].clientX)}
                   >
@@ -1291,7 +1173,7 @@ export default function Home() {
                       <img
                         src={AFTER_IMAGE}
                         alt="After restoration"
-                        className="w-full h-[360px] md:h-[560px] object-cover"
+                        className="w-full h-[360px] md:h-[540px] object-cover"
                       />
                       <div
                         className="absolute top-0 left-0 h-full overflow-hidden"
@@ -1300,7 +1182,7 @@ export default function Home() {
                         <img
                           src={BEFORE_IMAGE}
                           alt="Before restoration"
-                          className="w-full h-[360px] md:h-[560px] object-cover max-w-none"
+                          className="w-full h-[360px] md:h-[540px] object-cover max-w-none"
                           style={{
                             width: sliderRef.current
                               ? `${sliderRef.current.clientWidth}px`
@@ -1317,9 +1199,7 @@ export default function Home() {
                         }}
                       >
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-none bg-white border border-[#8DBD42] text-[#145126] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105">
-                          <ChevronsLeftRight
-                            size={18}
-                          />
+                          <ChevronsLeftRight size={18} />
                         </div>
                       </div>
 
@@ -1337,43 +1217,18 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                </motion.div>
+                </FadeUp>
               </div>
             </div>
 
-            {/* Testimonial Quote */}
-            <FadeUp delay={0.08}>
-              <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-4 md:px-6 relative z-10">
-                <div className="md:col-span-8 border-l-4 border-[#8DBD42] pl-6 py-2">
-                  <p
-                    className="italic text-[#3F4143]/95 text-lg md:text-2xl leading-relaxed font-serif"
-                    style={bodyStyle}
-                  >
-                    "Heritage worked to make the process as easy and painless as
-                    possible. The restoration turned out much nicer than we
-                    expected."
-                  </p>
-                </div>
-                <div className="md:col-span-4 md:justify-self-end flex items-center gap-4">
-                  <div className="text-right">
-                    <p
-                      className="uppercase font-extrabold tracking-[0.12em] text-sm text-[#3F4143]"
-                      style={bodyStyle}
-                    >
-                      Private Residence
-                    </p>
-                    <p
-                      className="text-sm text-[#3F4143]/65 mt-0.5"
-                      style={bodyStyle}
-                    >
-                      Full Structural Fire Rebuild
-                    </p>
-                  </div>
-                  <div className="w-11 h-11 rounded-full bg-[#8DBD42]/20 text-[#8DBD42] flex items-center justify-center shrink-0 shadow-[0_4px_12px_rgba(141,189,66,0.15)]">
-                    <House size={20} />
-                  </div>
-                </div>
-              </div>
+            <FadeUp delay={0.08} className="mt-10 flex justify-center">
+              <Link
+                href="/projects"
+                className="group inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
+                style={bodyStyle}
+              >
+                View Full Portfolio <ArrowRight size={13} />
+              </Link>
             </FadeUp>
           </div>
         </section>
