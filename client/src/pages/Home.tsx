@@ -1001,9 +1001,8 @@ export default function Home() {
                 Our Promise
               </p>
               <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
-                We Are Not Just Technicians.
-                <br />
-                We Are Your Neighbors.
+                <span className="block whitespace-nowrap">We Are Not Just Technicians.</span>
+                <span className="block whitespace-nowrap">We Are Your Neighbors.</span>
               </h2>
               <p className="mt-6 text-[#3F4143]/80 text-lg leading-relaxed font-sans font-light">
                 We are proudly local and homeowner focused. When you call
