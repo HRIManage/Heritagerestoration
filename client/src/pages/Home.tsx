@@ -401,6 +401,7 @@ export default function Home() {
       colorClass:
         "hover:border-[#E05A47] hover:ring-[#E05A47]/10 hover:shadow-[0_20px_50px_rgba(224,90,71,0.08)]",
       accentBarClass: "bg-[#E05A47]",
+      borderHoverClass: "group-hover:border-[#E05A47]",
       watermarkColor: "text-[#145126]/5 group-hover:text-[#E05A47]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
@@ -417,6 +418,7 @@ export default function Home() {
       colorClass:
         "hover:border-[#3A82F6] hover:ring-[#3A82F6]/10 hover:shadow-[0_20px_50px_rgba(58,130,246,0.08)]",
       accentBarClass: "bg-[#3A82F6]",
+      borderHoverClass: "group-hover:border-[#3A82F6]",
       watermarkColor: "text-[#145126]/5 group-hover:text-[#3A82F6]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
@@ -433,6 +435,7 @@ export default function Home() {
       colorClass:
         "hover:border-[#4F46E5] hover:ring-[#4F46E5]/10 hover:shadow-[0_20px_50px_rgba(79,70,229,0.08)]",
       accentBarClass: "bg-[#4F46E5]",
+      borderHoverClass: "group-hover:border-[#4F46E5]",
       watermarkColor: "text-[#145126]/5 group-hover:text-[#4F46E5]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
@@ -449,6 +452,7 @@ export default function Home() {
       colorClass:
         "hover:border-[#D97706] hover:ring-[#D97706]/10 hover:shadow-[0_20px_50px_rgba(217,119,6,0.08)]",
       accentBarClass: "bg-[#D97706]",
+      borderHoverClass: "group-hover:border-[#D97706]",
       watermarkColor: "text-[#145126]/5 group-hover:text-[#D97706]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
@@ -935,7 +939,7 @@ export default function Home() {
                 >
                   <Link
                     href={service.href}
-                    className="group block"
+                    className={`group block border border-transparent p-6 -mx-6 transition-colors duration-400 ${service.borderHoverClass}`}
                   >
                     {/* Icon */}
                     <span
@@ -952,16 +956,9 @@ export default function Home() {
                       {service.title}
                     </h3>
 
-                    {/* Thin accent line under title — draws in on hover */}
-                    <div className="mt-3 h-px bg-[#3F4143]/15 relative overflow-hidden">
-                      <span
-                        className={`absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out ${service.accentBarClass}`}
-                      />
-                    </div>
-
                     {/* Description */}
                     <p
-                      className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/68 font-light"
+                      className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/65 font-light"
                       style={bodyStyle}
                     >
                       {service.description}
