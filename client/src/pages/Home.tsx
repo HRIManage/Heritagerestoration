@@ -778,7 +778,7 @@ export default function Home() {
           </div>
 
           {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#145126] py-6 md:py-8 overflow-hidden">
+          <div className="relative z-10 bg-[#8DBD42] py-6 md:py-8 overflow-hidden">
             <style>{`
               @keyframes home-ticker {
                 from { transform: translateX(0); }
@@ -797,8 +797,8 @@ export default function Home() {
                     "Locally Owned & Operated",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#8DBD42]">{item}</span>
-                      <span className="text-[#8DBD42]/25 text-[14px] md:text-[18px]">✦</span>
+                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">{item}</span>
+                      <span className="text-[#145126]/30 text-[14px] md:text-[18px]">✦</span>
                     </span>
                   ))}
                 </div>
