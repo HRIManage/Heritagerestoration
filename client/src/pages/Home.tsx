@@ -1265,7 +1265,6 @@ export default function Home() {
 
         {/* Case Study Content (Centered on Canvas Base) */}
         <section
-          data-gsap-section
           className="pt-4 pb-12 relative z-20"
           style={{ background: "#FFFFFF" }}
         >
@@ -1275,19 +1274,16 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6">
             {/* Before/After Slider container */}
             <div className="relative">
-              {/* Skewed Green Accent Background Stripe behind the slider */}
-              <div className="absolute -top-8 -bottom-8 left-[10%] w-[32%] bg-[#8DBD42]/10 skew-x-[-15deg] rounded-3xl z-0 pointer-events-none" />
-
               <div className="relative z-10">
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95, y: 36 }}
+                  initial={{ opacity: 0, scale: 0.98, y: 18 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div
                     ref={sliderRef}
-                    className="motion-soft-lift relative rounded-2xl overflow-hidden select-none cursor-col-resize shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] border-4 border-white"
+                    className="motion-soft-lift relative rounded-none overflow-hidden select-none cursor-col-resize shadow-[0_20px_50px_rgba(20,81,38,0.035)] border border-[#3F4143]/12"
                     onMouseMove={event => updateSlider(event.clientX)}
                     onTouchMove={event => updateSlider(event.touches[0].clientX)}
                   >
@@ -1314,28 +1310,27 @@ export default function Home() {
                       </div>
 
                       <div
-                        className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#8DBD42]/40 via-[#8DBD42] to-[#8DBD42]/40 shadow-[0_0_8px_rgba(141,189,66,0.6)]"
+                        className="absolute top-0 bottom-0 w-[2px] bg-[#8DBD42] shadow-[0_0_8px_rgba(141,189,66,0.4)]"
                         style={{
                           left: `${sliderPercent}%`,
                           transform: "translateX(-50%)",
                         }}
                       >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.15),0_0_15px_rgba(141,189,66,0.35)] transition-all duration-300 hover:scale-110">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-none bg-white border border-[#8DBD42] text-[#145126] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105">
                           <ChevronsLeftRight
-                            size={20}
-                            className="animate-pulse"
+                            size={18}
                           />
                         </div>
                       </div>
 
                       <span
-                        className="absolute top-5 left-5 rounded-full bg-[#292b2d]/85 backdrop-blur-md text-white border border-white/20 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md select-none"
+                        className="absolute top-5 left-5 rounded-none bg-black/75 text-white border border-white/10 px-4 py-1.5 uppercase tracking-[0.16em] text-[10px] font-black select-none z-10"
                         style={bodyStyle}
                       >
                         Before
                       </span>
                       <span
-                        className="absolute top-5 right-5 rounded-full bg-[#8DBD42]/95 text-white border border-[#9fd546]/30 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md shadow-[#8DBD42]/15 select-none"
+                        className="absolute top-5 right-5 rounded-none bg-[#145126] text-white border border-[#145126]/20 px-4 py-1.5 uppercase tracking-[0.16em] text-[10px] font-black select-none z-10"
                         style={bodyStyle}
                       >
                         After
@@ -1385,46 +1380,47 @@ export default function Home() {
 
         {/* Testimonials (Editorial Layout) */}
         <section id="testimonials" className="py-14 md:py-20 bg-transparent relative overflow-hidden text-[#3F4143]">
-          <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
+          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
             <FadeUp>
-              <div className="flex flex-col items-center justify-center gap-3 mb-4">
-                <p
-                  className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
-                  style={bodyStyle}
-                >
-                  Testimonials
-                </p>
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div>
+                  <p
+                    className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
+                    style={bodyStyle}
+                  >
+                    Testimonials
+                  </p>
+                  <h2
+                    className="text-[34px] md:text-[44px] mt-3 !text-[#145126] font-bold leading-tight font-serif"
+                    style={headlineStyle}
+                  >
+                    Rebuilding Dreams, One Story At A Time
+                  </h2>
+                </div>
+                {/* Clean Top-Right Carousel Navigation Controls */}
+                <div className="flex items-center gap-3 self-start md:self-end">
+                  <button
+                    onClick={handlePrevReview}
+                    className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
+                    aria-label="Previous testimonial"
+                  >
+                    <span className="rotate-180 block text-base font-black leading-none">→</span>
+                  </button>
+                  <button
+                    onClick={handleNextReview}
+                    className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
+                    aria-label="Next testimonial"
+                  >
+                    <span className="block text-base font-black leading-none">→</span>
+                  </button>
+                </div>
               </div>
-              <h2
-                className="text-[34px] md:text-[48px] mt-3 !text-[#145126] font-bold leading-tight"
-                style={headlineStyle}
-              >
-                Rebuilding Dreams, One Story At A Time
-              </h2>
             </FadeUp>
-            {/* Infinite Testimonials Carousel Wrapper */}
-            <div className="relative mt-10 max-w-[1080px] mx-auto px-10 md:px-16 text-left">
-              {/* Left Arrow Button */}
-              <button
-                onClick={handlePrevReview}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-white border border-[#3F4143]/10 flex items-center justify-center text-[#55664a] hover:bg-[#8DBD42] hover:text-white hover:border-[#8DBD42] shadow-[0_10px_26px_rgba(30,34,30,0.08)] hover:shadow-[0_12px_28px_rgba(141,189,66,0.25)] active:scale-95 transition-all duration-300 focus:outline-none"
-                aria-label="Previous testimonial"
-              >
-                <ArrowRight size={18} className="rotate-180" />
-              </button>
 
-              {/* Right Arrow Button */}
-              <button
-                onClick={handleNextReview}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-white border border-[#3F4143]/10 flex items-center justify-center text-[#55664a] hover:bg-[#8DBD42] hover:text-white hover:border-[#8DBD42] shadow-[0_10px_26px_rgba(30,34,30,0.08)] hover:shadow-[0_12px_28px_rgba(141,189,66,0.25)] active:scale-95 transition-all duration-300 focus:outline-none"
-                aria-label="Next testimonial"
-              >
-                <ArrowRight size={18} />
-              </button>
-
-              {/* Landing-page style review strip */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-transparent">
-                {[0, 1, 2, 3].map(offset => {
+            {/* Testimonials Grid Wrapper */}
+            <div className="relative mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-transparent">
+                {[0, 1, 2].map(offset => {
                   const review = reviews[(currentReviewIndex + offset) % reviews.length];
                   if (!review) return null;
 
@@ -1434,24 +1430,24 @@ export default function Home() {
                   return (
                     <FadeUp
                       key={`${offset}-${currentReviewIndex}-${review.name}`}
-                      className={`${offset > 1 ? "hidden lg:block" : "block"} w-full`}
+                      className={`${offset === 1 ? "hidden md:block" : offset === 2 ? "hidden lg:block" : "block"} w-full`}
                     >
-                      <article className="group relative flex h-full min-h-[245px] flex-col justify-between bg-white px-6 py-8 text-left text-[#145126] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:border-[#145126] hover:shadow-[0_0_0_1px_rgba(20,81,38,0.85)]">
+                      <article className="group relative flex h-full min-h-[250px] flex-col justify-between bg-white px-7 py-9 text-left border border-[#3F4143]/8 shadow-[0_20px_50px_rgba(20,81,38,0.015)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(20,81,38,0.03)] rounded-none">
                         <div className="relative z-10 flex flex-col">
-                          <div className="mb-4 flex items-center justify-between gap-4">
+                          <div className="mb-5 flex items-center justify-between gap-4">
                             {review.profilePhotoUrl ? (
                               <img
                                 src={review.profilePhotoUrl}
                                 alt={review.name}
-                                className="h-11 w-11 rounded-full border border-[#E2E8DA] object-cover"
+                                className="h-10 w-10 rounded-full border border-black/5 object-cover"
                                 referrerPolicy="no-referrer"
                               />
                             ) : (
-                              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E2E8DA] bg-[#FAF9F6] text-[#145126] transition-colors duration-300 group-hover:border-[#145126] group-hover:bg-white group-hover:text-[#145126]">
-                                <Quote size={18} className="stroke-[1.7]" />
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-[#FAF9F6] text-[#145126]">
+                                <Quote size={15} className="stroke-[1.7]" />
                               </div>
                             )}
-                            <div className="flex justify-center gap-1 text-[#8DBD42] transition-colors duration-300 group-hover:text-[#8DBD42]">
+                            <div className="flex justify-center gap-1 text-[#8DBD42]">
                               {Array.from({ length: 5 }).map((_, starIndex) => (
                                 <Star
                                   key={starIndex}
@@ -1464,32 +1460,32 @@ export default function Home() {
                           </div>
 
                           <p
-                            className="text-[12.5px] leading-relaxed text-[#145126]/66 transition-colors duration-300 group-hover:text-[#145126]/66"
+                            className="text-[14px] leading-relaxed text-[#3F4143]/80 transition-colors duration-300 font-serif italic"
                             style={bodyStyle}
                           >
                             "{review.quote}"
                           </p>
                         </div>
 
-                        <div className="relative z-10 mt-5 border-t border-[#145126]/10 pt-4 transition-colors duration-300 group-hover:border-[#145126]/10">
+                        <div className="relative z-10 mt-6 border-t border-[#3F4143]/6 pt-4">
                           <h4
-                            className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#145126] transition-colors duration-300 group-hover:text-[#145126]"
+                            className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#145126]"
                             style={bodyStyle}
                           >
                             {review.name}
                           </h4>
                           <p
-                            className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#145126]/48 transition-colors duration-300 group-hover:text-[#145126]/48"
+                            className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#3F4143]/45"
                             style={bodyStyle}
                           >
                             {review.role}
                           </p>
                           {isGoogleReview ? (
                             <span
-                              className="mt-3 inline-flex w-fit items-center gap-1.5 border border-[#145126]/30 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#145126] transition-colors duration-300 group-hover:border-[#145126] group-hover:bg-white group-hover:text-[#145126]"
+                              className="mt-3.5 inline-flex w-fit items-center gap-1.5 border border-[#8DBD42]/30 bg-[#8DBD42]/6 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-[#145126]"
                               style={bodyStyle}
                             >
-                              <ShieldCheck size={12} />
+                              <ShieldCheck size={10} />
                               Google Verified
                             </span>
                           ) : null}
@@ -1499,12 +1495,12 @@ export default function Home() {
                   );
                 })}
               </div>
-              <div className="mt-8 flex justify-center">
+              <div className="mt-10 flex justify-center">
                 <a
                   href="https://g.page/r/CWy4NzZ8yjqCEBM/review"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-[#8DBD42] bg-[#8DBD42] px-5 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#145126] transition-all duration-300 hover:-translate-y-[2px] hover:bg-[#7dac35]"
+                  className="inline-flex items-center gap-2 border border-[#8DBD42] bg-[#8DBD42] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.14em] text-[#145126] transition-all duration-300 hover:-translate-y-[2px] hover:bg-[#7dac35] rounded-none hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)]"
                   style={bodyStyle}
                 >
                   Leave a review
