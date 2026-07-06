@@ -7,7 +7,17 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    // Fallback for asynchronous layout shifts during React rendering
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }, 5);
+
+    return () => clearTimeout(timer);
   }, [location]);
   return null;
 }
