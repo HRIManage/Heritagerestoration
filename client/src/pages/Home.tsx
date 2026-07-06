@@ -197,7 +197,95 @@ function Parallax({
   );
 }
 
+function PhotoDeck() {
+  const images = [
+    "/photo/contents-gallery-5.jpg",
+    "/photo/contents-gallery-4.jpg",
+    "/photo/contents-gallery-9.jpg",
+    "/photo/contents-gallery-2.jpg",
+    "/photo/contents-gallery-10.jpg",
+    "/photo/contents-gallery-3.jpg",
+    "/photo/contents-gallery-8.jpg",
+    "/photo/contents-gallery-6.jpg",
+    "/photo/contents-gallery-11.jpg",
+    "/photo/contents-gallery-7.jpg",
+    "/photo/contents-gallery-12.jpg",
+    "/photo/contents-gallery-13.jpg",
+    "/photo/contents-gallery-14.jpg",
+    "/photo/contents-gallery-15.jpg",
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % images.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev + 1) % images.length);
+  };
+
+  return (
+    <div
+      className="relative w-full max-w-[580px] aspect-[1.35] cursor-pointer select-none group"
+      onClick={handleNext}
+    >
+      {images.map((img, idx) => {
+        const stackPos = (idx - currentIndex + images.length) % images.length;
+        const isVisible = stackPos < 4;
+
+        let rotate = 0;
+        let zIndex = 10 - stackPos;
+        let scale = 1 - stackPos * 0.035;
+        let translateY = stackPos * 12;
+        let translateX = stackPos * 8;
+
+        if (stackPos === 0) {
+          rotate = 4;
+        } else if (stackPos === 1) {
+          rotate = 1;
+        } else {
+          rotate = -3;
+        }
+
+        return (
+          <motion.div
+            key={img}
+            style={{
+              zIndex,
+              originX: 0.5,
+              originY: 0.5,
+              display: isVisible ? "flex" : "none",
+            }}
+            animate={{
+              rotate: rotate,
+              scale: scale,
+              y: translateY,
+              x: translateX,
+              opacity: stackPos === 3 ? 0.75 : 1,
+            }}
+            whileHover={
+              stackPos === 0 ? { scale: 1.015, rotate: rotate + 0.5 } : {}
+            }
+            transition={{ type: "spring", stiffness: 130, damping: 26, mass: 0.8 }}
+            className="absolute inset-0 rounded-none overflow-hidden shadow-[0_12px_36px_rgba(20,81,38,0.04)] border border-[#3F4143]/12 bg-white p-2 flex items-center justify-center"
+          >
+            <img
+              src={img}
+              alt={`Gallery image ${idx + 1}`}
+              className="w-full h-full object-cover rounded-none pointer-events-none"
+            />
+            {stackPos === 0 && (
+              <div className="absolute inset-0 bg-black/5 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+            )}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Home() {
   const [sliderPercent, setSliderPercent] = useState(50);
@@ -916,19 +1004,11 @@ export default function Home() {
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
           <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
-            {/* LEFT: Premium Editorial Image Frame */}
-            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0">
-              <div className="relative border border-[#3F4143]/12 shadow-[0_20px_50px_rgba(20,81,38,0.025)] bg-white p-2 rounded-none">
-                <img
-                  src="/photo/Before-After-Kitchen.jpg"
-                  alt="Finished structural kitchen reconstruction"
-                  className="w-full h-[320px] md:h-[420px] object-cover rounded-none"
-                />
-                <div className="mt-3 flex justify-between items-center text-[11px] text-[#3F4143]/55 uppercase tracking-[0.14em]" style={bodyStyle}>
-                  <span>Kitchen Reconstruction Project</span>
-                  <span>Lacey, WA</span>
-                </div>
-              </div>
+            {/* LEFT: Premium Editorial Image Deck */}
+            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0 items-center justify-center">
+              <Parallax amount={22} className="w-full flex justify-center lg:justify-start">
+                <PhotoDeck />
+              </Parallax>
             </FadeUp>
 
             {/* RIGHT: text content + buttons */}
@@ -966,29 +1046,6 @@ export default function Home() {
                 >
                   Request Assessment
                 </a>
-              </div>
-
-              <div className="mt-10 grid sm:grid-cols-2 gap-8 border-t border-[#3F4143]/10 pt-8 font-sans">
-                <div>
-                  <p className="uppercase tracking-[0.14em] text-sm font-extrabold text-[#3F4143] flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42] inline-block" />
-                    Local Accountability
-                  </p>
-                  <p className="mt-2 text-[#3F4143]/70 text-base leading-relaxed font-light">
-                    Direct access to our local leadership and project management
-                    teams.
-                  </p>
-                </div>
-                <div className="border-t sm:border-t-0 sm:border-l border-[#3F4143]/10 pt-6 sm:pt-0 sm:pl-8">
-                  <p className="uppercase tracking-[0.14em] text-sm font-extrabold text-[#3F4143] flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42] inline-block" />
-                    Homeowner Advocacy
-                  </p>
-                  <p className="mt-2 text-[#3F4143]/70 text-base leading-relaxed font-light">
-                    Insurance guidance to keep your claim and rebuild fair and
-                    transparent.
-                  </p>
-                </div>
               </div>
             </FadeUp>
           </div>
