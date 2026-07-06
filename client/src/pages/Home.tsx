@@ -927,6 +927,7 @@ export default function Home() {
                 >
                   <motion.div
                     className="group border border-transparent p-4 sm:p-6 -mx-4 sm:-mx-6 cursor-pointer"
+                    style={{ borderWidth: "0.5px" }}
                     initial="rest"
                     whileHover="hovered"
                     animate="rest"
