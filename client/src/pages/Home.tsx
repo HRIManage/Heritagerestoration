@@ -923,10 +923,11 @@ export default function Home() {
             {/* Header */}
             <FadeUp>
               <p
-                className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
+                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                 style={bodyStyle}
               >
-                Chapter 02 / Our Expertise
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                Our Expertise
               </p>
               <h2
                 className="mt-3 text-[40px] md:text-[56px] leading-[1.02] font-bold text-[#2F3335]"
@@ -976,14 +977,6 @@ export default function Home() {
                     href={service.href}
                     className="group relative block transition-transform duration-700 ease-out hover:-translate-y-1"
                   >
-                    {/* Ghost numeral — tints to the service color on hover */}
-                    <span
-                      className={`pointer-events-none absolute bottom-0 right-1 select-none font-bold leading-none text-[5.5rem] transition-colors duration-700 ${service.watermarkColor}`}
-                      style={headlineStyle}
-                    >
-                      {service.number}
-                    </span>
-
                     {/* Icon — fills with the service color and scales on hover */}
                     <span
                       className={`grid h-12 w-12 place-items-center rounded-full transition-colors duration-700 ${service.iconColor}`}
@@ -991,14 +984,8 @@ export default function Home() {
                       {service.icon}
                     </span>
 
-                    <p
-                      className="mt-7 text-[12px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
-                      style={bodyStyle}
-                    >
-                      Service {service.number}
-                    </p>
                     <h3
-                      className={`mt-2 text-[25px] md:text-[27px] leading-[1.06] font-bold text-[#2F3335] transition-colors duration-700 ${service.hoverTextColor}`}
+                      className={`mt-6 text-[25px] md:text-[27px] leading-[1.06] font-bold text-[#2F3335] transition-colors duration-700 ${service.hoverTextColor}`}
                       style={headlineStyle}
                     >
                       <span className="relative inline-block">
@@ -1057,8 +1044,9 @@ export default function Home() {
 
             {/* RIGHT: text content + buttons */}
             <FadeUp delay={0.08} className="lg:col-span-6 order-1 lg:order-2">
-              <p className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold font-sans">
-                Chapter 03 / Our Promise
+              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold font-sans">
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                Our Promise
               </p>
               <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
                 We Are Not Just Technicians.
@@ -1129,10 +1117,11 @@ export default function Home() {
             >
               <div className="lg:col-span-5">
                 <p
-                  className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
+                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                   style={bodyStyle}
                 >
-                  Chapter 04 / What To Expect
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                  What To Expect
                 </p>
                 <h2
                   className="text-[30px] md:text-[44px] mt-2 text-[#3F4143] font-bold leading-tight"
@@ -1194,50 +1183,56 @@ export default function Home() {
               </div>
 
               {/* RIGHT — active step detail expands here */}
-              <div className="lg:sticky lg:top-28 self-start">
-                <motion.div
-                  key={activeStep}
-                  initial={{ opacity: 0, x: 18, scale: 0.98 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
-                  className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.28)]"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#1A311F]">
-                      {process[activeStep].icon}
-                    </span>
-                    <span
-                      className="text-[13px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
-                      style={bodyStyle}
-                    >
-                      Step {process[activeStep].number}
-                    </span>
-                  </div>
-                  <h3
-                    className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
-                    style={headlineStyle}
+              <div className="lg:sticky lg:top-28 self-start relative">
+                {/* Skewed Green Accent Background behind active step card */}
+                <div className="absolute -inset-3 bg-[#8DBD42]/10 skew-x-[-6deg] rounded-2xl z-0 pointer-events-none" />
+
+                <div className="relative z-10">
+                  <motion.div
+                    key={activeStep}
+                    initial={{ opacity: 0, x: 18, scale: 0.98 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
+                    className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.28)]"
                   >
-                    {process[activeStep].title}
-                  </h3>
-                  <div className="mt-6 space-y-5">
-                    {process[activeStep].items.map(item => (
-                      <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
-                        <p
-                          className="text-[14px] font-black text-[#3F4143]"
-                          style={bodyStyle}
-                        >
-                          {item.label}
-                        </p>
-                        <p
-                          className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
-                          style={bodyStyle}
-                        >
-                          {item.text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
+                    <div className="flex items-center gap-4">
+                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#1A311F] rounded-full">
+                        {process[activeStep].icon}
+                      </span>
+                      <span
+                        className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
+                        style={bodyStyle}
+                      >
+                        <span className="w-4 h-px bg-[#8DBD42] inline-block" />
+                        {process[activeStep].number} of {process.length}
+                      </span>
+                    </div>
+                    <h3
+                      className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
+                      style={headlineStyle}
+                    >
+                      {process[activeStep].title}
+                    </h3>
+                    <div className="mt-6 space-y-5">
+                      {process[activeStep].items.map(item => (
+                        <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
+                          <p
+                            className="text-[14px] font-black text-[#3F4143]"
+                            style={bodyStyle}
+                          >
+                            {item.label}
+                          </p>
+                          <p
+                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
+                            style={bodyStyle}
+                          >
+                            {item.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
@@ -1264,11 +1259,11 @@ export default function Home() {
               <div className="lg:col-span-7">
                 <FadeUp>
                   <p
-                    className="text-[#8DBD42] uppercase tracking-[0.15em] text-sm font-extrabold flex items-center gap-2"
+                    className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                     style={bodyStyle}
                   >
-                    <span className="w-6 h-[2px] bg-[#8DBD42] inline-block" />{" "}
-                    Chapter 05 / Case Study
+                    <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                    Proven Results
                   </p>
                   <h2
                     className="text-[30px] md:text-[44px] mt-3 leading-tight text-[#3F4143] font-bold"
@@ -1315,70 +1310,75 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6">
             {/* Before/After Slider container */}
             <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 36 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div
-                  ref={sliderRef}
-                  className="motion-soft-lift relative rounded-2xl overflow-hidden select-none cursor-col-resize shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] border-4 border-white"
-                  onMouseMove={event => updateSlider(event.clientX)}
-                  onTouchMove={event => updateSlider(event.touches[0].clientX)}
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={AFTER_IMAGE}
-                      alt="After restoration"
-                      className="w-full h-[360px] md:h-[560px] object-cover"
-                    />
-                    <div
-                      className="absolute top-0 left-0 h-full overflow-hidden"
-                      style={{ width: `${sliderPercent}%` }}
-                    >
-                      <img
-                        src={BEFORE_IMAGE}
-                        alt="Before restoration"
-                        className="w-full h-[360px] md:h-[560px] object-cover max-w-none"
-                        style={{
-                          width: sliderRef.current
-                            ? `${sliderRef.current.clientWidth}px`
-                            : "100%",
-                        }}
-                      />
-                    </div>
+              {/* Skewed Green Accent Background Stripe behind the slider */}
+              <div className="absolute -top-8 -bottom-8 left-[10%] w-[32%] bg-[#8DBD42]/10 skew-x-[-15deg] rounded-3xl z-0 pointer-events-none" />
 
-                    <div
-                      className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#8DBD42]/40 via-[#8DBD42] to-[#8DBD42]/40 shadow-[0_0_8px_rgba(141,189,66,0.6)]"
-                      style={{
-                        left: `${sliderPercent}%`,
-                        transform: "translateX(-50%)",
-                      }}
-                    >
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.15),0_0_15px_rgba(141,189,66,0.35)] transition-all duration-300 hover:scale-110">
-                        <ChevronsLeftRight
-                          size={20}
-                          className="animate-pulse"
+              <div className="relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 36 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div
+                    ref={sliderRef}
+                    className="motion-soft-lift relative rounded-2xl overflow-hidden select-none cursor-col-resize shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] border-4 border-white"
+                    onMouseMove={event => updateSlider(event.clientX)}
+                    onTouchMove={event => updateSlider(event.touches[0].clientX)}
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={AFTER_IMAGE}
+                        alt="After restoration"
+                        className="w-full h-[360px] md:h-[560px] object-cover"
+                      />
+                      <div
+                        className="absolute top-0 left-0 h-full overflow-hidden"
+                        style={{ width: `${sliderPercent}%` }}
+                      >
+                        <img
+                          src={BEFORE_IMAGE}
+                          alt="Before restoration"
+                          className="w-full h-[360px] md:h-[560px] object-cover max-w-none"
+                          style={{
+                            width: sliderRef.current
+                              ? `${sliderRef.current.clientWidth}px`
+                              : "100%",
+                          }}
                         />
                       </div>
-                    </div>
 
-                    <span
-                      className="absolute top-5 left-5 rounded-full bg-[#292b2d]/85 backdrop-blur-md text-white border border-white/20 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md select-none"
-                      style={bodyStyle}
-                    >
-                      Before
-                    </span>
-                    <span
-                      className="absolute top-5 right-5 rounded-full bg-[#8DBD42]/95 text-white border border-[#9fd546]/30 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md shadow-[#8DBD42]/15 select-none"
-                      style={bodyStyle}
-                    >
-                      After
-                    </span>
+                      <div
+                        className="absolute top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#8DBD42]/40 via-[#8DBD42] to-[#8DBD42]/40 shadow-[0_0_8px_rgba(141,189,66,0.6)]"
+                        style={{
+                          left: `${sliderPercent}%`,
+                          transform: "translateX(-50%)",
+                        }}
+                      >
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.15),0_0_15px_rgba(141,189,66,0.35)] transition-all duration-300 hover:scale-110">
+                          <ChevronsLeftRight
+                            size={20}
+                            className="animate-pulse"
+                          />
+                        </div>
+                      </div>
+
+                      <span
+                        className="absolute top-5 left-5 rounded-full bg-[#292b2d]/85 backdrop-blur-md text-white border border-white/20 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md select-none"
+                        style={bodyStyle}
+                      >
+                        Before
+                      </span>
+                      <span
+                        className="absolute top-5 right-5 rounded-full bg-[#8DBD42]/95 text-white border border-[#9fd546]/30 px-5 py-2 uppercase tracking-[0.2em] text-xs font-black shadow-md shadow-[#8DBD42]/15 select-none"
+                        style={bodyStyle}
+                      >
+                        After
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
 
             {/* Testimonial Quote */}
@@ -1426,10 +1426,12 @@ export default function Home() {
             <FadeUp>
               <div className="flex flex-col items-center justify-center gap-3 mb-4">
                 <p
-                  className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
+                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                   style={bodyStyle}
                 >
-                  Chapter 06 / Testimonials
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                  Client Stories
+                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 </p>
               </div>
               <h2

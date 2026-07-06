@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "wouter";
+import { Flame, Droplets, Wind, Sparkles } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,25 +11,29 @@ const services = [
     title: "Structural Fire Reconstruction",
     subtitle: "Fire & Smoke Damage",
     desc: "Complete fire damage assessment, smoke and soot removal, structural drying, and full interior/exterior reconstruction.",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
+    icon: Flame,
+    link: "/services/fire-restoration",
   },
   {
     title: "Advanced Moisture Mitigation",
     subtitle: "Water Damage",
     desc: "Emergency water extraction, industrial drying, mold prevention, and structural repairs with 3D moisture mapping.",
-    img: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800",
+    icon: Droplets,
+    link: "/services/water-restoration",
   },
   {
     title: "Emergency Structural Stabilization",
     subtitle: "Storm Damage",
     desc: "Rapid response roof tarping, board-up, structural bracing, and full storm damage reconstruction.",
-    img: "https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?auto=format&fit=crop&q=80&w=800",
+    icon: Wind,
+    link: "/services/storm-recovery",
   },
   {
     title: "Contents Restoration & Cleaning",
     subtitle: "Specialty Cleaning",
     desc: "Furniture, textiles, electronics, and heirloom item restoration using ultrasonic and ozone treatment.",
-    img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80&w=800",
+    icon: Sparkles,
+    link: "/services/contents-services",
   },
 ];
 
@@ -91,54 +97,48 @@ export default function Services() {
               ref={el => {
                 cardRefs.current[i] = el;
               }}
-              className="group bg-transparent transition-all duration-300 relative"
+              className="h-full"
               style={{
-                borderRadius: 0,
                 opacity: 0,
               }}
             >
-              {/* Image Grid Block (Grayscale on normal, full color on hover, 0px border-radius) */}
-              <div className="h-64 md:h-80 overflow-hidden relative mb-6">
+              <Link
+                href={svc.link}
+                className="group relative block bg-white border border-brand-stone p-8 md:p-12 pt-24 md:pt-28 pb-16 flex flex-col justify-between h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl shadow-md cursor-pointer overflow-hidden"
+                style={{ borderRadius: 0 }}
+              >
+                {/* Green Arrow Ribbon at top left */}
                 <div
-                  className="w-full h-full bg-cover bg-center transition-all duration-700 hover:scale-105"
+                  className="absolute top-0 left-0 h-16 w-40 bg-brand-green flex items-center justify-center transition-colors duration-500 group-hover:bg-brand-charcoal"
                   style={{
-                    backgroundImage: `url('${svc.img}')`,
-                    filter: "grayscale(100%) brightness(0.95)",
-                    transition: "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+                    clipPath: "polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%)",
                   }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.filter = "grayscale(0%) brightness(1)";
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.filter = "grayscale(100%) brightness(0.95)";
-                  }}
-                />
-              </div>
-
-              {/* Content Panel - Borderless inline styling */}
-              <div className="pt-2">
-                <span className="font-sans text-[10px] tracking-widest uppercase text-brand-green font-semibold block mb-2">
-                  {svc.subtitle}
-                </span>
-
-                <h3 className="font-serif text-2xl font-semibold text-brand-charcoal leading-tight mb-3">
-                  {svc.title}
-                </h3>
-
-                <p className="font-sans text-brand-ink text-sm md:text-base font-light leading-relaxed mb-4 max-w-xl">
-                  {svc.desc}
-                </p>
-
-                {/* Secondary/Ghost Action Style Link: Arrow shifts 4px on hover */}
-                <div className="inline-flex items-center gap-2 text-brand-charcoal group-hover:text-brand-green font-sans font-medium text-xs tracking-wider uppercase transition-colors">
-                  Learn More
-                  <span className="text-brand-green font-semibold text-base transition-transform duration-300 group-hover:translate-x-1 inline-block">
-                    →
-                  </span>
+                >
+                  <svc.icon className="w-7 h-7 text-white transition-transform duration-500 group-hover:scale-110" />
                 </div>
-              </div>
+
+                {/* Text content area */}
+                <div className="flex-grow flex flex-col">
+                  <span className="font-sans text-[10px] md:text-xs tracking-widest uppercase text-brand-green font-semibold block mb-3 transition-colors duration-500 group-hover:text-brand-charcoal">
+                    {svc.subtitle}
+                  </span>
+
+                  <h3 className="font-serif text-2xl md:text-3xl font-semibold text-brand-charcoal leading-tight mb-4 transition-colors duration-500 group-hover:text-brand-green">
+                    {svc.title}
+                  </h3>
+
+                  <p className="font-sans text-brand-ink/85 text-sm md:text-base font-light leading-relaxed mb-8 flex-grow">
+                    {svc.desc}
+                  </p>
+                </div>
+
+                {/* Large outline icon centered at the bottom */}
+                <div className="flex justify-center pt-4">
+                  <svc.icon
+                    className="w-16 h-16 text-brand-stone transition-all duration-500 stroke-[1.25] group-hover:text-brand-green group-hover:scale-110 group-hover:-translate-y-1"
+                  />
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -146,3 +146,4 @@ export default function Services() {
     </section>
   );
 }
+

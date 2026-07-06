@@ -641,7 +641,7 @@ export default function ServiceAreas() {
                     </svg>
 
                     {/* Floating Info Tooltip */}
-                    {false && activeCityData && (
+                    {activeCityData && false && (
                       <div
                         className="absolute bottom-4 left-4 right-4 bg-white border-t-2 border-[#8DBD42] p-4 shadow-xl z-20 flex flex-col justify-between gap-2 transition-opacity duration-200"
                         style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
@@ -649,25 +649,25 @@ export default function ServiceAreas() {
                         <div>
                           <div className="flex items-center justify-between">
                             <span className="text-[10px] uppercase tracking-widest font-black text-[#8DBD42]">
-                              {activeCityData.county}
+                              {activeCityData?.county}
                             </span>
                             <span className="text-[11px] bg-slate-100 text-[#3F4143]/60 px-2 py-0.5 font-bold">
-                              {activeCityData.office} Office Area
+                              {activeCityData?.office} Office Area
                             </span>
                           </div>
                           <h4 className="text-base font-bold text-[#3F4143] mt-1 font-serif">
-                            {activeCityData.name}, WA
+                            {activeCityData?.name}, WA
                           </h4>
                           <p className="text-xs text-[#3F4143]/70 mt-1 line-clamp-2">
-                            {activeCityData.blurb}
+                            {activeCityData?.blurb}
                           </p>
                         </div>
                         <div className="flex items-center justify-between border-t border-slate-100 pt-2 mt-1 text-[11px]">
                           <span className="text-[#3F4143]/50">
-                            ZIPs: {activeCityData.zips.slice(0, 3).join(", ")}{activeCityData.zips.length > 3 ? "..." : ""}
+                            ZIPs: {activeCityData?.zips?.slice(0, 3).join(", ")}{(activeCityData?.zips?.length ?? 0) > 3 ? "..." : ""}
                           </span>
                           <Link
-                            href={`/service-area/${activeCityData.slug}`}
+                            href={`/service-area/${activeCityData?.slug}`}
                             className="text-[#8DBD42] font-black uppercase tracking-wider hover:underline inline-flex items-center gap-0.5"
                           >
                             Details <ArrowRight size={10} />
@@ -677,7 +677,7 @@ export default function ServiceAreas() {
                     )}
 
                     {/* Default Help Hint */}
-                    {false && !activeCityData && (
+                    {!activeCityData && false && (
                       <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md text-white p-3 text-center text-xs z-10 font-sans font-light">
                         Hover over any city selector to view details and dispatch coverage.
                       </div>

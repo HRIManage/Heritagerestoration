@@ -77,6 +77,9 @@ h6 {
   color: inherit;
   font-weight: 600;
   line-height: 1.15;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -90,13 +93,23 @@ h6 {
 
 /* Overline text */
 .overline-label {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-sans);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-green);
+}
+.overline-label::before {
+  content: '';
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background-color: var(--color-green);
+  flex-shrink: 0;
 }
 
 /* Section padding */
@@ -123,12 +136,21 @@ h6 {
 /* Green accent divider line */
 .green-divider {
   display: block;
-  width: 52px;
-  height: 3px;
+  width: 40px;
+  height: 2px;
   background-color: var(--color-green);
   border-radius: 0px;
   margin-top: 1.25rem;
   margin-bottom: 1.75rem;
+}
+
+/* Premium section separator */
+.section-sep {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(63,65,67,0.1) 20%, rgba(63,65,67,0.1) 80%, transparent);
+  margin: 0 auto;
 }
 
 /* Scroll bounce */
