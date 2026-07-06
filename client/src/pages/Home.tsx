@@ -382,44 +382,7 @@ export default function Home() {
           1.35
         );
 
-      gsap.utils.toArray<HTMLElement>("[data-gsap-section]").forEach(section => {
-        const items = section.querySelectorAll("[data-gsap-reveal]");
 
-        gsap.fromTo(
-          section,
-          { autoAlpha: 0.92, y: 34 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 1.15,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 78%",
-              once: true,
-            },
-          }
-        );
-
-        if (items.length) {
-          gsap.fromTo(
-            items,
-            { autoAlpha: 0, y: 26 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 1,
-              stagger: 0.12,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 72%",
-                once: true,
-              },
-            }
-          );
-        }
-      });
     }, pageRef);
 
     return () => ctx.revert();
@@ -970,21 +933,20 @@ export default function Home() {
               className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.28 }}
+              viewport={{ once: true, amount: 0.15 }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.14, delayChildren: 0.18 } },
+                visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
               }}
             >
               {services.map((service, idx) => (
                 <motion.div
                   key={service.title}
-                  data-gsap-reveal
                   variants={{
-                    hidden: { opacity: 0, y: 30 },
+                    hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 },
                   }}
-                  transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link
                     href={service.href}
@@ -1258,13 +1220,7 @@ export default function Home() {
           <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/4 blur-[140px] pointer-events-none select-none z-0" />
 
           <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <motion.div
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
               <div className="lg:col-span-7">
                 <FadeUp>
                   <p
@@ -1303,7 +1259,7 @@ export default function Home() {
                   </Link>
                 </FadeUp>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
