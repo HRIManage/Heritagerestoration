@@ -7,7 +7,7 @@ import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 
-// ── Web3Forms ───────────────────────────────────────────────────────────────
+// â”€â”€ Web3Forms â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Free, unlimited, no backend required (works on static Vercel hosting).
 // Get a free access key at https://web3forms.com (enter office@firewaterstorm.com)
 // and paste it below. Submissions are emailed to that address.
@@ -40,7 +40,7 @@ export default function Contact() {
     e.preventDefault();
     setError("");
 
-    // Honeypot — if filled, silently treat as spam success.
+    // Honeypot â€” if filled, silently treat as spam success.
     const botField = (
       e.currentTarget.elements.namedItem("botcheck") as HTMLInputElement | null
     )?.checked;
@@ -152,7 +152,7 @@ export default function Contact() {
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-12 md:pb-16 bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-12 md:pb-16 bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white overflow-hidden border-b border-[#8DBD42]/20">
           <Container>
             <FadeIn className="max-w-2xl" direction="up">
               <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-4">
@@ -170,7 +170,7 @@ export default function Contact() {
           </Container>
         </section>
 
-        {/* Ticker strip — lime green on contact page */}
+        {/* Ticker strip â€” lime green on contact page */}
         <div className="relative z-10 bg-[#8DBD42] py-5 overflow-hidden">
           <style>{`
             @keyframes contact-ticker {
@@ -189,8 +189,8 @@ export default function Contact() {
                   "Locally Owned & Operated",
                 ].map(item => (
                   <span key={item} className="flex items-center">
-                    <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#1A311F]">{item}</span>
-                    <span className="text-[#1A311F]/30 text-[10px]">✦</span>
+                    <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#145126]">{item}</span>
+                    <span className="text-[#145126]/30 text-[10px]">✦</span>
                   </span>
                 ))}
               </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                   direction="up"
                 >
                   {/* Dark green gradient background */}
-                  <div className="bg-[#1A311F] p-8 md:p-10 relative">
+                  <div className="bg-[#145126] p-8 md:p-10 relative">
                     {/* Glow accents */}
                     <div className="absolute right-[-40px] top-[-40px] w-64 h-64 rounded-full bg-[#8DBD42]/12 blur-[80px] pointer-events-none" />
                     <div className="absolute left-[-20px] bottom-[-20px] w-40 h-40 rounded-full bg-[#8DBD42]/8 blur-[60px] pointer-events-none" />
@@ -231,7 +231,7 @@ export default function Contact() {
                       <p className="text-white text-[17px] mt-2">Available day, night, weekends &amp; holidays</p>
                     </div>
 
-                    {/* Phone — hero element */}
+                    {/* Phone â€” hero element */}
                     <a
                       href="tel:+13604561886"
                       className="relative z-10 flex items-center gap-4 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-6 py-5 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
@@ -240,7 +240,7 @@ export default function Contact() {
                         <Phone size={20} className="stroke-[2.5]" />
                       </div>
                       <div>
-                        <p className="text-[13px] uppercase tracking-[0.18em] font-black opacity-70 mb-0.5">Call Now — Free</p>
+                        <p className="text-[13px] uppercase tracking-[0.18em] font-black opacity-70 mb-0.5">Call Now â€” Free</p>
                         <p className="text-[24px] font-black tracking-tight leading-none">+1 (360) 456-1886</p>
                       </div>
                     </a>
@@ -492,7 +492,7 @@ export default function Contact() {
           </Container>
         </Section>
 
-        {/* Trust badges — bottom of page above footer */}
+        {/* Trust badges â€” bottom of page above footer */}
         <div className="bg-white border-t border-gray-100">
           <div className="max-w-[900px] mx-auto px-8 py-14 md:py-16 text-center">
             <p className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42] mb-10">
@@ -504,7 +504,7 @@ export default function Contact() {
                   src: "/photo/emergency-badge-new-2.png",
                   alt: "24 HR Emergency Response",
                   title: "24/7 Emergency Response",
-                  desc: "We answer every call — day or night, weekends and holidays.",
+                  desc: "We answer every call â€” day or night, weekends and holidays.",
                 },
                 {
                   src: "/photo/iicrc-badge-new-3.png",
@@ -532,7 +532,7 @@ export default function Contact() {
               ))}
             </div>
             <p className="text-[13px] text-[#3F4143]/45 max-w-[520px] mx-auto leading-relaxed">
-              Heritage Restoration has served Western Washington since 2004 — locally owned, licensed &amp; bonded, and committed to protecting homeowners through every step of recovery.
+              Heritage Restoration has served Western Washington since 2004 â€” locally owned, licensed &amp; bonded, and committed to protecting homeowners through every step of recovery.
             </p>
           </div>
         </div>

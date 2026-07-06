@@ -79,7 +79,7 @@ export default function Projects() {
 
       <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[152px]">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
             <FadeUp className="inline-flex items-center gap-2 justify-center">
               <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />

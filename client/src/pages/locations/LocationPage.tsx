@@ -86,13 +86,13 @@ const REVIEWS = [
     name: "Linda H.",
     location: "Master Bath Fire Recovery",
     stars: 5,
-    text: "After our kitchen fire I didn't know who to call. Heritage took care of everything — from board-up to final paint. Highly recommend.",
+    text: "After our kitchen fire I didn't know who to call. Heritage took care of everything â€” from board-up to final paint. Highly recommend.",
   },
   {
     name: "Skip & Alpha Beard",
     location: "DuPont, WA",
     stars: 5,
-    text: "Incredible attention to detail. The before and after was unbelievable — better than it looked before the damage.",
+    text: "Incredible attention to detail. The before and after was unbelievable â€” better than it looked before the damage.",
   },
 ];
 
@@ -101,7 +101,7 @@ const PROCESS = [
     num: "01",
     icon: <PhoneCall size={20} />,
     title: "You Call, We Answer",
-    desc: "Our emergency line is staffed 24/7 by real local dispatchers — not a call center. A certified crew heads to your property within minutes.",
+    desc: "Our emergency line is staffed 24/7 by real local dispatchers â€” not a call center. A certified crew heads to your property within minutes.",
   },
   {
     num: "02",
@@ -113,7 +113,7 @@ const PROCESS = [
     num: "03",
     icon: <Hammer size={20} />,
     title: "Certified Restoration",
-    desc: "IICRC-certified crews perform full mitigation and rebuild — extraction, drying, soot removal, and reconstruction to current code.",
+    desc: "IICRC-certified crews perform full mitigation and rebuild â€” extraction, drying, soot removal, and reconstruction to current code.",
   },
   {
     num: "04",
@@ -150,9 +150,9 @@ function BeforeAfterSlider({
       onMouseMove={e => update(e.clientX)}
       onTouchMove={e => update(e.touches[0].clientX)}
     >
-      {/* After — base layer */}
+      {/* After â€” base layer */}
       <img src={afterSrc} alt={afterAlt} className="absolute inset-0 w-full h-full object-cover" />
-      {/* Before — clipped left */}
+      {/* Before â€” clipped left */}
       <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${pct}%` }}>
         <img
           src={beforeSrc}
@@ -312,14 +312,14 @@ export default function LocationPage() {
 
       <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
 
-        {/* ── Hero — with trust strip anchored at bottom ── */}
+        {/* â”€â”€ Hero â€” with trust strip anchored at bottom â”€â”€ */}
         <section className="relative overflow-hidden bg-white">
           <img
             src={HERO_IMAGE}
             alt={`Property damage restoration in ${city.full}`}
             className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
           />
-          {/* Strong white on left fading to transparent — text stays readable */}
+          {/* Strong white on left fading to transparent â€” text stays readable */}
           <div
             className="absolute inset-0"
             style={{
@@ -332,7 +332,7 @@ export default function LocationPage() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to left, rgba(26,49,31,0.30) 0%, transparent 32%)",
+                "linear-gradient(to left, rgba(20,81,38,0.30) 0%, transparent 32%)",
             }}
           />
           {/* Mobile: extra white so text is readable on small screens */}
@@ -388,10 +388,10 @@ export default function LocationPage() {
                     "Locally Owned & Operated",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#1A311F]">
+                      <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#145126]">
                         {item}
                       </span>
-                      <span className="text-[#1A311F]/30 text-[10px]">✦</span>
+                      <span className="text-[#145126]/30 text-[10px]">✦</span>
                     </span>
                   ))}
                 </div>
@@ -400,7 +400,7 @@ export default function LocationPage() {
           </div>
 
 
-          {/* Trust strip — badge images */}
+          {/* Trust strip â€” badge images */}
           <div className="relative z-10 bg-white border-t border-gray-100">
             <Container>
               <div className="flex items-center justify-center gap-10 md:gap-20 py-8 md:py-10">
@@ -424,7 +424,7 @@ export default function LocationPage() {
           </div>
         </section>
 
-        {/* ── Reviews strip ── */}
+        {/* â”€â”€ Reviews strip â”€â”€ */}
         <div className="bg-white border-b border-gray-100 py-14 md:py-16">
           <Container>
             <FadeIn direction="up" className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-8 text-center">
@@ -461,7 +461,7 @@ export default function LocationPage() {
           </Container>
         </div>
 
-        {/* ── Intro + full-bleed truck photo ── */}
+        {/* â”€â”€ Intro + full-bleed truck photo â”€â”€ */}
         <section className="bg-[#E8F5E0] overflow-hidden">
           <div className="lg:grid lg:grid-cols-2">
 
@@ -474,15 +474,15 @@ export default function LocationPage() {
               <p className="text-[#3F4143]/70 leading-relaxed font-sans mb-4 text-[15px]">
                 When fire, water, or storm damage strikes a home or business in{" "}
                 {city.name}, every minute counts. Heritage Restoration is{" "}
-                {city.distance}, so our IICRC-certified crews reach {city.full} fast —
+                {city.distance}, so our IICRC-certified crews reach {city.full} fast â€”
                 securing your property, stopping further damage, and starting
                 recovery the same day.
               </p>
               <p className="text-[#3F4143]/70 leading-relaxed font-sans mb-8 text-[15px]">
                 We've served {city.county} property owners since 2004, working near{" "}
                 {city.landmark} and throughout {city.nearby.slice(0, 3).join(", ")}.
-                As a locally owned contractor, we advocate for you — not the
-                insurance company — and handle your claim from first call to
+                As a locally owned contractor, we advocate for you â€” not the
+                insurance company â€” and handle your claim from first call to
                 final walk-through.
               </p>
 
@@ -502,7 +502,7 @@ export default function LocationPage() {
               </div>
             </FadeIn>
 
-            {/* Photo — full height, bleeds to right edge */}
+            {/* Photo â€” full height, bleeds to right edge */}
             <FadeIn direction="left" className="relative min-h-[340px] lg:min-h-0">
               <img
                 src={TRUCK_PHOTO}
@@ -511,7 +511,7 @@ export default function LocationPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-brand-linen/50 via-transparent to-transparent lg:from-brand-linen/30" />
               {/* Floating badge */}
-              <div className="absolute bottom-6 right-6 bg-[#1A311F] rounded-xl text-white px-5 py-4 shadow-xl">
+              <div className="absolute bottom-6 right-6 bg-[#145126] rounded-xl text-white px-5 py-4 shadow-xl">
                 <div className="text-3xl font-black font-serif text-[#8DBD42] leading-none">22</div>
                 <div className="text-[10px] font-black uppercase tracking-widest text-white/60 mt-1">
                   Years in Washington
@@ -521,7 +521,7 @@ export default function LocationPage() {
           </div>
         </section>
 
-        {/* ── Process — connected circles ── */}
+        {/* â”€â”€ Process â€” connected circles â”€â”€ */}
         <section className="bg-white py-20 md:py-28 border-t border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8DBD42]/20 to-transparent" />
           <Container>
@@ -531,12 +531,12 @@ export default function LocationPage() {
                 What Happens When You Call Us
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-lg mx-auto text-[15px]">
-                A clear, no-surprises process — from first call to final walk-through.
+                A clear, no-surprises process â€” from first call to final walk-through.
               </p>
             </FadeIn>
 
             <div className="relative">
-              {/* SVG curved connectors — desktop only */}
+              {/* SVG curved connectors â€” desktop only */}
               <svg
                 className="hidden lg:block absolute pointer-events-none"
                 style={{ top: "54px", left: "12.5%", width: "75%", height: "36px" }}
@@ -577,7 +577,7 @@ export default function LocationPage() {
           </Container>
         </section>
 
-        {/* ── Services — numbered cards, light green bg ── */}
+        {/* â”€â”€ Services â€” numbered cards, light green bg â”€â”€ */}
         <section className="relative bg-white overflow-hidden pb-16 md:pb-24">
           {/* Light green top band covers title + top half of cards */}
           <div className="absolute top-0 left-0 right-0 h-[340px] md:h-[360px] bg-[#E8F5E0]" />
@@ -592,7 +592,7 @@ export default function LocationPage() {
                 Restoration Services in {city.name}
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-lg mx-auto text-[15px]">
-                From the first emergency call to the final walk-through — we handle every step.
+                From the first emergency call to the final walk-through â€” we handle every step.
               </p>
             </FadeIn>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -629,7 +629,7 @@ export default function LocationPage() {
           </Container>
         </section>
 
-        {/* ── Neighborhoods ── */}
+        {/* â”€â”€ Neighborhoods â”€â”€ */}
         <section className="bg-white py-12 md:py-16 border-t border-gray-100">
           <Container size="narrow">
             <FadeIn direction="up" className="text-center mb-10">
@@ -638,7 +638,7 @@ export default function LocationPage() {
                 {city.name} Neighborhoods We Serve
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-md mx-auto text-[15px]">
-                Our crews know every neighborhood in {city.name} — response time doesn't change based on where you live.
+                Our crews know every neighborhood in {city.name} â€” response time doesn't change based on where you live.
               </p>
             </FadeIn>
             <FadeIn direction="up" className="flex flex-wrap justify-center gap-3">
@@ -658,17 +658,17 @@ export default function LocationPage() {
                 <a href="tel:+13603451015" className="text-[#8DBD42] font-bold hover:underline">
                   Call us
                 </a>{" "}
-                — we cover all of {city.county}.
+                â€” we cover all of {city.county}.
               </p>
             </FadeIn>
           </Container>
         </section>
 
-        {/* ── Why Heritage — photo left, checklist right ── */}
+        {/* â”€â”€ Why Heritage â€” photo left, checklist right â”€â”€ */}
         <section className="bg-brand-linen overflow-hidden py-0">
           <div className="lg:grid lg:grid-cols-2">
 
-            {/* Before/After slider — full height, bleeds to left edge */}
+            {/* Before/After slider â€” full height, bleeds to left edge */}
             <FadeIn direction="right" className="relative min-h-[380px] lg:min-h-[640px] overflow-hidden">
               <BeforeAfterSlider
                 beforeSrc={BEFORE_IMG}
@@ -676,7 +676,7 @@ export default function LocationPage() {
                 beforeAlt={`Fire damage before Heritage Restoration`}
                 afterAlt={`Fully restored home by Heritage Restoration in ${city.name}`}
               />
-              {/* Warranty badge — bottom right */}
+              {/* Warranty badge â€” bottom right */}
               <img
                 src="/photo/warranty-badge-new-3.png"
                 alt="5-Year Warranty"
@@ -684,7 +684,7 @@ export default function LocationPage() {
               />
             </FadeIn>
 
-            {/* Content side — light green panel */}
+            {/* Content side â€” light green panel */}
             <FadeIn direction="up" className="bg-[#eef7de] py-16 md:py-24 px-6 md:px-14 lg:px-16 xl:px-20 flex flex-col justify-center">
               <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42]">Why Heritage</span>
               <h2 className="text-3xl md:text-[38px] font-bold text-[#8DBD42] mt-2 mb-3 font-serif leading-tight">
@@ -692,16 +692,16 @@ export default function LocationPage() {
               </h2>
               <p className="text-[#3F4143]/70 font-sans text-[15px] leading-relaxed mb-8">
                 We're not a franchise dispatched from out of state. Our crews are
-                based right here — we know {city.county}, we respond faster, and
+                based right here â€” we know {city.county}, we respond faster, and
                 we stay with you through every step of the insurance process.
               </p>
 
               <div className="space-y-4 mb-8">
                 {[
-                  { icon: <MapPin size={20} />, label: "Locally Owned", text: `Not an out-of-town franchise — rooted in ${city.county}` },
+                  { icon: <MapPin size={20} />, label: "Locally Owned", text: `Not an out-of-town franchise â€” rooted in ${city.county}` },
                   { icon: <Clock size={20} />, label: "60-Min Emergency Response", text: "24/7/365 dispatch including all holidays" },
                   { icon: <ShieldCheck size={20} />, label: "Certified & Licensed", text: "IICRC-certified techs and licensed WA general contractor" },
-                  { icon: <BadgeCheck size={20} />, label: "Price Matching", text: "We bill your carrier directly — you pay only your deductible" },
+                  { icon: <BadgeCheck size={20} />, label: "Price Matching", text: "We bill your carrier directly â€” you pay only your deductible" },
                 ].map((item, i) => (
                   <FadeIn key={i} delay={i * 0.08} direction="up">
                     <div className="flex gap-4 items-start group">
@@ -738,7 +738,7 @@ export default function LocationPage() {
           </div>
         </section>
 
-        {/* ── FAQ — clean borderless accordion ── */}
+        {/* â”€â”€ FAQ â€” clean borderless accordion â”€â”€ */}
         <section className="bg-white py-20 md:py-24 border-t border-gray-100">
           <Container size="narrow">
             <FadeIn className="text-center mb-12" direction="up">
@@ -768,29 +768,29 @@ export default function LocationPage() {
           </Container>
         </section>
 
-        {/* ── Nearby Communities + Emergency CTA — combined light green ── */}
+        {/* â”€â”€ Nearby Communities + Emergency CTA â€” combined light green â”€â”€ */}
         <section className="bg-[#eef7de] py-20 md:py-28 relative overflow-hidden">
           {/* Decorative accents */}
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#8DBD42]" />
           <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#8DBD42]/30" />
           <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-[#8DBD42]/8 blur-[130px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[#1A311F]/5 blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[#145126]/5 blur-[100px] pointer-events-none" />
 
           <Container>
             <div className="lg:grid lg:grid-cols-[1fr_460px] lg:gap-20 items-start">
 
-              {/* Left — serving area + stats + city links */}
+              {/* Left â€” serving area + stats + city links */}
               <FadeIn direction="up">
                 <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#55664a]">Nearby Communities</span>
-                <h2 className="text-[28px] md:text-[38px] font-black font-serif text-[#1A311F] mt-2 mb-4 uppercase leading-tight">
+                <h2 className="text-[28px] md:text-[38px] font-black font-serif text-[#145126] mt-2 mb-4 uppercase leading-tight">
                   Serving {city.name} and the<br className="hidden sm:block" /> Greater {city.county} Area
                 </h2>
                 <p className="text-[#3F4143]/65 font-sans text-[15px] leading-relaxed mb-8 max-w-md">
-                  Heritage covers the I-5 corridor through Western Washington — from Lewis County north through Pierce County. Every crew dispatched from our local Lacey headquarters.
+                  Heritage covers the I-5 corridor through Western Washington â€” from Lewis County north through Pierce County. Every crew dispatched from our local Lacey headquarters.
                 </p>
 
                 {/* Big counter */}
-                <div className="mb-8 pb-8 border-b border-[#1A311F]/12">
+                <div className="mb-8 pb-8 border-b border-[#145126]/12">
                   <div className="text-[80px] md:text-[100px] font-black font-serif text-[#8DBD42] leading-none tabular-nums">
                     <StatCounter value={22} suffix="+" label="Years" />
                   </div>
@@ -822,11 +822,11 @@ export default function LocationPage() {
                         <FadeIn key={nearby.slug} delay={idx * 0.07} direction="up">
                           <Link
                             href={`/service-area/${nearby.slug}`}
-                            className="group flex items-center gap-2.5 bg-white hover:bg-[#8DBD42]/8 border border-[#1A311F]/10 hover:border-[#8DBD42]/40 rounded-xl px-4 py-3 transition-all duration-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+                            className="group flex items-center gap-2.5 bg-white hover:bg-[#8DBD42]/8 border border-[#145126]/10 hover:border-[#8DBD42]/40 rounded-xl px-4 py-3 transition-all duration-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                           >
                             <MapPin size={13} className="text-[#8DBD42] flex-shrink-0" />
                             <div className="min-w-0">
-                              <div className="font-bold text-[#1A311F] text-[13px] group-hover:text-[#8DBD42] transition-colors leading-tight truncate">
+                              <div className="font-bold text-[#145126] text-[13px] group-hover:text-[#8DBD42] transition-colors leading-tight truncate">
                                 {nearby.name}, WA
                               </div>
                               <div className="text-[#3F4143]/40 text-[11px] font-sans">{nearby.county}</div>
@@ -846,10 +846,10 @@ export default function LocationPage() {
                 )}
               </FadeIn>
 
-              {/* Right — Emergency CTA */}
+              {/* Right â€” Emergency CTA */}
               <FadeIn direction="up" delay={0.15} className="mt-16 lg:mt-0">
                 {/* Card container */}
-                <div className="bg-[#1A311F] rounded-3xl p-8 md:p-10 shadow-[0_32px_80px_rgba(26,49,31,0.22)] relative overflow-hidden">
+                <div className="bg-[#145126] rounded-3xl p-8 md:p-10 shadow-[0_32px_80px_rgba(20,81,38,0.22)] relative overflow-hidden">
                   {/* Subtle inner glow */}
                   <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#8DBD42]/10 blur-[60px] pointer-events-none" />
 
@@ -860,7 +860,7 @@ export default function LocationPage() {
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8DBD42]" />
                     </span>
                     <span className="text-[#8DBD42] text-[10px] font-black uppercase tracking-[0.26em]">
-                      Live Dispatch — {city.county} — 24 / 7 / 365
+                      Live Dispatch â€” {city.county} â€” 24 / 7 / 365
                     </span>
                   </FadeIn>
 
@@ -873,7 +873,7 @@ export default function LocationPage() {
                       We're on our way.
                     </p>
                     <p className="text-white/50 font-sans text-[14px] leading-relaxed mb-8">
-                      Based {city.distance}. IICRC-certified crews dispatched in under 60 minutes — around the clock, every day of the year, including holidays.
+                      Based {city.distance}. IICRC-certified crews dispatched in under 60 minutes â€” around the clock, every day of the year, including holidays.
                     </p>
                   </FadeIn>
 
@@ -887,7 +887,7 @@ export default function LocationPage() {
                         <Phone size={20} /> (360) 345-1015
                       </span>
                       <span className="text-white/70 text-[10px] font-semibold uppercase tracking-widest">
-                        Tap to Call — Answered 24/7
+                        Tap to Call â€” Answered 24/7
                       </span>
                     </a>
                     <Link

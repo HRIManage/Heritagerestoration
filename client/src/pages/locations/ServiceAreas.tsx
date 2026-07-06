@@ -132,7 +132,7 @@ export default function ServiceAreas() {
         />
 
         {/* Ticker strip */}
-        <div className="relative z-10 bg-[#1A311F] py-8 border-b border-[#8DBD42]/20 overflow-hidden shadow-md">
+        <div className="relative z-10 bg-[#145126] py-8 border-b border-[#8DBD42]/20 overflow-hidden shadow-md">
           <style>{`
             @keyframes service-areas-ticker {
               from { transform: translateX(0); }
@@ -171,7 +171,7 @@ export default function ServiceAreas() {
               </div>
               <p className="text-[#3F4143]/65 text-[15px] leading-relaxed max-w-[440px] font-sans font-light">
                 From Lewis County to Pierce County, our two offices dispatch certified
-                crews across the entire region — 24 hours a day, 7 days a week, 365 days a year.
+                crews across the entire region â€” 24 hours a day, 7 days a week, 365 days a year.
               </p>
             </div>
           </Container>
@@ -337,7 +337,7 @@ export default function ServiceAreas() {
                       />
                       <button
                         type="submit"
-                        className="bg-[#8DBD42] px-4 py-2.5 text-xs font-black uppercase tracking-[0.12em] text-[#1A311F] transition-colors hover:bg-[#7BAE36]"
+                        className="bg-[#8DBD42] px-4 py-2.5 text-xs font-black uppercase tracking-[0.12em] text-[#145126] transition-colors hover:bg-[#7BAE36]"
                       >
                         Check
                       </button>
@@ -347,7 +347,7 @@ export default function ServiceAreas() {
                       <div
                         className={`mt-3 border-l-2 px-3 py-2.5 text-sm ${
                           coverageMatch
-                            ? "border-[#8DBD42] bg-[#8DBD42]/10 text-[#1A311F]"
+                            ? "border-[#8DBD42] bg-[#8DBD42]/10 text-[#145126]"
                             : "border-[#3F4143]/30 bg-[#3F4143]/5 text-[#3F4143]"
                         }`}
                       >
@@ -362,7 +362,7 @@ export default function ServiceAreas() {
                             <div className="mt-3 flex flex-wrap gap-2">
                               <a
                                 href="tel:+13603451015"
-                                className="inline-flex items-center gap-1.5 bg-[#1A311F] px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white"
+                                className="inline-flex items-center gap-1.5 bg-[#145126] px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white"
                               >
                                 <Phone size={12} /> Call Dispatch
                               </a>
@@ -512,7 +512,7 @@ export default function ServiceAreas() {
                             <text
                               x={x + 7}
                               y={y + 4}
-                              fill="#1A311F"
+                              fill="#145126"
                               fillOpacity="0.95"
                               fontSize="8"
                               fontWeight={isActive ? "800" : "650"}
@@ -548,12 +548,12 @@ export default function ServiceAreas() {
                       <line x1="0" y1="400" x2="400" y2="400" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
                       
                       {/* Coordinates texts */}
-                      <text x="105" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">123°W</text>
-                      <text x="205" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">122.5°W</text>
-                      <text x="5" y="95" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.2°N</text>
-                      <text x="5" y="195" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.0°N</text>
-                      <text x="5" y="295" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.8°N</text>
-                      <text x="5" y="395" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.6°N</text>
+                      <text x="105" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">123Â°W</text>
+                      <text x="205" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">122.5Â°W</text>
+                      <text x="5" y="95" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.2Â°N</text>
+                      <text x="5" y="195" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.0Â°N</text>
+                      <text x="5" y="295" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.8Â°N</text>
+                      <text x="5" y="395" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.6Â°N</text>
 
                       {/* Stylized Puget Sound Water Inlet Path */}
                       <path
@@ -708,7 +708,7 @@ export default function ServiceAreas() {
         <section className="py-12 md:py-16 bg-[#FAF9F6] border-t border-[#3F4143]/8">
           <Container size="narrow">
             <FadeIn direction="up">
-              <div className="bg-[#1A311F] text-white p-10 md:p-16 relative overflow-hidden">
+              <div className="bg-[#145126] text-white p-10 md:p-16 relative overflow-hidden">
                 {/* Decorative glow */}
                 <div className="absolute right-[-60px] top-[-60px] w-[300px] h-[300px] rounded-full bg-[#8DBD42]/10 blur-[80px] pointer-events-none" />
                 <div className="absolute left-[-40px] bottom-[-40px] w-[200px] h-[200px] rounded-full bg-[#8DBD42]/8 blur-[60px] pointer-events-none" />
@@ -720,7 +720,7 @@ export default function ServiceAreas() {
                   </h2>
                   <p className="text-white/70 text-[16px] leading-relaxed max-w-[480px] mx-auto mb-10 font-sans font-light">
                     If you're anywhere along the I-5 corridor in Western Washington,
-                    call us — our crews travel throughout the region for emergency restoration.
+                    call us â€” our crews travel throughout the region for emergency restoration.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a

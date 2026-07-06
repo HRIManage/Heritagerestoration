@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+﻿import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
@@ -21,7 +21,7 @@ export default function ThankYou() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
-      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-16 bg-gradient-to-br from-[#1A311F] via-[#142618] to-[#0E1B11] text-white overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-16 bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white overflow-hidden">
         <div className="absolute top-[15%] right-[-8%] w-[460px] h-[460px] rounded-full bg-[#8DBD42]/10 blur-[140px] pointer-events-none" />
         <Container size="narrow" className="relative z-10">
           <FadeIn direction="up" className="max-w-2xl">
@@ -32,17 +32,17 @@ export default function ThankYou() {
               Request Received
             </span>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight font-serif mb-6">
-              Thank you — we'll be in touch shortly.
+              Thank you â€” we'll be in touch shortly.
             </h1>
             <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light mb-10">
               Our office team will follow up within 1 business day. If this is an
-              active emergency, please call our 24/7 hotline now — we respond
+              active emergency, please call our 24/7 hotline now â€” we respond
               within 60 minutes in our service area.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+13604561886"
-                className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#1A311F] px-8 py-4 uppercase tracking-[0.14em] text-xs font-black transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.14em] text-xs font-black transition-colors"
               >
                 <Phone size={16} /> 24/7 Hotline: (360) 456-1886
               </a>

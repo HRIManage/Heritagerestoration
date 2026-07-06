@@ -28,6 +28,8 @@ import {
   Trophy,
   Shield,
   Hammer,
+  Send,
+  Mail,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
@@ -425,9 +427,9 @@ export default function Home() {
       colorClass:
         "hover:border-[#E05A47] hover:ring-[#E05A47]/10 hover:shadow-[0_20px_50px_rgba(224,90,71,0.08)]",
       accentBarClass: "bg-[#E05A47]",
-      watermarkColor: "text-[#1A311F]/5 group-hover:text-[#E05A47]/10",
+      watermarkColor: "text-[#145126]/5 group-hover:text-[#E05A47]/10",
       iconColor:
-        "text-[#1A311F] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
+        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#E05A47]",
     },
     {
@@ -441,9 +443,9 @@ export default function Home() {
       colorClass:
         "hover:border-[#3A82F6] hover:ring-[#3A82F6]/10 hover:shadow-[0_20px_50px_rgba(58,130,246,0.08)]",
       accentBarClass: "bg-[#3A82F6]",
-      watermarkColor: "text-[#1A311F]/5 group-hover:text-[#3A82F6]/10",
+      watermarkColor: "text-[#145126]/5 group-hover:text-[#3A82F6]/10",
       iconColor:
-        "text-[#1A311F] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
+        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#3A82F6]",
     },
     {
@@ -457,9 +459,9 @@ export default function Home() {
       colorClass:
         "hover:border-[#4F46E5] hover:ring-[#4F46E5]/10 hover:shadow-[0_20px_50px_rgba(79,70,229,0.08)]",
       accentBarClass: "bg-[#4F46E5]",
-      watermarkColor: "text-[#1A311F]/5 group-hover:text-[#4F46E5]/10",
+      watermarkColor: "text-[#145126]/5 group-hover:text-[#4F46E5]/10",
       iconColor:
-        "text-[#1A311F] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
+        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#4F46E5]",
     },
     {
@@ -473,9 +475,9 @@ export default function Home() {
       colorClass:
         "hover:border-[#D97706] hover:ring-[#D97706]/10 hover:shadow-[0_20px_50px_rgba(217,119,6,0.08)]",
       accentBarClass: "bg-[#D97706]",
-      watermarkColor: "text-[#1A311F]/5 group-hover:text-[#D97706]/10",
+      watermarkColor: "text-[#145126]/5 group-hover:text-[#D97706]/10",
       iconColor:
-        "text-[#1A311F] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
+        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#D97706]",
     },
   ];
@@ -688,7 +690,7 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(26,49,31,1) 100%)",
+                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(20,81,38,1) 100%)",
             }}
           />
           <div
@@ -809,7 +811,7 @@ export default function Home() {
           </div>
 
           {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#1A311F] py-8 overflow-hidden">
+          <div className="relative z-10 bg-[#145126] py-8 overflow-hidden">
             <style>{`
               @keyframes home-ticker {
                 from { transform: translateX(0); }
@@ -1167,7 +1169,7 @@ export default function Home() {
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[18px] md:text-[21px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#1A311F]" : "text-[#3F4143]/55 group-hover:text-[#3F4143]/80"}`}
+                        className={`flex-1 text-[18px] md:text-[21px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 group-hover:text-[#3F4143]/80"}`}
                         style={headlineStyle}
                       >
                         {step.title}
@@ -1196,7 +1198,7 @@ export default function Home() {
                     className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.28)]"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#1A311F] rounded-full">
+                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-full">
                         {process[activeStep].icon}
                       </span>
                       <span
@@ -1538,6 +1540,196 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Bottom CTA + Contact Form */}
+        <section id="home-contact" className="bg-transparent py-16 md:py-24">
+          <div className="max-w-[1180px] mx-auto px-6 md:px-8">
+            <FadeUp>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+                <div className="lg:col-span-7">
+                  <p
+                    className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
+                    style={bodyStyle}
+                  >
+                    Request Help
+                  </p>
+                  <h2
+                    className="mt-3 text-[34px] md:text-[52px] leading-[1.04] font-bold text-[#145126]"
+                    style={headlineStyle}
+                  >
+                    Need restoration support today?
+                  </h2>
+                  <p
+                    className="mt-5 max-w-[620px] text-[16px] md:text-[17px] leading-relaxed text-[#3F4143]/72"
+                    style={bodyStyle}
+                  >
+                    Send a quick message and our dispatch team will help you decide the next step, whether it is emergency stabilization, documentation, or a full repair assessment.
+                  </p>
+
+                  <form
+                    action="mailto:office@firewaterstorm.com"
+                    method="post"
+                    encType="text/plain"
+                    className="mt-8 space-y-6 font-sans"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="home-name"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
+                          Full Name *
+                        </label>
+                        <input
+                          id="home-name"
+                          name="name"
+                          type="text"
+                          required
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="home-phone"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
+                          Phone Number *
+                        </label>
+                        <input
+                          id="home-phone"
+                          name="phone"
+                          type="tel"
+                          required
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="home-email"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
+                          Email Address *
+                        </label>
+                        <input
+                          id="home-email"
+                          name="email"
+                          type="email"
+                          required
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="home-service"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        >
+                          Restoration Service
+                        </label>
+                        <select
+                          id="home-service"
+                          name="service"
+                          defaultValue=""
+                          className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 appearance-none cursor-pointer"
+                        >
+                          <option value="" disabled>
+                            Select a service category...
+                          </option>
+                          <option value="fire">Fire Damage Restoration</option>
+                          <option value="water">Water Damage Mitigation</option>
+                          <option value="storm">Storm Damage Recovery</option>
+                          <option value="contents">Contents Pack-Out & Clean</option>
+                          <option value="other">General Inquiry / Assessment</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="home-message"
+                        className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                      >
+                        Describe the Loss or Request
+                      </label>
+                      <textarea
+                        id="home-message"
+                        name="message"
+                        rows={6}
+                        className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 resize-y"
+                        placeholder="Tell us what happened and what kind of help you need..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
+                    >
+                      <Send size={14} /> Send Message
+                    </button>
+                  </form>
+                </div>
+
+                <div className="lg:col-span-5">
+                  <div className="relative overflow-hidden bg-[#145126] p-8 md:p-10 text-white shadow-[0_28px_80px_rgba(20,81,38,0.22)]">
+                    <div className="absolute right-[-70px] top-[-70px] h-56 w-56 rounded-full bg-[#8DBD42]/18 blur-3xl" />
+                    <div className="absolute left-[-60px] bottom-[-70px] h-52 w-52 rounded-full bg-white/10 blur-3xl" />
+                    <div className="relative z-10">
+                      <p
+                        className="text-[#B7DC73] uppercase tracking-[0.18em] text-[11px] font-black"
+                        style={bodyStyle}
+                      >
+                        24/7 Dispatch
+                      </p>
+                      <h3
+                        className="mt-3 text-[28px] md:text-[34px] leading-tight font-bold text-white"
+                        style={headlineStyle}
+                      >
+                        Fast answers when the damage cannot wait.
+                      </h3>
+                      <div className="mt-8 space-y-5">
+                        <a href="tel:+13603451015" className="flex items-start gap-4 group">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
+                            <Phone size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Call Now</span>
+                            <span className="mt-1 block text-[18px] font-bold text-white">(360) 345-1015</span>
+                          </span>
+                        </a>
+                        <a href="mailto:office@firewaterstorm.com" className="flex items-start gap-4 group">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
+                            <Mail size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Email</span>
+                            <span className="mt-1 block text-[15px] font-bold text-white">office@firewaterstorm.com</span>
+                          </span>
+                        </a>
+                        <div className="flex items-start gap-4">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126]">
+                            <MapPin size={18} />
+                          </span>
+                          <span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Local Offices</span>
+                            <span className="mt-1 block text-[15px] font-bold text-white">Lacey and Chehalis, WA</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="mt-8 border-t border-white/14 pt-5">
+                        <p className="text-sm leading-relaxed text-white/70">
+                          Licensed, bonded, IICRC certified, and ready for fire, water, storm, and contents restoration.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
 
         <section className="sr-only" id="resources">
           <div>
