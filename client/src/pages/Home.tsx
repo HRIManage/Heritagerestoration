@@ -398,11 +398,8 @@ export default function Home() {
         "Comprehensive cleaning, structural repair, and odor removal to return your property to pre-loss condition.",
       href: "/services/fire-restoration",
       icon: <Flame size={20} />,
-      colorClass:
-        "hover:border-[#E05A47] hover:ring-[#E05A47]/10 hover:shadow-[0_20px_50px_rgba(224,90,71,0.08)]",
+      accentColor: "#E05A47",
       accentBarClass: "bg-[#E05A47]",
-      borderHoverClass: "group-hover:border-[#E05A47]",
-      watermarkColor: "text-[#145126]/5 group-hover:text-[#E05A47]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#E05A47]",
@@ -415,11 +412,8 @@ export default function Home() {
         "Rapid extraction, structural drying, and mold prevention using IICRC-certified mitigation standards.",
       href: "/services/water-restoration",
       icon: <Droplets size={20} />,
-      colorClass:
-        "hover:border-[#3A82F6] hover:ring-[#3A82F6]/10 hover:shadow-[0_20px_50px_rgba(58,130,246,0.08)]",
+      accentColor: "#3A82F6",
       accentBarClass: "bg-[#3A82F6]",
-      borderHoverClass: "group-hover:border-[#3A82F6]",
-      watermarkColor: "text-[#145126]/5 group-hover:text-[#3A82F6]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#3A82F6]",
@@ -432,11 +426,8 @@ export default function Home() {
         "Emergency tarping, debris removal, and structural rebuilds following severe PNW weather events.",
       href: "/services/storm-recovery",
       icon: <CloudLightning size={20} />,
-      colorClass:
-        "hover:border-[#4F46E5] hover:ring-[#4F46E5]/10 hover:shadow-[0_20px_50px_rgba(79,70,229,0.08)]",
+      accentColor: "#4F46E5",
       accentBarClass: "bg-[#4F46E5]",
-      borderHoverClass: "group-hover:border-[#4F46E5]",
-      watermarkColor: "text-[#145126]/5 group-hover:text-[#4F46E5]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#4F46E5]",
@@ -449,11 +440,8 @@ export default function Home() {
         "Specialized cleaning and restoration of personal contents, textiles, and salvageable valuables.",
       href: "/services/contents-services",
       icon: <ShieldCheck size={20} />,
-      colorClass:
-        "hover:border-[#D97706] hover:ring-[#D97706]/10 hover:shadow-[0_20px_50px_rgba(217,119,6,0.08)]",
+      accentColor: "#D97706",
       accentBarClass: "bg-[#D97706]",
-      borderHoverClass: "group-hover:border-[#D97706]",
-      watermarkColor: "text-[#145126]/5 group-hover:text-[#D97706]/10",
       iconColor:
         "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#D97706]",
@@ -937,42 +925,46 @@ export default function Home() {
                   }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Link
-                    href={service.href}
-                    className={`group block border border-transparent p-6 -mx-6 transition-colors duration-400 ${service.borderHoverClass}`}
+                  <motion.div
+                    className="group border border-transparent p-6 -mx-6 cursor-pointer"
+                    initial={{ borderColor: "transparent" }}
+                    whileHover={{ borderColor: service.accentColor }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                   >
-                    {/* Icon */}
-                    <span
-                      className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-400 group-hover:scale-105 ${service.iconColor}`}
-                    >
-                      {service.icon}
-                    </span>
+                    <Link href={service.href} className="block">
+                      {/* Icon */}
+                      <span
+                        className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-400 group-hover:scale-105 ${service.iconColor}`}
+                      >
+                        {service.icon}
+                      </span>
 
-                    {/* Title */}
-                    <h3
-                      className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
-                      style={headlineStyle}
-                    >
-                      {service.title}
-                    </h3>
+                      {/* Title */}
+                      <h3
+                        className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
+                        style={headlineStyle}
+                      >
+                        {service.title}
+                      </h3>
 
-                    {/* Description */}
-                    <p
-                      className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/65 font-light"
-                      style={bodyStyle}
-                    >
-                      {service.description}
-                    </p>
+                      {/* Description */}
+                      <p
+                        className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/65 font-light"
+                        style={bodyStyle}
+                      >
+                        {service.description}
+                      </p>
 
-                    {/* CTA */}
-                    <span
-                      className={`mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-400`}
-                      style={bodyStyle}
-                    >
-                      Learn More
-                      <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                  </Link>
+                      {/* CTA */}
+                      <span
+                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-400"
+                        style={bodyStyle}
+                      >
+                        Learn More
+                        <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </Link>
+                  </motion.div>
                 </motion.div>
               ))}
             </motion.div>
