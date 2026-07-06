@@ -763,22 +763,23 @@ export default function Home() {
                     <Phone size={14} className="stroke-[3]" />
                     Call 24/7 Dispatch
                   </motion.a>
-                  <motion.a
-                    data-gsap-hero-button
-                    href="/contact"
-                    className="group inline-flex items-center gap-2 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-[14px] uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0"
-                    style={bodyStyle}
-                    variants={{
-                      hidden: { opacity: 0, y: 18, scale: 0.92 },
-                      visible: { opacity: 1, y: 0, scale: 1 },
-                    }}
-                    transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
-                    whileHover={{ y: -2, scale: 1.025 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Request Assessment
-                    <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </motion.a>
+                  <Link href="/contact">
+                    <motion.a
+                      data-gsap-hero-button
+                      className="group inline-flex items-center gap-2 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-[14px] uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 cursor-pointer"
+                      style={bodyStyle}
+                      variants={{
+                        hidden: { opacity: 0, y: 18, scale: 0.92 },
+                        visible: { opacity: 1, y: 0, scale: 1 },
+                      }}
+                      transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ y: -2, scale: 1.025 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Request Assessment
+                      <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </motion.a>
+                  </Link>
                 </motion.div>
               </FadeUp>
             </div>
@@ -1040,12 +1041,12 @@ export default function Home() {
                 >
                   <Phone size={12} /> Start Your Recovery
                 </a>
-                <a
+                <Link
                   href="/contact"
-                  className="border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0"
+                  className="border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 text-center"
                 >
                   Request Assessment
-                </a>
+                </Link>
               </div>
             </FadeUp>
           </div>
