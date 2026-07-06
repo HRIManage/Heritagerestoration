@@ -778,7 +778,7 @@ export default function Home() {
           </div>
 
           {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#145126] py-8 overflow-hidden">
+          <div className="relative z-10 bg-[#145126] py-6 md:py-8 overflow-hidden">
             <style>{`
               @keyframes home-ticker {
                 from { transform: translateX(0); }
@@ -797,8 +797,8 @@ export default function Home() {
                     "Locally Owned & Operated",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-12 font-semibold text-[26px] uppercase tracking-[0.22em] text-[#8DBD42]">{item}</span>
-                      <span className="text-[#8DBD42]/25 text-[18px]">✦</span>
+                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#8DBD42]">{item}</span>
+                      <span className="text-[#8DBD42]/25 text-[14px] md:text-[18px]">✦</span>
                     </span>
                   ))}
                 </div>
@@ -907,7 +907,7 @@ export default function Home() {
 
             {/* Service columns — clean, open, no borders */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
@@ -926,7 +926,7 @@ export default function Home() {
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <motion.div
-                    className="group border border-transparent p-6 -mx-6 cursor-pointer"
+                    className="group border border-transparent p-4 sm:p-6 -mx-4 sm:-mx-6 cursor-pointer"
                     initial="rest"
                     whileHover="hovered"
                     animate="rest"
@@ -1015,7 +1015,7 @@ export default function Home() {
                 <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 Our Promise
               </p>
-              <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
+              <h2 className="text-[26px] sm:text-[30px] md:text-[40px] lg:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
                 <span className="block whitespace-nowrap">We Are Not Just Technicians.</span>
                 <span className="block whitespace-nowrap">We Are Your Neighbors.</span>
               </h2>
@@ -1095,7 +1095,7 @@ export default function Home() {
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
                       aria-pressed={isActive}
-                      className={`group flex items-center gap-5 py-5 md:py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
+                      className={`group flex items-center gap-3 md:gap-5 py-4 md:py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
                     >
                       <span
                         className={`w-10 shrink-0 text-[13px] font-black tracking-[0.18em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
@@ -1104,7 +1104,7 @@ export default function Home() {
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[19px] md:text-[24px] leading-[1.06] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
+                        className={`flex-1 text-[16px] md:text-[20px] lg:text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
                         style={headlineStyle}
                       >
                         {step.title}
