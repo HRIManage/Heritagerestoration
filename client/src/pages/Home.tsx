@@ -795,6 +795,7 @@ export default function Home() {
                     "Licensed & Bonded in WA",
                     "22+ Years Serving Washington",
                     "Locally Owned & Operated",
+                    "5-Year Warranty",
                   ].map(item => (
                     <span key={item} className="flex items-center">
                       <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">{item}</span>
