@@ -897,104 +897,88 @@ export default function Home() {
         >
           <div className="max-w-[1160px] mx-auto px-6 md:px-8">
             {/* Header */}
-            <FadeUp className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end mb-12 md:mb-0">
-              <div>
-                <p
-                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
-                  style={bodyStyle}
-                >
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                  Our Expertise
-                </p>
-                <h2
-                  className="mt-3 text-[40px] md:text-[52px] leading-[1.02] font-bold text-[#2F3335]"
-                  style={headlineStyle}
-                >
-                  Specialized Restoration
-                </h2>
-              </div>
+            <FadeUp className="mb-14 md:mb-16">
               <p
-                className="text-[16px] leading-relaxed text-[#3F4143]/70 lg:pb-2"
+                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
                 style={bodyStyle}
               >
-                Select a service line to explore your options. Crafted for
-                clarity, speed, and premium guidance when every decision matters.
+                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                Our Expertise
               </p>
+              <h2
+                className="mt-3 text-[40px] md:text-[52px] leading-[1.02] font-bold text-[#2F3335]"
+                style={headlineStyle}
+              >
+                Specialized Restoration
+              </h2>
             </FadeUp>
 
-            {/* Service rows — editorial horizontal list */}
-            <div className="mt-0 md:mt-10">
-              {services.map((service, idx) => (
+            {/* Service columns — clean, open, no borders */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
+              }}
+            >
+              {services.map((service) => (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.65, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  variants={{
+                    hidden: { opacity: 0, y: 18 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link
                     href={service.href}
-                    className="group relative flex items-center gap-6 md:gap-10 py-7 md:py-8 border-t border-[#3F4143]/10 overflow-hidden cursor-pointer"
+                    className="group block"
                   >
-                    {/* Hover fill — slides in from left */}
-                    <span className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out bg-white/60 pointer-events-none" />
-
-                    {/* Index */}
-                    <span
-                      className="relative z-10 shrink-0 text-[13px] font-black tracking-[0.18em] text-[#3F4143]/35 w-8 select-none"
-                      style={bodyStyle}
-                    >
-                      {service.number}
-                    </span>
-
                     {/* Icon */}
                     <span
-                      className={`relative z-10 shrink-0 grid h-10 w-10 place-items-center rounded-none transition-all duration-500 group-hover:scale-110 ${service.iconColor}`}
+                      className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-400 group-hover:scale-105 ${service.iconColor}`}
                     >
                       {service.icon}
                     </span>
 
-                    {/* Title + description */}
-                    <div className="relative z-10 flex-1 min-w-0">
-                      <h3
-                        className={`text-[20px] md:text-[26px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
-                        style={headlineStyle}
-                      >
-                        {service.title}
-                      </h3>
-                      <p
-                        className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/60 font-light max-w-[560px] hidden md:block"
-                        style={bodyStyle}
-                      >
-                        {service.description}
-                      </p>
+                    {/* Title */}
+                    <h3
+                      className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-400 ${service.hoverTextColor}`}
+                      style={headlineStyle}
+                    >
+                      {service.title}
+                    </h3>
+
+                    {/* Thin accent line under title — draws in on hover */}
+                    <div className="mt-3 h-px bg-[#3F4143]/15 relative overflow-hidden">
+                      <span
+                        className={`absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out ${service.accentBarClass}`}
+                      />
                     </div>
 
-                    {/* Accent bar + CTA arrow */}
-                    <div className="relative z-10 shrink-0 flex items-center gap-3 ml-auto">
-                      <span
-                        className={`hidden sm:block text-[11px] font-black uppercase tracking-[0.14em] text-[#3F4143]/40 group-hover:text-[#2F3335] transition-colors duration-400`}
-                        style={bodyStyle}
-                      >
-                        Explore
-                      </span>
-                      <span
-                        className={`flex items-center justify-center w-9 h-9 border border-[#3F4143]/15 group-hover:border-transparent transition-all duration-400 ${service.hoverTextColor}`}
-                      >
-                        <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
+                    {/* Description */}
+                    <p
+                      className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/68 font-light"
+                      style={bodyStyle}
+                    >
+                      {service.description}
+                    </p>
 
-                    {/* Bottom accent line */}
+                    {/* CTA */}
                     <span
-                      className={`absolute bottom-0 left-0 h-[1.5px] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out ${service.accentBarClass}`}
-                    />
+                      className={`mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-400`}
+                      style={bodyStyle}
+                    >
+                      Learn More
+                      <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
                   </Link>
                 </motion.div>
               ))}
-              {/* Final bottom border */}
-              <div className="border-t border-[#3F4143]/10" />
-            </div>
+            </motion.div>
           </div>
         </section>
 
