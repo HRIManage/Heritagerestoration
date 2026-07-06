@@ -32,11 +32,11 @@ export default function ThankYou() {
               Request Received
             </span>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight font-serif mb-6">
-              Thank you â€” we'll be in touch shortly.
+              Thank you — we'll be in touch shortly.
             </h1>
             <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light mb-10">
               Our office team will follow up within 1 business day. If this is an
-              active emergency, please call our 24/7 hotline now â€” we respond
+              active emergency, please call our 24/7 hotline now — we respond
               within 60 minutes in our service area.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

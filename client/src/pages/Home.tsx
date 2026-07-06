@@ -36,8 +36,13 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { buildBreadcrumbSchema } from "@/seo";
+import {
+  isWeb3FormsConfigured,
+  mailtoFallback,
+  submitIntake,
+} from "@/lib/web3forms";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -296,6 +301,54 @@ export default function Home() {
   const heroRef = useRef<HTMLElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const reduceMotion = useReducedMotion();
+  const [, setLocation] = useLocation();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  const handleFormChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormError("");
+
+    // If no key is configured yet, fall back to mailto so the form still works.
+    if (!isWeb3FormsConfigured()) {
+      mailtoFallback(formData);
+      return;
+    }
+
+    setSending(true);
+    try {
+      const success = await submitIntake(formData);
+      if (success) {
+        setLocation("/thank-you");
+      } else {
+        setFormError(
+          "Something went wrong submitting your request. Please call us at (360) 345-1015."
+        );
+      }
+    } catch {
+      setFormError(
+        "Network error. Please try again or call us directly at (360) 345-1015."
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
   const handlePrevReview = () => {
     setCurrentReviewIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
@@ -590,7 +643,7 @@ export default function Home() {
     <Layout>
       <Helmet>
         <title>
-          Heritage Restoration | Fire, Water &amp; Storm Damage Experts
+          Heritage Restoration | Fire, Water &amp; Storm Damage Experts in
           Washington State
         </title>
         <meta
@@ -853,13 +906,13 @@ export default function Home() {
             {/* 24hr bar + badges combined */}
             <FadeUp delay={0.15}>
               <div className="mt-10 border-t border-[#3F4143]/10 pt-8 pb-10 flex flex-col items-center gap-8">
-                <div className="flex items-center gap-2">
-                  <Clock size={15} className="text-[#8DBD42]" />
-                  <span className="text-[#3F4143]/60 uppercase tracking-[0.18em] text-[13px] font-extrabold" style={bodyStyle}>
+                <div className="flex items-center justify-center gap-2 px-2">
+                  <Clock size={15} className="text-[#8DBD42] shrink-0" />
+                  <span className="text-center text-[#3F4143]/60 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold" style={bodyStyle}>
                     24 Hours a Day · 7 Days a Week · 365 Days a Year
                   </span>
                 </div>
-                <div className="flex items-center justify-center gap-12 md:gap-20">
+                <div className="grid grid-cols-3 items-center gap-4 w-full max-w-[330px] mx-auto sm:flex sm:max-w-none sm:gap-12 md:gap-20">
                   {[
                     { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response" },
                     { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified" },
@@ -874,7 +927,7 @@ export default function Home() {
                       viewport={{ once: true, amount: 0.6 }}
                       transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ scale: 1.04, y: -3 }}
-                      className="h-24 md:h-28 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
+                      className="w-full h-auto object-contain sm:w-auto sm:h-24 md:h-28 drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
                     />
                   ))}
                 </div>
@@ -1080,7 +1133,73 @@ export default function Home() {
               <div className="lg:col-span-6 lg:col-start-7" />
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-7 lg:gap-12 border-t border-[#145126]/10 pt-7 md:pt-9">
+            {/* MOBILE — accordion: each step's detail expands directly below its title */}
+            <div className="lg:hidden border-t border-[#145126]/10">
+              {process.map((step, idx) => {
+                const isActive = activeStep === idx;
+                return (
+                  <div key={step.number} className="border-b border-[#145126]/10">
+                    <button
+                      type="button"
+                      onClick={() => setActiveStep(idx)}
+                      aria-expanded={isActive}
+                      className={`group flex w-full items-center gap-3 py-5 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60"}`}
+                    >
+                      <span
+                        className={`w-8 shrink-0 text-[12px] font-black tracking-[0.16em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
+                        style={bodyStyle}
+                      >
+                        {step.number}
+                      </span>
+                      <span
+                        className={`flex-1 text-[17px] leading-[1.2] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/70"}`}
+                        style={headlineStyle}
+                      >
+                        {step.title}
+                      </span>
+                      <ChevronDown
+                        size={18}
+                        className={`shrink-0 text-[#8DBD42] transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          key="content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-6 pl-11 pr-1 space-y-4">
+                            {step.items.map(item => (
+                              <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
+                                <p
+                                  className="text-[13.5px] font-black text-[#3F4143]"
+                                  style={bodyStyle}
+                                >
+                                  {item.label}
+                                </p>
+                                <p
+                                  className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/72"
+                                  style={bodyStyle}
+                                >
+                                  {item.text}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* DESKTOP — step titles (hover/tap) + sticky detail panel */}
+            <div className="hidden lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-12 border-t border-[#145126]/10 pt-9">
               {/* LEFT — step titles (hover/tap to expand on the right) */}
               <div className="flex flex-col">
                 {process.map((step, idx) => {
@@ -1097,7 +1216,7 @@ export default function Home() {
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
                       aria-pressed={isActive}
-                      className={`group flex items-center gap-3 md:gap-5 py-4 md:py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
+                      className={`group flex items-center gap-5 py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
                     >
                       <span
                         className={`w-10 shrink-0 text-[13px] font-black tracking-[0.18em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
@@ -1106,7 +1225,7 @@ export default function Home() {
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[16px] md:text-[20px] lg:text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
+                        className={`flex-1 text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
                         style={headlineStyle}
                       >
                         {step.title}
@@ -1448,11 +1567,15 @@ export default function Home() {
                   </p>
 
                   <form
-                    action="mailto:office@firewaterstorm.com"
-                    method="post"
-                    encType="text/plain"
+                    onSubmit={handleFormSubmit}
                     className="mt-8 space-y-6 font-sans"
                   >
+                    {formError && (
+                      <div className="p-4 bg-red-50 border border-red-200 text-red-700 font-semibold text-sm text-center rounded-none">
+                        {formError}
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label
@@ -1466,6 +1589,8 @@ export default function Home() {
                           name="name"
                           type="text"
                           required
+                          value={formData.name}
+                          onChange={handleFormChange}
                           className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
@@ -1482,6 +1607,8 @@ export default function Home() {
                           name="phone"
                           type="tel"
                           required
+                          value={formData.phone}
+                          onChange={handleFormChange}
                           className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
@@ -1500,6 +1627,8 @@ export default function Home() {
                           name="email"
                           type="email"
                           required
+                          value={formData.email}
+                          onChange={handleFormChange}
                           className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30"
                         />
                       </div>
@@ -1514,12 +1643,11 @@ export default function Home() {
                         <select
                           id="home-service"
                           name="service"
-                          defaultValue=""
+                          value={formData.service}
+                          onChange={handleFormChange}
                           className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 appearance-none cursor-pointer"
                         >
-                          <option value="" disabled>
-                            Select a service category...
-                          </option>
+                          <option value="">Select a service category...</option>
                           <option value="fire">Fire Damage Restoration</option>
                           <option value="water">Water Damage Mitigation</option>
                           <option value="storm">Storm Damage Recovery</option>
@@ -1540,6 +1668,8 @@ export default function Home() {
                         id="home-message"
                         name="message"
                         rows={6}
+                        value={formData.message}
+                        onChange={handleFormChange}
                         className="w-full bg-white border border-[#3F4143]/15 focus:border-[#8DBD42] focus:ring-1 focus:ring-[#8DBD42] focus:outline-none p-3.5 transition-all duration-300 text-sm rounded-none shadow-sm hover:border-[#3F4143]/30 resize-y"
                         placeholder="Tell us what happened and what kind of help you need..."
                       />
@@ -1547,9 +1677,10 @@ export default function Home() {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0 cursor-pointer"
+                      disabled={sending}
+                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] disabled:opacity-60 disabled:cursor-not-allowed text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0 cursor-pointer"
                     >
-                      <Send size={14} /> Send Message
+                      <Send size={14} /> {sending ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 </div>

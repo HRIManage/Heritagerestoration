@@ -2,7 +2,7 @@
 import Layout from "@/components/layout/Layout";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Plus, Minus, Phone } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { buildFAQSchema, buildBreadcrumbSchema, FAQ_SCHEMA_ITEMS } from "@/seo";
 
 function FadeUp({
@@ -381,9 +381,36 @@ const faqCategories: FAQCategory[] = [
 export default function FAQ() {
   // Track open item per category independently: key = "catIdx-itemIdx"
   const [openKey, setOpenKey] = useState<string | null>("0-0");
+  const [activeCat, setActiveCat] = useState(0);
+  const catRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const toggle = (key: string) =>
     setOpenKey(prev => (prev === key ? null : key));
+
+  const scrollToCat = (idx: number) => {
+    const el = catRefs.current[idx];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 130;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  // Highlight the category currently in view within the desktop sidebar.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) {
+          const idx = Number((visible.target as HTMLElement).dataset.catIndex);
+          if (!Number.isNaN(idx)) setActiveCat(idx);
+        }
+      },
+      { rootMargin: "-140px 0px -55% 0px", threshold: 0 }
+    );
+    catRefs.current.forEach(el => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Layout>
@@ -456,9 +483,53 @@ export default function FAQ() {
 
         {/* FAQ Accordions Section */}
         <section className="py-10 md:py-16 bg-[#FAF9F6]">
-          <div className="max-w-[960px] mx-auto px-6 space-y-14">
+          <div className="max-w-[1200px] mx-auto px-6 lg:grid lg:grid-cols-[270px_minmax(0,1fr)] lg:gap-16">
+            {/* Sticky category navigation — desktop only */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-[132px]">
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42] mb-5">
+                  Browse Topics
+                </p>
+                <nav className="flex flex-col">
+                  {faqCategories.map((cat, i) => {
+                    const isActive = activeCat === i;
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => scrollToCat(i)}
+                        className={`group flex items-start gap-3 border-l-2 py-2.5 pl-4 pr-2 text-left transition-all duration-300 ${
+                          isActive
+                            ? "border-[#8DBD42] bg-[#8DBD42]/8 text-[#145126]"
+                            : "border-[#3F4143]/10 text-[#3F4143]/55 hover:border-[#8DBD42]/40 hover:text-[#3F4143]"
+                        }`}
+                      >
+                        <span
+                          className={`mt-px text-[11px] font-black tabular-nums transition-colors duration-300 ${
+                            isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/60"
+                          }`}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-[13px] font-semibold leading-snug font-sans">
+                          {cat.category}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+            </aside>
+
+            {/* Accordions */}
+            <div className="min-w-0 space-y-14">
             {faqCategories.map((cat, catIdx) => (
               <FadeUp key={catIdx} delay={catIdx * 0.04}>
+                <div
+                  ref={el => { catRefs.current[catIdx] = el; }}
+                  data-cat-index={catIdx}
+                  className="scroll-mt-[130px]"
+                >
                 {/* Category heading */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-3 h-3 rounded-none bg-[#8DBD42] flex-shrink-0" />
@@ -526,8 +597,10 @@ export default function FAQ() {
                     );
                   })}
                 </div>
+                </div>
               </FadeUp>
             ))}
+            </div>
           </div>
         </section>
 

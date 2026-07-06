@@ -171,7 +171,7 @@ export default function ServiceAreas() {
               </div>
               <p className="text-[#3F4143]/65 text-[15px] leading-relaxed max-w-[440px] font-sans font-light">
                 From Lewis County to Pierce County, our two offices dispatch certified
-                crews across the entire region â€” 24 hours a day, 7 days a week, 365 days a year.
+                crews across the entire region — 24 hours a day, 7 days a week, 365 days a year.
               </p>
             </div>
           </Container>
@@ -548,12 +548,12 @@ export default function ServiceAreas() {
                       <line x1="0" y1="400" x2="400" y2="400" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
                       
                       {/* Coordinates texts */}
-                      <text x="105" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">123Â°W</text>
-                      <text x="205" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">122.5Â°W</text>
-                      <text x="5" y="95" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.2Â°N</text>
-                      <text x="5" y="195" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.0Â°N</text>
-                      <text x="5" y="295" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.8Â°N</text>
-                      <text x="5" y="395" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.6Â°N</text>
+                      <text x="105" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">123°W</text>
+                      <text x="205" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">122.5°W</text>
+                      <text x="5" y="95" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.2°N</text>
+                      <text x="5" y="195" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.0°N</text>
+                      <text x="5" y="295" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.8°N</text>
+                      <text x="5" y="395" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.6°N</text>
 
                       {/* Stylized Puget Sound Water Inlet Path */}
                       <path
@@ -720,7 +720,7 @@ export default function ServiceAreas() {
                   </h2>
                   <p className="text-white/70 text-[16px] leading-relaxed max-w-[480px] mx-auto mb-10 font-sans font-light">
                     If you're anywhere along the I-5 corridor in Western Washington,
-                    call us â€” our crews travel throughout the region for emergency restoration.
+                    call us — our crews travel throughout the region for emergency restoration.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
