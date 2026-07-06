@@ -927,11 +927,20 @@ export default function Home() {
                 >
                   <motion.div
                     className="group border border-transparent p-6 -mx-6 cursor-pointer"
-                    initial={{ borderColor: "rgba(0,0,0,0)", backgroundColor: "rgba(0,0,0,0)", y: 0 }}
-                    whileHover={{
-                      borderColor: service.accentColor,
-                      backgroundColor: "rgba(255,255,255,0.72)",
-                      y: -4,
+                    initial="rest"
+                    whileHover="hovered"
+                    animate="rest"
+                    variants={{
+                      rest: {
+                        borderColor: "rgba(0,0,0,0)",
+                        backgroundColor: "rgba(0,0,0,0)",
+                        y: 0,
+                      },
+                      hovered: {
+                        borderColor: service.accentColor,
+                        backgroundColor: "rgba(255,255,255,0.72)",
+                        y: -4,
+                      },
                     }}
                     transition={{ type: "spring", stiffness: 140, damping: 20 }}
                   >
@@ -943,13 +952,18 @@ export default function Home() {
                         {service.icon}
                       </span>
 
-                      {/* Title */}
-                      <h3
-                        className={`mt-6 text-[22px] md:text-[24px] leading-tight font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                      {/* Title — color matches border accent via variant propagation */}
+                      <motion.h3
+                        className="mt-6 text-[22px] md:text-[24px] leading-tight font-bold"
                         style={headlineStyle}
+                        variants={{
+                          rest: { color: "#2F3335" },
+                          hovered: { color: service.accentColor },
+                        }}
+                        transition={{ type: "spring", stiffness: 140, damping: 20 }}
                       >
                         {service.title}
-                      </h3>
+                      </motion.h3>
 
                       {/* Description */}
                       <p
@@ -969,6 +983,7 @@ export default function Home() {
                       </span>
                     </Link>
                   </motion.div>
+
 
                 </motion.div>
               ))}
