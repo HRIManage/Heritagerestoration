@@ -776,7 +776,7 @@ export default function Home() {
                   <motion.a
                     data-gsap-hero-button
                     href="tel:+13603451015"
-                    className="inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
+                    className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)]"
                     style={bodyStyle}
                     variants={{
                       hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -786,13 +786,15 @@ export default function Home() {
                     whileHover={{ y: -2, scale: 1.025 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Phone size={14} className="stroke-[3]" />
                     Call 24/7 Dispatch
+                    <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                      <Phone size={13} className="stroke-[3]" />
+                    </span>
                   </motion.a>
                   <motion.a
                     data-gsap-hero-button
                     href="/contact"
-                    className="inline-flex items-center gap-2 border-2 border-[#2a2c2e]/30 hover:border-[#2a2c2e] text-[#2a2c2e] px-8 py-[14px] uppercase tracking-[0.14em] text-[13px] font-black transition-all duration-200 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
+                    className="group inline-flex items-center gap-4 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] pl-8 pr-4 py-[10px] rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] bg-white/60 hover:bg-white/90 hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-md"
                     style={bodyStyle}
                     variants={{
                       hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -803,7 +805,9 @@ export default function Home() {
                     whileTap={{ scale: 0.98 }}
                   >
                     Request Assessment
-                    <span className="text-[#8DBD42] text-base leading-none ml-1 transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    <span className="w-8 h-8 rounded-none bg-[#145126]/6 text-[#145126] flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
+                      →
+                    </span>
                   </motion.a>
                 </motion.div>
               </FadeUp>
@@ -924,13 +928,12 @@ export default function Home() {
           <div className="max-w-[1280px] mx-auto px-6 md:px-8">
             {/* Header */}
             <FadeUp>
-              <p
-                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+              <span
+                className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none"
                 style={bodyStyle}
               >
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 Our Expertise
-              </p>
+              </span>
               <h2
                 className="mt-3 text-[40px] md:text-[56px] leading-[1.02] font-bold text-[#2F3335]"
                 style={headlineStyle}
@@ -977,44 +980,49 @@ export default function Home() {
                 >
                   <Link
                     href={service.href}
-                    className="group relative block transition-transform duration-700 ease-out hover:-translate-y-1"
+                    className="block group"
                   >
-                    {/* Icon — fills with the service color and scales on hover */}
-                    <span
-                      className={`grid h-12 w-12 place-items-center rounded-full transition-colors duration-700 ${service.iconColor}`}
-                    >
-                      {service.icon}
-                    </span>
+                    <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] hover:shadow-[0_20px_45px_rgba(20,81,38,0.06)] h-full">
+                      <div className="bg-white rounded-none p-6 md:p-8 h-full border border-black/[0.015] shadow-[inset_0_1px_1px_rgba(255,255,255,1)] flex flex-col justify-between">
+                        <div>
+                          {/* Icon */}
+                          <span
+                            className={`grid h-12 w-12 place-items-center rounded-none transition-transform duration-500 group-hover:scale-110 ${service.iconColor}`}
+                          >
+                            {service.icon}
+                          </span>
 
-                    <h3
-                      className={`mt-6 text-[25px] md:text-[27px] leading-[1.06] font-bold text-[#2F3335] transition-colors duration-700 ${service.hoverTextColor}`}
-                      style={headlineStyle}
-                    >
-                      <span className="relative inline-block">
-                        {service.title}
-                        {/* Accent underline draws in on hover */}
+                          <h3
+                            className={`mt-6 text-[21px] md:text-[23px] leading-[1.1] font-bold text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                            style={headlineStyle}
+                          >
+                            <span className="relative inline-block">
+                              {service.title}
+                              <span
+                                className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
+                              />
+                            </span>
+                          </h3>
+                          <p
+                            className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/70 font-light"
+                            style={bodyStyle}
+                          >
+                            {service.description}
+                          </p>
+                        </div>
+
                         <span
-                          className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transition-transform duration-700 ease-out group-hover:scale-x-100 ${service.accentBarClass}`}
-                        />
-                      </span>
-                    </h3>
-                    <p
-                      className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/70"
-                      style={bodyStyle}
-                    >
-                      {service.description}
-                    </p>
-
-                    <span
-                      className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
-                      style={bodyStyle}
-                    >
-                      Explore Service
-                      <ArrowRight
-                        size={14}
-                        className="motion-link-arrow"
-                      />
-                    </span>
+                          className={`relative z-10 mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#2F3335] transition-colors duration-500 ${service.hoverTextColor}`}
+                          style={bodyStyle}
+                        >
+                          Explore Service
+                          <ArrowRight
+                            size={14}
+                            className="transition-transform duration-500 group-hover:translate-x-1"
+                          />
+                        </span>
+                      </div>
+                    </div>
                   </Link>
                 </motion.div>
               ))}
@@ -1046,10 +1054,9 @@ export default function Home() {
 
             {/* RIGHT: text content + buttons */}
             <FadeUp delay={0.08} className="lg:col-span-6 order-1 lg:order-2">
-              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold font-sans">
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+              <span className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none font-sans mb-4">
                 Our Promise
-              </p>
+              </span>
               <h2 className="text-[30px] md:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
                 We Are Not Just Technicians.
                 <br />
@@ -1065,15 +1072,21 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
                 <a
                   href="tel:+13603451015"
-                  className="bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 inline-flex items-center gap-2 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
+                  className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)]"
                 >
-                  <Phone size={12} /> Start Your Recovery
+                  Start Your Recovery
+                  <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                    <Phone size={12} />
+                  </span>
                 </a>
                 <a
                   href="/contact"
-                  className="border-2 border-[#3F4143]/40 hover:border-[#3F4143] text-[#3F4143] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(0,0,0,0.1)] active:translate-y-0 active:shadow-none"
+                  className="group inline-flex items-center gap-4 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] pl-8 pr-4 py-[10px] rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] bg-white/60 hover:bg-white/90 hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-md"
                 >
                   Request Assessment
+                  <span className="w-8 h-8 rounded-none bg-[#145126]/6 text-[#145126] flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
+                    →
+                  </span>
                 </a>
               </div>
 
@@ -1118,13 +1131,12 @@ export default function Home() {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="lg:col-span-5">
-                <p
-                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+                <span
+                  className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none mb-3"
                   style={bodyStyle}
                 >
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                   What To Expect
-                </p>
+                </span>
                 <h2
                   className="text-[30px] md:text-[44px] mt-2 text-[#3F4143] font-bold leading-tight"
                   style={headlineStyle}
@@ -1160,7 +1172,7 @@ export default function Home() {
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
                       aria-pressed={isActive}
-                      className={`group flex items-center gap-4 border-b border-[#3F4143]/10 py-4 md:py-[18px] text-left transition-colors duration-300 ${isActive ? "" : "hover:bg-white/50"}`}
+                      className={`group flex items-center gap-4 border-b border-[#3F4143]/10 py-4 md:py-[18px] text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? "bg-[#145126]/4 px-4" : "hover:bg-white/50 px-4"}`}
                     >
                       <span
                         className={`w-7 shrink-0 text-[13px] font-black uppercase tracking-[0.12em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#3F4143]/35"}`}
@@ -1186,54 +1198,56 @@ export default function Home() {
 
               {/* RIGHT — active step detail expands here */}
               <div className="lg:sticky lg:top-28 self-start relative">
-                {/* Skewed Green Accent Background behind active step card */}
-                <div className="absolute -inset-3 bg-[#8DBD42]/10 skew-x-[-6deg] rounded-2xl z-0 pointer-events-none" />
+                {/* Clean Flat Accent Background behind active step card */}
+                <div className="absolute -inset-3 bg-[#8DBD42]/8 rounded-none z-0 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <motion.div
-                    key={activeStep}
-                    initial={{ opacity: 0, x: 18, scale: 0.98 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
-                    className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.28)]"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-full">
-                        {process[activeStep].icon}
-                      </span>
-                      <span
-                        className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
-                        style={bodyStyle}
-                      >
-                        <span className="w-4 h-px bg-[#8DBD42] inline-block" />
-                        {process[activeStep].number} of {process.length}
-                      </span>
-                    </div>
-                    <h3
-                      className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
-                      style={headlineStyle}
+                  <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04]">
+                    <motion.div
+                      key={activeStep}
+                      initial={{ opacity: 0, x: 18, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                      className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.2)] rounded-none shadow-[inset_0_1px_1px_rgba(255,255,255,1)]"
                     >
-                      {process[activeStep].title}
-                    </h3>
-                    <div className="mt-6 space-y-5">
-                      {process[activeStep].items.map(item => (
-                        <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
-                          <p
-                            className="text-[14px] font-black text-[#3F4143]"
-                            style={bodyStyle}
-                          >
-                            {item.label}
-                          </p>
-                          <p
-                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
-                            style={bodyStyle}
-                          >
-                            {item.text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+                      <div className="flex items-center gap-4">
+                        <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-none border border-[#145126]/8">
+                          {process[activeStep].icon}
+                        </span>
+                        <span
+                          className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
+                          style={bodyStyle}
+                        >
+                          <span className="w-4 h-px bg-[#8DBD42] inline-block" />
+                          {process[activeStep].number} of {process.length}
+                        </span>
+                      </div>
+                      <h3
+                        className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
+                        style={headlineStyle}
+                      >
+                        {process[activeStep].title}
+                      </h3>
+                      <div className="mt-6 space-y-5">
+                        {process[activeStep].items.map(item => (
+                          <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
+                            <p
+                              className="text-[14px] font-black text-[#3F4143]"
+                              style={bodyStyle}
+                            >
+                              {item.label}
+                            </p>
+                            <p
+                              className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
+                              style={bodyStyle}
+                            >
+                              {item.text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1427,14 +1441,12 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
             <FadeUp>
               <div className="flex flex-col items-center justify-center gap-3 mb-4">
-                <p
-                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+                <span
+                  className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none"
                   style={bodyStyle}
                 >
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                   Client Stories
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                </p>
+                </span>
               </div>
               <h2
                 className="text-[30px] md:text-[40px] mt-3 text-[#3F4143] font-bold leading-tight"
@@ -1447,93 +1459,95 @@ export default function Home() {
             <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left">
               {reviews.map((testimonial, idx) => (
                 <FadeUp key={testimonial.name} delay={idx * 0.06}>
-                  <article data-gsap-reveal className="motion-soft-lift relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 shadow-[0_12px_30px_rgba(0,0,0,0.015)] flex flex-col justify-between overflow-hidden group border border-[#3F4143]/5 border-l-0">
-                    {/* Big Decorative Quote Mark */}
-                    <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
-                      "
-                    </span>
+                  <div className="p-2 rounded-none bg-black/[0.012] border border-black/[0.04] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.02] hover:shadow-[0_20px_45px_rgba(20,81,38,0.06)] group h-full">
+                    <article data-gsap-reveal className="relative h-full rounded-none border-l-4 border-l-[#8DBD42] bg-white p-8 flex flex-col justify-between overflow-hidden border border-[#3F4143]/5 border-l-0 shadow-[inset_0_1px_1px_rgba(255,255,255,1)]">
+                      {/* Big Decorative Quote Mark */}
+                      <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
+                        "
+                      </span>
 
-                    <div>
-                      {/* Rating Stars */}
-                      <motion.div
-                        className="flex text-[#8DBD42] gap-1"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.8 }}
-                        variants={{
-                          hidden: {},
-                          visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
-                        }}
-                      >
-                        {Array.from({ length: 5 }).map((_, starIndex) => (
-                          <motion.span
-                            key={starIndex}
-                            variants={{
-                              hidden: { opacity: 0, y: 6, scale: 0.8 },
-                              visible: { opacity: 1, y: 0, scale: 1 },
-                            }}
-                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                          >
-                            <Star
-                              size={16}
-                              fill={
-                                starIndex < Math.round(testimonial.rating || 5)
-                                  ? "currentColor"
-                                  : "none"
-                              }
-                              className={
-                                starIndex < Math.round(testimonial.rating || 5)
-                                  ? ""
-                                  : "text-[#3F4143]/20"
-                              }
+                      <div>
+                        {/* Rating Stars */}
+                        <motion.div
+                          className="flex text-[#8DBD42] gap-1"
+                          initial="hidden"
+                          whileInView="visible"
+                          viewport={{ once: true, amount: 0.8 }}
+                          variants={{
+                            hidden: {},
+                            visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
+                          }}
+                        >
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <motion.span
+                              key={starIndex}
+                              variants={{
+                                hidden: { opacity: 0, y: 6, scale: 0.8 },
+                                visible: { opacity: 1, y: 0, scale: 1 },
+                              }}
+                              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                              <Star
+                                size={16}
+                                fill={
+                                  starIndex < Math.round(testimonial.rating || 5)
+                                    ? "currentColor"
+                                    : "none"
+                                }
+                                className={
+                                  starIndex < Math.round(testimonial.rating || 5)
+                                    ? ""
+                                    : "text-[#3F4143]/20"
+                                }
+                              />
+                            </motion.span>
+                          ))}
+                        </motion.div>
+
+                        {/* Review Text */}
+                        <p
+                          className="mt-6 text-[#3F4143]/85 text-base md:text-lg leading-relaxed italic"
+                          style={bodyStyle}
+                        >
+                          "{testimonial.quote}"
+                        </p>
+                      </div>
+
+                      {/* Reviewer Details */}
+                      <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-700 group-hover:translate-x-1">
+                        <div className="flex items-center gap-3">
+                          {testimonial.profilePhotoUrl && (
+                            <img
+                              src={testimonial.profilePhotoUrl}
+                              alt=""
+                              className="h-10 w-10 rounded-none object-cover border border-[#3F4143]/10"
+                              referrerPolicy="no-referrer"
                             />
-                          </motion.span>
-                        ))}
-                      </motion.div>
-
-                      {/* Review Text */}
-                      <p
-                        className="mt-6 text-[#3F4143]/85 text-base md:text-lg leading-relaxed italic"
-                        style={bodyStyle}
-                      >
-                        "{testimonial.quote}"
-                      </p>
-                    </div>
-
-                    {/* Reviewer Details */}
-                    <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-700 group-hover:translate-x-1">
-                      <div className="flex items-center gap-3">
-                        {testimonial.profilePhotoUrl && (
-                          <img
-                            src={testimonial.profilePhotoUrl}
-                            alt=""
-                            className="h-10 w-10 rounded-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
-                        )}
-                        <div>
-                        <p
-                          className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
+                          )}
+                          <div>
+                            <p
+                              className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
+                              style={bodyStyle}
+                            >
+                              {testimonial.name}
+                            </p>
+                            <p
+                              className="text-[15px] text-[#3F4143]/65 mt-0.5"
+                              style={bodyStyle}
+                            >
+                              {testimonial.role}
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          className="flex items-center gap-1.5 text-xs font-bold text-[#145126] bg-[#8DBD42]/10 px-2.5 py-1 rounded-none select-none border border-[#145126]/8"
                           style={bodyStyle}
                         >
-                          {testimonial.name}
-                        </p>
-                        <p
-                          className="text-[15px] text-[#3F4143]/65 mt-0.5"
-                          style={bodyStyle}
-                        >
-                          {testimonial.role}
-                        </p>
+                          <ShieldCheck size={11} /> Verified
                         </div>
                       </div>
-                      <div
-                        className="flex items-center gap-1.5 text-xs font-bold text-[#8DBD42] bg-[#8DBD42]/10 px-2 py-0.5 rounded-full select-none"
-                        style={bodyStyle}
-                      >
-                        <ShieldCheck size={11} /> Verified
-                      </div>
-                    </div>
-                  </article>
+                    </article>
+                  </div>
                 </FadeUp>
               ))}
             </div>
@@ -1546,12 +1560,12 @@ export default function Home() {
             <FadeUp>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
                 <div className="lg:col-span-7">
-                  <p
-                    className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
+                  <span
+                    className="inline-block bg-[#145126]/6 text-[#145126] text-[10px] font-black uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-none border border-[#145126]/12 select-none mb-4"
                     style={bodyStyle}
                   >
                     Request Help
-                  </p>
+                  </span>
                   <h2
                     className="mt-3 text-[34px] md:text-[52px] leading-[1.04] font-bold text-[#145126]"
                     style={headlineStyle}
@@ -1665,9 +1679,12 @@ export default function Home() {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-200 rounded-none hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0 active:shadow-none"
+                      className="group inline-flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] pl-8 pr-4 py-3 rounded-none text-xs font-black uppercase tracking-[0.16em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.025] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_24px_rgba(141,189,66,0.35)] cursor-pointer"
                     >
-                      <Send size={14} /> Send Message
+                      Send Message
+                      <span className="w-8 h-8 rounded-none bg-white/20 flex items-center justify-center transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-110">
+                        <Send size={13} />
+                      </span>
                     </button>
                   </form>
                 </div>

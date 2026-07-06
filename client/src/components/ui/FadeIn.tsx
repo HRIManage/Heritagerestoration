@@ -42,7 +42,7 @@ export default function FadeIn({
       ref={ref}
       initial={{ opacity: 0, ...getDirectionOffset() }}
       animate={shouldAnimate ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.95, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
       style={style}
     >
