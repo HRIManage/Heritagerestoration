@@ -33,7 +33,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`py-10 md:py-20 overflow-hidden relative ${getBgClass()} ${className}`}
+      className={`py-10 md:py-20 relative ${getBgClass()} ${className}`}
       style={style}
     >
       {children}

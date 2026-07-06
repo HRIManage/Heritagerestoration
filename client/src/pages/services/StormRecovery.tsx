@@ -1,4 +1,4 @@
-﻿import {
+import {
   CloudLightning,
   Wind,
   Hammer,
@@ -202,8 +202,8 @@ export default function StormRecovery() {
         <Section bg="white" className="border-t border-gray-100" id="process">
           <Container>
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              {/* Left Column: Anchored/Sticky Header and Service Summary (40% width) */}
-              <div className="lg:col-span-5 lg:sticky lg:top-32 self-start space-y-6">
+              {/* Left Column: Sticky header — stays in view while right scrolls */}
+              <div className="lg:col-span-5 lg:sticky lg:top-28 self-start space-y-6">
                 <FadeIn direction="up">
                   <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block">
                     Our Restoration Roadmap
@@ -220,8 +220,8 @@ export default function StormRecovery() {
                 </FadeIn>
               </div>
 
-              {/* Right Column: Step-by-step restoration procedures (60% width) */}
-              <div className="lg:col-span-7 space-y-12">
+              {/* Right Column: Step-by-step restoration procedures — scrolls past sticky left */}
+              <div className="lg:col-span-7 divide-y divide-[#3F4143]/8">
                 {[
                   {
                     step: "01",
@@ -257,11 +257,11 @@ export default function StormRecovery() {
                   <FadeIn
                     key={idx}
                     delay={idx * 0.05}
-                    className="relative pl-16 py-4 bg-transparent border-b border-[#3F4143]/5 last:border-b-0"
+                    className="relative pl-16 py-8 bg-transparent"
                     direction="up"
                   >
                     {/* Floating green number on the left */}
-                    <span className="absolute left-0 top-3 text-3xl font-bold text-[#8DBD42] font-serif leading-none">
+                    <span className="absolute left-0 top-7 text-3xl font-bold text-[#8DBD42] font-serif leading-none">
                       {item.step}
                     </span>
                     <div className="space-y-2">
