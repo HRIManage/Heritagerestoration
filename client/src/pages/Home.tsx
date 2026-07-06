@@ -6,6 +6,7 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  AnimatePresence,
 } from "framer-motion";
 import {
   ArrowRight,
@@ -28,8 +29,10 @@ import {
   Trophy,
   Shield,
   Hammer,
+  ChevronDown,
   Send,
   Mail,
+  Quote,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
@@ -288,10 +291,18 @@ export default function Home() {
   const [sliderPercent, setSliderPercent] = useState(50);
   const [activeStep, setActiveStep] = useState(0);
   const [reviews, setReviews] = useState<DisplayReview[]>(fallbackTestimonials);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const pageRef = useRef<HTMLDivElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const reduceMotion = useReducedMotion();
+
+  const handlePrevReview = () => {
+    setCurrentReviewIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  };
+  const handleNextReview = () => {
+    setCurrentReviewIndex((prev) => (prev + 1) % reviews.length);
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -315,7 +326,7 @@ export default function Home() {
 
         const googleReviews = (payload.reviews || [])
           .filter(review => review.quote)
-          .slice(0, 3)
+          .slice(0, 12)
           .map(review => ({
             name: review.name || "Google reviewer",
             role: review.relativeTime
@@ -664,7 +675,7 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <div ref={pageRef} className="bg-[#FAF9F5]">
+      <div ref={pageRef} className="bg-[#FAF9F6]">
         {/* Homepage Hero */}
         <section
           id="home-hero"
@@ -682,7 +693,7 @@ export default function Home() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(105deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.98) 28%, rgba(255,255,255,0.80) 44%, rgba(255,255,255,0.25) 60%, transparent 78%)",
+                "linear-gradient(105deg, rgba(250,249,246,1) 0%, rgba(250,249,246,0.98) 28%, rgba(250,249,246,0.82) 44%, rgba(250,249,246,0.25) 60%, transparent 78%)",
             }}
           />
           {/* Bottom fade into dark ticker */}
@@ -697,11 +708,11 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at 10% 88%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.82) 20%, rgba(255,255,255,0.38) 42%, transparent 68%)",
+                "radial-gradient(ellipse at 10% 88%, rgba(250,249,246,0.96) 0%, rgba(250,249,246,0.82) 20%, rgba(250,249,246,0.38) 42%, transparent 68%)",
             }}
           />
           {/* Mobile-only extra white overlay */}
-          <div className="absolute inset-0 bg-white/60 lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-[#FAF9F6]/60 lg:hidden pointer-events-none" />
 
           <motion.a
             data-gsap-explore
@@ -1105,44 +1116,35 @@ export default function Home() {
 
         {/* Process Section */}
         <section
-          data-gsap-section
-          className="py-14 md:py-20 overflow-hidden relative bg-[#FAF9F6]"
+          className="py-14 md:py-20 overflow-hidden relative bg-transparent text-[#3F4143]"
           id="process"
         >
           <div className="max-w-[1180px] mx-auto px-6 relative z-10">
             <motion.div
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 md:mb-12"
-              initial={{ opacity: 0, y: 24 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 mb-8 md:mb-10"
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="lg:col-span-5">
                 <p
-                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold mb-3"
+                  className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
                   style={bodyStyle}
                 >
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                   What To Expect
                 </p>
                 <h2
-                  className="text-[30px] md:text-[44px] mt-2 text-[#3F4143] font-bold leading-tight"
+                  className="text-[34px] md:text-[50px] mt-2 text-[#2F3335] font-bold leading-tight"
                   style={headlineStyle}
                 >
                   What happens after you call.
                 </h2>
               </div>
-              <p
-                className="lg:col-span-6 lg:col-start-7 text-[#3F4143]/70 leading-relaxed text-[16px] md:text-[17px]"
-                style={bodyStyle}
-              >
-                Restoration is not one big event. It is a sequence of decisions:
-                stop the damage, document the loss, align the scope, then rebuild
-                carefully. This is the practical order we follow with homeowners.
-              </p>
+              <div className="lg:col-span-6 lg:col-start-7" />
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-8 lg:gap-14 border-t border-[#3F4143]/12 pt-8 md:pt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-7 lg:gap-12 border-t border-[#145126]/10 pt-7 md:pt-9">
               {/* LEFT — step titles (hover/tap to expand on the right) */}
               <div className="flex flex-col">
                 {process.map((step, idx) => {
@@ -1150,32 +1152,31 @@ export default function Home() {
                   return (
                     <motion.button
                       key={step.number}
-                      data-gsap-reveal
                       type="button"
-                      initial={{ opacity: 0, x: -16 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.5 }}
-                      transition={{ duration: 0.72, delay: idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={{ duration: 0.75, delay: idx * 0.045, ease: [0.22, 1, 0.36, 1] }}
                       onMouseEnter={() => setActiveStep(idx)}
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
                       aria-pressed={isActive}
-                      className={`group flex items-center gap-4 border-b border-[#3F4143]/10 py-4 md:py-[18px] text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? "bg-[#145126]/4 px-4" : "hover:bg-white/50 px-4"}`}
+                      className={`group flex items-center gap-5 py-5 md:py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
                     >
                       <span
-                        className={`w-7 shrink-0 text-[13px] font-black uppercase tracking-[0.12em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#3F4143]/35"}`}
+                        className={`w-10 shrink-0 text-[13px] font-black tracking-[0.18em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
                         style={bodyStyle}
                       >
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[18px] md:text-[21px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 group-hover:text-[#3F4143]/80"}`}
+                        className={`flex-1 text-[19px] md:text-[24px] leading-[1.06] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
                         style={headlineStyle}
                       >
                         {step.title}
                       </span>
                       <span
-                        className={`shrink-0 transition-all duration-300 ${isActive ? "translate-x-0 text-[#8DBD42] opacity-100" : "-translate-x-1 text-[#3F4143]/30 opacity-0 group-hover:opacity-100"}`}
+                        className={`shrink-0 transition-all duration-300 ${isActive ? "translate-x-0 text-[#8DBD42] opacity-100" : "-translate-x-1 text-[#8DBD42]/80 opacity-0 group-hover:opacity-100"}`}
                       >
                         <ArrowRight size={18} />
                       </span>
@@ -1185,39 +1186,45 @@ export default function Home() {
               </div>
 
               {/* RIGHT — active step detail expands here */}
-              <div className="lg:sticky lg:top-28 self-start relative">
-                {/* Clean Flat Accent Background behind active step card */}
-                <div className="absolute -inset-3 bg-[#8DBD42]/8 rounded-none z-0 pointer-events-none" />
-
-                <div className="relative z-10">
+              <div
+                className={`lg:sticky self-start ${
+                  activeStep >= 5 ? "lg:top-[6.5rem] xl:top-[7.5rem]" : "lg:top-28"
+                }`}
+              >
+                <AnimatePresence mode="wait">
                   <motion.div
                     key={activeStep}
-                    initial={{ opacity: 0, x: 18, filter: "blur(6px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                    className="border border-[#3F4143]/12 bg-white p-7 md:p-10 shadow-[0_20px_50px_rgba(20,81,38,0.035)] rounded-none"
+                    initial={{ opacity: 0, x: -24, scale: 0.97 }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      scale: 1,
+                      y: activeStep >= 5 ? 60 : 0,
+                    }}
+                    exit={{ opacity: 0, x: 18, scale: 0.97 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="border border-[#E2E2DD] bg-white p-8 md:p-12 text-[#145126] shadow-[0_18px_45px_rgba(63,65,67,0.06)]"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="grid h-12 w-12 place-items-center bg-[#8DBD42]/12 text-[#145126] rounded-none border border-[#145126]/8">
+                      <span className="grid h-12 w-12 place-items-center border border-[#8DBD42]/18 bg-[#F4F8EE] text-[#145126]">
                         {process[activeStep].icon}
                       </span>
                       <span
-                        className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#8DBD42]"
+                        className="text-[13px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
                         style={bodyStyle}
                       >
-                        <span className="w-4 h-px bg-[#8DBD42] inline-block" />
-                        {process[activeStep].number} of {process.length}
+                        Step {process[activeStep].number}
                       </span>
                     </div>
                     <h3
-                      className="mt-5 text-[24px] md:text-[29px] leading-[1.1] font-bold text-[#2F3335]"
+                      className="mt-5 text-[26px] md:text-[32px] leading-[1.1] font-bold text-[#3F4143]"
                       style={headlineStyle}
                     >
                       {process[activeStep].title}
                     </h3>
                     <div className="mt-6 space-y-5">
                       {process[activeStep].items.map(item => (
-                        <div key={item.label} className="border-l-2 border-[#8DBD42]/40 pl-4">
+                        <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
                           <p
                             className="text-[14px] font-black text-[#3F4143]"
                             style={bodyStyle}
@@ -1225,7 +1232,7 @@ export default function Home() {
                             {item.label}
                           </p>
                           <p
-                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/68"
+                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/72"
                             style={bodyStyle}
                           >
                             {item.text}
@@ -1234,7 +1241,7 @@ export default function Home() {
                       ))}
                     </div>
                   </motion.div>
-                </div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
@@ -1421,124 +1428,133 @@ export default function Home() {
         </section>
 
         {/* Testimonials (Editorial Layout) */}
-        <section data-gsap-section id="testimonials" className="py-10 md:py-16 bg-[#FAF9F6] border-y border-gray-200/40 relative overflow-hidden">
-          {/* Ambient Background Glow behind Testimonials frame */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#8DBD42]/3.5 blur-[140px] pointer-events-none select-none z-0" />
+        <section id="testimonials" className="py-14 md:py-20 bg-transparent relative overflow-hidden text-[#3F4143]">
           <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
             <FadeUp>
               <div className="flex flex-col items-center justify-center gap-3 mb-4">
                 <p
-                  className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
+                  className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
                   style={bodyStyle}
                 >
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                  Client Stories
-                  <span className="w-5 h-px bg-[#8DBD42] inline-block" />
+                  Testimonials
                 </p>
               </div>
               <h2
-                className="text-[30px] md:text-[40px] mt-3 text-[#3F4143] font-bold leading-tight"
+                className="text-[34px] md:text-[48px] mt-3 !text-[#145126] font-bold leading-tight"
                 style={headlineStyle}
               >
                 Rebuilding Dreams, One Story At A Time
               </h2>
             </FadeUp>
+            {/* Infinite Testimonials Carousel Wrapper */}
+            <div className="relative mt-10 max-w-[1080px] mx-auto px-10 md:px-16 text-left">
+              {/* Left Arrow Button */}
+              <button
+                onClick={handlePrevReview}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-white border border-[#3F4143]/10 flex items-center justify-center text-[#55664a] hover:bg-[#8DBD42] hover:text-white hover:border-[#8DBD42] shadow-[0_10px_26px_rgba(30,34,30,0.08)] hover:shadow-[0_12px_28px_rgba(141,189,66,0.25)] active:scale-95 transition-all duration-300 focus:outline-none"
+                aria-label="Previous testimonial"
+              >
+                <ArrowRight size={18} className="rotate-180" />
+              </button>
 
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left">
-              {reviews.map((testimonial, idx) => (
-                <FadeUp key={testimonial.name} delay={idx * 0.06}>
-                  <article
-                    data-gsap-reveal
-                    className="relative h-full bg-white p-8 border border-[#3F4143]/5 border-l-4 border-l-[#8DBD42] shadow-[0_20px_50px_rgba(20,81,38,0.035)] flex flex-col justify-between overflow-hidden group"
-                  >
-                    {/* Big Decorative Quote Mark */}
-                    <span className="absolute right-6 top-1 text-8xl font-serif text-[#8DBD42]/10 select-none pointer-events-none transition-transform duration-700 group-hover:scale-105">
-                      "
-                    </span>
+              {/* Right Arrow Button */}
+              <button
+                onClick={handleNextReview}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-white border border-[#3F4143]/10 flex items-center justify-center text-[#55664a] hover:bg-[#8DBD42] hover:text-white hover:border-[#8DBD42] shadow-[0_10px_26px_rgba(30,34,30,0.08)] hover:shadow-[0_12px_28px_rgba(141,189,66,0.25)] active:scale-95 transition-all duration-300 focus:outline-none"
+                aria-label="Next testimonial"
+              >
+                <ArrowRight size={18} />
+              </button>
 
-                    <div>
-                      {/* Rating Stars */}
-                      <motion.div
-                        className="flex text-[#8DBD42] gap-1"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.8 }}
-                        variants={{
-                          hidden: {},
-                          visible: { transition: { staggerChildren: 0.06, delayChildren: 0.16 } },
-                        }}
-                      >
-                        {Array.from({ length: 5 }).map((_, starIndex) => (
-                          <motion.span
-                            key={starIndex}
-                            variants={{
-                              hidden: { opacity: 0, y: 6, scale: 0.8 },
-                              visible: { opacity: 1, y: 0, scale: 1 },
-                            }}
-                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                          >
-                            <Star
-                              size={16}
-                              fill={
-                                starIndex < Math.round(testimonial.rating || 5)
-                                  ? "currentColor"
-                                  : "none"
-                              }
-                              className={
-                                starIndex < Math.round(testimonial.rating || 5)
-                                  ? ""
-                                  : "text-[#3F4143]/20"
-                              }
-                            />
-                          </motion.span>
-                        ))}
-                      </motion.div>
+              {/* Landing-page style review strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-transparent">
+                {[0, 1, 2, 3].map(offset => {
+                  const review = reviews[(currentReviewIndex + offset) % reviews.length];
+                  if (!review) return null;
 
-                      {/* Review Text */}
-                      <p
-                        className="mt-6 text-[#3F4143]/85 text-base md:text-lg leading-relaxed italic"
-                        style={bodyStyle}
-                      >
-                        "{testimonial.quote}"
-                      </p>
-                    </div>
+                  const rating = Math.round(review.rating || 5);
+                  const isGoogleReview = review.role.includes("Google");
 
-                    {/* Reviewer Details */}
-                    <div className="mt-8 pt-5 border-t border-gray-200/40 flex items-center justify-between transition-transform duration-500 group-hover:translate-x-1">
-                      <div className="flex items-center gap-3">
-                        {testimonial.profilePhotoUrl && (
-                          <img
-                            src={testimonial.profilePhotoUrl}
-                            alt=""
-                            className="h-10 w-10 rounded-none object-cover border border-[#3F4143]/10"
-                            referrerPolicy="no-referrer"
-                          />
-                        )}
-                        <div>
+                  return (
+                    <FadeUp
+                      key={`${offset}-${currentReviewIndex}-${review.name}`}
+                      className={`${offset > 1 ? "hidden lg:block" : "block"} w-full`}
+                    >
+                      <article className="group relative flex h-full min-h-[245px] flex-col justify-between bg-white px-6 py-8 text-left text-[#145126] transition-all duration-300 ease-out hover:-translate-y-[4px] hover:border-[#145126] hover:shadow-[0_0_0_1px_rgba(20,81,38,0.85)]">
+                        <div className="relative z-10 flex flex-col">
+                          <div className="mb-4 flex items-center justify-between gap-4">
+                            {review.profilePhotoUrl ? (
+                              <img
+                                src={review.profilePhotoUrl}
+                                alt={review.name}
+                                className="h-11 w-11 rounded-full border border-[#E2E8DA] object-cover"
+                                referrerPolicy="no-referrer"
+                              />
+                            ) : (
+                              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E2E8DA] bg-[#FAF9F6] text-[#145126] transition-colors duration-300 group-hover:border-[#145126] group-hover:bg-white group-hover:text-[#145126]">
+                                <Quote size={18} className="stroke-[1.7]" />
+                              </div>
+                            )}
+                            <div className="flex justify-center gap-1 text-[#8DBD42] transition-colors duration-300 group-hover:text-[#8DBD42]">
+                              {Array.from({ length: 5 }).map((_, starIndex) => (
+                                <Star
+                                  key={starIndex}
+                                  size={13}
+                                  fill={starIndex < rating ? "currentColor" : "none"}
+                                  className={starIndex < rating ? "" : "text-slate-200"}
+                                />
+                              ))}
+                            </div>
+                          </div>
+
                           <p
-                            className="uppercase tracking-[0.15em] text-sm font-bold text-[#3F4143]"
+                            className="text-[12.5px] leading-relaxed text-[#145126]/66 transition-colors duration-300 group-hover:text-[#145126]/66"
                             style={bodyStyle}
                           >
-                            {testimonial.name}
-                          </p>
-                          <p
-                            className="text-[15px] text-[#3F4143]/65 mt-0.5"
-                            style={bodyStyle}
-                          >
-                            {testimonial.role}
+                            "{review.quote}"
                           </p>
                         </div>
-                      </div>
-                      <div
-                        className="flex items-center gap-1.5 text-xs font-bold text-[#145126] bg-[#8DBD42]/10 px-2.5 py-1 rounded-none select-none border border-[#145126]/8"
-                        style={bodyStyle}
-                      >
-                        <ShieldCheck size={11} /> Verified
-                      </div>
-                    </div>
-                  </article>
-                </FadeUp>
-              ))}
+
+                        <div className="relative z-10 mt-5 border-t border-[#145126]/10 pt-4 transition-colors duration-300 group-hover:border-[#145126]/10">
+                          <h4
+                            className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#145126] transition-colors duration-300 group-hover:text-[#145126]"
+                            style={bodyStyle}
+                          >
+                            {review.name}
+                          </h4>
+                          <p
+                            className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#145126]/48 transition-colors duration-300 group-hover:text-[#145126]/48"
+                            style={bodyStyle}
+                          >
+                            {review.role}
+                          </p>
+                          {isGoogleReview ? (
+                            <span
+                              className="mt-3 inline-flex w-fit items-center gap-1.5 border border-[#145126]/30 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#145126] transition-colors duration-300 group-hover:border-[#145126] group-hover:bg-white group-hover:text-[#145126]"
+                              style={bodyStyle}
+                            >
+                              <ShieldCheck size={12} />
+                              Google Verified
+                            </span>
+                          ) : null}
+                        </div>
+                      </article>
+                    </FadeUp>
+                  );
+                })}
+              </div>
+              <div className="mt-8 flex justify-center">
+                <a
+                  href="https://g.page/r/CWy4NzZ8yjqCEBM/review"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border border-[#8DBD42] bg-[#8DBD42] px-5 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#145126] transition-all duration-300 hover:-translate-y-[2px] hover:bg-[#7dac35]"
+                  style={bodyStyle}
+                >
+                  Leave a review
+                  <ArrowRight size={14} />
+                </a>
+              </div>
             </div>
           </div>
         </section>
