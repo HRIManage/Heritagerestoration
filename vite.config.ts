@@ -5,6 +5,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import sitemap from "vite-plugin-sitemap";
+import { LOCATIONS } from "./client/src/data/locations";
+import { BASE_URL } from "./client/src/seo";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -15,6 +18,45 @@ const PROJECT_ROOT = import.meta.dirname;
 const LOG_DIR = path.join(PROJECT_ROOT, ".manus-logs");
 const MAX_LOG_SIZE_BYTES = 1 * 1024 * 1024; // 1MB per log file
 const TRIM_TARGET_BYTES = Math.floor(MAX_LOG_SIZE_BYTES * 0.6); // Trim to 60% to avoid constant re-trimming
+
+const SITEMAP_ROUTES = [
+  "/contact",
+  "/projects",
+  "/resources/faq",
+  "/resources/blog",
+  "/resources/bill-of-rights",
+  "/services/fire-restoration",
+  "/services/water-restoration",
+  "/services/storm-recovery",
+  "/services/contents-services",
+  "/service-areas",
+  "/privacy",
+  "/terms",
+  ...LOCATIONS.map(location => `/service-area/${location.slug}`),
+] as const;
+
+const SITEMAP_ROBOTS: Array<{
+  userAgent: string;
+  allow: string;
+  disallow?: string[];
+}> = [
+  {
+    userAgent: "*",
+    allow: "/",
+    disallow: ["/admin", "/private"],
+  },
+  { userAgent: "GPTBot", allow: "/" },
+  { userAgent: "ChatGPT-User", allow: "/" },
+  { userAgent: "ClaudeBot", allow: "/" },
+  { userAgent: "PerplexityBot", allow: "/" },
+  { userAgent: "Google-Extended", allow: "/" },
+  { userAgent: "FacebookBot", allow: "/" },
+  { userAgent: "Applebot", allow: "/" },
+  { userAgent: "CCBot", allow: "/" },
+  { userAgent: "Bytespider", allow: "/" },
+];
+
+const BUILD_OUT_DIR = path.resolve(PROJECT_ROOT, "dist", "public");
 
 type LogSource = "browserConsole" | "networkRequests" | "sessionReplay";
 
@@ -222,6 +264,37 @@ export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     tailwindcss(),
+    sitemap({
+      hostname: BASE_URL,
+      dynamicRoutes: [...SITEMAP_ROUTES],
+      outDir: BUILD_OUT_DIR,
+      readable: true,
+      changefreq: {
+        "*": "monthly",
+        "/": "weekly",
+        "/resources/blog": "weekly",
+      },
+      priority: {
+        "*": 0.7,
+        "/": 1,
+        "/services/fire-restoration": 0.9,
+        "/services/water-restoration": 0.9,
+        "/services/storm-recovery": 0.9,
+        "/services/contents-services": 0.8,
+        "/contact": 0.8,
+        "/service-areas": 0.8,
+        "/projects": 0.7,
+        "/resources/faq": 0.7,
+        "/resources/blog": 0.7,
+        "/resources/bill-of-rights": 0.6,
+        "/privacy": 0.3,
+        "/terms": 0.3,
+      },
+      robots: SITEMAP_ROBOTS.map(robot => ({
+        ...robot,
+        disallow: robot.disallow ? [...robot.disallow] : undefined,
+      })),
+    }),
     ...(command === "serve" ? devOnlyPlugins : []),
   ],
   resolve: {
@@ -234,7 +307,7 @@ export default defineConfig(({ command }) => ({
   envDir: path.resolve(import.meta.dirname),
   root: path.resolve(import.meta.dirname, "client"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: BUILD_OUT_DIR,
     emptyOutDir: true,
   },
   server: {

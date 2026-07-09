@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "wouter";
-import { Helmet } from "react-helmet-async";
 import { useInView, animate } from "framer-motion";
 import {
   Flame,
@@ -22,6 +21,7 @@ import {
   ChevronsLeftRight,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import SEOHead from "@/components/SEOHead";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/ui/FadeIn";
 import {
@@ -29,7 +29,15 @@ import {
   NORTH_OFFICE,
   SOUTH_OFFICE,
   LOCATIONS,
+  type CityLocation,
 } from "@/data/locations";
+import {
+  hasSanityConfig,
+  LOCATION_LANDING_PAGE_BY_SLUG_QUERY,
+  getLocationLandingPageQueryParams,
+  mapLocationLandingPageToProps,
+  sanityClient,
+} from "@/sanity";
 import { BASE_URL, buildLocationSchema, FAQ_SCHEMA_ITEMS } from "@/seo";
 
 const HERO_IMAGE  = "/photo/hero-new.jpg";
@@ -248,9 +256,54 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+type LocationPageData = CityLocation & {
+  faqItems?: { question: string; answer: string }[];
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    noIndex?: boolean;
+    heroImageAlt?: string;
+    ogImage?: string;
+  };
+};
+
 export default function LocationPage() {
   const params = useParams();
-  const city = getLocationBySlug(params.slug);
+  const fallbackCity = getLocationBySlug(params.slug);
+  const [cmsCity, setCmsCity] = useState<LocationPageData | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!params.slug || !hasSanityConfig) {
+      setCmsCity(null);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    sanityClient
+      .fetch(
+        LOCATION_LANDING_PAGE_BY_SLUG_QUERY,
+        getLocationLandingPageQueryParams(params.slug)
+      )
+      .then(result => {
+        if (cancelled) return;
+        setCmsCity(mapLocationLandingPageToProps(result));
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCmsCity(null);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [params.slug]);
+
+  const city = cmsCity ?? fallbackCity;
 
   if (!city) {
     return (
@@ -275,10 +328,27 @@ export default function LocationPage() {
 
   const office = city.office === "North" ? NORTH_OFFICE : SOUTH_OFFICE;
   const canonical = `${BASE_URL}/service-area/${city.slug}`;
-  const pageTitle = `Fire, Water & Storm Damage Restoration in ${city.full} | Heritage Restoration`;
-  const metaDescription = `24/7 emergency fire, water & storm damage restoration in ${city.full}. IICRC-certified, 60-minute response, direct insurance billing. Serving ${city.county} since 2004. Call (360) 345-1015.`;
+  const pageTitle =
+    city.seo?.title ||
+    `Fire, Water & Storm Damage Restoration in ${city.full} | Heritage Restoration`;
+  const metaDescription =
+    city.seo?.description ||
+    `24/7 emergency fire, water & storm damage restoration in ${city.full}. IICRC-certified, 60-minute response, direct insurance billing. Serving ${city.county} since 2004. Call (360) 345-1015.`;
   const schema = buildLocationSchema(city);
-  const localFaqs = FAQ_SCHEMA_ITEMS.slice(0, 6);
+  const localFaqs =
+    city.faqItems && city.faqItems.length > 0
+      ? city.faqItems
+      : FAQ_SCHEMA_ITEMS.slice(0, 6);
+  const keywords =
+    city.seo?.keywords && city.seo.keywords.length > 0
+      ? city.seo.keywords
+      : [
+          `fire damage restoration ${city.name} WA`,
+          `water damage restoration ${city.name}`,
+          `storm damage repair ${city.name}`,
+          `mold remediation ${city.name}`,
+          `${city.county} restoration company`,
+        ];
 
   const nearbyCityLinks = LOCATIONS.filter(
     l => l.slug !== city.slug && city.nearby.some(n => l.name === n)
@@ -286,29 +356,22 @@ export default function LocationPage() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta
-          name="keywords"
-          content={`fire damage restoration ${city.name} WA, water damage restoration ${city.name}, storm damage repair ${city.name}, mold remediation ${city.name}, ${city.county} restoration company`}
-        />
-        <link rel="canonical" href={canonical} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={`${BASE_URL}${HERO_IMAGE}`} />
-        <meta property="og:locale" content="en_US" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="geo.region" content="US-WA" />
-        <meta name="geo.placename" content={city.full} />
-        <meta name="geo.position" content={`${city.lat};${city.lng}`} />
-        <meta name="ICBM" content={`${city.lat}, ${city.lng}`} />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      </Helmet>
+      <SEOHead
+        title={pageTitle}
+        description={metaDescription}
+        canonical={canonical}
+        image={city.seo?.ogImage || HERO_IMAGE}
+        imageAlt={city.seo?.heroImageAlt || `Property damage restoration in ${city.full}`}
+        keywords={keywords}
+        noIndex={city.seo?.noIndex}
+        geo={{
+          region: "US-WA",
+          placename: city.full,
+          position: `${city.lat};${city.lng}`,
+          icbm: `${city.lat}, ${city.lng}`,
+        }}
+        schemas={[schema]}
+      />
 
       <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
 
