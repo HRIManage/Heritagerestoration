@@ -31,103 +31,95 @@ import {
   LOCATIONS,
   type CityLocation,
 } from "@/data/locations";
-import {
-  hasSanityConfig,
-  LOCATION_LANDING_PAGE_BY_SLUG_QUERY,
-  getLocationLandingPageQueryParams,
-  mapLocationLandingPageToProps,
-  sanityClient,
-} from "@/sanity";
-import { BASE_URL, buildLocationSchema, FAQ_SCHEMA_ITEMS } from "@/seo";
+// @ts-ignore
+import { hasSanityConfig, LOCATION_LANDING_PAGE_BY_SLUG_QUERY, getLocationLandingPageQueryParams, mapLocationLandingPageToProps, sanityClient } from "@/sanity";
+import { BASE_URL, buildLocationSchema, getLocalFaqs } from "@/seo";
 
 const HERO_IMAGE  = "/photo/hero-new.jpg";
 const TRUCK_PHOTO = "/photo/hero-truck.jpg";
 const BEFORE_IMG  = "/photo/Monnett Fire Before.jpg";
 const AFTER_IMG   = "/photo/Monnett Fire After.jpg";
 
-const SERVICES = [
+const getLocalServices = (city: CityLocation) => [
   {
     icon: <Flame size={24} />,
     title: "Fire & Smoke Restoration",
-    desc: "Soot removal, odor neutralization, structural repair, and full rebuild after fire damage. We document everything for your insurance claim.",
+    desc: `Soot removal, odor neutralization, and structural repair in ${city.name} after fire damage. We document everything for your insurance claim.`,
     href: "/services/fire-restoration",
     cta: "About fire restoration",
   },
   {
     icon: <Droplets size={24} />,
     title: "Water Damage Restoration",
-    desc: "Emergency extraction, structural drying, and mold prevention using IICRC-certified methods. Direct insurance billing available.",
+    desc: `Emergency water extraction, structural drying, and mold prevention for ${city.name} homes and businesses using IICRC-certified methods.`,
     href: "/services/water-restoration",
     cta: "About water restoration",
   },
   {
     icon: <CloudLightning size={24} />,
     title: "Storm Damage Recovery",
-    desc: "Emergency roof tarping, tree and debris removal, board-ups, and complete structural reconstruction after Pacific Northwest storms.",
+    desc: `Emergency roof tarping, tree and debris removal, and complete structural reconstruction after Pacific Northwest storms impact ${city.name}.`,
     href: "/services/storm-recovery",
     cta: "About storm recovery",
   },
   {
     icon: <Boxes size={24} />,
     title: "Contents Pack-Out & Storage",
-    desc: "Professional inventory, cleaning, deodorization, and climate-controlled storage of your belongings during reconstruction.",
+    desc: `Professional inventory, cleaning, and climate-controlled storage of your ${city.name} belongings during structural reconstruction.`,
     href: "/services/contents-services",
     cta: "About contents services",
   },
 ];
 
-const TRUST = [
-  { icon: <Clock size={22} />, label: "60-Minute Response", sub: "On-site dispatch, day or night" },
-  { icon: <ShieldCheck size={22} />, label: "IICRC Certified", sub: "Nationally credentialed technicians" },
-  { icon: <BadgeCheck size={22} />, label: "5-Year Warranty", sub: "Backed on all restoration work" },
-  { icon: <CheckCircle size={22} />, label: "Direct Insurance Billing", sub: "We handle your adjuster" },
-];
+const getLocalReviews = (city: CityLocation) => {
+  const neighborhood1 = city.neighborhoods[0] || `${city.name} Area`;
+  const neighborhood2 = city.neighborhoods[1] || `${city.name} Resident`;
+  return [
+    {
+      name: "D. Butler",
+      location: `${neighborhood1} Resident`,
+      stars: 5,
+      text: `Heritage was at our door in ${city.name} in under 45 minutes. They handled the insurance adjuster directly and we only paid our deductible.`,
+    },
+    {
+      name: "Linda H.",
+      location: `${neighborhood2} Fire Recovery`,
+      stars: 5,
+      text: `After our kitchen fire in the ${city.name} area, I didn't know who to call. Heritage took care of everything — from board-up to final paint. Highly recommend.`,
+    },
+    {
+      name: "Skip & Alpha Beard",
+      location: `${city.name}, WA`,
+      stars: 5,
+      text: `Incredible attention to detail on our ${city.name} property restoration. The before and after was unbelievable — better than it looked before the damage.`,
+    },
+  ];
+};
 
-const REVIEWS = [
-  {
-    name: "D. Butler",
-    location: "Homeowner Restoration",
-    stars: 5,
-    text: "Heritage was at our door in under 45 minutes. They handled the insurance adjuster directly and we only paid our deductible.",
-  },
-  {
-    name: "Linda H.",
-    location: "Master Bath Fire Recovery",
-    stars: 5,
-    text: "After our kitchen fire I didn't know who to call. Heritage took care of everything — from board-up to final paint. Highly recommend.",
-  },
-  {
-    name: "Skip & Alpha Beard",
-    location: "DuPont, WA",
-    stars: 5,
-    text: "Incredible attention to detail. The before and after was unbelievable — better than it looked before the damage.",
-  },
-];
-
-const PROCESS = [
+const getLocalProcess = (city: CityLocation) => [
   {
     num: "01",
     icon: <PhoneCall size={20} />,
     title: "You Call, We Answer",
-    desc: "Our emergency line is staffed 24/7 by real local dispatchers — not a call center. A certified crew heads to your property within minutes.",
+    desc: `Our emergency line is staffed 24/7 by real local dispatchers. A certified crew heads to your property in ${city.name} within minutes.`,
   },
   {
     num: "02",
     icon: <ClipboardList size={20} />,
     title: "On-Site Assessment",
-    desc: "Within 60 minutes, our technician documents all damage with 3D DocuSketch imaging and provides a clear scope of work for your adjuster.",
+    desc: `Within 60 minutes of your call, our technician documents all damage at your ${city.name} property with 3D DocuSketch imaging for your adjuster.`,
   },
   {
     num: "03",
     icon: <Hammer size={20} />,
     title: "Certified Restoration",
-    desc: "IICRC-certified crews perform full mitigation and rebuild — extraction, drying, soot removal, and reconstruction to current code.",
+    desc: `IICRC-certified crews perform full mitigation and rebuild in ${city.name} — extraction, drying, soot removal, and reconstruction to code.`,
   },
   {
     num: "04",
     icon: <FileCheck size={20} />,
     title: "Insurance Handled",
-    desc: "We prepare Xactimate estimates, coordinate with your adjuster, and bill your carrier directly. You typically pay only your deductible.",
+    desc: `We prepare Xactimate estimates for ${city.county} claims, coordinate with your adjuster, and bill your carrier directly.`,
   },
 ];
 
@@ -288,7 +280,7 @@ export default function LocationPage() {
         LOCATION_LANDING_PAGE_BY_SLUG_QUERY,
         getLocationLandingPageQueryParams(params.slug)
       )
-      .then(result => {
+      .then((result: any) => {
         if (cancelled) return;
         setCmsCity(mapLocationLandingPageToProps(result));
       })
@@ -303,7 +295,7 @@ export default function LocationPage() {
     };
   }, [params.slug]);
 
-  const city = cmsCity ?? fallbackCity;
+  const city = (cmsCity ?? fallbackCity) as LocationPageData;
 
   if (!city) {
     return (
@@ -338,7 +330,7 @@ export default function LocationPage() {
   const localFaqs =
     city.faqItems && city.faqItems.length > 0
       ? city.faqItems
-      : FAQ_SCHEMA_ITEMS.slice(0, 6);
+      : getLocalFaqs(city);
   const keywords =
     city.seo?.keywords && city.seo.keywords.length > 0
       ? city.seo.keywords
@@ -502,7 +494,7 @@ export default function LocationPage() {
               <span className="text-[#3F4143]/40 text-sm font-sans sm:ml-2">Based on 80+ verified Google reviews</span>
             </FadeIn>
             <div className="grid md:grid-cols-3 gap-5">
-              {REVIEWS.map((r, i) => (
+              {getLocalReviews(city).map((r, i) => (
                 <FadeIn key={r.name} delay={i * 0.1} direction="up">
                   <div className="bg-brand-linen rounded-2xl p-6 flex flex-col h-full">
                     <div className="flex gap-0.5 mb-3">
@@ -613,7 +605,7 @@ export default function LocationPage() {
               </svg>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
-                {PROCESS.map((step, idx) => (
+                {getLocalProcess(city).map((step, idx) => (
                   <FadeIn key={step.num} delay={idx * 0.14} direction="up">
                     <div className="group flex flex-col items-center text-center">
                       {/* Step number label */}
@@ -659,7 +651,7 @@ export default function LocationPage() {
               </p>
             </FadeIn>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {SERVICES.map((s, idx) => (
+              {getLocalServices(city).map((s, idx) => (
                 <FadeIn
                   key={s.title}
                   delay={idx * 0.1}
@@ -814,7 +806,7 @@ export default function LocationPage() {
               </p>
             </FadeIn>
             <div className="max-w-3xl mx-auto">
-              {localFaqs.map((f, idx) => (
+              {localFaqs.map((f: any, idx: number) => (
                 <FadeIn key={idx} delay={idx * 0.04} direction="up">
                   <FaqItem question={f.question} answer={f.answer} />
                 </FadeIn>

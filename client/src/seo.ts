@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Heritage Restoration: SEO & Structured Data Utilities
  * Covers: LocalBusiness, Service, FAQPage, BreadcrumbList, Article schemas
  */
@@ -345,10 +345,38 @@ export const buildLocationSchema = (city: {
         { name: "Service Areas", url: "/service-areas" },
         { name: city.full, url: `/service-area/${city.slug}` },
       ]),
-      buildFAQSchema(FAQ_SCHEMA_ITEMS.slice(0, 6)),
+      buildFAQSchema(getLocalFaqs(city)),
     ],
   };
 };
+
+// ─── Dynamic localized FAQ items (plain text only — no JSX) ───────────────────
+export const getLocalFaqs = (city: { name: string; full: string; county: string }) => [
+  {
+    question: `How quickly can you respond to a property emergency in ${city.name} or surrounding ${city.county}?`,
+    answer: `We guarantee a fast emergency response time of 60 minutes or less in ${city.name} and across ${city.county}. Our disaster restoration crews are on standby 24/7, 365 days a year, including nights, weekends, and holidays.`,
+  },
+  {
+    question: `What should I do immediately after discovering water, fire, or storm damage at my ${city.name} property?`,
+    answer: `First, ensure the safety of everyone in your ${city.name} home or business. Shut off main utilities if safe. Avoid electrical hazards and photograph all damage for insurance. Do not attempt DIY cleanup of soot or water, as it can worsen the damage. Call our emergency line immediately.`,
+  },
+  {
+    question: `Do you provide emergency board-up services in ${city.name} on weekends and holidays?`,
+    answer: `Yes, our local teams operate with zero days off, including all major holidays. Through our 1-800-BOARDUP division, we provide rapid structural security, commercial roof tarping, and window/door board-ups 24/7 in ${city.name} and the surrounding area.`,
+  },
+  {
+    question: `How quickly can water damage lead to toxic mold growth in ${city.name}?`,
+    answer: `Mold spores can activate and begin colonizing damp organic materials within 24 to 48 hours of initial water exposure. Professional structural drying must begin immediately in ${city.name} to prevent toxic indoor air quality issues.`,
+  },
+  {
+    question: `Do you offer direct billing to my insurance company for ${city.name} restoration claims?`,
+    answer: `Yes. We handle direct insurance billing for all qualifying restoration projects in ${city.name}. We prepare detailed Xactimate estimates, coordinate directly with your insurance adjuster, and bill your carrier so you only have to pay your deductible.`,
+  },
+  {
+    question: `Are your property restoration technicians in the ${city.name} area licensed and certified?`,
+    answer: `Yes. We are a fully licensed, bonded, and insured general contractor in Washington State. Every field technician serving ${city.name} is IICRC-certified in water damage mitigation, fire/smoke cleanup, or mold remediation.`,
+  },
+];
 
 // ─── FAQ items for JSON-LD (plain text only — no JSX) ───────────────────────
 export const FAQ_SCHEMA_ITEMS = [
