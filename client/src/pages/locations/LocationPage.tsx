@@ -31,8 +31,6 @@ import {
   LOCATIONS,
   type CityLocation,
 } from "@/data/locations";
-// @ts-ignore
-import { hasSanityConfig, LOCATION_LANDING_PAGE_BY_SLUG_QUERY, getLocationLandingPageQueryParams, mapLocationLandingPageToProps, sanityClient } from "@/sanity";
 import { BASE_URL, buildLocationSchema, getLocalFaqs } from "@/seo";
 
 const HERO_IMAGE  = "/photo/hero-new.jpg";
@@ -262,40 +260,7 @@ type LocationPageData = CityLocation & {
 
 export default function LocationPage() {
   const params = useParams();
-  const fallbackCity = getLocationBySlug(params.slug);
-  const [cmsCity, setCmsCity] = useState<LocationPageData | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    if (!params.slug || !hasSanityConfig) {
-      setCmsCity(null);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    sanityClient
-      .fetch(
-        LOCATION_LANDING_PAGE_BY_SLUG_QUERY,
-        getLocationLandingPageQueryParams(params.slug)
-      )
-      .then((result: any) => {
-        if (cancelled) return;
-        setCmsCity(mapLocationLandingPageToProps(result));
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setCmsCity(null);
-        }
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [params.slug]);
-
-  const city = (cmsCity ?? fallbackCity) as LocationPageData;
+  const city = getLocationBySlug(params.slug) as LocationPageData;
 
   if (!city) {
     return (

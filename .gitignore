@@ -6,7 +6,6 @@
 dist/
 build/
 *.dist
-sanity-studio/.sanity/
 
 # Environment variables
 .env
