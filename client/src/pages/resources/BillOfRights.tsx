@@ -38,7 +38,7 @@ const rights = [
   {
     number: "02",
     title: "Emergency Protective Steps",
-    body: "You may take, and be fully compensated for, the cost of emergency steps to safeguard your property from further damage after a loss. In fact, you have an obligation to do so under the terms of your policy. The insurance company may not be liable for additional expenses if you fail to provide such protection.",
+    body: "You may take, and be fully compensated for, the cost of emergency steps to safeguard your property from further damage after a loss. In fact, you have an obligation to do so under the terms of your policy. The insurance company may not be liable for additional expense if you fail to provide such protection.",
   },
   {
     number: "03",
@@ -68,7 +68,7 @@ const rights = [
   {
     number: "08",
     title: "Detailed Scope of Repairs",
-    body: "You are entitled to receive a detailed listing of the scope of repairs and quantities of materials to be provided. Provision for hidden or latent problems relating to the damage should be spelled out in as much detail as possible.",
+    body: "You are entitled to receive a detailed listing of the scope of repairs and quantities of materials to be provided. Also, provision for hidden or latent problems relating to the damage should be spelled out in as much detail as possible.",
   },
   {
     number: "09",
@@ -99,7 +99,7 @@ export default function BillOfRights() {
         <title>Homeowner Bill of Rights | Heritage Restoration</title>
         <meta
           name="description"
-          content="Know your 12 legal rights as a homeowner after property damage. Heritage Restoration helps you understand and exercise every right your insurance policy provides."
+          content="An educational overview of 12 provisions commonly found in standard homeowner insurance policies after property damage. General information from Heritage Restoration — not legal advice."
         />
       </Helmet>
 
@@ -131,7 +131,7 @@ export default function BillOfRights() {
                 Fire and water damage disrupts the normal pattern of life and
                 can involve a lot of emotional stress. People often feel
                 confused and vulnerable after events of this type. However, it
-                is important to make good decisions, since you will be living
+                is important to make good decisions, because you will be living
                 with the results long after the stress and confusion have
                 passed.
               </p>
@@ -140,8 +140,9 @@ export default function BillOfRights() {
                 className="mt-4 text-white/65 text-xs md:text-sm leading-relaxed font-sans font-light"
               >
                 The standard homeowner's policy generally contains the same
-                provisions throughout the United States and Canada. Below are
-                your rights and obligations under its terms.
+                provisions throughout the United States and Canada. The overview
+                below is meant to help you understand these common provisions —
+                it is general educational information, not legal advice.
               </p>
             </FadeUp>
           </div>
@@ -293,6 +294,35 @@ export default function BillOfRights() {
           </div>
         </section>
 
+        {/* ── Closing Statement ── */}
+        <section className="pb-16 md:pb-24 bg-transparent">
+          <div className="max-w-[900px] mx-auto px-6">
+            <FadeUp>
+              <div className="relative bg-white/40 backdrop-blur-md border border-white/10 border-l-4 border-l-[#8DBD42] p-8 md:p-12 rounded-md shadow-[0_20px_45px_rgba(63,65,67,0.05)]">
+                <p className="text-[#3F4143] text-base md:text-lg leading-relaxed font-sans font-light">
+                  <span className="font-semibold text-[#3F4143]">
+                    Since you are the policyholder, only you can demand that your
+                    insurance company lives up to its obligations under the
+                    policy.
+                  </span>{" "}
+                  As professional restoration contractors, we recommend that you
+                  do so, out of a strong conviction that fair dealing, good
+                  workmanship, and ethical business practices benefit the
+                  insurance industry just as they benefit the public at large.
+                </p>
+                <p className="mt-5 text-[#3F4143]/75 text-[15px] md:text-base leading-relaxed font-sans font-light">
+                  Your insurance policy is a contract between you and the
+                  insurance company. It entitles you to certain rights and
+                  imposes certain obligations. As Certified Professional
+                  Restoration Contractors, we have prepared this Bill of Rights
+                  so that you may better understand the policy you have purchased
+                  and how it relates to the repairs you may undertake.
+                </p>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
         {/* ── CTA Banner ── */}
         <section className="relative bg-white pt-24 pb-36 overflow-hidden">
           {/* Background image */}
@@ -324,10 +354,11 @@ export default function BillOfRights() {
                 <p
                   className="text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-10 font-sans font-light"
                 >
-                  Don't let the insurance company dictate your recovery.
-                  Heritage Restoration will fight for every right listed above,
-                  from the first emergency call through your final settlement.
-                  Contact us today for a free, no-pressure consultation.
+                  Understanding your policy helps you stay in control of your
+                  recovery. Heritage Restoration can walk you through the
+                  restoration process and answer your questions, from the first
+                  emergency call through your final settlement. Contact us today
+                  for a free, no-pressure consultation.
                 </p>
 
                 <div
