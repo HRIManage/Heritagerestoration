@@ -1,31 +1,31 @@
 "# Tasks - Split Hero Layout & Navbar Gap Fix
 
 - [x] Redesign Contents Services Hero Section
- - [x] Remove desktop background photo and dark overlay from Hero in `ContentsServices.tsx`
- - [x] Adjust text grid container and change layout text color from white to dark charcoal
- - [x] Position smaller `contents-hero.png` inline on the right side of text for desktop viewports
+- [x] Remove desktop background photo and dark overlay from Hero in `ContentsServices.tsx`
+- [x] Adjust text grid container and change layout text color from white to dark charcoal
+- [x] Position smaller `contents-hero.png` inline on the right side of text for desktop viewports
 - [x] Update Homeowner Bill of Rights Hero Background Image
- - [x] Copy mirrored disaster recovery photo to public `/photo/bill-of-rights-hero.jpg`
- - [x] Replace the hero background src in `BillOfRights.tsx` with `/photo/bill-of-rights-hero.jpg`
- - [x] Set custom position alignment to `object-[70%_45%]` and padding to `py-24 md:py-36` to align the text over the van on the left, and display the firefighters, lady, and house on the right.
- - [x] Move the diagonal green/charcoal stripes from the right side to the left side (`left-0`, `rotate-[-28deg]`) to clear the rescue scene visual.
+- [x] Copy mirrored disaster recovery photo to public `/photo/bill-of-rights-hero.jpg`
+- [x] Replace the hero background src in `BillOfRights.tsx` with `/photo/bill-of-rights-hero.jpg`
+- [x] Set custom position alignment to `object-[70%_45%]` and padding to `py-24 md:py-36` to align the text over the van on the left, and display the firefighters, lady, and house on the right.
+- [x] Move the diagonal green/charcoal stripes from the right side to the left side (`left-0`, `rotate-[-28deg]`) to clear the rescue scene visual.
 - [x] Update Homeowner Bill of Rights CTA Banner Image
- - [x] Copy reconstruction scene photo to public `/photo/bill-of-rights-cta.jpg`
- - [x] Replace the CTA banner image src in `BillOfRights.tsx` with `/photo/bill-of-rights-cta.jpg`
- - [x] Adjust background positioning to `object-[center_28%]` to shift the image vertically and balance the visibility of the house and the people.
- - [x] Move the diagonal green/charcoal stripes in the CTA banner from the right side to the left side (`left-0`, `rotate-[-35deg]`) to keep the couple and house frame visible.
+- [x] Copy reconstruction scene photo to public `/photo/bill-of-rights-cta.jpg`
+- [x] Replace the CTA banner image src in `BillOfRights.tsx` with `/photo/bill-of-rights-cta.jpg`
+- [x] Adjust background positioning to `object-[center_28%]` to shift the image vertically and balance the visibility of the house and the people.
+- [x] Move the diagonal green/charcoal stripes in the CTA banner from the right side to the left side (`left-0`, `rotate-[-35deg]`) to keep the couple and house frame visible.
 - [x] Fix Navbar White Gap Site-Wide
- - [x] Write and execute a script to replace `pt-[142px]` with `pt-[98px]` in page files
- - [x] Ensure all page files compile cleanly without any broken layout alignments
+- [x] Write and execute a script to replace `pt-[142px]` with `pt-[98px]` in page files
+- [x] Ensure all page files compile cleanly without any broken layout alignments
 - [x] Services Page Refactor
- - [x] Import Lucide icons and wouter Link in `Services.tsx`
- - [x] Add `icon` and `link` to the `services` array
- - [x] Update the card JSX structure to match the design (white background, green arrow ribbon with clipPath, bottom outline icon, hover effects)
- - [x] Run `npm run dev` to start the local development server for preview
- - [x] Verify pages navigation and hover transitions on the preview
+- [x] Import Lucide icons and wouter Link in `Services.tsx`
+- [x] Add `icon` and `link` to the `services` array
+- [x] Update the card JSX structure to match the design (white background, green arrow ribbon with clipPath, bottom outline icon, hover effects)
+- [x] Run `npm run dev` to start the local development server for preview
+- [x] Verify pages navigation and hover transitions on the preview
 - [x] Verification & Build Checks
- - [x] Run `npm run check` to verify TypeScript compile integrity
- - [x] Run `npm run build` to verify production bundle output
- - [x] Update `walkthrough.md` with details of changes and validation results
+- [x] Run `npm run check` to verify TypeScript compile integrity
+- [x] Run `npm run build` to verify production bundle output
+- [x] Update `walkthrough.md` with details of changes and validation results
 
 - [x] Fire Restoration CTA Photo

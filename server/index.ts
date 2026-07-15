@@ -20,7 +20,9 @@ async function startServer() {
   };
 
   let cachedReviews: { expiresAt: number; data: GoogleReview[] } | null = null;
-  const cacheMs = Number(process.env.GOOGLE_REVIEWS_CACHE_MS || 1000 * 60 * 60 * 6);
+  const cacheMs = Number(
+    process.env.GOOGLE_REVIEWS_CACHE_MS || 1000 * 60 * 60 * 6
+  );
 
   async function getBusinessProfileAccessToken() {
     const refreshToken = process.env.GOOGLE_BUSINESS_PROFILE_REFRESH_TOKEN;
@@ -58,7 +60,7 @@ async function startServer() {
     if (!accountId || !locationId || !accessToken) return [];
 
     const url = new URL(
-      `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews`,
+      `https://mybusiness.googleapis.com/v4/accounts/${accountId}/locations/${locationId}/reviews`
     );
     url.searchParams.set("pageSize", process.env.GOOGLE_REVIEWS_LIMIT || "6");
     url.searchParams.set("orderBy", "updateTime desc");
@@ -68,7 +70,9 @@ async function startServer() {
     });
 
     if (!response.ok) {
-      throw new Error(`Google Business Profile reviews failed: ${response.status}`);
+      throw new Error(
+        `Google Business Profile reviews failed: ${response.status}`
+      );
     }
 
     const payload = (await response.json()) as {
@@ -110,7 +114,9 @@ async function startServer() {
 
     if (!apiKey || !placeId) return [];
 
-    const url = new URL("https://maps.googleapis.com/maps/api/place/details/json");
+    const url = new URL(
+      "https://maps.googleapis.com/maps/api/place/details/json"
+    );
     url.searchParams.set("place_id", placeId);
     url.searchParams.set("fields", "reviews");
     url.searchParams.set("reviews_sort", "newest");
@@ -167,7 +173,9 @@ async function startServer() {
       res.json({ reviews, cached: false });
     } catch (error) {
       console.error(error);
-      res.status(502).json({ reviews: [], error: "Unable to load Google reviews" });
+      res
+        .status(502)
+        .json({ reviews: [], error: "Unable to load Google reviews" });
     }
   });
 

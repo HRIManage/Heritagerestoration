@@ -424,11 +424,7 @@ export const LOCATIONS: CityLocation[] = [
     distance: "minutes from our Chehalis South office",
     zips: ["98565"],
     nearby: ["Chehalis", "Centralia", "Winlock", "Vader"],
-    neighborhoods: [
-      "Downtown Napavine",
-      "Napavine Heights",
-      "I-5 corridor",
-    ],
+    neighborhoods: ["Downtown Napavine", "Napavine Heights", "I-5 corridor"],
     landmark: "Newaukum River and I-5 Exit 72",
     blurb:
       "Napavine sits in the heart of Lewis County between our Chehalis office and the I-5 corridor, making it one of our fastest response areas in the south. Heritage handles fire, water, and storm restoration here with the same certified team and 5-year warranty.",
@@ -444,11 +440,7 @@ export const LOCATIONS: CityLocation[] = [
     distance: "south of Winlock on our Lewis County route",
     zips: ["98591"],
     nearby: ["Winlock", "Vader", "Castle Rock", "Kelso"],
-    neighborhoods: [
-      "Downtown Toledo",
-      "Cowlitz River area",
-      "South Toledo",
-    ],
+    neighborhoods: ["Downtown Toledo", "Cowlitz River area", "South Toledo"],
     landmark: "the Cowlitz River and Toledo School District",
     blurb:
       "Toledo's agricultural community along the Cowlitz River relies on Heritage's South office when fire, flooding, or storm damage strikes. We bring full insurance coordination and IICRC-certified restoration to rural Lewis County properties of all sizes.",

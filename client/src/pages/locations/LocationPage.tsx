@@ -33,10 +33,10 @@ import {
 } from "@/data/locations";
 import { BASE_URL, buildLocationSchema, getLocalFaqs } from "@/seo";
 
-const HERO_IMAGE  = "/photo/hero-new.jpg";
+const HERO_IMAGE = "/photo/hero-new.jpg";
 const TRUCK_PHOTO = "/photo/hero-truck.jpg";
-const BEFORE_IMG  = "/photo/Monnett Fire Before.jpg";
-const AFTER_IMG   = "/photo/Monnett Fire After.jpg";
+const BEFORE_IMG = "/photo/Monnett Fire Before.jpg";
+const AFTER_IMG = "/photo/Monnett Fire After.jpg";
 
 const getLocalServices = (city: CityLocation) => [
   {
@@ -138,7 +138,9 @@ function BeforeAfterSlider({
   const update = (clientX: number) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    setPct(Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100)));
+    setPct(
+      Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100))
+    );
   };
 
   return (
@@ -149,14 +151,23 @@ function BeforeAfterSlider({
       onTouchMove={e => update(e.touches[0].clientX)}
     >
       {/* After — base layer */}
-      <img src={afterSrc} alt={afterAlt} className="absolute inset-0 w-full h-full object-cover" />
+      <img
+        src={afterSrc}
+        alt={afterAlt}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       {/* Before — clipped left */}
-      <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${pct}%` }}>
+      <div
+        className="absolute top-0 left-0 h-full overflow-hidden"
+        style={{ width: `${pct}%` }}
+      >
         <img
           src={beforeSrc}
           alt={beforeAlt}
           className="absolute top-0 left-0 h-full object-cover"
-          style={{ width: ref.current ? `${ref.current.clientWidth}px` : "100%" }}
+          style={{
+            width: ref.current ? `${ref.current.clientWidth}px` : "100%",
+          }}
         />
       </div>
       {/* Divider line + handle */}
@@ -270,7 +281,8 @@ export default function LocationPage() {
             Service area not found
           </h1>
           <p className="text-[#3F4143]/70 mb-8">
-            We couldn't find that location. Explore all the communities we serve.
+            We couldn't find that location. Explore all the communities we
+            serve.
           </p>
           <Link
             href="/service-areas"
@@ -318,7 +330,10 @@ export default function LocationPage() {
         description={metaDescription}
         canonical={canonical}
         image={city.seo?.ogImage || HERO_IMAGE}
-        imageAlt={city.seo?.heroImageAlt || `Property damage restoration in ${city.full}`}
+        imageAlt={
+          city.seo?.heroImageAlt ||
+          `Property damage restoration in ${city.full}`
+        }
         keywords={keywords}
         noIndex={city.seo?.noIndex}
         geo={{
@@ -331,7 +346,6 @@ export default function LocationPage() {
       />
 
       <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
-
         {/* ── Hero — with trust strip anchored at bottom ── */}
         <section className="relative overflow-hidden bg-white">
           <img
@@ -366,7 +380,9 @@ export default function LocationPage() {
                   {city.county} &middot; 24/7 Emergency Response
                 </span>
                 <h1 className="text-[34px] md:text-[50px] lg:text-[56px] font-bold leading-[1.1] font-serif text-[#2a2c2e]">
-                  Fire, Water &amp; Storm<br className="hidden sm:block" /> Damage Restoration<br className="hidden sm:block" /> in {city.name}, WA
+                  Fire, Water &amp; Storm
+                  <br className="hidden sm:block" /> Damage Restoration
+                  <br className="hidden sm:block" /> in {city.name}, WA
                 </h1>
                 <p className="text-base md:text-[17px] text-[#3F4143]/75 leading-relaxed max-w-xl font-sans">
                   {city.blurb}
@@ -419,15 +435,26 @@ export default function LocationPage() {
             </div>
           </div>
 
-
           {/* Trust strip — badge images */}
           <div className="relative z-10 bg-white border-t border-gray-100">
             <Container>
               <div className="flex items-center justify-center gap-10 md:gap-20 py-8 md:py-10">
                 {[
-                  { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response", label: "Emergency Response" },
-                  { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified", label: "IICRC Certified" },
-                  { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty", label: "5-Year Warranty" },
+                  {
+                    src: "/photo/emergency-badge-new-2.png",
+                    alt: "24 HR Emergency Response",
+                    label: "Emergency Response",
+                  },
+                  {
+                    src: "/photo/iicrc-badge-new-3.png",
+                    alt: "IICRC Certified",
+                    label: "IICRC Certified",
+                  },
+                  {
+                    src: "/photo/warranty-badge-new-3.png",
+                    alt: "5-Year Warranty",
+                    label: "5-Year Warranty",
+                  },
                 ].map((badge, i) => (
                   <FadeIn key={badge.label} delay={i * 0.1} direction="up">
                     <div className="flex items-center justify-center">
@@ -447,16 +474,27 @@ export default function LocationPage() {
         {/* ── Reviews strip ── */}
         <div className="bg-white border-b border-gray-100 py-14 md:py-16">
           <Container>
-            <FadeIn direction="up" className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-8 text-center">
+            <FadeIn
+              direction="up"
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-8 text-center"
+            >
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-[#F5A623]" viewBox="0 0 20 20">
-                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                  <svg
+                    key={i}
+                    className="w-5 h-5 fill-[#F5A623]"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
                 ))}
-                <span className="font-black text-[#3F4143] text-lg ml-2">4.9</span>
+                <span className="font-black text-[#3F4143] text-lg ml-2">
+                  4.9
+                </span>
               </div>
-              <span className="text-[#3F4143]/40 text-sm font-sans sm:ml-2">Based on 80+ verified Google reviews</span>
+              <span className="text-[#3F4143]/40 text-sm font-sans sm:ml-2">
+                Based on 80+ verified Google reviews
+              </span>
             </FadeIn>
             <div className="grid md:grid-cols-3 gap-5">
               {getLocalReviews(city).map((r, i) => (
@@ -464,15 +502,25 @@ export default function LocationPage() {
                   <div className="bg-brand-linen rounded-2xl p-6 flex flex-col h-full">
                     <div className="flex gap-0.5 mb-3">
                       {[...Array(r.stars)].map((_, j) => (
-                        <svg key={j} className="w-4 h-4 fill-[#F5A623]" viewBox="0 0 20 20">
-                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                        <svg
+                          key={j}
+                          className="w-4 h-4 fill-[#F5A623]"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
                     </div>
-                    <p className="text-[#3F4143]/80 text-[14px] leading-relaxed font-sans mb-4 flex-1 italic">"{r.text}"</p>
+                    <p className="text-[#3F4143]/80 text-[14px] leading-relaxed font-sans mb-4 flex-1 italic">
+                      "{r.text}"
+                    </p>
                     <div>
-                      <p className="font-bold text-[#3F4143] text-sm">{r.name}</p>
-                      <p className="text-[#3F4143]/50 text-xs font-sans">{r.location}</p>
+                      <p className="font-bold text-[#3F4143] text-sm">
+                        {r.name}
+                      </p>
+                      <p className="text-[#3F4143]/50 text-xs font-sans">
+                        {r.location}
+                      </p>
                     </div>
                   </div>
                 </FadeIn>
@@ -484,9 +532,11 @@ export default function LocationPage() {
         {/* ── Intro + full-bleed truck photo ── */}
         <section className="bg-[#E8F5E0] overflow-hidden">
           <div className="lg:grid lg:grid-cols-2">
-
             {/* Text side */}
-            <FadeIn direction="up" className="py-16 md:py-24 px-6 md:px-14 lg:px-16 xl:px-20 max-w-[660px] md:max-w-none flex flex-col justify-center">
+            <FadeIn
+              direction="up"
+              className="py-16 md:py-24 px-6 md:px-14 lg:px-16 xl:px-20 max-w-[660px] md:max-w-none flex flex-col justify-center"
+            >
               <span className="overline-label">Local Restoration</span>
               <h2 className="text-3xl md:text-[42px] font-bold text-[#3F4143] mt-2 mb-5 font-serif leading-tight">
                 Your Trusted Restoration Company in {city.name}
@@ -494,16 +544,16 @@ export default function LocationPage() {
               <p className="text-[#3F4143]/70 leading-relaxed font-sans mb-4 text-[15px]">
                 When fire, water, or storm damage strikes a home or business in{" "}
                 {city.name}, every minute counts. Heritage Restoration is{" "}
-                {city.distance}, so our IICRC-certified crews reach {city.full} fast —
-                securing your property, stopping further damage, and starting
-                recovery the same day.
+                {city.distance}, so our IICRC-certified crews reach {city.full}{" "}
+                fast — securing your property, stopping further damage, and
+                starting recovery the same day.
               </p>
               <p className="text-[#3F4143]/70 leading-relaxed font-sans mb-8 text-[15px]">
-                We've served {city.county} property owners since 2004, working near{" "}
-                {city.landmark} and throughout {city.nearby.slice(0, 3).join(", ")}.
-                As a locally owned contractor, we advocate for you — not the
-                insurance company — and handle your claim from first call to
-                final walk-through.
+                We've served {city.county} property owners since 2004, working
+                near {city.landmark} and throughout{" "}
+                {city.nearby.slice(0, 3).join(", ")}. As a locally owned
+                contractor, we advocate for you — not the insurance company —
+                and handle your claim from first call to final walk-through.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -523,7 +573,10 @@ export default function LocationPage() {
             </FadeIn>
 
             {/* Photo — full height, bleeds to right edge */}
-            <FadeIn direction="left" className="relative min-h-[340px] lg:min-h-0">
+            <FadeIn
+              direction="left"
+              className="relative min-h-[340px] lg:min-h-0"
+            >
               <img
                 src={TRUCK_PHOTO}
                 alt={`Heritage Restoration crew on the way to a job in ${city.name}`}
@@ -532,7 +585,9 @@ export default function LocationPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-brand-linen/50 via-transparent to-transparent lg:from-brand-linen/30" />
               {/* Floating badge */}
               <div className="absolute bottom-6 right-6 bg-[#145126] rounded-xl text-white px-5 py-4 shadow-xl">
-                <div className="text-3xl font-black font-serif text-[#8DBD42] leading-none">22</div>
+                <div className="text-3xl font-black font-serif text-[#8DBD42] leading-none">
+                  22
+                </div>
                 <div className="text-[10px] font-black uppercase tracking-widest text-white/60 mt-1">
                   Years in Washington
                 </div>
@@ -551,7 +606,8 @@ export default function LocationPage() {
                 What Happens When You Call Us
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-lg mx-auto text-[15px]">
-                A clear, no-surprises process — from first call to final walk-through.
+                A clear, no-surprises process — from first call to final
+                walk-through.
               </p>
             </FadeIn>
 
@@ -559,14 +615,40 @@ export default function LocationPage() {
               {/* SVG curved connectors — desktop only */}
               <svg
                 className="hidden lg:block absolute pointer-events-none"
-                style={{ top: "54px", left: "12.5%", width: "75%", height: "36px" }}
+                style={{
+                  top: "54px",
+                  left: "12.5%",
+                  width: "75%",
+                  height: "36px",
+                }}
                 viewBox="0 0 300 36"
                 preserveAspectRatio="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M 0,18 Q 50,2 100,18" fill="none" stroke="#8DBD42" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.45"/>
-                <path d="M 100,18 Q 150,2 200,18" fill="none" stroke="#8DBD42" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.45"/>
-                <path d="M 200,18 Q 250,2 300,18" fill="none" stroke="#8DBD42" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.45"/>
+                <path
+                  d="M 0,18 Q 50,2 100,18"
+                  fill="none"
+                  stroke="#8DBD42"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 4"
+                  opacity="0.45"
+                />
+                <path
+                  d="M 100,18 Q 150,2 200,18"
+                  fill="none"
+                  stroke="#8DBD42"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 4"
+                  opacity="0.45"
+                />
+                <path
+                  d="M 200,18 Q 250,2 300,18"
+                  fill="none"
+                  stroke="#8DBD42"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 4"
+                  opacity="0.45"
+                />
               </svg>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
@@ -607,12 +689,15 @@ export default function LocationPage() {
 
           <Container className="relative z-10 pt-20">
             <FadeIn className="text-center mb-14 text-[#3F4143]" direction="up">
-              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42]">What We Do</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42]">
+                What We Do
+              </span>
               <h2 className="text-3xl md:text-[42px] font-bold mt-2 font-serif">
                 Restoration Services in {city.name}
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-lg mx-auto text-[15px]">
-                From the first emergency call to the final walk-through — we handle every step.
+                From the first emergency call to the final walk-through — we
+                handle every step.
               </p>
             </FadeIn>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -658,10 +743,14 @@ export default function LocationPage() {
                 {city.name} Neighborhoods We Serve
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-md mx-auto text-[15px]">
-                Our crews know every neighborhood in {city.name} — response time doesn't change based on where you live.
+                Our crews know every neighborhood in {city.name} — response time
+                doesn't change based on where you live.
               </p>
             </FadeIn>
-            <FadeIn direction="up" className="flex flex-wrap justify-center gap-3">
+            <FadeIn
+              direction="up"
+              className="flex flex-wrap justify-center gap-3"
+            >
               {city.neighborhoods.map(n => (
                 <div
                   key={n}
@@ -675,7 +764,10 @@ export default function LocationPage() {
             <FadeIn direction="up" className="mt-7 text-center">
               <p className="text-[#3F4143]/60 text-sm font-sans">
                 Don't see your neighborhood?{" "}
-                <a href="tel:+13603451015" className="text-[#8DBD42] font-bold hover:underline">
+                <a
+                  href="tel:+13603451015"
+                  className="text-[#8DBD42] font-bold hover:underline"
+                >
                   Call us
                 </a>{" "}
                 — we cover all of {city.county}.
@@ -687,9 +779,11 @@ export default function LocationPage() {
         {/* ── Why Heritage — photo left, checklist right ── */}
         <section className="bg-brand-linen overflow-hidden py-0">
           <div className="lg:grid lg:grid-cols-2">
-
             {/* Before/After slider — full height, bleeds to left edge */}
-            <FadeIn direction="right" className="relative min-h-[380px] lg:min-h-[640px] overflow-hidden">
+            <FadeIn
+              direction="right"
+              className="relative min-h-[380px] lg:min-h-[640px] overflow-hidden"
+            >
               <BeforeAfterSlider
                 beforeSrc={BEFORE_IMG}
                 afterSrc={AFTER_IMG}
@@ -705,23 +799,45 @@ export default function LocationPage() {
             </FadeIn>
 
             {/* Content side — light green panel */}
-            <FadeIn direction="up" className="bg-[#eef7de] py-16 md:py-24 px-6 md:px-14 lg:px-16 xl:px-20 flex flex-col justify-center">
-              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42]">Why Heritage</span>
+            <FadeIn
+              direction="up"
+              className="bg-[#eef7de] py-16 md:py-24 px-6 md:px-14 lg:px-16 xl:px-20 flex flex-col justify-center"
+            >
+              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42]">
+                Why Heritage
+              </span>
               <h2 className="text-3xl md:text-[38px] font-bold text-[#8DBD42] mt-2 mb-3 font-serif leading-tight">
                 Why {city.name} Homeowners Choose Us
               </h2>
               <p className="text-[#3F4143]/70 font-sans text-[15px] leading-relaxed mb-8">
-                We're not a franchise dispatched from out of state. Our crews are
-                based right here — we know {city.county}, we respond faster, and
-                we stay with you through every step of the insurance process.
+                We're not a franchise dispatched from out of state. Our crews
+                are based right here — we know {city.county}, we respond faster,
+                and we stay with you through every step of the insurance
+                process.
               </p>
 
               <div className="space-y-4 mb-8">
                 {[
-                  { icon: <MapPin size={20} />, label: "Locally Owned", text: `Not an out-of-town franchise — rooted in ${city.county}` },
-                  { icon: <Clock size={20} />, label: "60-Min Emergency Response", text: "24/7/365 dispatch including all holidays" },
-                  { icon: <ShieldCheck size={20} />, label: "Certified & Licensed", text: "IICRC-certified techs and licensed WA general contractor" },
-                  { icon: <BadgeCheck size={20} />, label: "Price Matching", text: "We bill your carrier directly — you pay only your deductible" },
+                  {
+                    icon: <MapPin size={20} />,
+                    label: "Locally Owned",
+                    text: `Not an out-of-town franchise — rooted in ${city.county}`,
+                  },
+                  {
+                    icon: <Clock size={20} />,
+                    label: "60-Min Emergency Response",
+                    text: "24/7/365 dispatch including all holidays",
+                  },
+                  {
+                    icon: <ShieldCheck size={20} />,
+                    label: "Certified & Licensed",
+                    text: "IICRC-certified techs and licensed WA general contractor",
+                  },
+                  {
+                    icon: <BadgeCheck size={20} />,
+                    label: "Price Matching",
+                    text: "We bill your carrier directly — you pay only your deductible",
+                  },
                 ].map((item, i) => (
                   <FadeIn key={i} delay={i * 0.08} direction="up">
                     <div className="flex gap-4 items-start group">
@@ -729,8 +845,12 @@ export default function LocationPage() {
                         {item.icon}
                       </div>
                       <div className="pt-0.5">
-                        <p className="text-[#8DBD42] font-black text-[15px] font-serif mb-0.5">{item.label}</p>
-                        <p className="text-[#3F4143]/65 text-[13px] leading-snug font-sans">{item.text}</p>
+                        <p className="text-[#8DBD42] font-black text-[15px] font-serif mb-0.5">
+                          {item.label}
+                        </p>
+                        <p className="text-[#3F4143]/65 text-[13px] leading-snug font-sans">
+                          {item.text}
+                        </p>
                       </div>
                     </div>
                   </FadeIn>
@@ -767,7 +887,8 @@ export default function LocationPage() {
                 {city.name} Restoration FAQs
               </h2>
               <p className="text-[#3F4143]/65 font-sans mt-3 max-w-lg mx-auto text-[15px]">
-                Answers to the questions we hear most from {city.county} homeowners.
+                Answers to the questions we hear most from {city.county}{" "}
+                homeowners.
               </p>
             </FadeIn>
             <div className="max-w-3xl mx-auto">
@@ -798,15 +919,19 @@ export default function LocationPage() {
 
           <Container>
             <div className="lg:grid lg:grid-cols-[1fr_460px] lg:gap-20 items-start">
-
               {/* Left — serving area + stats + city links */}
               <FadeIn direction="up">
-                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#55664a]">Nearby Communities</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em] text-[#55664a]">
+                  Nearby Communities
+                </span>
                 <h2 className="text-[28px] md:text-[38px] font-black font-serif text-[#145126] mt-2 mb-4 uppercase leading-tight">
-                  Serving {city.name} and the<br className="hidden sm:block" /> Greater {city.county} Area
+                  Serving {city.name} and the
+                  <br className="hidden sm:block" /> Greater {city.county} Area
                 </h2>
                 <p className="text-[#3F4143]/65 font-sans text-[15px] leading-relaxed mb-8 max-w-md">
-                  Heritage covers the I-5 corridor through Western Washington — from Lewis County north through Pierce County. Every crew dispatched from our local Lacey headquarters.
+                  Heritage covers the I-5 corridor through Western Washington —
+                  from Lewis County north through Pierce County. Every crew
+                  dispatched from our local Lacey headquarters.
                 </p>
 
                 {/* Big counter */}
@@ -820,16 +945,34 @@ export default function LocationPage() {
                   {/* Trust badges */}
                   <div className="flex items-center gap-6 mt-6">
                     <div className="flex flex-col items-center text-center">
-                      <img src="/photo/emergency-badge-new-2.png" alt="Emergency Response" className="h-16 w-auto object-contain drop-shadow-md" />
-                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">Emergency Response</p>
+                      <img
+                        src="/photo/emergency-badge-new-2.png"
+                        alt="Emergency Response"
+                        className="h-16 w-auto object-contain drop-shadow-md"
+                      />
+                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">
+                        Emergency Response
+                      </p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <img src="/photo/iicrc-badge-new-3.png" alt="IICRC Certified" className="h-16 w-auto object-contain drop-shadow-md" />
-                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">IICRC Certified</p>
+                      <img
+                        src="/photo/iicrc-badge-new-3.png"
+                        alt="IICRC Certified"
+                        className="h-16 w-auto object-contain drop-shadow-md"
+                      />
+                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">
+                        IICRC Certified
+                      </p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <img src="/photo/warranty-badge-new-3.png" alt="5-Year Warranty" className="h-16 w-auto object-contain drop-shadow-md" />
-                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">5-Year Warranty</p>
+                      <img
+                        src="/photo/warranty-badge-new-3.png"
+                        alt="5-Year Warranty"
+                        className="h-16 w-auto object-contain drop-shadow-md"
+                      />
+                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">
+                        5-Year Warranty
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -839,19 +982,31 @@ export default function LocationPage() {
                   <>
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       {nearbyCityLinks.map((nearby, idx) => (
-                        <FadeIn key={nearby.slug} delay={idx * 0.07} direction="up">
+                        <FadeIn
+                          key={nearby.slug}
+                          delay={idx * 0.07}
+                          direction="up"
+                        >
                           <Link
                             href={`/service-area/${nearby.slug}`}
                             className="group flex items-center gap-2.5 bg-white hover:bg-[#8DBD42]/8 border border-[#145126]/10 hover:border-[#8DBD42]/40 rounded-xl px-4 py-3 transition-all duration-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                           >
-                            <MapPin size={13} className="text-[#8DBD42] flex-shrink-0" />
+                            <MapPin
+                              size={13}
+                              className="text-[#8DBD42] flex-shrink-0"
+                            />
                             <div className="min-w-0">
                               <div className="font-bold text-[#145126] text-[13px] group-hover:text-[#8DBD42] transition-colors leading-tight truncate">
                                 {nearby.name}, WA
                               </div>
-                              <div className="text-[#3F4143]/40 text-[11px] font-sans">{nearby.county}</div>
+                              <div className="text-[#3F4143]/40 text-[11px] font-sans">
+                                {nearby.county}
+                              </div>
                             </div>
-                            <ArrowRight size={12} className="text-[#3F4143]/20 group-hover:text-[#8DBD42] ml-auto flex-shrink-0 group-hover:translate-x-0.5 transition-all duration-200" />
+                            <ArrowRight
+                              size={12}
+                              className="text-[#3F4143]/20 group-hover:text-[#8DBD42] ml-auto flex-shrink-0 group-hover:translate-x-0.5 transition-all duration-200"
+                            />
                           </Link>
                         </FadeIn>
                       ))}
@@ -874,7 +1029,10 @@ export default function LocationPage() {
                   <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[#8DBD42]/10 blur-[60px] pointer-events-none" />
 
                   {/* Live indicator */}
-                  <FadeIn direction="up" className="flex items-center gap-2.5 mb-6 relative z-10">
+                  <FadeIn
+                    direction="up"
+                    className="flex items-center gap-2.5 mb-6 relative z-10"
+                  >
                     <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8DBD42] opacity-60" />
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#8DBD42]" />
@@ -893,7 +1051,9 @@ export default function LocationPage() {
                       We're on our way.
                     </p>
                     <p className="text-white/50 font-sans text-[14px] leading-relaxed mb-8">
-                      Based {city.distance}. IICRC-certified crews dispatched in under 60 minutes — around the clock, every day of the year, including holidays.
+                      Based {city.distance}. IICRC-certified crews dispatched in
+                      under 60 minutes — around the clock, every day of the
+                      year, including holidays.
                     </p>
                   </FadeIn>
 
@@ -919,14 +1079,29 @@ export default function LocationPage() {
                   </FadeIn>
 
                   {/* Trust row */}
-                  <FadeIn direction="up" className="relative z-10 flex flex-wrap gap-x-5 gap-y-3 mt-7 pt-7 border-t border-white/10">
+                  <FadeIn
+                    direction="up"
+                    className="relative z-10 flex flex-wrap gap-x-5 gap-y-3 mt-7 pt-7 border-t border-white/10"
+                  >
                     {[
                       { icon: <Clock size={13} />, text: "60-Min Response" },
-                      { icon: <ShieldCheck size={13} />, text: "IICRC Certified" },
-                      { icon: <BadgeCheck size={13} />, text: "5-Year Warranty" },
-                      { icon: <CheckCircle size={13} />, text: "Direct Insurance Billing" },
+                      {
+                        icon: <ShieldCheck size={13} />,
+                        text: "IICRC Certified",
+                      },
+                      {
+                        icon: <BadgeCheck size={13} />,
+                        text: "5-Year Warranty",
+                      },
+                      {
+                        icon: <CheckCircle size={13} />,
+                        text: "Direct Insurance Billing",
+                      },
                     ].map(item => (
-                      <div key={item.text} className="flex items-center gap-1.5 text-white/55 text-[12px] font-semibold">
+                      <div
+                        key={item.text}
+                        className="flex items-center gap-1.5 text-white/55 text-[12px] font-semibold"
+                      >
                         <span className="text-[#8DBD42]">{item.icon}</span>
                         {item.text}
                       </div>
@@ -934,7 +1109,6 @@ export default function LocationPage() {
                   </FadeIn>
                 </div>
               </FadeIn>
-
             </div>
           </Container>
         </section>

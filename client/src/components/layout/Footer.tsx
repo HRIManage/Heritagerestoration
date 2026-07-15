@@ -212,10 +212,16 @@ export default function Footer({
             #HERITRI964J2 | IICRC Certified Firm
           </p>
           <div className="flex gap-6 text-[#3F4143]/40 text-[10px] font-black uppercase tracking-widest">
-            <Link href="/privacy" className="hover:text-[#8DBD42] transition-colors">
+            <Link
+              href="/privacy"
+              className="hover:text-[#8DBD42] transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#8DBD42] transition-colors">
+            <Link
+              href="/terms"
+              className="hover:text-[#8DBD42] transition-colors"
+            >
               Terms of Service
             </Link>
           </div>

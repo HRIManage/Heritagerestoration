@@ -111,7 +111,8 @@ export default function Services() {
                 <div
                   className="absolute top-0 left-0 h-16 w-40 bg-brand-green flex items-center justify-center transition-colors duration-500 group-hover:bg-brand-charcoal"
                   style={{
-                    clipPath: "polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%)",
+                    clipPath:
+                      "polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%)",
                   }}
                 >
                   <svc.icon className="w-7 h-7 text-white transition-transform duration-500 group-hover:scale-110" />
@@ -134,9 +135,7 @@ export default function Services() {
 
                 {/* Large outline icon centered at the bottom */}
                 <div className="flex justify-center pt-4">
-                  <svc.icon
-                    className="w-16 h-16 text-brand-stone transition-all duration-500 stroke-[1.25] group-hover:text-brand-green group-hover:scale-110 group-hover:-translate-y-1"
-                  />
+                  <svc.icon className="w-16 h-16 text-brand-stone transition-all duration-500 stroke-[1.25] group-hover:text-brand-green group-hover:scale-110 group-hover:-translate-y-1" />
                 </div>
               </Link>
             </div>
@@ -146,4 +145,3 @@ export default function Services() {
     </section>
   );
 }
-

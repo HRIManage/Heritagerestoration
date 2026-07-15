@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, Shield, BadgeCheck, Zap } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Send,
+  Shield,
+  BadgeCheck,
+  Zap,
+} from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "wouter";
 import Layout from "@/components/layout/Layout";
@@ -137,7 +146,13 @@ export default function Contact() {
             openingHoursSpecification: {
               "@type": "OpeningHoursSpecification",
               dayOfWeek: [
-                "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
               ],
               opens: "00:00",
               closes: "23:59",
@@ -147,7 +162,6 @@ export default function Contact() {
       </Helmet>
 
       <div className="min-h-screen bg-[#F7F4EE]">
-
         {/* Hero */}
         <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(120px+3rem)] pb-14 md:pb-20 bg-[#0f1f11] text-white overflow-hidden">
           {/* Subtle texture overlay */}
@@ -162,7 +176,8 @@ export default function Contact() {
                 Get In Touch
               </p>
               <h1 className="text-[2.6rem] md:text-[3.5rem] lg:text-[4.2rem] font-bold leading-[1.04] font-serif mb-6 text-white">
-                We're Here When<br />
+                We're Here When
+                <br />
                 <span className="text-[#8DBD42]">You Need Us Most.</span>
               </h1>
               <p className="text-[17px] md:text-[18px] text-white/75 leading-relaxed font-light max-w-[560px]">
@@ -194,7 +209,9 @@ export default function Contact() {
                   "5-Year Warranty",
                 ].map(item => (
                   <span key={item} className="flex items-center">
-                    <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#145126]">{item}</span>
+                    <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#145126]">
+                      {item}
+                    </span>
                     <span className="text-[#145126]/30 text-[10px]">✦</span>
                   </span>
                 ))}
@@ -207,10 +224,8 @@ export default function Contact() {
         <Section bg="none" className="!py-14 md:!py-20">
           <Container>
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-
               {/* ── LEFT: Sticky sidebar ── */}
               <div className="lg:col-span-5 lg:sticky lg:top-28 self-start space-y-6">
-
                 {/* Emergency call card */}
                 <FadeIn direction="up">
                   <div className="bg-[#145126] overflow-hidden relative">
@@ -294,7 +309,10 @@ export default function Contact() {
                         North Office — Lacey
                       </p>
                       <div className="flex gap-3 items-start text-[14px] text-[#3F4143]/75">
-                        <MapPin size={14} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
+                        <MapPin
+                          size={14}
+                          className="text-[#8DBD42] mt-0.5 flex-shrink-0"
+                        />
                         <div>
                           <a
                             href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
@@ -317,7 +335,10 @@ export default function Contact() {
                         South Office — Chehalis
                       </p>
                       <div className="flex gap-3 items-start text-[14px] text-[#3F4143]/75">
-                        <MapPin size={14} className="text-[#8DBD42] mt-0.5 flex-shrink-0" />
+                        <MapPin
+                          size={14}
+                          className="text-[#8DBD42] mt-0.5 flex-shrink-0"
+                        />
                         <div>
                           <a
                             href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
@@ -339,7 +360,10 @@ export default function Contact() {
                   {[
                     { icon: <Zap size={15} />, label: "24/7 Response" },
                     { icon: <Shield size={15} />, label: "5-Yr Warranty" },
-                    { icon: <BadgeCheck size={15} />, label: "IICRC Certified" },
+                    {
+                      icon: <BadgeCheck size={15} />,
+                      label: "IICRC Certified",
+                    },
                   ].map(pill => (
                     <div
                       key={pill.label}
@@ -373,8 +397,9 @@ export default function Contact() {
                         Submit an Intake Inquiry
                       </h2>
                       <p className="text-[14px] text-[#3F4143]/55 leading-relaxed">
-                        Fill in the details below and our team will reach out within 1 business day.
-                        For emergencies, call us directly.
+                        Fill in the details below and our team will reach out
+                        within 1 business day. For emergencies, call us
+                        directly.
                       </p>
                     </div>
 
@@ -421,7 +446,8 @@ export default function Contact() {
                             htmlFor="phone"
                             className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
                           >
-                            Phone Number <span className="text-[#8DBD42]">*</span>
+                            Phone Number{" "}
+                            <span className="text-[#8DBD42]">*</span>
                           </label>
                           <input
                             type="tel"
@@ -443,7 +469,8 @@ export default function Contact() {
                             htmlFor="email"
                             className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
                           >
-                            Email Address <span className="text-[#8DBD42]">*</span>
+                            Email Address{" "}
+                            <span className="text-[#8DBD42]">*</span>
                           </label>
                           <input
                             type="email"
@@ -471,12 +498,22 @@ export default function Contact() {
                             onChange={handleChange}
                             className={`${inputClass} cursor-pointer appearance-none`}
                           >
-                            <option value="">Select a service category...</option>
-                            <option value="fire">Fire Damage Restoration</option>
-                            <option value="water">Water Damage Mitigation</option>
+                            <option value="">
+                              Select a service category...
+                            </option>
+                            <option value="fire">
+                              Fire Damage Restoration
+                            </option>
+                            <option value="water">
+                              Water Damage Mitigation
+                            </option>
                             <option value="storm">Storm Damage Recovery</option>
-                            <option value="contents">Contents Pack-Out &amp; Clean</option>
-                            <option value="other">General Inquiry / Assessment</option>
+                            <option value="contents">
+                              Contents Pack-Out &amp; Clean
+                            </option>
+                            <option value="other">
+                              General Inquiry / Assessment
+                            </option>
                           </select>
                         </div>
                       </div>
@@ -487,7 +524,8 @@ export default function Contact() {
                           htmlFor="message"
                           className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
                         >
-                          Describe the Loss or Request <span className="text-[#8DBD42]">*</span>
+                          Describe the Loss or Request{" "}
+                          <span className="text-[#8DBD42]">*</span>
                         </label>
                         <textarea
                           id="message"
@@ -512,7 +550,8 @@ export default function Contact() {
                       </button>
 
                       <p className="text-[11px] text-[#3F4143]/40 text-center leading-relaxed">
-                        By submitting you agree to be contacted by our team. We never share your information.
+                        By submitting you agree to be contacted by our team. We
+                        never share your information.
                       </p>
                     </form>
                   </div>
@@ -545,8 +584,11 @@ export default function Contact() {
                   alt: "5-Year Warranty",
                   title: "5-Year Warranty",
                 },
-              ].map((badge) => (
-                <div key={badge.alt} className="flex flex-col items-center gap-3">
+              ].map(badge => (
+                <div
+                  key={badge.alt}
+                  className="flex flex-col items-center gap-3"
+                >
                   <img
                     src={badge.src}
                     alt={badge.alt}
@@ -559,8 +601,9 @@ export default function Contact() {
               ))}
             </div>
             <p className="text-[13px] text-[#3F4143]/45 max-w-[520px] mx-auto leading-relaxed">
-              Heritage Restoration has served Western Washington since 2004 — locally owned,
-              licensed &amp; bonded, and committed to protecting homeowners through every step of recovery.
+              Heritage Restoration has served Western Washington since 2004 —
+              locally owned, licensed &amp; bonded, and committed to protecting
+              homeowners through every step of recovery.
             </p>
           </div>
         </div>

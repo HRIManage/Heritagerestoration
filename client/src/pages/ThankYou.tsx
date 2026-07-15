@@ -35,8 +35,8 @@ export default function ThankYou() {
               Thank you — we'll be in touch shortly.
             </h1>
             <p className="text-base md:text-lg text-white/80 leading-relaxed font-sans font-light mb-10">
-              Our office team will follow up within 1 business day. If this is an
-              active emergency, please call our 24/7 hotline now — we respond
+              Our office team will follow up within 1 business day. If this is
+              an active emergency, please call our 24/7 hotline now — we respond
               within 60 minutes in our service area.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

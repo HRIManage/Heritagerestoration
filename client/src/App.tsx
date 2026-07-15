@@ -1,13 +1,17 @@
 import { HelmetProvider } from "react-helmet-async";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
-    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+    if (
+      typeof window !== "undefined" &&
+      "scrollRestoration" in window.history
+    ) {
       window.history.scrollRestoration = "manual";
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -79,6 +83,7 @@ function App() {
         <ThemeProvider defaultTheme="light">
           <ScrollToTop />
           <Router />
+          <Analytics />
         </ThemeProvider>
       </ErrorBoundary>
     </HelmetProvider>

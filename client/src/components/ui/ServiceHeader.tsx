@@ -45,7 +45,10 @@ export default function ServiceHeader({
               Home
             </Link>{" "}
             /{" "}
-            <Link href="/service-areas" className="text-[#8DBD42] hover:underline">
+            <Link
+              href="/service-areas"
+              className="text-[#8DBD42] hover:underline"
+            >
               Services
             </Link>{" "}
             / <span>{title}</span>

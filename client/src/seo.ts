@@ -351,7 +351,11 @@ export const buildLocationSchema = (city: {
 };
 
 // ─── Dynamic localized FAQ items (plain text only — no JSX) ───────────────────
-export const getLocalFaqs = (city: { name: string; full: string; county: string }) => [
+export const getLocalFaqs = (city: {
+  name: string;
+  full: string;
+  county: string;
+}) => [
   {
     question: `How quickly can you respond to a property emergency in ${city.name} or surrounding ${city.county}?`,
     answer: `We guarantee a fast emergency response time of 60 minutes or less in ${city.name} and across ${city.county}. Our disaster restoration crews are on standby 24/7, 365 days a year, including nights, weekends, and holidays.`,
