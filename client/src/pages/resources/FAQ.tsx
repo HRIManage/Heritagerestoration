@@ -400,7 +400,9 @@ export default function FAQ() {
       entries => {
         const visible = entries
           .filter(entry => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+          )[0];
         if (visible) {
           const idx = Number((visible.target as HTMLElement).dataset.catIndex);
           if (!Number.isNaN(idx)) setActiveCat(idx);
@@ -523,83 +525,88 @@ export default function FAQ() {
 
             {/* Accordions */}
             <div className="min-w-0 space-y-14">
-            {faqCategories.map((cat, catIdx) => (
-              <FadeUp key={catIdx} delay={catIdx * 0.04}>
-                <div
-                  ref={el => { catRefs.current[catIdx] = el; }}
-                  data-cat-index={catIdx}
-                  className="scroll-mt-[130px]"
-                >
-                {/* Category heading */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-3 h-3 rounded-none bg-[#8DBD42] flex-shrink-0" />
-                  <h2 className="text-lg md:text-xl font-bold text-[#3F4143] uppercase tracking-wide font-sans">
-                    {cat.category}
-                  </h2>
-                </div>
+              {faqCategories.map((cat, catIdx) => (
+                <FadeUp key={catIdx} delay={catIdx * 0.04}>
+                  <div
+                    ref={el => {
+                      catRefs.current[catIdx] = el;
+                    }}
+                    data-cat-index={catIdx}
+                    className="scroll-mt-[130px]"
+                  >
+                    {/* Category heading */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-3 h-3 rounded-none bg-[#8DBD42] flex-shrink-0" />
+                      <h2 className="text-lg md:text-xl font-bold text-[#3F4143] uppercase tracking-wide font-sans">
+                        {cat.category}
+                      </h2>
+                    </div>
 
-                {/* Items */}
-                <div className="border-t border-[#3F4143]/10">
-                  {cat.items.map((faq, itemIdx) => {
-                    const key = `${catIdx}-${itemIdx}`;
-                    const isOpen = openKey === key;
-                    return (
-                      <div
-                        key={itemIdx}
-                        className="relative border-b border-[#3F4143]/10 group transition-all duration-300 rounded-none"
-                      >
-                        {/* Green left bar */}
-                        <div
-                          className={`absolute left-0 top-5 bottom-5 w-[3px] bg-[#8DBD42] transition-transform duration-300 origin-left rounded-none ${
-                            isOpen
-                              ? "scale-y-100"
-                              : "scale-y-0 group-hover:scale-y-100 group-hover:opacity-40"
-                          }`}
-                        />
-                        <button
-                          id={`faq-${catIdx}-${itemIdx}`}
-                          onClick={() => toggle(key)}
-                          className="w-full flex items-center justify-between pl-6 pr-2 py-5 text-left transition-colors group cursor-pointer rounded-none"
-                        >
-                          <span
-                            className={`text-base md:text-lg font-bold transition-colors duration-300 pr-4 font-serif ${
-                              isOpen
-                                ? "text-[#8DBD42]"
-                                : "text-[#3F4143] group-hover:text-[#8DBD42]"
-                            }`}
+                    {/* Items */}
+                    <div className="border-t border-[#3F4143]/10">
+                      {cat.items.map((faq, itemIdx) => {
+                        const key = `${catIdx}-${itemIdx}`;
+                        const isOpen = openKey === key;
+                        return (
+                          <div
+                            key={itemIdx}
+                            className="relative border-b border-[#3F4143]/10 group transition-all duration-300 rounded-none"
                           >
-                            {faq.question}
-                          </span>
-                          <span className="shrink-0">
-                            {isOpen ? (
-                              <Minus className="text-[#8DBD42] w-5 h-5" />
-                            ) : (
-                              <Plus className="text-[#3F4143]/60 group-hover:text-[#8DBD42] w-5 h-5 transition-colors duration-300" />
-                            )}
-                          </span>
-                        </button>
-                        <AnimatePresence initial={false}>
-                          {isOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="overflow-hidden"
+                            {/* Green left bar */}
+                            <div
+                              className={`absolute left-0 top-5 bottom-5 w-[3px] bg-[#8DBD42] transition-transform duration-300 origin-left rounded-none ${
+                                isOpen
+                                  ? "scale-y-100"
+                                  : "scale-y-0 group-hover:scale-y-100 group-hover:opacity-40"
+                              }`}
+                            />
+                            <button
+                              id={`faq-${catIdx}-${itemIdx}`}
+                              onClick={() => toggle(key)}
+                              className="w-full flex items-center justify-between pl-6 pr-2 py-5 text-left transition-colors group cursor-pointer rounded-none"
                             >
-                              <div className="pl-6 pr-4 pb-5 text-[#3F4143]/80 leading-relaxed text-sm md:text-base font-sans">
-                                {faq.answer}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
-                </div>
-                </div>
-              </FadeUp>
-            ))}
+                              <span
+                                className={`text-base md:text-lg font-bold transition-colors duration-300 pr-4 font-serif ${
+                                  isOpen
+                                    ? "text-[#8DBD42]"
+                                    : "text-[#3F4143] group-hover:text-[#8DBD42]"
+                                }`}
+                              >
+                                {faq.question}
+                              </span>
+                              <span className="shrink-0">
+                                {isOpen ? (
+                                  <Minus className="text-[#8DBD42] w-5 h-5" />
+                                ) : (
+                                  <Plus className="text-[#3F4143]/60 group-hover:text-[#8DBD42] w-5 h-5 transition-colors duration-300" />
+                                )}
+                              </span>
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {isOpen && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{
+                                    duration: 0.25,
+                                    ease: "easeInOut",
+                                  }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="pl-6 pr-4 pb-5 text-[#3F4143]/80 leading-relaxed text-sm md:text-base font-sans">
+                                    {faq.answer}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
             </div>
           </div>
         </section>

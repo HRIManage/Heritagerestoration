@@ -1,11 +1,24 @@
 import { type FormEvent, useState } from "react";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
-import { MapPin, Phone, ArrowRight, ArrowUpRight, Compass, ShieldCheck, Star } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  ArrowRight,
+  ArrowUpRight,
+  Compass,
+  ShieldCheck,
+  Star,
+} from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Container from "@/components/ui/Container";
 import FadeIn from "@/components/ui/FadeIn";
-import { LOCATIONS, CityLocation, NORTH_OFFICE, SOUTH_OFFICE } from "@/data/locations";
+import {
+  LOCATIONS,
+  CityLocation,
+  NORTH_OFFICE,
+  SOUTH_OFFICE,
+} from "@/data/locations";
 import { BASE_URL, buildBreadcrumbSchema } from "@/seo";
 import ServiceHeader from "@/components/ui/ServiceHeader";
 
@@ -75,9 +88,13 @@ export default function ServiceAreas() {
       }) || null
     : null;
 
-  const selectedCityData = serviceLocations.find(l => l.slug === selectedCitySlug);
+  const selectedCityData = serviceLocations.find(
+    l => l.slug === selectedCitySlug
+  );
   const activeCityData =
-    selectedCityData || serviceLocations.find(l => l.slug === hoveredCity) || coverageMatch;
+    selectedCityData ||
+    serviceLocations.find(l => l.slug === hoveredCity) ||
+    coverageMatch;
 
   const handleCoverageCheck = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -119,9 +136,7 @@ export default function ServiceAreas() {
         <script type="application/ld+json">
           {JSON.stringify(itemListSchema)}
         </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumb)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
 
       <div className="bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[152px]">
@@ -150,7 +165,9 @@ export default function ServiceAreas() {
                   "Locally Owned & Operated",
                 ].map(item => (
                   <span key={item} className="flex items-center">
-                    <span className="px-12 font-semibold text-[26px] uppercase tracking-[0.22em] text-[#8DBD42]">{item}</span>
+                    <span className="px-12 font-semibold text-[26px] uppercase tracking-[0.22em] text-[#8DBD42]">
+                      {item}
+                    </span>
                     <span className="text-[#8DBD42]/25 text-[18px]">✦</span>
                   </span>
                 ))}
@@ -164,14 +181,21 @@ export default function ServiceAreas() {
           <Container>
             <div className="py-10 md:py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42] mb-2">Coverage Area</p>
-                <h2 className="text-[26px] md:text-[32px] font-bold text-[#1a1c1e] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  Serving the I-5 Corridor &amp;<br className="hidden md:block" /> Western Washington
+                <p className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42] mb-2">
+                  Coverage Area
+                </p>
+                <h2
+                  className="text-[26px] md:text-[32px] font-bold text-[#1a1c1e] leading-tight"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Serving the I-5 Corridor &amp;
+                  <br className="hidden md:block" /> Western Washington
                 </h2>
               </div>
               <p className="text-[#3F4143]/65 text-[15px] leading-relaxed max-w-[440px] font-sans font-light">
-                From Lewis County to Pierce County, our two offices dispatch certified
-                crews across the entire region — 24 hours a day, 7 days a week, 365 days a year.
+                From Lewis County to Pierce County, our two offices dispatch
+                certified crews across the entire region — 24 hours a day, 7
+                days a week, 365 days a year.
               </p>
             </div>
           </Container>
@@ -181,16 +205,16 @@ export default function ServiceAreas() {
         <section className="py-12 md:py-20 bg-transparent">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-              
               {/* Left Column: Cities List (Buttons/Pills) */}
               <div className="lg:col-span-7 space-y-12">
-                
                 {/* North Office Section */}
                 <div className="space-y-6">
                   <FadeIn direction="up">
                     <div className="flex items-center gap-4 mb-2">
                       <span className="w-8 h-[2px] bg-[#8DBD42]" />
-                      <span className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42]">North Office Dispatch Hub</span>
+                      <span className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42]">
+                        North Office Dispatch Hub
+                      </span>
                     </div>
                     <h2 className="text-[24px] md:text-[30px] font-bold text-[#1a1c1e] font-serif">
                       Thurston, Pierce &amp; Mason
@@ -201,11 +225,20 @@ export default function ServiceAreas() {
                   </FadeIn>
 
                   {/* Office Info card */}
-                  <FadeIn direction="up" className="bg-white border border-[#3F4143]/8 p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <FadeIn
+                    direction="up"
+                    className="bg-white border border-[#3F4143]/8 p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                  >
                     <div>
-                      <p className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">Lacey HQ</p>
-                      <h4 className="text-base font-bold text-[#3F4143] font-sans mt-0.5">{NORTH_OFFICE.street}</h4>
-                      <p className="text-xs text-[#3F4143]/60 font-sans">{NORTH_OFFICE.city}</p>
+                      <p className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                        Lacey HQ
+                      </p>
+                      <h4 className="text-base font-bold text-[#3F4143] font-sans mt-0.5">
+                        {NORTH_OFFICE.street}
+                      </h4>
+                      <p className="text-xs text-[#3F4143]/60 font-sans">
+                        {NORTH_OFFICE.city}
+                      </p>
                     </div>
                     <a
                       href="tel:+13603451015"
@@ -232,9 +265,14 @@ export default function ServiceAreas() {
                             }`}
                           >
                             <span className="truncate">{city.name}</span>
-                            <ArrowUpRight size={13} className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 ml-1 ${
-                              isHovered ? "text-[#8DBD42]" : "text-[#3F4143]/30"
-                            }`} />
+                            <ArrowUpRight
+                              size={13}
+                              className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 ml-1 ${
+                                isHovered
+                                  ? "text-[#8DBD42]"
+                                  : "text-[#3F4143]/30"
+                              }`}
+                            />
                           </Link>
                         </FadeIn>
                       );
@@ -250,7 +288,9 @@ export default function ServiceAreas() {
                   <FadeIn direction="up">
                     <div className="flex items-center gap-4 mb-2">
                       <span className="w-8 h-[2px] bg-[#8DBD42]" />
-                      <span className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42]">South Office Dispatch Hub</span>
+                      <span className="text-[11px] uppercase tracking-[0.2em] font-black text-[#8DBD42]">
+                        South Office Dispatch Hub
+                      </span>
                     </div>
                     <h2 className="text-[24px] md:text-[30px] font-bold text-[#1a1c1e] font-serif">
                       Lewis County Region
@@ -261,11 +301,20 @@ export default function ServiceAreas() {
                   </FadeIn>
 
                   {/* Office Info card */}
-                  <FadeIn direction="up" className="bg-white border border-[#3F4143]/8 p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <FadeIn
+                    direction="up"
+                    className="bg-white border border-[#3F4143]/8 p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                  >
                     <div>
-                      <p className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">Chehalis Branch</p>
-                      <h4 className="text-base font-bold text-[#3F4143] font-sans mt-0.5">{SOUTH_OFFICE.street}</h4>
-                      <p className="text-xs text-[#3F4143]/60 font-sans">{SOUTH_OFFICE.city}</p>
+                      <p className="text-xs font-black text-[#8DBD42] uppercase tracking-wider">
+                        Chehalis Branch
+                      </p>
+                      <h4 className="text-base font-bold text-[#3F4143] font-sans mt-0.5">
+                        {SOUTH_OFFICE.street}
+                      </h4>
+                      <p className="text-xs text-[#3F4143]/60 font-sans">
+                        {SOUTH_OFFICE.city}
+                      </p>
                     </div>
                     <a
                       href="tel:+13603451015"
@@ -292,29 +341,34 @@ export default function ServiceAreas() {
                           }`}
                         >
                           <span className="truncate">{city.name}</span>
-                          <ArrowUpRight size={13} className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 ml-1 ${
-                            isHovered ? "text-[#8DBD42]" : "text-[#3F4143]/30"
-                          }`} />
+                          <ArrowUpRight
+                            size={13}
+                            className={`transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 ml-1 ${
+                              isHovered ? "text-[#8DBD42]" : "text-[#3F4143]/30"
+                            }`}
+                          />
                         </Link>
                       );
                     })}
                   </div>
                 </div>
-
               </div>
 
               {/* Right Column: Interactive Map (Sticky on Desktop) */}
               <div className="lg:col-span-5 lg:sticky lg:top-[160px] space-y-6">
-                
                 {/* Map Card */}
                 <div className="bg-[#FAF9F5] border border-[#3F4143]/12 p-4 md:p-6 shadow-[0_20px_45px_rgba(63,65,67,0.04)] relative">
-                  
                   {/* Compass watermark */}
                   <Compass className="absolute right-4 top-4 text-[#3F4143]/5 w-16 h-16 pointer-events-none stroke-[1]" />
-                  
+
                   <div className="mb-4">
-                    <h3 className="text-lg font-bold text-[#3F4143] font-serif">Coverage Map</h3>
-                    <p className="text-xs text-[#3F4143]/50 font-sans">Western Washington Corridor (Thurston, Pierce, Lewis, Mason)</p>
+                    <h3 className="text-lg font-bold text-[#3F4143] font-serif">
+                      Coverage Map
+                    </h3>
+                    <p className="text-xs text-[#3F4143]/50 font-sans">
+                      Western Washington Corridor (Thurston, Pierce, Lewis,
+                      Mason)
+                    </p>
                   </div>
 
                   <form
@@ -357,7 +411,11 @@ export default function ServiceAreas() {
                               Yes, we serve {coverageMatch.name}.
                             </p>
                             <p className="mt-1 text-[#3F4143]/70">
-                              Covered by our {coverageMatch.office === "North" ? "Lacey HQ" : "Chehalis Branch"}. 24/7 dispatch is available.
+                              Covered by our{" "}
+                              {coverageMatch.office === "North"
+                                ? "Lacey HQ"
+                                : "Chehalis Branch"}
+                              . 24/7 dispatch is available.
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
                               <a
@@ -376,9 +434,12 @@ export default function ServiceAreas() {
                           </>
                         ) : (
                           <>
-                            <p className="font-black">We may still be able to help.</p>
+                            <p className="font-black">
+                              We may still be able to help.
+                            </p>
                             <p className="mt-1 text-[#3F4143]/70">
-                              This city or ZIP is not in our listed areas. Call us and we will confirm dispatch availability.
+                              This city or ZIP is not in our listed areas. Call
+                              us and we will confirm dispatch availability.
                             </p>
                           </>
                         )}
@@ -401,16 +462,36 @@ export default function ServiceAreas() {
                       aria-hidden="true"
                     >
                       <defs>
-                        <filter id="city-glow" x="-110%" y="-110%" width="320%" height="320%">
+                        <filter
+                          id="city-glow"
+                          x="-110%"
+                          y="-110%"
+                          width="320%"
+                          height="320%"
+                        >
                           <feGaussianBlur stdDeviation="5" result="blur" />
                           <feMerge>
                             <feMergeNode in="blur" />
                             <feMergeNode in="SourceGraphic" />
                           </feMerge>
                         </filter>
-                        <filter id="label-halo" x="-20%" y="-80%" width="140%" height="260%">
-                          <feFlood floodColor="white" floodOpacity="0.9" result="bg" />
-                          <feComposite in="bg" in2="SourceAlpha" operator="in" />
+                        <filter
+                          id="label-halo"
+                          x="-20%"
+                          y="-80%"
+                          width="140%"
+                          height="260%"
+                        >
+                          <feFlood
+                            floodColor="white"
+                            floodOpacity="0.9"
+                            result="bg"
+                          />
+                          <feComposite
+                            in="bg"
+                            in2="SourceAlpha"
+                            operator="in"
+                          />
                           <feGaussianBlur stdDeviation="1.4" />
                           <feMerge>
                             <feMergeNode />
@@ -465,24 +546,28 @@ export default function ServiceAreas() {
                         { label: "Lewis", x: 178, y: 358 },
                         { label: "Grays Harbor", x: 40, y: 250 },
                         { label: "Cowlitz", x: 192, y: 462 },
-                      ].filter(() => false).map(county => (
-                        <text
-                          key={county.label}
-                          x={county.x}
-                          y={county.y}
-                          fill="#8F9174"
-                          fillOpacity="0.72"
-                          fontSize="20"
-                          fontWeight="700"
-                          fontFamily="Hanken Grotesk, sans-serif"
-                          textAnchor="middle"
-                        >
-                          {county.label}
-                        </text>
-                      ))}
+                      ]
+                        .filter(() => false)
+                        .map(county => (
+                          <text
+                            key={county.label}
+                            x={county.x}
+                            y={county.y}
+                            fill="#8F9174"
+                            fillOpacity="0.72"
+                            fontSize="20"
+                            fontWeight="700"
+                            fontFamily="Hanken Grotesk, sans-serif"
+                            textAnchor="middle"
+                          >
+                            {county.label}
+                          </text>
+                        ))}
                       {serviceLocations.map(city => {
                         const { x, y } = getXY(city.lat, city.lng);
-                        const isOffice = city.slug === "lacey-wa" || city.slug === "chehalis-wa";
+                        const isOffice =
+                          city.slug === "lacey-wa" ||
+                          city.slug === "chehalis-wa";
                         const isActive = activeCityData?.slug === city.slug;
 
                         return (
@@ -533,27 +618,140 @@ export default function ServiceAreas() {
                         Zoom and pan to view listed cities
                       </p>
                     </div>
-                    
+
                     {/* Grid lines cartography style */}
-                    <svg className="hidden absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 500">
+                    <svg
+                      className="hidden absolute inset-0 w-full h-full pointer-events-none"
+                      viewBox="0 0 400 500"
+                    >
                       {/* Lng Grid */}
-                      <line x1="100" y1="0" x2="100" y2="500" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      <line x1="200" y1="0" x2="200" y2="500" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      <line x1="300" y1="0" x2="300" y2="500" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      
+                      <line
+                        x1="100"
+                        y1="0"
+                        x2="100"
+                        y2="500"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+                      <line
+                        x1="200"
+                        y1="0"
+                        x2="200"
+                        y2="500"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+                      <line
+                        x1="300"
+                        y1="0"
+                        x2="300"
+                        y2="500"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+
                       {/* Lat Grid */}
-                      <line x1="0" y1="100" x2="400" y2="100" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      <line x1="0" y1="200" x2="400" y2="200" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      <line x1="0" y1="300" x2="400" y2="300" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      <line x1="0" y1="400" x2="400" y2="400" stroke="#3F4143" strokeOpacity="0.04" strokeDasharray="3 3" />
-                      
+                      <line
+                        x1="0"
+                        y1="100"
+                        x2="400"
+                        y2="100"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+                      <line
+                        x1="0"
+                        y1="200"
+                        x2="400"
+                        y2="200"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+                      <line
+                        x1="0"
+                        y1="300"
+                        x2="400"
+                        y2="300"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+                      <line
+                        x1="0"
+                        y1="400"
+                        x2="400"
+                        y2="400"
+                        stroke="#3F4143"
+                        strokeOpacity="0.04"
+                        strokeDasharray="3 3"
+                      />
+
                       {/* Coordinates texts */}
-                      <text x="105" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">123°W</text>
-                      <text x="205" y="15" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">122.5°W</text>
-                      <text x="5" y="95" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.2°N</text>
-                      <text x="5" y="195" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">47.0°N</text>
-                      <text x="5" y="295" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.8°N</text>
-                      <text x="5" y="395" fill="#3F4143" fillOpacity="0.3" fontSize="9" fontFamily="sans-serif">46.6°N</text>
+                      <text
+                        x="105"
+                        y="15"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        123°W
+                      </text>
+                      <text
+                        x="205"
+                        y="15"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        122.5°W
+                      </text>
+                      <text
+                        x="5"
+                        y="95"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        47.2°N
+                      </text>
+                      <text
+                        x="5"
+                        y="195"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        47.0°N
+                      </text>
+                      <text
+                        x="5"
+                        y="295"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        46.8°N
+                      </text>
+                      <text
+                        x="5"
+                        y="395"
+                        fill="#3F4143"
+                        fillOpacity="0.3"
+                        fontSize="9"
+                        fontFamily="sans-serif"
+                      >
+                        46.6°N
+                      </text>
 
                       {/* Stylized Puget Sound Water Inlet Path */}
                       <path
@@ -589,14 +787,44 @@ export default function ServiceAreas() {
 
                       {/* Lacey HQ Star */}
                       <g className="cursor-pointer">
-                        <circle cx="158.7" cy="180" r="14" fill="#8DBD42" fillOpacity="0.15" className="animate-ping" style={{ animationDuration: "3s" }} />
-                        <circle cx="158.7" cy="180" r="6" fill="#8DBD42" stroke="white" strokeWidth="1.5" />
+                        <circle
+                          cx="158.7"
+                          cy="180"
+                          r="14"
+                          fill="#8DBD42"
+                          fillOpacity="0.15"
+                          className="animate-ping"
+                          style={{ animationDuration: "3s" }}
+                        />
+                        <circle
+                          cx="158.7"
+                          cy="180"
+                          r="6"
+                          fill="#8DBD42"
+                          stroke="white"
+                          strokeWidth="1.5"
+                        />
                       </g>
 
                       {/* Chehalis HQ Star */}
                       <g className="cursor-pointer">
-                        <circle cx="119.5" cy="321.8" r="14" fill="#8DBD42" fillOpacity="0.15" className="animate-ping" style={{ animationDuration: "3s" }} />
-                        <circle cx="119.5" cy="321.8" r="6" fill="#8DBD42" stroke="white" strokeWidth="1.5" />
+                        <circle
+                          cx="119.5"
+                          cy="321.8"
+                          r="14"
+                          fill="#8DBD42"
+                          fillOpacity="0.15"
+                          className="animate-ping"
+                          style={{ animationDuration: "3s" }}
+                        />
+                        <circle
+                          cx="119.5"
+                          cy="321.8"
+                          r="6"
+                          fill="#8DBD42"
+                          stroke="white"
+                          strokeWidth="1.5"
+                        />
                       </g>
 
                       {/* Plot all cities as dots */}
@@ -664,7 +892,10 @@ export default function ServiceAreas() {
                         </div>
                         <div className="flex items-center justify-between border-t border-slate-100 pt-2 mt-1 text-[11px]">
                           <span className="text-[#3F4143]/50">
-                            ZIPs: {activeCityData?.zips?.slice(0, 3).join(", ")}{(activeCityData?.zips?.length ?? 0) > 3 ? "..." : ""}
+                            ZIPs: {activeCityData?.zips?.slice(0, 3).join(", ")}
+                            {(activeCityData?.zips?.length ?? 0) > 3
+                              ? "..."
+                              : ""}
                           </span>
                           <Link
                             href={`/service-area/${activeCityData?.slug}`}
@@ -679,7 +910,8 @@ export default function ServiceAreas() {
                     {/* Default Help Hint */}
                     {!activeCityData && false && (
                       <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md text-white p-3 text-center text-xs z-10 font-sans font-light">
-                        Hover over any city selector to view details and dispatch coverage.
+                        Hover over any city selector to view details and
+                        dispatch coverage.
                       </div>
                     )}
                   </div>
@@ -688,18 +920,19 @@ export default function ServiceAreas() {
                   <div className="mt-4 pt-4 border-t border-[#3F4143]/8 grid grid-cols-1 gap-3 text-xs font-sans">
                     <div className="flex items-center gap-2">
                       <MapPin size={13} className="text-[#8DBD42]" />
-                      <span className="text-[#3F4143]/75 font-semibold">No pins or overlays, just the normal Google map</span>
+                      <span className="text-[#3F4143]/75 font-semibold">
+                        No pins or overlays, just the normal Google map
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Compass size={13} className="text-[#3F4143]/70" />
-                      <span className="text-[#3F4143]/75">Use zoom or pan to inspect the service area</span>
+                      <span className="text-[#3F4143]/75">
+                        Use zoom or pan to inspect the service area
+                      </span>
                     </div>
                   </div>
-
                 </div>
-
               </div>
-
             </div>
           </Container>
         </section>
@@ -714,20 +947,27 @@ export default function ServiceAreas() {
                 <div className="absolute left-[-40px] bottom-[-40px] w-[200px] h-[200px] rounded-full bg-[#8DBD42]/8 blur-[60px] pointer-events-none" />
 
                 <div className="relative z-10 text-center">
-                  <p className="text-[11px] uppercase tracking-[0.22em] font-black text-[#8DBD42] mb-4">Don't See Your City?</p>
-                  <h2 className="text-[26px] md:text-[36px] font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  <p className="text-[11px] uppercase tracking-[0.22em] font-black text-[#8DBD42] mb-4">
+                    Don't See Your City?
+                  </p>
+                  <h2
+                    className="text-[26px] md:text-[36px] font-bold leading-tight mb-4"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
                     We Likely Cover It.
                   </h2>
                   <p className="text-white/70 text-[16px] leading-relaxed max-w-[480px] mx-auto mb-10 font-sans font-light">
-                    If you're anywhere along the I-5 corridor in Western Washington,
-                    call us — our crews travel throughout the region for emergency restoration.
+                    If you're anywhere along the I-5 corridor in Western
+                    Washington, call us — our crews travel throughout the region
+                    for emergency restoration.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
                       href="tel:+13603451015"
                       className="inline-flex items-center justify-center gap-2.5 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 font-black uppercase tracking-[0.14em] text-[13px] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0"
                     >
-                      <Phone size={15} className="stroke-[2.5]" /> Call (360) 345-1015
+                      <Phone size={15} className="stroke-[2.5]" /> Call (360)
+                      345-1015
                     </a>
                     <Link
                       href="/contact"
@@ -765,8 +1005,11 @@ export default function ServiceAreas() {
                   alt: "5-Year Warranty",
                   title: "5-Year Warranty",
                 },
-              ].map((badge) => (
-                <div key={badge.alt} className="flex flex-col items-center gap-4">
+              ].map(badge => (
+                <div
+                  key={badge.alt}
+                  className="flex flex-col items-center gap-4"
+                >
                   <img
                     src={badge.src}
                     alt={badge.alt}
@@ -784,4 +1027,3 @@ export default function ServiceAreas() {
     </Layout>
   );
 }
-

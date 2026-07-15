@@ -53,8 +53,8 @@ export default function BottomCTA() {
           </h2>
           <p className="font-sans text-brand-linen/75 text-base md:text-lg font-light leading-relaxed mb-10">
             Contact Heritage Restoration for a free professional damage
-            assessment. Our teams are on standby 24 hours a day, 7 days a week, 365 days a year,
-            ready to deploy.
+            assessment. Our teams are on standby 24 hours a day, 7 days a week,
+            365 days a year, ready to deploy.
           </p>
           <div className="flex justify-center flex-wrap gap-5">
             <a

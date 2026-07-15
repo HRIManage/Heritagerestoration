@@ -143,7 +143,13 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   return <span ref={ref}>0{suffix}</span>;
 }
 
-function SpinCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+function SpinCounter({
+  value,
+  suffix = "",
+}: {
+  value: number;
+  suffix?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-30px" });
   const [display, setDisplay] = useState("0");
@@ -169,7 +175,8 @@ function SpinCounter({ value, suffix = "" }: { value: number; suffix?: string })
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{ display: "inline-block", transformOrigin: "50% 100%" }}
       >
-        {display}{suffix}
+        {display}
+        {suffix}
       </motion.span>
     </div>
   );
@@ -274,7 +281,12 @@ function PhotoDeck() {
             whileHover={
               stackPos === 0 ? { scale: 1.015, rotate: rotate + 0.5 } : {}
             }
-            transition={{ type: "spring", stiffness: 130, damping: 26, mass: 0.8 }}
+            transition={{
+              type: "spring",
+              stiffness: 130,
+              damping: 26,
+              mass: 0.8,
+            }}
             className="absolute inset-0 rounded-none overflow-hidden shadow-[0_12px_36px_rgba(20,81,38,0.04)] border border-[#3F4143]/12 bg-white p-2 flex items-center justify-center"
           >
             <img
@@ -351,10 +363,10 @@ export default function Home() {
   };
 
   const handlePrevReview = () => {
-    setCurrentReviewIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+    setCurrentReviewIndex(prev => (prev === 0 ? reviews.length - 1 : prev - 1));
   };
   const handleNextReview = () => {
-    setCurrentReviewIndex((prev) => (prev + 1) % reviews.length);
+    setCurrentReviewIndex(prev => (prev + 1) % reviews.length);
   };
 
   useEffect(() => {
@@ -434,13 +446,10 @@ export default function Home() {
           { autoAlpha: 1, y: 0, duration: 1.15 },
           1.35
         );
-
-
     }, pageRef);
 
     return () => ctx.revert();
   }, [reduceMotion]);
-
 
   const services = [
     {
@@ -562,7 +571,7 @@ export default function Home() {
         },
         {
           label: "Jurisdictional Navigation & Fire Walk",
-          text: "We initiate the municipal permit process and conduct an official \"Fire Walk\" on-site with the local Building Official to establish baseline code requirements.",
+          text: 'We initiate the municipal permit process and conduct an official "Fire Walk" on-site with the local Building Official to establish baseline code requirements.',
         },
       ],
     },
@@ -739,7 +748,11 @@ export default function Home() {
             <motion.span
               className="h-16 w-px bg-current origin-top"
               animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.35, 0.9, 0.35] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 2.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           </motion.a>
 
@@ -757,7 +770,11 @@ export default function Home() {
                 </p>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
-                <h1 data-gsap-hero-item className="leading-[1.03]" style={headlineStyle}>
+                <h1
+                  data-gsap-hero-item
+                  className="leading-[1.03]"
+                  style={headlineStyle}
+                >
                   <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
                     Restoring
                     <br />
@@ -776,9 +793,9 @@ export default function Home() {
                   className="mt-6 text-[17px] text-[#2f3133]/75 max-w-[480px] leading-[1.7]"
                   style={bodyStyle}
                 >
-                  As dedicated homeowner advocates, we handle the full complexity
-                  of disaster recovery, so you don't have to. Locally owned and
-                  operated since 2004.
+                  As dedicated homeowner advocates, we handle the full
+                  complexity of disaster recovery, so you don't have to. Locally
+                  owned and operated since 2004.
                 </p>
               </FadeUp>
               {/* CTAs */}
@@ -789,7 +806,12 @@ export default function Home() {
                   animate="visible"
                   variants={{
                     hidden: {},
-                    visible: { transition: { staggerChildren: 0.18, delayChildren: 0.16 } },
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.18,
+                        delayChildren: 0.16,
+                      },
+                    },
                   }}
                 >
                   <motion.a
@@ -822,7 +844,9 @@ export default function Home() {
                       whileTap={{ scale: 0.98 }}
                     >
                       Request Assessment
-                      <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
                     </motion.a>
                   </Link>
                 </motion.div>
@@ -851,8 +875,12 @@ export default function Home() {
                     "5-Year Warranty",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">{item}</span>
-                      <span className="text-[#145126]/30 text-[14px] md:text-[18px]">✦</span>
+                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">
+                        {item}
+                      </span>
+                      <span className="text-[#145126]/30 text-[14px] md:text-[18px]">
+                        ✦
+                      </span>
                     </span>
                   ))}
                 </div>
@@ -862,43 +890,99 @@ export default function Home() {
         </section>
 
         {/* Office Locations + Trust Badges — unified section */}
-        <section data-gsap-section className="bg-white border-t border-gray-100">
+        <section
+          data-gsap-section
+          className="bg-white border-t border-gray-100"
+        >
           <div className="max-w-[860px] mx-auto px-8 pt-14 pb-0 md:pt-18">
             {/* Label */}
             <FadeUp>
-              <p className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-black text-center mb-10" style={bodyStyle}>
+              <p
+                className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-black text-center mb-10"
+                style={bodyStyle}
+              >
                 Local Office Locations
               </p>
             </FadeUp>
 
             {/* Two offices */}
             <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#3F4143]/10">
-              <FadeUp delay={0.05} className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center">
+              <FadeUp
+                delay={0.05}
+                className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center"
+              >
                 <div data-gsap-reveal className="contents">
-                <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>North Office</h3>
-                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
-                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
-                  <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
-                    8695 Martin Way E, Unit 103<br />Lacey, WA 98516
+                  <h3
+                    className="text-[26px] font-bold text-[#2a2c2e]"
+                    style={headlineStyle}
+                  >
+                    North Office
+                  </h3>
+                  <p
+                    className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2"
+                    style={bodyStyle}
+                  >
+                    <MapPin
+                      size={15}
+                      className="text-[#8DBD42] mt-1 shrink-0"
+                    />
+                    <a
+                      href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#3F4143] transition-colors"
+                    >
+                      8695 Martin Way E, Unit 103
+                      <br />
+                      Lacey, WA 98516
+                    </a>
+                  </p>
+                  <a
+                    href="tel:+13603451015"
+                    className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit"
+                    style={bodyStyle}
+                  >
+                    <Phone size={13} className="stroke-[3]" /> Call North Office
                   </a>
-                </p>
-                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> Call North Office
-                </a>
                 </div>
               </FadeUp>
-              <FadeUp delay={0.1} className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center">
+              <FadeUp
+                delay={0.1}
+                className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center"
+              >
                 <div data-gsap-reveal className="contents">
-                <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>South Office</h3>
-                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
-                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
-                  <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
-                    1581 N. National Ave<br />Chehalis, WA 98532
+                  <h3
+                    className="text-[26px] font-bold text-[#2a2c2e]"
+                    style={headlineStyle}
+                  >
+                    South Office
+                  </h3>
+                  <p
+                    className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2"
+                    style={bodyStyle}
+                  >
+                    <MapPin
+                      size={15}
+                      className="text-[#8DBD42] mt-1 shrink-0"
+                    />
+                    <a
+                      href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#3F4143] transition-colors"
+                    >
+                      1581 N. National Ave
+                      <br />
+                      Chehalis, WA 98532
+                    </a>
+                  </p>
+                  <a
+                    href="tel:+13603451015"
+                    className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit"
+                    style={bodyStyle}
+                  >
+                    <Phone size={13} className="stroke-[3]" /> Call South Office
                   </a>
-                </p>
-                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> Call South Office
-                </a>
                 </div>
               </FadeUp>
             </div>
@@ -908,15 +992,27 @@ export default function Home() {
               <div className="mt-10 border-t border-[#3F4143]/10 pt-8 pb-10 flex flex-col items-center gap-8">
                 <div className="flex items-center justify-center gap-2 px-2">
                   <Clock size={15} className="text-[#8DBD42] shrink-0" />
-                  <span className="text-center text-[#3F4143]/60 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold" style={bodyStyle}>
+                  <span
+                    className="text-center text-[#3F4143]/60 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold"
+                    style={bodyStyle}
+                  >
                     24 Hours a Day · 7 Days a Week · 365 Days a Year
                   </span>
                 </div>
                 <div className="grid grid-cols-3 items-center gap-4 w-full max-w-[330px] mx-auto sm:flex sm:max-w-none sm:gap-12 md:gap-20">
                   {[
-                    { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response" },
-                    { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified" },
-                    { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty" },
+                    {
+                      src: "/photo/emergency-badge-new-2.png",
+                      alt: "24 HR Emergency Response",
+                    },
+                    {
+                      src: "/photo/iicrc-badge-new-3.png",
+                      alt: "IICRC Certified",
+                    },
+                    {
+                      src: "/photo/warranty-badge-new-3.png",
+                      alt: "5-Year Warranty",
+                    },
                   ].map((badge, i) => (
                     <motion.img
                       key={badge.alt}
@@ -925,7 +1021,11 @@ export default function Home() {
                       initial={{ opacity: 0, scale: 0.7, y: 24 }}
                       whileInView={{ opacity: 1, scale: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.6 }}
-                      transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{
+                        duration: 0.9,
+                        delay: i * 0.16,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                       whileHover={{ scale: 1.04, y: -3 }}
                       className="w-full h-auto object-contain sm:w-auto sm:h-24 md:h-28 drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
                     />
@@ -967,10 +1067,12 @@ export default function Home() {
               viewport={{ once: true, amount: 0.15 }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
+                visible: {
+                  transition: { staggerChildren: 0.09, delayChildren: 0.04 },
+                },
               }}
             >
-              {services.map((service) => (
+              {services.map(service => (
                 <motion.div
                   key={service.title}
                   variants={{
@@ -1015,7 +1117,11 @@ export default function Home() {
                           rest: { color: "#2F3335" },
                           hovered: { color: service.accentColor },
                         }}
-                        transition={{ type: "spring", stiffness: 140, damping: 20 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 140,
+                          damping: 20,
+                        }}
                       >
                         {service.title}
                       </motion.h3>
@@ -1034,19 +1140,18 @@ export default function Home() {
                         style={bodyStyle}
                       >
                         Learn More
-                        <ArrowRight size={13} className="transition-transform duration-500 group-hover:translate-x-1" />
+                        <ArrowRight
+                          size={13}
+                          className="transition-transform duration-500 group-hover:translate-x-1"
+                        />
                       </span>
                     </Link>
                   </motion.div>
-
-
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
-
-
 
         {/* Our Promise Section */}
         <section
@@ -1059,7 +1164,10 @@ export default function Home() {
           <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
             {/* LEFT: Premium Editorial Image Deck */}
             <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0 items-center justify-center">
-              <Parallax amount={22} className="w-full flex justify-center lg:justify-start">
+              <Parallax
+                amount={22}
+                className="w-full flex justify-center lg:justify-start"
+              >
                 <PhotoDeck />
               </Parallax>
             </FadeUp>
@@ -1071,8 +1179,12 @@ export default function Home() {
                 Our Promise
               </p>
               <h2 className="text-[26px] sm:text-[30px] md:text-[40px] lg:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
-                <span className="block whitespace-nowrap">We Are Not Just Technicians.</span>
-                <span className="block whitespace-nowrap">We Are Your Neighbors.</span>
+                <span className="block whitespace-nowrap">
+                  We Are Not Just Technicians.
+                </span>
+                <span className="block whitespace-nowrap">
+                  We Are Your Neighbors.
+                </span>
               </h2>
               <p className="mt-6 text-[#3F4143]/80 text-lg leading-relaxed font-sans font-light">
                 We are proudly local and homeowner focused. When you call
@@ -1082,7 +1194,9 @@ export default function Home() {
               </p>
 
               <div className="border-l-2 border-[#8DBD42] pl-5 italic text-[#3F4143]/90 text-[17px] leading-relaxed font-serif mt-8">
-                "Most importantly, we are advocates for you. Our priority is protecting your home and your best interests, not the insurance company."
+                "Most importantly, we are advocates for you. Our priority is
+                protecting your home and your best interests, not the insurance
+                company."
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
@@ -1138,7 +1252,10 @@ export default function Home() {
               {process.map((step, idx) => {
                 const isActive = activeStep === idx;
                 return (
-                  <div key={step.number} className="border-b border-[#145126]/10">
+                  <div
+                    key={step.number}
+                    className="border-b border-[#145126]/10"
+                  >
                     <button
                       type="button"
                       onClick={() => setActiveStep(idx)}
@@ -1169,12 +1286,18 @@ export default function Home() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                          transition={{
+                            duration: 0.35,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
                           className="overflow-hidden"
                         >
                           <div className="pb-6 pl-11 pr-1 space-y-4">
                             {step.items.map(item => (
-                              <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
+                              <div
+                                key={item.label}
+                                className="border-l-2 border-[#8DBD42] pl-4"
+                              >
                                 <p
                                   className="text-[13.5px] font-black text-[#3F4143]"
                                   style={bodyStyle}
@@ -1211,7 +1334,11 @@ export default function Home() {
                       initial={{ opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.4 }}
-                      transition={{ duration: 0.75, delay: idx * 0.045, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        duration: 0.75,
+                        delay: idx * 0.045,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                       onMouseEnter={() => setActiveStep(idx)}
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
@@ -1243,7 +1370,9 @@ export default function Home() {
               {/* RIGHT — active step detail expands here */}
               <div
                 className={`lg:sticky self-start ${
-                  activeStep >= 5 ? "lg:top-[6.5rem] xl:top-[7.5rem]" : "lg:top-28"
+                  activeStep >= 5
+                    ? "lg:top-[6.5rem] xl:top-[7.5rem]"
+                    : "lg:top-28"
                 }`}
               >
                 <AnimatePresence mode="wait">
@@ -1279,7 +1408,10 @@ export default function Home() {
                     </h3>
                     <div className="mt-6 space-y-5">
                       {process[activeStep].items.map(item => (
-                        <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
+                        <div
+                          key={item.label}
+                          className="border-l-2 border-[#8DBD42] pl-4"
+                        >
                           <p
                             className="text-[14px] font-black text-[#3F4143]"
                             style={bodyStyle}
@@ -1330,7 +1462,9 @@ export default function Home() {
                 className="mt-4 text-[#3F4143]/70 text-base md:text-lg leading-relaxed"
                 style={bodyStyle}
               >
-                Compare the detailed progress of a full structural rebuild. Drag the slider to reveal the craftsmanship that goes into every home restoration project.
+                Compare the detailed progress of a full structural rebuild. Drag
+                the slider to reveal the craftsmanship that goes into every home
+                restoration project.
               </p>
             </FadeUp>
 
@@ -1342,7 +1476,9 @@ export default function Home() {
                     ref={sliderRef}
                     className="motion-soft-lift relative rounded-none overflow-hidden select-none cursor-col-resize shadow-[0_25px_60px_rgba(20,81,38,0.04)] border border-[#3F4143]/12"
                     onMouseMove={event => updateSlider(event.clientX)}
-                    onTouchMove={event => updateSlider(event.touches[0].clientX)}
+                    onTouchMove={event =>
+                      updateSlider(event.touches[0].clientX)
+                    }
                   >
                     <div className="relative overflow-hidden">
                       <img
@@ -1409,7 +1545,10 @@ export default function Home() {
         </section>
 
         {/* Testimonials (Editorial Layout) */}
-        <section id="testimonials" className="py-14 md:py-20 bg-transparent relative overflow-hidden text-[#3F4143]">
+        <section
+          id="testimonials"
+          className="py-14 md:py-20 bg-transparent relative overflow-hidden text-[#3F4143]"
+        >
           <div className="max-w-[1200px] mx-auto px-6 relative z-10">
             <FadeUp>
               <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -1434,14 +1573,18 @@ export default function Home() {
                     className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
                     aria-label="Previous testimonial"
                   >
-                    <span className="rotate-180 block text-base font-black leading-none">→</span>
+                    <span className="rotate-180 block text-base font-black leading-none">
+                      →
+                    </span>
                   </button>
                   <button
                     onClick={handleNextReview}
                     className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
                     aria-label="Next testimonial"
                   >
-                    <span className="block text-base font-black leading-none">→</span>
+                    <span className="block text-base font-black leading-none">
+                      →
+                    </span>
                   </button>
                 </div>
               </div>
@@ -1451,7 +1594,8 @@ export default function Home() {
             <div className="relative mt-12">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-transparent">
                 {[0, 1, 2].map(offset => {
-                  const review = reviews[(currentReviewIndex + offset) % reviews.length];
+                  const review =
+                    reviews[(currentReviewIndex + offset) % reviews.length];
                   if (!review) return null;
 
                   const rating = Math.round(review.rating || 5);
@@ -1482,8 +1626,12 @@ export default function Home() {
                                 <Star
                                   key={starIndex}
                                   size={13}
-                                  fill={starIndex < rating ? "currentColor" : "none"}
-                                  className={starIndex < rating ? "" : "text-slate-200"}
+                                  fill={
+                                    starIndex < rating ? "currentColor" : "none"
+                                  }
+                                  className={
+                                    starIndex < rating ? "" : "text-slate-200"
+                                  }
                                 />
                               ))}
                             </div>
@@ -1563,7 +1711,9 @@ export default function Home() {
                     className="mt-5 max-w-[620px] text-[16px] md:text-[17px] leading-relaxed text-[#3F4143]/72"
                     style={bodyStyle}
                   >
-                    Send a quick message and our dispatch team will help you decide the next step, whether it is emergency stabilization, documentation, or a full repair assessment.
+                    Send a quick message and our dispatch team will help you
+                    decide the next step, whether it is emergency stabilization,
+                    documentation, or a full repair assessment.
                   </p>
 
                   <form
@@ -1651,8 +1801,12 @@ export default function Home() {
                           <option value="fire">Fire Damage Restoration</option>
                           <option value="water">Water Damage Mitigation</option>
                           <option value="storm">Storm Damage Recovery</option>
-                          <option value="contents">Contents Pack-Out & Clean</option>
-                          <option value="other">General Inquiry / Assessment</option>
+                          <option value="contents">
+                            Contents Pack-Out & Clean
+                          </option>
+                          <option value="other">
+                            General Inquiry / Assessment
+                          </option>
                         </select>
                       </div>
                     </div>
@@ -1680,7 +1834,8 @@ export default function Home() {
                       disabled={sending}
                       className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] disabled:opacity-60 disabled:cursor-not-allowed text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0 cursor-pointer"
                     >
-                      <Send size={14} /> {sending ? "Sending..." : "Send Message"}
+                      <Send size={14} />{" "}
+                      {sending ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 </div>
@@ -1703,22 +1858,36 @@ export default function Home() {
                         Fast answers when the damage cannot wait.
                       </h3>
                       <div className="mt-8 space-y-5">
-                        <a href="tel:+13603451015" className="flex items-start gap-4 group">
+                        <a
+                          href="tel:+13603451015"
+                          className="flex items-start gap-4 group"
+                        >
                           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
                             <Phone size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Call Now</span>
-                            <span className="mt-1 block text-[18px] font-bold text-white">(360) 345-1015</span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">
+                              Call Now
+                            </span>
+                            <span className="mt-1 block text-[18px] font-bold text-white">
+                              (360) 345-1015
+                            </span>
                           </span>
                         </a>
-                        <a href="mailto:office@firewaterstorm.com" className="flex items-start gap-4 group">
+                        <a
+                          href="mailto:office@firewaterstorm.com"
+                          className="flex items-start gap-4 group"
+                        >
                           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
                             <Mail size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Email</span>
-                            <span className="mt-1 block text-[15px] font-bold text-white">office@firewaterstorm.com</span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">
+                              Email
+                            </span>
+                            <span className="mt-1 block text-[15px] font-bold text-white">
+                              office@firewaterstorm.com
+                            </span>
                           </span>
                         </a>
                         <div className="flex items-start gap-4">
@@ -1726,14 +1895,19 @@ export default function Home() {
                             <MapPin size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Local Offices</span>
-                            <span className="mt-1 block text-[15px] font-bold text-white">Lacey and Chehalis, WA</span>
+                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">
+                              Local Offices
+                            </span>
+                            <span className="mt-1 block text-[15px] font-bold text-white">
+                              Lacey and Chehalis, WA
+                            </span>
                           </span>
                         </div>
                       </div>
                       <div className="mt-8 border-t border-white/14 pt-5">
                         <p className="text-sm leading-relaxed text-white/70">
-                          Licensed, bonded, IICRC certified, and ready for fire, water, storm, and contents restoration.
+                          Licensed, bonded, IICRC certified, and ready for fire,
+                          water, storm, and contents restoration.
                         </p>
                       </div>
                     </div>

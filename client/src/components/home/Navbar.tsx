@@ -604,7 +604,8 @@ export default function Navbar() {
           opacity: mobileOpen ? 1 : 0,
           transform: mobileOpen ? "translateY(0)" : "translateY(-15px)",
           pointerEvents: mobileOpen ? "auto" : "none",
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
+          transition:
+            "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
         }}
       >
         {/* Small top accent strip */}
@@ -646,7 +647,8 @@ export default function Navbar() {
                   ? "var(--color-brand-green)"
                   : "var(--color-brand-charcoal)",
                 textDecoration: "none",
-                transition: "color 0.2s ease, transform 0.4s ease, opacity 0.4s ease",
+                transition:
+                  "color 0.2s ease, transform 0.4s ease, opacity 0.4s ease",
                 transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
                 opacity: mobileOpen ? 1 : 0,
                 transitionDelay: `${idx * 60}ms`,

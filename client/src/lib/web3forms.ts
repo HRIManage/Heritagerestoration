@@ -2,7 +2,8 @@
 // Free, unlimited, no backend required (works on static Vercel hosting).
 // Get a free access key at https://web3forms.com (enter nick@firewaterstorm.com)
 // and paste it below. This single key powers every form on the site.
-export const WEB3FORMS_ACCESS_KEY: string = "d24301a7-5309-42d4-add4-71414251a69a";
+export const WEB3FORMS_ACCESS_KEY: string =
+  "d24301a7-5309-42d4-add4-71414251a69a";
 
 const CONTACT_EMAIL = "nick@firewaterstorm.com";
 

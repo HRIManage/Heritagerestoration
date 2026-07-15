@@ -121,10 +121,11 @@ export default function BillOfRights() {
                 <span>Know Your Rights</span>
               </div>
 
-              <h1
-                className="text-4xl md:text-5xl font-bold mb-5 leading-tight font-serif"
-              >
-                Homeowner <span className="text-[#8DBD42] drop-shadow-[0_0_12px_rgba(141,189,66,0.25)]">Bill of Rights</span>
+              <h1 className="text-4xl md:text-5xl font-bold mb-5 leading-tight font-serif">
+                Homeowner{" "}
+                <span className="text-[#8DBD42] drop-shadow-[0_0_12px_rgba(141,189,66,0.25)]">
+                  Bill of Rights
+                </span>
               </h1>
 
               <p className="text-base text-white/85 leading-relaxed font-sans font-light">
@@ -136,9 +137,7 @@ export default function BillOfRights() {
                 passed.
               </p>
 
-              <p
-                className="mt-4 text-white/65 text-xs md:text-sm leading-relaxed font-sans font-light"
-              >
+              <p className="mt-4 text-white/65 text-xs md:text-sm leading-relaxed font-sans font-light">
                 The standard homeowner's policy generally contains the same
                 provisions throughout the United States and Canada. The overview
                 below is meant to help you understand these common provisions —
@@ -160,27 +159,21 @@ export default function BillOfRights() {
               <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
                 {/* Left: Title + label */}
                 <div className="md:w-2/5 flex-shrink-0">
-                  <div
-                    className="inline-block text-[#8DBD42] text-xs font-bold uppercase tracking-[0.2em] mb-3 font-sans"
-                  >
+                  <div className="inline-block text-[#8DBD42] text-xs font-bold uppercase tracking-[0.2em] mb-3 font-sans">
                     Important Notice
                   </div>
-                  <h2
-                    className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white font-serif"
-                  >
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white font-serif">
                     Before You Sign,{" "}
                     <span className="text-[#8DBD42]">Know Your Rights.</span>
                   </h2>
                 </div>
 
                 {/* Right: Body copy */}
-                <div
-                  className="md:w-3/5 space-y-4 text-white leading-relaxed font-sans font-light"
-                >
+                <div className="md:w-3/5 space-y-4 text-white leading-relaxed font-sans font-light">
                   <p className="text-base md:text-lg text-white font-semibold">
-                    <span className="text-[#8DBD42]">1-800-Board Up</span> is the
-                    only national disaster recovery company that works closely
-                    with first responders to assist with catastrophes.
+                    <span className="text-[#8DBD42]">1-800-Board Up</span> is
+                    the only national disaster recovery company that works
+                    closely with first responders to assist with catastrophes.
                   </p>
                   <div className="flex items-start gap-3 group">
                     <div className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#8DBD42] flex items-center justify-center transition-transform group-hover:scale-110">
@@ -244,9 +237,7 @@ export default function BillOfRights() {
             <FadeUp>
               <div className="flex items-center gap-4 mb-16">
                 <div className="h-px flex-1 bg-[#3F4143]/12" />
-                <span
-                  className="text-xs font-bold uppercase tracking-[0.2em] text-[#3F4143]/40 font-sans"
-                >
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#3F4143]/40 font-sans">
                   12 Protected Rights
                 </span>
                 <div className="h-px flex-1 bg-[#3F4143]/12" />
@@ -269,22 +260,16 @@ export default function BillOfRights() {
                   </span>
 
                   {/* Circular Number Badge */}
-                  <div
-                    className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#3F4143]/15 text-[#3F4143]/70 group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42] group-hover:text-white flex items-center justify-center transition-all duration-300 text-sm font-bold font-serif shadow-xs"
-                  >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#3F4143]/15 text-[#3F4143]/70 group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42] group-hover:text-white flex items-center justify-center transition-all duration-300 text-sm font-bold font-serif shadow-xs">
                     {right.number}
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 relative z-10">
-                    <h3
-                      className="text-lg md:text-xl font-bold text-[#3F4143] mb-3 leading-snug font-sans group-hover:text-[#8DBD42] transition-colors duration-300"
-                    >
+                    <h3 className="text-lg md:text-xl font-bold text-[#3F4143] mb-3 leading-snug font-sans group-hover:text-[#8DBD42] transition-colors duration-300">
                       {right.title}
                     </h3>
-                    <p
-                      className="text-[#3F4143]/70 text-[15px] leading-relaxed font-sans font-light"
-                    >
+                    <p className="text-[#3F4143]/70 text-[15px] leading-relaxed font-sans font-light">
                       {right.body}
                     </p>
                   </div>
@@ -301,8 +286,8 @@ export default function BillOfRights() {
               <div className="relative bg-white/40 backdrop-blur-md border border-white/10 border-l-4 border-l-[#8DBD42] p-8 md:p-12 rounded-md shadow-[0_20px_45px_rgba(63,65,67,0.05)]">
                 <p className="text-[#3F4143] text-base md:text-lg leading-relaxed font-sans font-light">
                   <span className="font-semibold text-[#3F4143]">
-                    Since you are the policyholder, only you can demand that your
-                    insurance company lives up to its obligations under the
+                    Since you are the policyholder, only you can demand that
+                    your insurance company lives up to its obligations under the
                     policy.
                   </span>{" "}
                   As professional restoration contractors, we recommend that you
@@ -315,8 +300,8 @@ export default function BillOfRights() {
                   insurance company. It entitles you to certain rights and
                   imposes certain obligations. As Certified Professional
                   Restoration Contractors, we have prepared this Bill of Rights
-                  so that you may better understand the policy you have purchased
-                  and how it relates to the repairs you may undertake.
+                  so that you may better understand the policy you have
+                  purchased and how it relates to the repairs you may undertake.
                 </p>
               </div>
             </FadeUp>
@@ -346,14 +331,10 @@ export default function BillOfRights() {
           <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
             <FadeUp>
               <div className="bg-white border border-[#3F4143]/8 p-8 md:p-16 shadow-[0_30px_70px_rgba(0,0,0,0.08)] text-center rounded-none">
-                <h2
-                  className="text-2xl md:text-4.5xl font-bold text-[#3F4143] mb-6 font-serif"
-                >
+                <h2 className="text-2xl md:text-4.5xl font-bold text-[#3F4143] mb-6 font-serif">
                   Need an Advocate on Your Side?
                 </h2>
-                <p
-                  className="text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-10 font-sans font-light"
-                >
+                <p className="text-base text-[#3F4143]/80 leading-relaxed max-w-2xl mx-auto mb-10 font-sans font-light">
                   Understanding your policy helps you stay in control of your
                   recovery. Heritage Restoration can walk you through the
                   restoration process and answer your questions, from the first
@@ -361,9 +342,7 @@ export default function BillOfRights() {
                   for a free, no-pressure consultation.
                 </p>
 
-                <div
-                  className="flex flex-wrap gap-4 justify-center font-sans"
-                >
+                <div className="flex flex-wrap gap-4 justify-center font-sans">
                   <a
                     href="tel:+13603451015"
                     id="bor-call-cta"
