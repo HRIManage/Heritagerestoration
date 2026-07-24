@@ -656,6 +656,7 @@ export default function Home() {
         />
         <link rel="canonical" href="https://www.firewaterstorm.com/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Heritage Restoration" />
         <meta property="og:url" content="https://www.firewaterstorm.com/" />
         <meta
           property="og:title"
@@ -680,6 +681,14 @@ export default function Home() {
         />
         <script type="application/ld+json">
           {JSON.stringify(buildBreadcrumbSchema([{ name: "Home", url: "/" }]))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Heritage Restoration",
+            url: "https://www.firewaterstorm.com/",
+          })}
         </script>
       </Helmet>
 
@@ -758,6 +767,12 @@ export default function Home() {
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
                 <h1 data-gsap-hero-item className="leading-[1.03]" style={headlineStyle}>
+                  <span
+                    className="block text-[13px] md:text-[15px] font-black uppercase tracking-[0.22em] text-[#145126] mb-4"
+                    style={bodyStyle}
+                  >
+                    Heritage Restoration
+                  </span>
                   <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
                     Restoring
                     <br />
