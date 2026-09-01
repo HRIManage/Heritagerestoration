@@ -1,8 +1,12 @@
-import { HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+
+const GSC_VERIFICATION = (
+  import.meta.env.VITE_GSC_VERIFICATION as string | undefined
+)?.trim();
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -75,6 +79,11 @@ function Router() {
 function App() {
   return (
     <HelmetProvider>
+      {GSC_VERIFICATION ? (
+        <Helmet>
+          <meta name="google-site-verification" content={GSC_VERIFICATION} />
+        </Helmet>
+      ) : null}
       <ErrorBoundary>
         <ThemeProvider defaultTheme="light">
           <ScrollToTop />

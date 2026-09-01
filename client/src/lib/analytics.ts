@@ -2,24 +2,30 @@
  * Analytics & ad-conversion helpers (GA4 + Google Ads + Meta Pixel).
  *
  * ──────────────────────────────────────────────────────────────────────────
- * SETUP: replace the placeholder IDs below with your real ones, then redeploy.
- *   - GA4_ID                 → Google Analytics 4 Measurement ID  (G-XXXXXXXXXX)
- *   - GOOGLE_ADS_ID          → Google Ads tag ID                  (AW-XXXXXXXXX)
- *   - GOOGLE_ADS_LEAD_LABEL  → Conversion label for "lead" action (from Google Ads)
- *   - META_PIXEL_ID          → Meta (Facebook) Pixel ID           (numeric)
+ * SETUP — no code change needed. Set these as environment variables in Vercel
+ * (Project → Settings → Environment Variables), then redeploy:
  *
- * Until the placeholders are replaced, NOTHING is loaded or sent — so the site
- * stays clean and no bogus requests fire. The loader and the trackers all check
- * `*Configured()` first.
+ *   VITE_GA4_ID                → GA4 Measurement ID            (G-XXXXXXXXXX)
+ *   VITE_GOOGLE_ADS_ID         → Google Ads tag ID             (AW-XXXXXXXXX)
+ *   VITE_GOOGLE_ADS_LEAD_LABEL → Google Ads "lead" conversion label
+ *   VITE_META_PIXEL_ID         → Meta (Facebook) Pixel ID      (numeric)
+ *
+ * Until an ID is provided, NOTHING is loaded or sent for that vendor — the site
+ * stays clean and no bogus requests fire. Every loader and tracker checks
+ * `*Configured()` first. The string constants below are only fallbacks for
+ * local/manual use; prefer the env vars.
  * ──────────────────────────────────────────────────────────────────────────
  */
 
-export const GA4_ID = "G-XXXXXXXXXX";
-export const GOOGLE_ADS_ID = "AW-XXXXXXXXX";
-export const GOOGLE_ADS_LEAD_LABEL = "XXXXXXXXXXXXXXXXX";
-export const META_PIXEL_ID = "XXXXXXXXXXXXXXX";
+const env = import.meta.env as Record<string, string | undefined>;
 
-const isPlaceholder = (v: string) => v.includes("XXXX");
+export const GA4_ID = env.VITE_GA4_ID || "G-XXXXXXXXXX";
+export const GOOGLE_ADS_ID = env.VITE_GOOGLE_ADS_ID || "AW-XXXXXXXXX";
+export const GOOGLE_ADS_LEAD_LABEL =
+  env.VITE_GOOGLE_ADS_LEAD_LABEL || "XXXXXXXXXXXXXXXXX";
+export const META_PIXEL_ID = env.VITE_META_PIXEL_ID || "XXXXXXXXXXXXXXX";
+
+const isPlaceholder = (v: string) => !v || v.includes("XXXX");
 
 export const gaConfigured = () => !isPlaceholder(GA4_ID);
 export const adsConfigured = () =>
@@ -45,7 +51,7 @@ export function trackEvent(name: string, params: Record<string, unknown> = {}) {
 
 /**
  * Fire a "lead" conversion across GA4, Google Ads, and Meta Pixel.
- * Call on successful contact-form submit (and optionally on phone-CTA clicks).
+ * Call on successful contact-form submit (see ThankYou.tsx).
  */
 export function trackLead(context: string = "contact_form") {
   trackEvent("generate_lead", { method: context });
@@ -61,8 +67,13 @@ export function trackLead(context: string = "contact_form") {
   }
 }
 
-/** Fire a phone-call intent event (call on tel: link clicks). */
-export function trackCallClick(location: string = "header") {
+/**
+ * Fire a phone-call intent event. Wired automatically to every `tel:` link on
+ * the site by the delegated click listener in initAnalytics(); `location`
+ * defaults to the current page path but a link may override it with a
+ * `data-call-location` attribute.
+ */
+export function trackCallClick(location: string = "unknown") {
   trackEvent("phone_call_click", { location });
   if (pixelConfigured() && typeof window.fbq === "function") {
     window.fbq("track", "Contact", { method: "phone", location });
@@ -76,10 +87,27 @@ function loadScript(src: string) {
   document.head.appendChild(s);
 }
 
+/** Attach one delegated listener that reports clicks on any `tel:` link. */
+function wireTelClickTracking() {
+  if (typeof document === "undefined") return;
+  document.addEventListener(
+    "click",
+    e => {
+      const target = e.target as HTMLElement | null;
+      const link = target?.closest?.(
+        'a[href^="tel:"]'
+      ) as HTMLAnchorElement | null;
+      if (!link) return;
+      trackCallClick(link.dataset.callLocation || window.location.pathname);
+    },
+    { capture: true }
+  );
+}
+
 /**
  * Injects GA4 / Google Ads / Meta Pixel scripts — but ONLY for IDs that have
- * been filled in. Safe to call once on app startup. No-ops entirely while every
- * ID is still a placeholder, so nothing loads on a fresh clone.
+ * been configured. Safe to call once on app startup. No-ops entirely while no
+ * IDs are set, so nothing loads on a fresh clone.
  */
 export function initAnalytics() {
   if (typeof window === "undefined") return;
@@ -94,6 +122,9 @@ export function initAnalytics() {
 
     const primaryId = gaConfigured() ? GA4_ID : GOOGLE_ADS_ID;
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${primaryId}`);
+    // Page views for this SPA are handled by GA4 Enhanced Measurement, which
+    // detects wouter's history.pushState navigation on its own — no manual
+    // page_view calls needed. Keep Enhanced Measurement's "Page views" on.
     if (gaConfigured()) window.gtag("config", GA4_ID);
     if (adsConfigured()) window.gtag("config", GOOGLE_ADS_ID);
   }
@@ -117,4 +148,6 @@ export function initAnalytics() {
     fbq("init", META_PIXEL_ID);
     fbq("track", "PageView");
   }
+
+  if (gaConfigured() || pixelConfigured()) wireTelClickTracking();
 }
