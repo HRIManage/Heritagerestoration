@@ -4,8 +4,7 @@
 ## About
 Heritage Restoration Inc. is a full-service property restoration contractor serving Western Washington State. Founded in 2004 and locally owned, we handle the complete complexity of disaster recovery for homeowners — from emergency response and mitigation through full structural reconstruction.
 
-- **Office (non-emergency):** (360) 345-1015
-- **24/7 Emergency Hotline:** (360) 456-1886
+- **Phone (24/7):** (360) 345-1015
 - **Email:** office@firewaterstorm.com
 - **Emergency:** 24/7 dispatch available
 - **Response time:** 60 minutes in service area
@@ -58,6 +57,5 @@ Heritage Restoration serves cities along the I-5 corridor across Western Washing
 
 ## Contact
 - [Contact Form](/contact)
-- Office (non-emergency): [(360) 345-1015](tel:+13603451015)
-- 24/7 Emergency Hotline: [(360) 456-1886](tel:+13604561886)
+- Phone (24/7): [(360) 345-1015](tel:+13603451015)
 - Email: [office@firewaterstorm.com](mailto:office@firewaterstorm.com)

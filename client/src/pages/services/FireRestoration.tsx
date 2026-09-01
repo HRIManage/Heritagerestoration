@@ -56,7 +56,7 @@ export default function FireRestoration() {
         />
         <meta
           property="og:image"
-          content="https://www.firewaterstorm.com/photo/Monnett Fire After.jpg"
+          content="https://www.firewaterstorm.com/photo/Monnett%20Fire%20After.jpg"
         />
         <script type="application/ld+json">
           {JSON.stringify(FIRE_SERVICE_SCHEMA)}
@@ -118,7 +118,7 @@ export default function FireRestoration() {
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
               <h2 className="text-3xl md:text-4.5xl font-bold text-[#3F4143] mt-2 font-serif">
-                Services Section
+                Our Fire Damage Restoration Services
               </h2>
             </FadeIn>
 
@@ -132,6 +132,8 @@ export default function FireRestoration() {
                   <img
                     src={services[0].img}
                     alt={services[0].title}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 </div>
@@ -163,6 +165,8 @@ export default function FireRestoration() {
                         <img
                           src={item.img}
                           alt={item.title}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -475,7 +479,7 @@ export default function FireRestoration() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:13604561886"
+                    href="tel:+13603451015"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

@@ -41,10 +41,10 @@ export default function ThankYou() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="tel:+13604561886"
+                href="tel:+13603451015"
                 className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.14em] text-xs font-black transition-colors"
               >
-                <Phone size={16} /> 24/7 Hotline: (360) 456-1886
+                <Phone size={16} /> 24/7 Hotline: (360) 345-1015
               </a>
               <Link
                 href="/"

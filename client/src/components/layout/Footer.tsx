@@ -54,6 +54,7 @@ export default function Footer({
                 href="https://www.facebook.com/heritagerestorationinc/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Heritage Restoration on Facebook"
                 className="w-10 h-10 rounded-full bg-[#3F4143]/8 flex items-center justify-center hover:bg-[#8DBD42] hover:text-white transition-colors"
               >
                 <Facebook size={18} />
@@ -62,6 +63,7 @@ export default function Footer({
                 href="https://www.instagram.com/heritagerestorationwa/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Heritage Restoration on Instagram"
                 className="w-10 h-10 rounded-full bg-[#3F4143]/8 flex items-center justify-center hover:bg-[#8DBD42] hover:text-white transition-colors"
               >
                 <Instagram size={18} />
@@ -70,9 +72,9 @@ export default function Footer({
           </div>
 
           <div>
-            <h4 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
               Services
-            </h4>
+            </h2>
             <ul className="space-y-4">
               {serviceItems.map(item => (
                 <li key={item.label}>
@@ -88,9 +90,9 @@ export default function Footer({
           </div>
 
           <div>
-            <h4 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
               Resources
-            </h4>
+            </h2>
             <ul className="space-y-4">
               {resourceItems.map(item => (
                 <li key={item.label}>
@@ -114,9 +116,9 @@ export default function Footer({
           </div>
 
           <div>
-            <h4 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
               Office Locations
-            </h4>
+            </h2>
             <ul className="space-y-6 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin
@@ -184,9 +186,9 @@ export default function Footer({
 
         {/* Service Areas */}
         <div className="pt-10 mb-12 border-t border-[#3F4143]/15">
-          <h4 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+          <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
             Service Areas
-          </h4>
+          </h2>
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             {LOCATIONS.map(loc => (
               <Link

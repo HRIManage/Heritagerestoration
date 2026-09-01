@@ -149,12 +149,14 @@ function BeforeAfterSlider({
       onTouchMove={e => update(e.touches[0].clientX)}
     >
       {/* After — base layer */}
-      <img src={afterSrc} alt={afterAlt} className="absolute inset-0 w-full h-full object-cover" />
+      <img src={afterSrc} alt={afterAlt} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       {/* Before — clipped left */}
       <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${pct}%` }}>
         <img
           src={beforeSrc}
           alt={beforeAlt}
+          loading="lazy"
+          decoding="async"
           className="absolute top-0 left-0 h-full object-cover"
           style={{ width: ref.current ? `${ref.current.clientWidth}px` : "100%" }}
         />
@@ -337,6 +339,8 @@ export default function LocationPage() {
           <img
             src={HERO_IMAGE}
             alt={`Property damage restoration in ${city.full}`}
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
           />
           {/* Strong white on left fading to transparent — text stays readable */}
@@ -434,6 +438,8 @@ export default function LocationPage() {
                       <img
                         src={badge.src}
                         alt={badge.alt}
+                        loading="lazy"
+                        decoding="async"
                         className="h-28 md:h-32 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
                       />
                     </div>
@@ -527,6 +533,8 @@ export default function LocationPage() {
               <img
                 src={TRUCK_PHOTO}
                 alt={`Heritage Restoration crew on the way to a job in ${city.name}`}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-brand-linen/50 via-transparent to-transparent lg:from-brand-linen/30" />
