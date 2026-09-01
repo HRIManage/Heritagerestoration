@@ -6,11 +6,11 @@ import Layout from "@/components/layout/Layout";
 import FadeIn from "@/components/ui/FadeIn";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
-
-// Web3Forms — free, unlimited, no backend required (works on static Vercel hosting).
-// Get a free access key at https://web3forms.com (enter office@firewaterstorm.com)
-// and paste it below. Submissions are emailed to that address.
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+import {
+  isWeb3FormsConfigured,
+  mailtoFallback,
+  submitIntake,
+} from "@/lib/web3forms";
 
 export default function Contact() {
   const [, setLocation] = useLocation();
@@ -45,48 +45,25 @@ export default function Contact() {
     )?.checked;
     if (botField) return;
 
-    // If no key is configured yet, fall back to mailto so the form still works.
-    if (WEB3FORMS_ACCESS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
-      const subject = encodeURIComponent(
-        `Intake Inquiry - ${formData.service || "General"} - ${formData.name}`
-      );
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
-      );
-      window.location.href = `mailto:office@firewaterstorm.com?subject=${subject}&body=${body}`;
+    // If no Web3Forms key is configured, fall back to mailto so the form still works.
+    if (!isWeb3FormsConfigured()) {
+      mailtoFallback(formData);
       return;
     }
 
     setSending(true);
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `New Intake Inquiry - ${formData.service || "General"} - ${formData.name}`,
-          from_name: "Heritage Restoration Website",
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          service: formData.service,
-          message: formData.message,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
+      const success = await submitIntake(formData);
+      if (success) {
         setLocation("/thank-you");
       } else {
         setError(
-          "Something went wrong submitting your request. Please call us at (360) 456-1886."
+          "Something went wrong submitting your request. Please call us at (360) 345-1015."
         );
       }
     } catch {
       setError(
-        "Network error. Please try again or call us directly at (360) 456-1886."
+        "Network error. Please try again or call us directly at (360) 345-1015."
       );
     } finally {
       setSending(false);
@@ -115,7 +92,7 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             name: "Heritage Restoration",
-            telephone: "+1-360-456-1886",
+            telephone: "+1-360-345-1015",
             email: "office@firewaterstorm.com",
             address: [
               {
@@ -236,7 +213,7 @@ export default function Contact() {
 
                       {/* Phone CTA */}
                       <a
-                        href="tel:+13604561886"
+                        href="tel:+13603451015"
                         className="flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-5 py-4 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
                       >
                         <div className="w-10 h-10 rounded-full bg-[#145126]/15 flex items-center justify-center flex-shrink-0">
@@ -247,7 +224,7 @@ export default function Contact() {
                             Call Now — Free
                           </p>
                           <p className="text-[22px] font-black tracking-tight leading-none">
-                            (360) 456-1886
+                            (360) 345-1015
                           </p>
                         </div>
                       </a>

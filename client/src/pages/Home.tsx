@@ -279,7 +279,9 @@ function PhotoDeck() {
           >
             <img
               src={img}
-              alt={`Gallery image ${idx + 1}`}
+              alt={`Heritage Restoration contents cleaning and pack-out work, photo ${idx + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover rounded-none pointer-events-none"
             />
             {stackPos === 0 && (
@@ -702,7 +704,9 @@ export default function Home() {
           <img
             data-gsap-hero-image
             src="/photo/hero-tarp.jpg"
-            alt="Heritage Restoration - Tarping damage recovery"
+            alt="Heritage Restoration crew tarping storm damage on a Washington home"
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover object-[80%_bottom]"
           />
           {/* Left column: heavy white fade for text legibility */}

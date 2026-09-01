@@ -8,59 +8,12 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
 
-    <!-- Primary SEO -->
-    <title>
-      Heritage Restoration | Fire, Water &amp; Storm Damage Experts – Washington
-      State
-    </title>
-    <meta
-      name="description"
-      content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute response, direct insurance billing. Serving Lacey, Tacoma, Chehalis, Puyallup &amp; more since 2004."
-    />
-    <meta
-      name="keywords"
-      content="fire damage restoration Washington, water damage restoration Tacoma, storm damage repair Olympia, emergency restoration 24/7, mold remediation Thurston County, insurance claims restoration, IICRC certified contractor Washington"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Heritage Restoration Inc." />
-    <!-- Canonical is managed per-page via react-helmet-async (see seo pages).
-         Pages without an explicit canonical self-canonicalize to their own URL. -->
-
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.firewaterstorm.com/" />
-    <meta property="og:site_name" content="Heritage Restoration" />
-    <meta
-      property="og:title"
-      content="Heritage Restoration | 24/7 Fire, Water &amp; Storm Damage Experts"
-    />
-    <meta
-      property="og:description"
-      content="Professional fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute emergency response, direct insurance billing since 2004."
-    />
-    <meta
-      property="og:image"
-      content="https://www.firewaterstorm.com/photo/hero-new.jpg"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Heritage Restoration | 24/7 Fire, Water &amp; Storm Damage Experts"
-    />
-    <meta
-      name="twitter:description"
-      content="Professional fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute emergency response."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.firewaterstorm.com/photo/hero-new.jpg"
-    />
+    <!-- SEO tags (title, meta description, canonical, robots, Open Graph, Twitter)
+         are set per-page at runtime via react-helmet-async / <SEOHead>. They are
+         intentionally NOT declared here: the Helmet build in use appends rather
+         than replaces, so any copy in this file becomes a duplicate on every
+         route (two <title>, two descriptions, two of every OG tag, etc.).
+         A build-time prerender step would let these move back into static HTML. -->
 
     <!-- Favicon (drop favicon.png into /public to activate) -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -74,12 +27,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Heritage Restoration" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-
-    <!-- Geo targeting -->
-    <meta name="geo.region" content="US-WA" />
-    <meta name="geo.placename" content="Lacey, Washington" />
-    <meta name="geo.position" content="47.034;-122.823" />
-    <meta name="ICBM" content="47.034, -122.823" />
 
     <!-- Sitemap & AI discovery -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -205,7 +152,6 @@
     <!-- Performance: preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://images.squarespace-cdn.com" />
 
     <!-- Fonts -->
     <link

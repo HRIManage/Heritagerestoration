@@ -114,8 +114,7 @@ export default function Privacy() {
         <br />
         8695 Martin Way E, Unit 103, Lacey, WA 98516
         <br />
-        Office: <a href="tel:+13603451015">(360) 345-1015</a> · 24/7 Emergency:{" "}
-        <a href="tel:+13604561886">(360) 456-1886</a>
+        Phone (24/7): <a href="tel:+13603451015">(360) 345-1015</a>
         <br />
         Email:{" "}
         <a href="mailto:office@firewaterstorm.com">office@firewaterstorm.com</a>
