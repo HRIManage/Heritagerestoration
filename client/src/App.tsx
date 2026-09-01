@@ -1,10 +1,16 @@
-import { HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { trackPageView } from "./lib/analytics";
 
-function ScrollToTop() {
+const GSC_VERIFICATION = (
+  import.meta.env.VITE_GSC_VERIFICATION as string | undefined
+)?.trim();
+
+/** Runs on every client-side route change: reset scroll + send a GA4 page view. */
+function RouteEffects() {
   const [location] = useLocation();
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
@@ -17,7 +23,15 @@ function ScrollToTop() {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 5);
 
-    return () => clearTimeout(timer);
+    // GA4 page view — this is an SPA, so the automatic page_view is disabled in
+    // initAnalytics() and we send one per route change here. Deferred a tick so
+    // document.title reflects the new page's <Helmet>.
+    const pv = setTimeout(() => trackPageView(location), 60);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(pv);
+    };
   }, [location]);
   return null;
 }
@@ -75,9 +89,14 @@ function Router() {
 function App() {
   return (
     <HelmetProvider>
+      {GSC_VERIFICATION ? (
+        <Helmet>
+          <meta name="google-site-verification" content={GSC_VERIFICATION} />
+        </Helmet>
+      ) : null}
       <ErrorBoundary>
         <ThemeProvider defaultTheme="light">
-          <ScrollToTop />
+          <RouteEffects />
           <Router />
         </ThemeProvider>
       </ErrorBoundary>
