@@ -50,21 +50,6 @@ export function trackEvent(name: string, params: Record<string, unknown> = {}) {
 }
 
 /**
- * Send a manual GA4 page_view. Called on every client-side route change
- * (see App.tsx) because a single-page app only triggers one automatic
- * page_view — on the initial load — which we disable in initAnalytics().
- */
-export function trackPageView(path: string) {
-  if (gaConfigured() && typeof window.gtag === "function") {
-    window.gtag("event", "page_view", {
-      page_path: path,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
-  }
-}
-
-/**
  * Fire a "lead" conversion across GA4, Google Ads, and Meta Pixel.
  * Call on successful contact-form submit (see ThankYou.tsx).
  */
@@ -137,10 +122,10 @@ export function initAnalytics() {
 
     const primaryId = gaConfigured() ? GA4_ID : GOOGLE_ADS_ID;
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${primaryId}`);
-    // send_page_view:false — this is an SPA, so page views are sent manually
-    // on every route change via trackPageView() (see App.tsx).
-    if (gaConfigured())
-      window.gtag("config", GA4_ID, { send_page_view: false });
+    // Page views for this SPA are handled by GA4 Enhanced Measurement, which
+    // detects wouter's history.pushState navigation on its own — no manual
+    // page_view calls needed. Keep Enhanced Measurement's "Page views" on.
+    if (gaConfigured()) window.gtag("config", GA4_ID);
     if (adsConfigured()) window.gtag("config", GOOGLE_ADS_ID);
   }
 

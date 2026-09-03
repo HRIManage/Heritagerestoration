@@ -3,14 +3,12 @@ import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { trackPageView } from "./lib/analytics";
 
 const GSC_VERIFICATION = (
   import.meta.env.VITE_GSC_VERIFICATION as string | undefined
 )?.trim();
 
-/** Runs on every client-side route change: reset scroll + send a GA4 page view. */
-function RouteEffects() {
+function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
@@ -23,15 +21,7 @@ function RouteEffects() {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }, 5);
 
-    // GA4 page view — this is an SPA, so the automatic page_view is disabled in
-    // initAnalytics() and we send one per route change here. Deferred a tick so
-    // document.title reflects the new page's <Helmet>.
-    const pv = setTimeout(() => trackPageView(location), 60);
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(pv);
-    };
+    return () => clearTimeout(timer);
   }, [location]);
   return null;
 }
@@ -96,7 +86,7 @@ function App() {
       ) : null}
       <ErrorBoundary>
         <ThemeProvider defaultTheme="light">
-          <RouteEffects />
+          <ScrollToTop />
           <Router />
         </ThemeProvider>
       </ErrorBoundary>
