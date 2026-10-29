@@ -101,6 +101,12 @@ export default function Header({
     { label: "Contents Services", href: "/services/contents-services" },
   ];
 
+  const commercialItems = [
+    { label: "Commercial Overview", href: "/commercial" },
+    { label: "Commercial Fire Restoration", href: "/commercial/fire-restoration" },
+    { label: "Commercial Water Restoration", href: "/commercial/water-restoration" },
+  ];
+
   const resourceItems = [
     { label: "Our Projects", href: "/projects" },
     { label: "FAQ", href: "/resources/faq", handler: onFaqClick },
@@ -118,25 +124,28 @@ export default function Header({
         ? location === "/"
         : location.startsWith(href)
       : false;
-    return `px-4 py-2 text-[15px] uppercase font-extrabold transition-colors relative group whitespace-nowrap tracking-[0.08em] flex items-center gap-1.5 ${isActive ? "text-[#8DBD42]" : "text-white/90 hover:text-[#8DBD42]"}`;
+    return `px-2 xl:px-2.5 2xl:px-3 min-[1900px]:px-4 py-2 text-[12px] xl:text-[13px] 2xl:text-[14px] min-[1900px]:text-[15px] uppercase font-extrabold transition-colors relative group whitespace-nowrap tracking-[0.06em] min-[1900px]:tracking-[0.08em] flex items-center gap-1.5 ${isActive ? "text-[#8DBD42]" : "text-white/90 hover:text-[#8DBD42]"}`;
   };
 
   const dropdownPanelCls =
     "absolute top-[calc(100%+14px)] left-0 rounded-2xl bg-white shadow-[0_30px_70px_rgba(0,0,0,0.22)] border border-neutral-200 z-50 origin-top py-2";
 
-  // Desktop logo styles (parallelogram design)
+  // Desktop logo styles (parallelogram design). The panel narrows between
+  // 1024px and 1280px so the full menu still fits on small laptops.
+  const logoPanel = "max(260px, min(416px, 100% - 864px), 50% - 224px)";
   const logoContainerStyle = {
-    width: "calc(max(416px, 50% - 224px))",
+    width: `calc(${logoPanel})`,
     clipPath: "polygon(0 0, 100% 0, calc(100% - 48px) 100%, 0 100%)",
   };
   const greenAccentStyle = {
-    width: "calc(max(426px, 50% - 214px))",
+    width: `calc(${logoPanel} + 10px)`,
     clipPath: "polygon(0 0, 100% 0, calc(100% - 48px) 100%, 0 100%)",
   };
-  const logoStyle = { left: "calc(max(212px, 50% - 428px))" };
+  // Reserves the logo panel's width (plus a little air) ahead of the link row.
+  const navSpacerStyle = { width: `calc(${logoPanel} + 12px)` };
 
   const navHeight = scrolled ? "h-[72px]" : "h-[108px]";
-  const logoHeight = scrolled ? "h-[58px]" : "h-[94px]";
+  const logoHeight = scrolled ? "h-[58px]" : "h-[72px] xl:h-[94px]";
 
   const handleResourceClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -156,11 +165,11 @@ export default function Header({
           {/* Desktop left: phone + email + tagline | Mobile: live tagline */}
           <div className="flex items-center gap-4">
             <a
-              href="tel:+13603451015"
+              href="tel:+13604561886"
               className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors"
             >
               <Phone size={15} />
-              <span>(360) 345-1015</span>
+              <span>(360) 456-1886</span>
             </a>
             <span className="text-white/30 hidden sm:block">|</span>
             <a
@@ -170,8 +179,8 @@ export default function Header({
               <Mail size={15} />
               <span>office@firewaterstorm.com</span>
             </a>
-            <span className="text-white/30 hidden lg:block">|</span>
-            <span className="hidden lg:flex items-center gap-2 text-[15px] font-semibold tracking-[0.06em] text-white/95">
+            <span className="text-white/30 hidden xl:block">|</span>
+            <span className="hidden xl:flex items-center gap-2 text-[15px] font-semibold tracking-[0.06em] text-white/95">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse inline-block" />
               Full Service Restoration – 24/7 Emergency Response
             </span>
@@ -184,7 +193,7 @@ export default function Header({
           {/* Right side: social icons on desktop | red dispatch button on mobile */}
           <div className="flex items-stretch sm:items-center gap-3">
             <a
-              href="tel:+13603451015"
+              href="tel:+13604561886"
               className="sm:hidden relative flex items-center gap-1.5 bg-[#E32B2B] text-white px-4 font-black text-[12px] uppercase tracking-[0.08em] overflow-hidden"
             >
               <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-30 pointer-events-none" />
@@ -327,10 +336,33 @@ export default function Header({
                             {item.label}
                           </Link>
                         ))}
+                        <div className="pl-10 pr-6 pt-4 pb-1 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42]">
+                          Commercial
+                        </div>
+                        {commercialItems.map(item => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
+                          >
+                            <ChevronRight
+                              size={14}
+                              className="text-[#8DBD42] flex-shrink-0"
+                            />
+                            {item.label}
+                          </Link>
+                        ))}
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
+
+                <Link
+                  href="/commercial"
+                  className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
+                >
+                  Commercial
+                </Link>
 
                 {/* Resources accordion */}
                 <div>
@@ -392,7 +424,7 @@ export default function Header({
               {/* CTA at bottom of menu */}
               <div className="p-4 grid grid-cols-2 gap-3 border-t border-white/10">
                 <a
-                  href="tel:+13603451015"
+                  href="tel:+13604561886"
                   className="flex items-center justify-center gap-2 bg-[#8DBD42] text-white py-3.5 font-black text-[13px] uppercase tracking-wider"
                 >
                   <Phone size={14} /> Call Now
@@ -411,7 +443,7 @@ export default function Header({
 
       {/* ── DESKTOP NAV (lg+) ── */}
       <nav
-        className={`hidden lg:block left-0 right-0 z-40 ${
+        className={`hidden lg:block left-0 right-0 z-40 overflow-x-clip ${
           scrolled ? "fixed top-0" : "absolute top-11"
         }`}
         style={{
@@ -443,8 +475,7 @@ export default function Header({
           >
             <Link
               href="/"
-              className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400`}
-              style={logoStyle}
+              className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400 left-[calc(100%_-_236px)] xl:left-[max(212px,calc(50%_-_428px))]`}
             >
               <img
                 src={LOGO}
@@ -454,10 +485,10 @@ export default function Header({
             </Link>
           </div>
 
-          <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between h-full relative z-30">
-            <div className="w-[410px] flex-shrink-0" />
-            <div className="flex items-center gap-1 xl:gap-3 h-full">
-              <Link href="/" className={navLinkCls("/")}>
+          <div className="pr-6 flex items-center justify-between h-full relative z-30">
+            <div className="flex-shrink-0" style={navSpacerStyle} />
+            <div className="flex items-center gap-1 min-[1900px]:gap-3 h-full">
+              <Link href="/" className={`${navLinkCls("/")} hidden 2xl:flex`}>
                 Home
                 <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
               </Link>
@@ -496,7 +527,7 @@ export default function Header({
                       className={`${dropdownPanelCls} w-[340px]`}
                     >
                       <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">
-                        Service Solutions
+                        Residential &amp; Commercial
                       </div>
                       {serviceItems.map(item => (
                         <Link
@@ -514,10 +545,34 @@ export default function Header({
                           />
                         </Link>
                       ))}
+                      <div className="px-5 pt-3 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-y border-neutral-200 mt-1 mb-1">
+                        Commercial Properties
+                      </div>
+                      {commercialItems.map(item => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setDesktopServicesOpen(false)}
+                          className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-3 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group flex items-center justify-between gap-3"
+                        >
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                            {item.label}
+                          </span>
+                          <ChevronRight
+                            size={15}
+                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                          />
+                        </Link>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
+
+              <Link href="/commercial" className={navLinkCls("/commercial")}>
+                Commercial
+                <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
+              </Link>
 
               {/* Resources dropdown */}
               <div
@@ -593,11 +648,11 @@ export default function Header({
               </Link>
             </div>
 
-            <div className="relative flex items-center ml-4 flex-shrink-0">
+            <div className="relative flex items-center ml-2 xl:ml-4 flex-shrink-0">
               <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-25 pointer-events-none" />
               <a
-                href="tel:+13603451015"
-                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-5 py-2.5 uppercase tracking-[0.1em] text-sm font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
+                href="tel:+13604561886"
+                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-3 xl:px-4 2xl:px-5 py-2.5 uppercase tracking-[0.1em] text-[11px] xl:text-xs 2xl:text-sm font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
               >
                 <Phone size={14} />
                 24/7 Dispatch

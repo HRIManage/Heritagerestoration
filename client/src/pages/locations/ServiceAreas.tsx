@@ -208,7 +208,7 @@ export default function ServiceAreas() {
                       <p className="text-xs text-[#3F4143]/60 font-sans">{NORTH_OFFICE.city}</p>
                     </div>
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="bg-[#3F4143] hover:bg-[#8DBD42] text-white hover:text-[#1a1c1e] text-xs font-bold uppercase tracking-wider px-4 py-2.5 transition-colors flex items-center gap-2"
                     >
                       <Phone size={12} className="animate-wiggle-hover" />
@@ -268,7 +268,7 @@ export default function ServiceAreas() {
                       <p className="text-xs text-[#3F4143]/60 font-sans">{SOUTH_OFFICE.city}</p>
                     </div>
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="bg-[#3F4143] hover:bg-[#8DBD42] text-white hover:text-[#1a1c1e] text-xs font-bold uppercase tracking-wider px-4 py-2.5 transition-colors flex items-center gap-2"
                     >
                       <Phone size={12} className="animate-wiggle-hover" />
@@ -361,7 +361,7 @@ export default function ServiceAreas() {
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
                               <a
-                                href="tel:+13603451015"
+                                href="tel:+13604561886"
                                 className="inline-flex items-center gap-1.5 bg-[#145126] px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white"
                               >
                                 <Phone size={12} /> Call Dispatch
@@ -724,10 +724,10 @@ export default function ServiceAreas() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="inline-flex items-center justify-center gap-2.5 bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] px-8 py-4 font-black uppercase tracking-[0.14em] text-[13px] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_20px_rgba(141,189,66,0.4)] active:translate-y-0"
                     >
-                      <Phone size={15} className="stroke-[2.5]" /> Call (360) 345-1015
+                      <Phone size={15} className="stroke-[2.5]" /> Call (360) 456-1886
                     </a>
                     <Link
                       href="/contact"
@@ -762,8 +762,8 @@ export default function ServiceAreas() {
                 },
                 {
                   src: "/photo/warranty-badge-new-3.png",
-                  alt: "5-Year Warranty",
-                  title: "5-Year Warranty",
+                  alt: "5-Year Workmanship Warranty",
+                  title: "5-Year Workmanship Warranty",
                 },
               ].map((badge) => (
                 <div key={badge.alt} className="flex flex-col items-center gap-4">

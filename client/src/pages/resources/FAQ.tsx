@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Plus, Minus, Phone } from "lucide-react";
@@ -303,9 +303,9 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question:
-          "Do you offer a warranty on your structural restoration and repair work?",
+          "Do you offer a warranty on your work?",
         answer:
-          "Yes. We back our craftsmanship, structural repairs, and reconstruction services with a comprehensive 5-year warranty, providing you with long-term peace of mind and verified property value retention.",
+          "Yes. We back our work with a 5-year warranty on workmanship. Written warranty terms are available on request.",
       },
       {
         question:
@@ -432,6 +432,7 @@ export default function FAQ() {
           href="https://www.firewaterstorm.com/resources/faq"
         />
         <meta property="og:title" content="FAQ | Heritage Restoration" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/hero-new.jpg" />
         <meta
           property="og:description"
           content="Answers to 27 common questions about restoration services, insurance claims, mold remediation, and homeowner rights across Western Washington."
@@ -631,11 +632,11 @@ export default function FAQ() {
 
                 <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     id="faq-call-cta"
                     className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none"
                   >
-                    <Phone size={14} /> Call 360-345-1015
+                    <Phone size={14} /> Call 360-456-1886
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"

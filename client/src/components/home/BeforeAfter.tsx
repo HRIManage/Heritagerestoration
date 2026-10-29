@@ -59,7 +59,7 @@ export default function BeforeAfter() {
             restored, premium custom home.
           </p>
           <a
-            href="tel:3604561015"
+            href="tel:3604561886"
             className="inline-flex items-center gap-1.5 text-brand-green hover:text-brand-charcoal font-sans font-semibold text-xs tracking-wider uppercase transition-colors"
           >
             Schedule a Call Now &nbsp;→

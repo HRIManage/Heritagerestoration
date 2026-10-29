@@ -101,10 +101,10 @@ export default function ContentsServices() {
 
                 <FadeIn delay={0.2} className="pt-2" direction="up">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#72a232] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5 rounded-none"
                   >
-                    Contact Us: (360) 345-1015
+                    Contact Us: (360) 456-1886
                   </a>
                 </FadeIn>
               </div>
@@ -408,7 +408,7 @@ export default function ContentsServices() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

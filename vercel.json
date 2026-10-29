@@ -2,7 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "installCommand": "pnpm install",
-  "buildCommand": "vite build",
+  "buildCommand": "vite build && node scripts/prerender.mjs",
+  "cleanUrls": true,
   "outputDirectory": "dist/public",
   "redirects": [
     { "source": "/contact-us", "destination": "/contact", "permanent": true },
@@ -39,7 +40,7 @@
     { "source": "/fire-water-damage-tumwater-wa", "destination": "/service-area/tumwater-wa", "permanent": true },
     { "source": "/apply", "destination": "/404", "permanent": false }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/spa.html" }],
   "headers": [
     {
       "source": "/assets/(.*)",

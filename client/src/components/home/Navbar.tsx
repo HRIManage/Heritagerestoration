@@ -150,7 +150,7 @@ export default function Navbar() {
                   }}
                 >
                   <a
-                    href="tel:3604561015"
+                    href="tel:3604561886"
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -207,7 +207,7 @@ export default function Navbar() {
                       }}
                       className="group-hover:text-brand-green"
                     >
-                      (360) 456-1015
+                      (360) 456-1886
                     </span>
                   </a>
                 </div>
@@ -452,7 +452,7 @@ export default function Navbar() {
 
               {/* Quick Contact CTA Button - Primary Button Style: Charcoal background, linen text, hover green, 0px radius */}
               <a
-                href="tel:3604561015"
+                href="tel:3604561886"
                 style={{ borderRadius: 0 }}
                 className="inline-flex items-center justify-center gap-8 bg-[#3f4143] text-white font-sans font-semibold text-xs tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:bg-[#8DBD42] hover:text-[#2b2d2f] premium-btn-charcoal group"
               >
@@ -511,7 +511,7 @@ export default function Navbar() {
               style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <a
-                href="tel:3604561015"
+                href="tel:3604561886"
                 style={{
                   width: 38,
                   height: 38,
@@ -659,7 +659,7 @@ export default function Navbar() {
         })}
 
         <a
-          href="tel:3604561015"
+          href="tel:3604561886"
           style={{
             marginTop: "0.5rem",
             backgroundColor: "var(--color-brand-charcoal)",
@@ -679,7 +679,7 @@ export default function Navbar() {
           }}
           className="hover:bg-brand-green hover:text-brand-linen group"
         >
-          Call 24/7: (360) 456-1015
+          Call 24/7: (360) 456-1886
         </a>
       </div>
     </>

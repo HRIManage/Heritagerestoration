@@ -154,7 +154,7 @@ export const LOCATIONS: CityLocation[] = [
     ],
     landmark: "American Lake and Joint Base Lewis-McChord",
     blurb:
-      "Serving the Lakewood community and the many military families around JBLM, our crews handle everything from waterfront homes on American Lake to multi-family properties — with direct insurance billing and a 5-year warranty.",
+      "Serving the Lakewood community and the many military families around JBLM, our crews handle everything from waterfront homes on American Lake to multi-family properties — with direct insurance billing and a 5-year warranty on workmanship.",
     lat: 47.1718,
     lng: -122.5185,
   },
@@ -431,7 +431,7 @@ export const LOCATIONS: CityLocation[] = [
     ],
     landmark: "Newaukum River and I-5 Exit 72",
     blurb:
-      "Napavine sits in the heart of Lewis County between our Chehalis office and the I-5 corridor, making it one of our fastest response areas in the south. Heritage handles fire, water, and storm restoration here with the same certified team and 5-year warranty.",
+      "Napavine sits in the heart of Lewis County between our Chehalis office and the I-5 corridor, making it one of our fastest response areas in the south. Heritage handles fire, water, and storm restoration here with the same certified team and 5-year warranty on workmanship.",
     lat: 46.5694,
     lng: -122.9076,
   },
@@ -473,7 +473,7 @@ export const LOCATIONS: CityLocation[] = [
     ],
     landmark: "Oakland Bay and the Mason County Courthouse",
     blurb:
-      "Shelton's timber heritage and Oakland Bay waterfront make it a unique restoration market — one Heritage knows well. Our North office covers Mason County with the same certified crews, direct insurance billing, and 5-year warranty that Thurston County clients rely on.",
+      "Shelton's timber heritage and Oakland Bay waterfront make it a unique restoration market — one Heritage knows well. Our North office covers Mason County with the same certified crews, direct insurance billing, and 5-year workmanship warranty that Thurston County clients rely on.",
     lat: 47.2154,
     lng: -123.0994,
   },

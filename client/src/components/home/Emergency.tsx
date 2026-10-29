@@ -135,7 +135,7 @@ export default function Emergency() {
               Request Property Security (1-800-BOARD-UP)
             </a>
             <a
-              href="tel:3604561015"
+              href="tel:3604561886"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -162,7 +162,7 @@ export default function Emergency() {
                 el.style.color = "#1a1a1a";
               }}
             >
-              Call Heritage: (360) 456-1015
+              Call Heritage: (360) 456-1886
             </a>
           </div>
         </div>

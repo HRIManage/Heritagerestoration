@@ -29,6 +29,9 @@ const SITEMAP_ROUTES = [
   "/services/water-restoration",
   "/services/storm-recovery",
   "/services/contents-services",
+  "/commercial",
+  "/commercial/fire-restoration",
+  "/commercial/water-restoration",
   "/service-areas",
   "/privacy",
   "/terms",
@@ -267,6 +270,8 @@ export default defineConfig(({ command }) => ({
     sitemap({
       hostname: BASE_URL,
       dynamicRoutes: [...SITEMAP_ROUTES],
+      // Search Console verification file and the SPA fallback shell are not pages.
+      exclude: ["/googled4d8796cc5dd4227", "/spa"],
       outDir: BUILD_OUT_DIR,
       readable: true,
       changefreq: {
@@ -281,6 +286,9 @@ export default defineConfig(({ command }) => ({
         "/services/water-restoration": 0.9,
         "/services/storm-recovery": 0.9,
         "/services/contents-services": 0.8,
+        "/commercial": 0.9,
+        "/commercial/fire-restoration": 0.9,
+        "/commercial/water-restoration": 0.9,
         "/contact": 0.8,
         "/service-areas": 0.8,
         "/projects": 0.7,

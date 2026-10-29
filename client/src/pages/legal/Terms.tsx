@@ -29,7 +29,7 @@ export default function Terms() {
         Our Site and contact forms are not a substitute for emergency services.
         If you are experiencing a life-threatening emergency, call 911. For
         urgent property damage, call us 24/7 at{" "}
-        <a href="tel:+13603451015">(360) 345-1015</a>.
+        <a href="tel:+13604561886">(360) 456-1886</a>.
       </p>
 
       <h2>Service Requests &amp; Estimates</h2>
@@ -88,7 +88,7 @@ export default function Terms() {
         <br />
         8695 Martin Way E, Unit 103, Lacey, WA 98516
         <br />
-        Phone (24/7): <a href="tel:+13603451015">(360) 345-1015</a>
+        Phone (24/7): <a href="tel:+13604561886">(360) 456-1886</a>
         <br />
         Email:{" "}
         <a href="mailto:office@firewaterstorm.com">office@firewaterstorm.com</a>

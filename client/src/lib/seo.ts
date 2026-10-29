@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SEO utilities for structured data and meta tags
  */
 
@@ -41,7 +41,7 @@ export const generateStructuredData = (
     "@context": "https://schema.org",
     "@type": type,
     name: "Heritage Restoration",
-    telephone: "+1-360-345-1015",
+    telephone: "+1-360-456-1886",
     email: "office@firewaterstorm.com",
     areaServed: "WA",
   };
@@ -56,7 +56,7 @@ export const BUSINESS_SCHEMA = {
   alternateName: "Heritage Restoration Inc.",
   description:
     "Professional 24/7 fire, water, and storm damage restoration services in Western Washington. IICRC certified, locally owned since 2004. Homeowner advocates handling insurance coordination and complete reconstruction.",
-  telephone: "+1-360-345-1015",
+  telephone: "+1-360-456-1886",
   email: "office@firewaterstorm.com",
   url: "https://www.firewaterstorm.com",
   logo: "https://www.firewaterstorm.com/photo/heritage-logo.png",
@@ -77,7 +77,7 @@ export const BUSINESS_SCHEMA = {
         postalCode: "98516",
         addressCountry: "US",
       },
-      telephone: "+1-360-345-1015",
+      telephone: "+1-360-456-1886",
     },
     {
       "@type": "Place",

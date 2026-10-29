@@ -25,7 +25,7 @@ There is **no test suite** despite `vitest` being installed and `TESTING_GUIDE.m
 ## Architecture — the big picture
 
 ### Two deploy targets, and they behave differently
-- **Vercel (production, `vercel.json`)**: builds **client only** (`vite build` → `dist/public`) and serves it as a **static SPA** — every path rewrites to `/index.html`. The Express server is **not deployed here**, so `server/index.ts` and its `/api/google-reviews` endpoint do **not** exist in production. Assume no backend when reasoning about the live site.
+- **Vercel (production, `vercel.json`)**: builds **client only** (`vite build && node scripts/prerender.mjs` → `dist/public`) and serves it as static files. `scripts/prerender.mjs` renders every sitemap route through `client/src/entry-server.tsx` into real HTML (`/a/b` → `a/b.html`, served at `/a/b` via `cleanUrls`), so crawlers/AI tools/link previews get content and per-page meta without running JS. Unknown paths rewrite to `/spa.html` (the untouched SPA shell). The browser still mounts the normal client app (`createRoot`, not hydrate). New routes only need to be in `SITEMAP_ROUTES` (vite.config.ts) to be prerendered; code that touches `window`/`document` must stay inside effects or handlers or the prerender of that route falls back to the SPA shell. The Express server is **not deployed here**, so `server/index.ts` and its `/api/google-reviews` endpoint do **not** exist in production. Assume no backend when reasoning about the live site.
 - **Self-hosted (`pnpm start`)**: runs the bundled Express server, which serves the static build *and* exposes `/api/google-reviews`.
 
 Consequence: any feature that needs a server (the Google reviews proxy) only works self-hosted. Client-side features must degrade gracefully when the API is absent.
@@ -57,7 +57,7 @@ Vite serves from `root: client/`, with path aliases: `@` → `client/src`, `@sha
 All are **optional** and only used by the self-hosted Express server for the Google reviews integration (`.env.example`): `GOOGLE_BUSINESS_PROFILE_*` (preferred, OAuth refresh-token flow) or `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID` (fallback), plus `GOOGLE_REVIEWS_CACHE_MS` / `GOOGLE_REVIEWS_LIMIT`. The app runs fully without a `.env` file.
 
 ## Business facts baked into content/schema
-Two offices: **North** — 8695 Martin Way E, Unit 103, Lacey WA 98516; **South** — 1581 N. National Ave, Chehalis WA 98532. Phone `+1-360-345-1015`, email `office@firewaterstorm.com`, operating since 2004, 24/7. These recur across `seo.ts`, `locations.ts`, and home components — update all when business details change. (Note: `PROJECT_SUMMARY.md` is partly stale — it references port 5173 and an "Auburn" office that no longer apply.)
+Two offices: **North** — 8695 Martin Way E, Unit 103, Lacey WA 98516, phone `+1-360-456-1886` (also the main 24/7 dispatch number used site-wide); **South** — 1581 N. National Ave, Chehalis WA 98532, phone `+1-360-345-1015`. `360-456-1015` is wrong — never use it. Email `office@firewaterstorm.com`, operating since 2004, 24/7. These recur across `seo.ts`, `lib/seo.ts`, `index.html`, `llms.txt`, and page components — update all when business details change. (Note: `PROJECT_SUMMARY.md` is partly stale — it references port 5173 and an "Auburn" office that no longer apply.)
 
 ---
 

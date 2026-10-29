@@ -3,7 +3,7 @@ export default function CTA() {
     <section className="w-full grid grid-cols-1 lg:grid-cols-10 border-b border-brand-stone">
       {/* Left side: Testimonial & Contact Callout (60% width on desktop) */}
       <a
-        href="tel:3604561015"
+        href="tel:3604561886"
         style={{ borderRadius: 0 }}
         className="lg:col-span-6 bg-brand-moss p-10 md:p-24 flex flex-col justify-between items-start text-left group cursor-pointer transition-colors duration-300 hover:bg-[#46543D]"
       >

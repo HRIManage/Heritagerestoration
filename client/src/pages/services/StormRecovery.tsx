@@ -323,7 +323,7 @@ export default function StormRecovery() {
                 },
                 {
                   title: "Warranty Guarantee",
-                  desc: "5-year comprehensive warranty on all structural restoration work.",
+                  desc: "5-year warranty on workmanship.",
                 },
                 {
                   title: "Local Presence",
@@ -395,7 +395,7 @@ export default function StormRecovery() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

@@ -97,6 +97,10 @@ export default function BillOfRights() {
     <Layout>
       <Helmet>
         <title>Homeowner Bill of Rights | Heritage Restoration</title>
+        <meta property="og:title" content="Homeowner Bill of Rights | Heritage Restoration" />
+        <link rel="canonical" href="https://www.firewaterstorm.com/resources/bill-of-rights" />
+        <meta property="og:url" content="https://www.firewaterstorm.com/resources/bill-of-rights" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/bill-of-rights-hero.jpg" />
         <meta
           name="description"
           content="An educational overview of 12 provisions commonly found in standard homeowner insurance policies after property damage. General information from Heritage Restoration — not legal advice."
@@ -365,12 +369,12 @@ export default function BillOfRights() {
                   className="flex flex-wrap gap-4 justify-center font-sans"
                 >
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     id="bor-call-cta"
                     className="bg-[#8DBD42] hover:bg-[#7dac35] text-[#1a1c1e] font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 premium-btn group"
                   >
                     <Phone size={14} className="animate-wiggle-hover" />
-                    Call 360-345-1015
+                    Call 360-456-1886
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"

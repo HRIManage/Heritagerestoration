@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Calendar, User, ArrowRight, Phone } from "lucide-react";
 import { useRef } from "react";
@@ -60,6 +60,10 @@ export default function Blog() {
     <Layout>
       <Helmet>
         <title>Restoration Blog & Guides | Heritage Restoration</title>
+        <meta property="og:title" content="Restoration Blog & Guides | Heritage Restoration" />
+        <link rel="canonical" href="https://www.firewaterstorm.com/resources/blog" />
+        <meta property="og:url" content="https://www.firewaterstorm.com/resources/blog" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/hero-new.jpg" />
         <meta
           name="description"
           content="Expert advice on fire, water, and storm damage restoration. Stay informed about property maintenance and insurance claims."
@@ -200,10 +204,10 @@ export default function Blog() {
 
                 <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none"
                   >
-                    <Phone size={14} /> Call 360-345-1015
+                    <Phone size={14} /> Call 360-456-1886
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"

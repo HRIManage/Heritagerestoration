@@ -1,4 +1,4 @@
-﻿import { Zap, Thermometer, Droplets, CheckCircle, Phone } from "lucide-react";
+import { Zap, Thermometer, Droplets, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -327,7 +327,7 @@ export default function WaterRestoration() {
                 "IICRC certified water restoration specialists",
                 "Complete drywall and flooring restoration",
                 "Direct insurance company coordination",
-                "5-year warranty on all restoration work",
+                "5-year warranty on workmanship",
               ].map((item, idx) => (
                 <FadeIn
                   key={idx}
@@ -385,7 +385,7 @@ export default function WaterRestoration() {
 
                   <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                     >
                       <Phone size={14} /> Contact Us Now

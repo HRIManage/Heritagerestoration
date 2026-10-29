@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle, Home } from "lucide-react";
 import { useLocation } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
@@ -12,6 +13,10 @@ export default function NotFound() {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-canvas-textured">
+      <Helmet>
+        <title>Page Not Found | Heritage Restoration</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <Card className="w-full max-w-lg mx-4 border border-[#3F4143]/10 bg-white rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.04)]">
         <CardContent className="pt-10 pb-10 text-center">
           <div className="flex justify-center mb-6">

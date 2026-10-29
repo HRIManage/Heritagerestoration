@@ -340,12 +340,12 @@ export default function Home() {
         setLocation("/thank-you");
       } else {
         setFormError(
-          "Something went wrong submitting your request. Please call us at (360) 345-1015."
+          "Something went wrong submitting your request. Please call us at (360) 456-1886."
         );
       }
     } catch {
       setFormError(
-        "Network error. Please try again or call us directly at (360) 345-1015."
+        "Network error. Please try again or call us directly at (360) 456-1886."
       );
     } finally {
       setSending(false);
@@ -624,7 +624,7 @@ export default function Home() {
         },
         {
           label: "Industry-Leading Warranty Activation",
-          text: "Your project transitions to our elite 5-Year Warranty, guaranteeing the long-term integrity of our construction.",
+          text: "Your project is covered by our 5-year warranty on workmanship.",
         },
       ],
     },
@@ -650,7 +650,7 @@ export default function Home() {
         </title>
         <meta
           name="description"
-          content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Puyallup &amp; more."
+          content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration for homes and commercial properties across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Puyallup &amp; more."
         />
         <meta
           name="keywords"
@@ -738,7 +738,7 @@ export default function Home() {
           <motion.a
             data-gsap-explore
             href="#services"
-            className="hidden lg:flex absolute right-8 bottom-[108px] z-20 flex-col items-center gap-4 text-[#2F3335]/65 hover:text-[#8DBD42] transition-colors duration-500"
+            className="hidden lg:flex absolute right-8 bottom-[108px] z-20 flex-col items-center gap-4 text-[#2F3335]/75 hover:text-[#8DBD42] transition-colors duration-500"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -757,7 +757,7 @@ export default function Home() {
           </motion.a>
 
           {/* Hero content */}
-          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 xl:px-0 py-8 lg:py-10">
+          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 min-[1570px]:px-0 py-8 lg:py-10">
             <div className="max-w-[600px]">
               <FadeUp triggerImmediately={true} delay={0.05}>
                 <p
@@ -766,7 +766,7 @@ export default function Home() {
                   style={bodyStyle}
                 >
                   <span className="w-8 h-[2px] bg-[#8DBD42]" />
-                  Professional Property Restoration
+                  Residential &amp; Commercial Restoration
                 </p>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
@@ -776,14 +776,14 @@ export default function Home() {
                     style={bodyStyle}
                   >
                     Heritage Restoration
-                  </span>
+                  </span>{" "}
                   <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
-                    Restoring
+                    Restoring{" "}
                     <br />
-                    Your Home.
-                  </span>
+                    Your Property.
+                  </span>{" "}
                   <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#8DBD42] font-bold mt-1">
-                    Restoring Your
+                    Restoring Your{" "}
                     <br />
                     Peace of Mind.
                   </span>
@@ -792,12 +792,13 @@ export default function Home() {
               <FadeUp triggerImmediately={true} delay={0.28}>
                 <p
                   data-gsap-hero-item
-                  className="mt-6 text-[17px] text-[#2f3133]/75 max-w-[480px] leading-[1.7]"
+                  className="mt-6 text-[17px] text-[#2f3133]/85 max-w-[480px] leading-[1.7]"
                   style={bodyStyle}
                 >
-                  As dedicated homeowner advocates, we handle the full complexity
-                  of disaster recovery, so you don't have to. Locally owned and
-                  operated since 2004.
+                  For homeowners, property managers and businesses, we handle
+                  the full complexity of disaster recovery, from emergency
+                  response to the final rebuild. Locally owned and operated
+                  since 2004.
                 </p>
               </FadeUp>
               {/* CTAs */}
@@ -813,7 +814,7 @@ export default function Home() {
                 >
                   <motion.a
                     data-gsap-hero-button
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="group inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
                     style={bodyStyle}
                     variants={{
@@ -846,6 +847,15 @@ export default function Home() {
                   </Link>
                 </motion.div>
               </FadeUp>
+              <FadeUp triggerImmediately={true} delay={0.5}>
+                <Link
+                  href="/commercial"
+                  className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#145126] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#8DBD42] transition-colors"
+                  style={bodyStyle}
+                >
+                  Managing a commercial or multi-family property? See commercial restoration →
+                </Link>
+              </FadeUp>
             </div>
           </div>
 
@@ -867,7 +877,7 @@ export default function Home() {
                     "Licensed & Bonded in WA",
                     "22+ Years Serving Washington",
                     "Locally Owned & Operated",
-                    "5-Year Warranty",
+                    "5-Year Workmanship Warranty",
                   ].map(item => (
                     <span key={item} className="flex items-center">
                       <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">{item}</span>
@@ -895,28 +905,28 @@ export default function Home() {
               <FadeUp delay={0.05} className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center">
                 <div data-gsap-reveal className="contents">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>North Office</h3>
-                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
+                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
                   <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
                   <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
                     8695 Martin Way E, Unit 103<br />Lacey, WA 98516
                   </a>
                 </p>
-                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> Call North Office
+                <a href="tel:+13604561886" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
+                  <Phone size={13} className="stroke-[3]" /> North: (360) 456-1886
                 </a>
                 </div>
               </FadeUp>
               <FadeUp delay={0.1} className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center">
                 <div data-gsap-reveal className="contents">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>South Office</h3>
-                <p className="text-[#3F4143]/65 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
+                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
                   <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
                   <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
                     1581 N. National Ave<br />Chehalis, WA 98532
                   </a>
                 </p>
                 <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> Call South Office
+                  <Phone size={13} className="stroke-[3]" /> South: (360) 345-1015
                 </a>
                 </div>
               </FadeUp>
@@ -927,27 +937,36 @@ export default function Home() {
               <div className="mt-10 border-t border-[#3F4143]/10 pt-8 pb-10 flex flex-col items-center gap-8">
                 <div className="flex items-center justify-center gap-2 px-2">
                   <Clock size={15} className="text-[#8DBD42] shrink-0" />
-                  <span className="text-center text-[#3F4143]/60 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold" style={bodyStyle}>
+                  <span className="text-center text-[#3F4143]/75 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold" style={bodyStyle}>
                     24 Hours a Day · 7 Days a Week · 365 Days a Year
                   </span>
                 </div>
-                <div className="grid grid-cols-3 items-center gap-4 w-full max-w-[330px] mx-auto sm:flex sm:max-w-none sm:gap-12 md:gap-20">
+                <div className="grid grid-cols-1 sm:grid-cols-3 w-full max-w-[960px] mx-auto bg-white border border-[#3F4143]/10 divide-y sm:divide-y-0 sm:divide-x divide-[#3F4143]/10 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
                   {[
-                    { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response" },
-                    { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified" },
-                    { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty" },
+                    { src: "/photo/emergency-badge-icon.png", alt: "24 HR Emergency Response", title: "24/7 Emergency Response", text: "Dispatch answers day and night, every day of the year." },
+                    { src: "/photo/iicrc-badge-icon.png", alt: "IICRC Certified", title: "IICRC Certified Firm", text: "Industry-standard fire, smoke and water restoration." },
+                    { src: "/photo/warranty-badge-icon.png", alt: "5-Year Workmanship Warranty", title: "5-Year Workmanship Warranty", text: "Written warranty terms available on request." },
                   ].map((badge, i) => (
-                    <motion.img
-                      key={badge.alt}
-                      src={badge.src}
-                      alt={badge.alt}
-                      initial={{ opacity: 0, scale: 0.7, y: 24 }}
-                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.6 }}
-                      transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
-                      whileHover={{ scale: 1.04, y: -3 }}
-                      className="w-full h-auto object-contain sm:w-auto sm:h-24 md:h-28 drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
-                    />
+                    <div key={badge.alt} className="flex sm:flex-col items-center gap-5 sm:gap-4 px-6 py-6 sm:py-8 text-left sm:text-center">
+                      <motion.img
+                        src={badge.src}
+                        alt={badge.alt}
+                        initial={{ opacity: 0, scale: 0.7, y: 24 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.6 }}
+                        transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
+                        whileHover={{ scale: 1.04, y: -3 }}
+                        className="h-20 w-20 sm:h-28 sm:w-28 md:h-32 md:w-32 shrink-0 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
+                      />
+                      <div>
+                        <p className="font-extrabold text-[#2F3335] text-[15px] md:text-[16px] leading-snug" style={bodyStyle}>
+                          {badge.title}
+                        </p>
+                        <p className="mt-1.5 text-[14px] text-[#3F4143]/80 leading-snug" style={bodyStyle}>
+                          {badge.text}
+                        </p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -1041,7 +1060,7 @@ export default function Home() {
 
                       {/* Description */}
                       <p
-                        className="mt-4 text-[14.5px] leading-relaxed text-[#3F4143]/65 font-light"
+                        className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/80"
                         style={bodyStyle}
                       >
                         {service.description}
@@ -1049,7 +1068,7 @@ export default function Home() {
 
                       {/* CTA */}
                       <span
-                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/50 group-hover:text-[#2F3335] transition-colors duration-500"
+                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/75 group-hover:text-[#2F3335] transition-colors duration-500"
                         style={bodyStyle}
                       >
                         Learn More
@@ -1065,7 +1084,50 @@ export default function Home() {
           </div>
         </section>
 
-
+        {/* Homes & Businesses — residential / commercial split */}
+        <section className="bg-white border-y border-[#3F4143]/8">
+          <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-14 md:py-20 grid md:grid-cols-2 gap-6 md:gap-8">
+            <FadeUp className="flex flex-col p-7 md:p-10 bg-[#F7F4EE] border-t-4 border-[#8DBD42]">
+              <p className="text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
+                For homeowners
+              </p>
+              <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold text-[#2F3335]" style={headlineStyle}>
+                Residential restoration
+              </h2>
+              <p className="mt-4 text-[16px] text-[#3F4143]/85 leading-relaxed flex-1" style={bodyStyle}>
+                Fire, water and storm damage to your home, handled start to
+                finish, with us on your side through the insurance claim.
+              </p>
+              <Link
+                href="/services/fire-restoration"
+                className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#145126] hover:text-[#8DBD42] transition-colors"
+                style={bodyStyle}
+              >
+                Residential services →
+              </Link>
+            </FadeUp>
+            <FadeUp delay={0.08} className="flex flex-col p-7 md:p-10 bg-[#1f3a24] text-white border-t-4 border-[#8DBD42]">
+              <p className="text-[#a9d468] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
+                For property managers &amp; owners
+              </p>
+              <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold" style={headlineStyle}>
+                Commercial restoration
+              </h2>
+              <p className="mt-4 text-[16px] text-white/80 leading-relaxed flex-1" style={bodyStyle}>
+                Apartments, HOAs, medical, hotels, schools and offices. Cleanup
+                and rebuild under one contract, phased around your tenants and
+                operations.
+              </p>
+              <Link
+                href="/commercial"
+                className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#a9d468] hover:text-white transition-colors"
+                style={bodyStyle}
+              >
+                Commercial services →
+              </Link>
+            </FadeUp>
+          </div>
+        </section>
 
         {/* Our Promise Section */}
         <section
@@ -1075,23 +1137,23 @@ export default function Home() {
         >
           {/* Soft Seattle Green Glow */}
           <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 xl:gap-24 items-center relative z-10">
             {/* LEFT: Premium Editorial Image Deck */}
-            <FadeUp className="lg:col-span-6 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0 items-center justify-center">
+            <FadeUp className="lg:col-span-6 min-w-0 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0 items-center justify-center">
               <Parallax amount={22} className="w-full flex justify-center lg:justify-start">
                 <PhotoDeck />
               </Parallax>
             </FadeUp>
 
             {/* RIGHT: text content + buttons */}
-            <FadeUp delay={0.08} className="lg:col-span-6 order-1 lg:order-2">
+            <FadeUp delay={0.08} className="lg:col-span-6 min-w-0 order-1 lg:order-2">
               <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold font-sans mb-4">
                 <span className="w-5 h-px bg-[#8DBD42] inline-block" />
                 Our Promise
               </p>
               <h2 className="text-[26px] sm:text-[30px] md:text-[40px] lg:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
-                <span className="block whitespace-nowrap">We Are Not Just Technicians.</span>
-                <span className="block whitespace-nowrap">We Are Your Neighbors.</span>
+                <span className="block min-[1440px]:whitespace-nowrap">We Are Not Just Technicians.</span>
+                <span className="block min-[1440px]:whitespace-nowrap">We Are Your Neighbors.</span>
               </h2>
               <p className="mt-6 text-[#3F4143]/80 text-lg leading-relaxed font-sans font-light">
                 We are proudly local and homeowner focused. When you call
@@ -1106,7 +1168,7 @@ export default function Home() {
 
               <div className="mt-8 flex flex-wrap gap-4 font-sans">
                 <a
-                  href="tel:+13603451015"
+                  href="tel:+13604561886"
                   className="bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 inline-flex items-center gap-2 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
                 >
                   <Phone size={12} /> Start Your Recovery
@@ -1162,7 +1224,7 @@ export default function Home() {
                       type="button"
                       onClick={() => setActiveStep(idx)}
                       aria-expanded={isActive}
-                      className={`group flex w-full items-center gap-3 py-5 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60"}`}
+                      className={`group flex w-full items-center gap-3 py-5 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75"}`}
                     >
                       <span
                         className={`w-8 shrink-0 text-[12px] font-black tracking-[0.16em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
@@ -1171,7 +1233,7 @@ export default function Home() {
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[17px] leading-[1.2] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/70"}`}
+                        className={`flex-1 text-[17px] leading-[1.2] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/80"}`}
                         style={headlineStyle}
                       >
                         {step.title}
@@ -1201,7 +1263,7 @@ export default function Home() {
                                   {item.label}
                                 </p>
                                 <p
-                                  className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/72"
+                                  className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/80"
                                   style={bodyStyle}
                                 >
                                   {item.text}
@@ -1235,7 +1297,7 @@ export default function Home() {
                       onFocus={() => setActiveStep(idx)}
                       onClick={() => setActiveStep(idx)}
                       aria-pressed={isActive}
-                      className={`group flex items-center gap-5 py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/55 hover:text-[#2F3335]"}`}
+                      className={`group flex items-center gap-5 py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75 hover:text-[#2F3335]"}`}
                     >
                       <span
                         className={`w-10 shrink-0 text-[13px] font-black tracking-[0.18em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
@@ -1244,7 +1306,7 @@ export default function Home() {
                         {step.number}
                       </span>
                       <span
-                        className={`flex-1 text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/60 group-hover:text-[#2F3335]"}`}
+                        className={`flex-1 text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75 group-hover:text-[#2F3335]"}`}
                         style={headlineStyle}
                       >
                         {step.title}
@@ -1306,7 +1368,7 @@ export default function Home() {
                             {item.label}
                           </p>
                           <p
-                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/72"
+                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/80"
                             style={bodyStyle}
                           >
                             {item.text}
@@ -1346,7 +1408,7 @@ export default function Home() {
                 Proven Transformation
               </h2>
               <p
-                className="mt-4 text-[#3F4143]/70 text-base md:text-lg leading-relaxed"
+                className="mt-4 text-[#3F4143]/80 text-base md:text-lg leading-relaxed"
                 style={bodyStyle}
               >
                 Compare the detailed progress of a full structural rebuild. Drag the slider to reveal the craftsmanship that goes into every home restoration project.
@@ -1524,7 +1586,7 @@ export default function Home() {
                             {review.name}
                           </h4>
                           <p
-                            className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#3F4143]/45"
+                            className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#3F4143]/70"
                             style={bodyStyle}
                           >
                             {review.role}
@@ -1579,7 +1641,7 @@ export default function Home() {
                     Need restoration support today?
                   </h2>
                   <p
-                    className="mt-5 max-w-[620px] text-[16px] md:text-[17px] leading-relaxed text-[#3F4143]/72"
+                    className="mt-5 max-w-[620px] text-[16px] md:text-[17px] leading-relaxed text-[#3F4143]/80"
                     style={bodyStyle}
                   >
                     Send a quick message and our dispatch team will help you decide the next step, whether it is emergency stabilization, documentation, or a full repair assessment.
@@ -1599,7 +1661,7 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-name"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
                         >
                           Full Name *
                         </label>
@@ -1617,7 +1679,7 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-phone"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
                         >
                           Phone Number *
                         </label>
@@ -1637,7 +1699,7 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-email"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
                         >
                           Email Address *
                         </label>
@@ -1655,7 +1717,7 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-service"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
                         >
                           Restoration Service
                         </label>
@@ -1679,7 +1741,7 @@ export default function Home() {
                     <div className="space-y-2">
                       <label
                         htmlFor="home-message"
-                        className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/70"
+                        className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
                       >
                         Describe the Loss or Request
                       </label>
@@ -1722,13 +1784,13 @@ export default function Home() {
                         Fast answers when the damage cannot wait.
                       </h3>
                       <div className="mt-8 space-y-5">
-                        <a href="tel:+13603451015" className="flex items-start gap-4 group">
+                        <a href="tel:+13604561886" className="flex items-start gap-4 group">
                           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
                             <Phone size={18} />
                           </span>
                           <span>
                             <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Call Now</span>
-                            <span className="mt-1 block text-[18px] font-bold text-white">(360) 345-1015</span>
+                            <span className="mt-1 block text-[18px] font-bold text-white">(360) 456-1886</span>
                           </span>
                         </a>
                         <a href="mailto:office@firewaterstorm.com" className="flex items-start gap-4 group">
@@ -1776,7 +1838,7 @@ export default function Home() {
           <div>
             <h2>Contact</h2>
             <p>
-              Call 360-345-1015 or use the contact page for service requests.
+              Call 360-456-1886 or use the contact page for service requests.
             </p>
           </div>
         </section>

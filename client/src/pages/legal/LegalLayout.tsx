@@ -1,4 +1,4 @@
-﻿import { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import Container from "@/components/ui/Container";
@@ -23,8 +23,11 @@ export default function LegalLayout({
     <Layout>
       <Helmet>
         <title>{title} | Heritage Restoration</title>
+        <meta property="og:title" content={`${title} | Heritage Restoration`} />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/hero-new.jpg" />
         <meta name="description" content={description} />
         <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={canonical} />
         <meta name="robots" content="index, follow" />
       </Helmet>
 

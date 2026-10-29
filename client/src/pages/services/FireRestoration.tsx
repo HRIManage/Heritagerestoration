@@ -1,4 +1,4 @@
-﻿import { Flame, Shield, Clock, CheckCircle, Phone } from "lucide-react";
+import { Flame, Shield, Clock, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
@@ -312,7 +312,7 @@ export default function FireRestoration() {
                       },
                       {
                         label: "Industry-Leading Warranty Activation",
-                        text: "Your project transitions to our elite 5-Year Warranty, guaranteeing the long-term integrity of our construction.",
+                        text: "Your project is covered by our 5-year warranty on workmanship.",
                       },
                     ],
                   },
@@ -379,7 +379,7 @@ export default function FireRestoration() {
                     "Direct insurance company negotiation and advocacy",
                     "DocuSketch 3D documentation for claims",
                     "Xactimate detailed estimates and scope management",
-                    "5-year warranty on all restoration work",
+                    "5-year warranty on workmanship",
                     "Local expertise serving Washington State",
                   ].map((item, idx) => (
                     <FadeIn
@@ -410,7 +410,7 @@ export default function FireRestoration() {
                   {[
                     { val: "60m", lbl: "Response Time" },
                     { val: "24/7", lbl: "Emergency Dispatch" },
-                    { val: "5yr", lbl: "Work Warranty" },
+                    { val: "5yr", lbl: "Workmanship Warranty" },
                     { val: "100%", lbl: "Bonded & Insured" },
                   ].map((stat, idx) => (
                     <div
@@ -479,7 +479,7 @@ export default function FireRestoration() {
 
                 <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
                   >
                     <Phone size={14} /> Contact Us Now

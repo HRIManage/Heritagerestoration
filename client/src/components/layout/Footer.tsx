@@ -20,6 +20,7 @@ export default function Footer({
     { label: "Water Restoration", href: "/services/water-restoration" },
     { label: "Storm Restoration", href: "/services/storm-recovery" },
     { label: "Contents Services", href: "/services/contents-services" },
+    { label: "Commercial Restoration", href: "/commercial" },
   ];
 
   const resourceItems = [
@@ -139,6 +140,12 @@ export default function Footer({
                     <br />
                     Lacey, WA 98516
                   </a>
+                  <a
+                    href="tel:+13604561886"
+                    className="block mt-1 font-bold text-[#2f3133] hover:text-[#8DBD42] transition-colors"
+                  >
+                    (360) 456-1886
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -160,15 +167,21 @@ export default function Footer({
                     <br />
                     Chehalis, WA 98532
                   </a>
+                  <a
+                    href="tel:+13603451015"
+                    className="block mt-1 font-bold text-[#2f3133] hover:text-[#8DBD42] transition-colors"
+                  >
+                    (360) 345-1015
+                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-[#8DBD42] flex-shrink-0" />
                 <a
-                  href="tel:+13603451015"
+                  href="tel:+13604561886"
                   className="text-[#3F4143]/65 hover:text-[#8DBD42] font-bold transition-colors"
                 >
-                  (360) 345-1015
+                  (360) 456-1886
                 </a>
               </li>
               <li className="flex items-start gap-3">

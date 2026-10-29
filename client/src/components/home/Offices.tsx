@@ -1,19 +1,19 @@
-﻿export default function Offices() {
+export default function Offices() {
   const offices = [
     {
       title: "North Office (Lacey)",
-      address1: "8695 Martin Way E, Unit 102",
+      address1: "8695 Martin Way E, Unit 103",
       address2: "Lacey, WA 98516",
-      phone: "(360) 456-1015",
-      phoneRaw: "3604561015",
+      phone: "(360) 456-1886",
+      phoneRaw: "3604561886",
       email: "office@firewaterstorm.com",
     },
     {
       title: "South Office (Chehalis)",
       address1: "1581 N. National Ave",
       address2: "Chehalis, WA 98532",
-      phone: "(360) 456-1886",
-      phoneRaw: "3604561886",
+      phone: "(360) 345-1015",
+      phoneRaw: "3603451015",
       email: "office@firewaterstorm.com",
     },
   ];

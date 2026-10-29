@@ -177,11 +177,12 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  // `extensions` serves prerendered pages: /commercial -> commercial.html
+  app.use(express.static(staticPath, { extensions: ["html"], redirect: false }));
 
-  // Handle client-side routing - serve index.html for all routes
+  // Anything not prerendered falls back to the plain SPA shell
   app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+    res.sendFile(path.join(staticPath, "spa.html"));
   });
 
   const port = process.env.PORT || 3000;

@@ -1,5 +1,5 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Router as WouterRouter } from "wouter";
 import { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -43,6 +43,8 @@ import LocationPage from "@/pages/locations/LocationPage";
 import Privacy from "@/pages/legal/Privacy";
 import Terms from "@/pages/legal/Terms";
 import ThankYou from "@/pages/ThankYou";
+import Commercial from "@/pages/commercial/Commercial";
+import CommercialService from "@/pages/commercial/CommercialService";
 
 function Router() {
   return (
@@ -64,6 +66,15 @@ function Router() {
       <Route path="/services/storm-recovery" component={StormRecovery} />
       <Route path="/services/contents-services" component={ContentsServices} />
 
+      <Route path="/commercial" component={Commercial} />
+      <Route path="/commercial-restoration" component={Commercial} />
+      <Route path="/commercial/fire-restoration">
+        <CommercialService service="fire" />
+      </Route>
+      <Route path="/commercial/water-restoration">
+        <CommercialService service="water" />
+      </Route>
+
       <Route path="/service-areas" component={ServiceAreas} />
       <Route path="/service-area/:slug" component={LocationPage} />
 
@@ -76,9 +87,15 @@ function Router() {
   );
 }
 
-function App() {
+type AppProps = {
+  /** Set only by the build-time prerender (entry-server.tsx). */
+  ssrPath?: string;
+  helmetContext?: object;
+};
+
+function App({ ssrPath, helmetContext }: AppProps = {}) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       {GSC_VERIFICATION ? (
         <Helmet>
           <meta name="google-site-verification" content={GSC_VERIFICATION} />
@@ -86,8 +103,10 @@ function App() {
       ) : null}
       <ErrorBoundary>
         <ThemeProvider defaultTheme="light">
-          <ScrollToTop />
-          <Router />
+          <WouterRouter ssrPath={ssrPath}>
+            <ScrollToTop />
+            <Router />
+          </WouterRouter>
         </ThemeProvider>
       </ErrorBoundary>
     </HelmetProvider>

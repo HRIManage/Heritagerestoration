@@ -1,10 +1,10 @@
 # Heritage Restoration
-> Professional fire, water, and storm damage restoration across Western Washington. IICRC certified, 24/7 emergency response, locally owned and operated since 2004. We are homeowner advocates — our priority is protecting your interests, not the insurance company's.
+> Professional fire, water, and storm damage restoration and reconstruction for homes and commercial properties across Western Washington. IICRC certified, 24/7 emergency response, locally owned and operated since 2004. We are homeowner advocates — our priority is protecting your interests, not the insurance company's.
 
 ## About
-Heritage Restoration Inc. is a full-service property restoration contractor serving Western Washington State. Founded in 2004 and locally owned, we handle the complete complexity of disaster recovery for homeowners — from emergency response and mitigation through full structural reconstruction.
+Heritage Restoration Inc. is a full-service property restoration contractor serving Western Washington State. Founded in 2004 and locally owned, we handle the complete complexity of disaster recovery for homeowners, property managers and commercial owners — from emergency response and mitigation through full structural reconstruction.
 
-- **Phone (24/7):** (360) 345-1015
+- **Phone (24/7):** (360) 456-1886
 - **Email:** office@firewaterstorm.com
 - **Emergency:** 24/7 dispatch available
 - **Response time:** 60 minutes in service area
@@ -12,8 +12,8 @@ Heritage Restoration Inc. is a full-service property restoration contractor serv
 - **Warranty:** 5-Year Workmanship Warranty
 
 ## Office Locations
-- **North Office:** 8695 Martin Way E, Unit 103, Lacey, WA 98516 (serving Lacey, Olympia, Tumwater, Tacoma, Puyallup)
-- **South Office:** 1581 N. National Ave, Chehalis, WA 98532 (serving Chehalis, Centralia, Lewis County)
+- **North Office:** 8695 Martin Way E, Unit 103, Lacey, WA 98516 · (360) 456-1886 (serving Lacey, Olympia, Tumwater, Tacoma, Puyallup)
+- **South Office:** 1581 N. National Ave, Chehalis, WA 98532 · (360) 345-1015 (serving Chehalis, Centralia, Lewis County)
 
 ## Services
 
@@ -28,6 +28,11 @@ Emergency roof tarping, tree and debris removal, window and door board-ups, and 
 
 ### [Contents Services](/services/contents-services)
 Professional pack-out, digital inventory tracking, specialized cleaning, and climate-controlled secure storage for personal belongings during home reconstruction.
+
+### [Commercial Restoration](/commercial)
+Fire, water and storm restoration and rebuild for apartments and multi-family, HOAs, medical and dental clinics, hotels, schools and offices — cleanup and reconstruction under one contract, phased around tenants and operations. Free pre-loss "priority list" site walks for property managers. Recent commercial clients include Providence Hospital, Washington Orthopedic, Aberdeen High School, Essex Property Management, Rants Group and Reliable Enterprises.
+- [Commercial Fire Restoration](/commercial/fire-restoration)
+- [Commercial Water Restoration](/commercial/water-restoration)
 
 ## Service Areas
 Heritage Restoration serves cities along the I-5 corridor across Western Washington, from Lewis County north through Pierce County. Each city has a dedicated service page at /service-area/{city}-wa. Full index: [Service Areas](/service-areas).
@@ -57,5 +62,5 @@ Heritage Restoration serves cities along the I-5 corridor across Western Washing
 
 ## Contact
 - [Contact Form](/contact)
-- Phone (24/7): [(360) 345-1015](tel:+13603451015)
+- Phone (24/7): [(360) 456-1886](tel:+13604561886)
 - Email: [office@firewaterstorm.com](mailto:office@firewaterstorm.com)

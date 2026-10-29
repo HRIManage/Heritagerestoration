@@ -292,7 +292,7 @@ export default function LocationPage() {
     `Fire, Water & Storm Damage Restoration in ${city.full} | Heritage Restoration`;
   const metaDescription =
     city.seo?.description ||
-    `24/7 emergency fire, water & storm damage restoration in ${city.full}. IICRC-certified, 60-minute response, direct insurance billing. Serving ${city.county} since 2004. Call (360) 345-1015.`;
+    `24/7 emergency fire, water & storm damage restoration in ${city.full}. IICRC-certified, 60-minute response, direct insurance billing. Serving ${city.county} since 2004. Call (360) 456-1886.`;
   const schema = buildLocationSchema(city);
   const localFaqs =
     city.faqItems && city.faqItems.length > 0
@@ -377,10 +377,10 @@ export default function LocationPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-7 py-4 font-bold text-base transition-all duration-200 shadow-lg hover:shadow-[0_8px_28px_rgba(141,189,66,0.4)] hover:scale-[1.02]"
                   >
-                    <Phone size={18} /> Call (360) 345-1015
+                    <Phone size={18} /> Call (360) 456-1886
                   </a>
                   <Link
                     href="/contact"
@@ -431,7 +431,7 @@ export default function LocationPage() {
                 {[
                   { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response", label: "Emergency Response" },
                   { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified", label: "IICRC Certified" },
-                  { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Warranty", label: "5-Year Warranty" },
+                  { src: "/photo/warranty-badge-new-3.png", alt: "5-Year Workmanship Warranty", label: "5-Year Workmanship Warranty" },
                 ].map((badge, i) => (
                   <FadeIn key={badge.label} delay={i * 0.1} direction="up">
                     <div className="flex items-center justify-center">
@@ -514,10 +514,10 @@ export default function LocationPage() {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="tel:+13603451015"
+                  href="tel:+13604561886"
                   className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-6 py-3.5 font-bold text-sm transition-colors"
                 >
-                  <Phone size={16} /> Call (360) 345-1015
+                  <Phone size={16} /> Call (360) 456-1886
                 </a>
                 <Link
                   href="/contact"
@@ -683,7 +683,7 @@ export default function LocationPage() {
             <FadeIn direction="up" className="mt-7 text-center">
               <p className="text-[#3F4143]/60 text-sm font-sans">
                 Don't see your neighborhood?{" "}
-                <a href="tel:+13603451015" className="text-[#8DBD42] font-bold hover:underline">
+                <a href="tel:+13604561886" className="text-[#8DBD42] font-bold hover:underline">
                   Call us
                 </a>{" "}
                 — we cover all of {city.county}.
@@ -707,7 +707,7 @@ export default function LocationPage() {
               {/* Warranty badge — bottom right */}
               <img
                 src="/photo/warranty-badge-new-3.png"
-                alt="5-Year Warranty"
+                alt="5-Year Workmanship Warranty"
                 className="absolute bottom-4 right-4 z-20 w-56 md:w-64 pointer-events-none drop-shadow-2xl"
               />
             </FadeIn>
@@ -747,10 +747,10 @@ export default function LocationPage() {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="tel:+13603451015"
+                  href="tel:+13604561886"
                   className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#72a232] text-white px-6 py-3.5 font-bold text-sm transition-colors duration-200 rounded-lg shadow-lg"
                 >
-                  <Phone size={16} /> Call (360) 345-1015
+                  <Phone size={16} /> Call (360) 456-1886
                 </a>
                 <Link
                   href="/contact"
@@ -836,8 +836,8 @@ export default function LocationPage() {
                       <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">IICRC Certified</p>
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <img src="/photo/warranty-badge-new-3.png" alt="5-Year Warranty" className="h-16 w-auto object-contain drop-shadow-md" />
-                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">5-Year Warranty</p>
+                      <img src="/photo/warranty-badge-new-3.png" alt="5-Year Workmanship Warranty" className="h-16 w-auto object-contain drop-shadow-md" />
+                      <p className="mt-1 font-bold uppercase tracking-[0.1em] text-[10px] text-[#3F4143]/60">5-Year Workmanship Warranty</p>
                     </div>
                   </div>
                 </div>
@@ -908,11 +908,11 @@ export default function LocationPage() {
                   {/* Phone button */}
                   <FadeIn direction="up" className="relative z-10 space-y-3">
                     <a
-                      href="tel:+13603451015"
+                      href="tel:+13604561886"
                       className="flex flex-col items-center gap-1 w-full bg-[#8DBD42] hover:bg-[#72a232] text-white px-6 py-4 font-bold transition-all duration-200 shadow-[0_0_40px_rgba(141,189,66,0.25)] hover:shadow-[0_0_60px_rgba(141,189,66,0.45)] hover:scale-[1.02] rounded-xl"
                     >
                       <span className="flex items-center gap-3 text-[22px] font-black">
-                        <Phone size={20} /> (360) 345-1015
+                        <Phone size={20} /> (360) 456-1886
                       </span>
                       <span className="text-white/70 text-[10px] font-semibold uppercase tracking-widest">
                         Tap to Call — Answered 24/7
@@ -931,7 +931,7 @@ export default function LocationPage() {
                     {[
                       { icon: <Clock size={13} />, text: "60-Min Response" },
                       { icon: <ShieldCheck size={13} />, text: "IICRC Certified" },
-                      { icon: <BadgeCheck size={13} />, text: "5-Year Warranty" },
+                      { icon: <BadgeCheck size={13} />, text: "5-Year Workmanship Warranty" },
                       { icon: <CheckCircle size={13} />, text: "Direct Insurance Billing" },
                     ].map(item => (
                       <div key={item.text} className="flex items-center gap-1.5 text-white/55 text-[12px] font-semibold">

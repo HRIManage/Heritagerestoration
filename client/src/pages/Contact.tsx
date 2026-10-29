@@ -58,12 +58,12 @@ export default function Contact() {
         setLocation("/thank-you");
       } else {
         setError(
-          "Something went wrong submitting your request. Please call us at (360) 345-1015."
+          "Something went wrong submitting your request. Please call us at (360) 456-1886."
         );
       }
     } catch {
       setError(
-        "Network error. Please try again or call us directly at (360) 345-1015."
+        "Network error. Please try again or call us directly at (360) 456-1886."
       );
     } finally {
       setSending(false);
@@ -77,6 +77,9 @@ export default function Contact() {
     <Layout>
       <Helmet>
         <title>Contact Us | Heritage Restoration</title>
+        <link rel="canonical" href="https://www.firewaterstorm.com/contact" />
+        <meta property="og:url" content="https://www.firewaterstorm.com/contact" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/contact-cta-woman-banner.jpg" />
         <meta
           name="description"
           content="Contact Heritage Restoration for emergency response or free damage assessment. Available 24/7 in Washington."
@@ -92,7 +95,7 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             name: "Heritage Restoration",
-            telephone: "+1-360-345-1015",
+            telephone: "+1-360-456-1886",
             email: "office@firewaterstorm.com",
             address: [
               {
@@ -168,7 +171,7 @@ export default function Contact() {
                   "Licensed & Bonded in WA",
                   "22+ Years Serving Washington",
                   "Locally Owned & Operated",
-                  "5-Year Warranty",
+                  "5-Year Workmanship Warranty",
                 ].map(item => (
                   <span key={item} className="flex items-center">
                     <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#145126]">{item}</span>
@@ -213,7 +216,7 @@ export default function Contact() {
 
                       {/* Phone CTA */}
                       <a
-                        href="tel:+13603451015"
+                        href="tel:+13604561886"
                         className="flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-5 py-4 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
                       >
                         <div className="w-10 h-10 rounded-full bg-[#145126]/15 flex items-center justify-center flex-shrink-0">
@@ -224,7 +227,7 @@ export default function Contact() {
                             Call Now — Free
                           </p>
                           <p className="text-[22px] font-black tracking-tight leading-none">
-                            (360) 345-1015
+                            (360) 456-1886
                           </p>
                         </div>
                       </a>
@@ -282,6 +285,12 @@ export default function Contact() {
                             8695 Martin Way E, Unit 103
                           </a>
                           <span>Lacey, WA 98516</span>
+                          <a
+                            href="tel:+13604561886"
+                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors"
+                          >
+                            (360) 456-1886
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -305,6 +314,12 @@ export default function Contact() {
                             1581 N. National Ave
                           </a>
                           <span>Chehalis, WA 98532</span>
+                          <a
+                            href="tel:+13603451015"
+                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors"
+                          >
+                            (360) 345-1015
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -315,7 +330,7 @@ export default function Contact() {
                 <FadeIn direction="up" className="grid grid-cols-3 gap-3">
                   {[
                     { icon: <Zap size={15} />, label: "24/7 Response" },
-                    { icon: <Shield size={15} />, label: "5-Yr Warranty" },
+                    { icon: <Shield size={15} />, label: "5-Yr Workmanship" },
                     { icon: <BadgeCheck size={15} />, label: "IICRC Certified" },
                   ].map(pill => (
                     <div
@@ -519,8 +534,8 @@ export default function Contact() {
                 },
                 {
                   src: "/photo/warranty-badge-new-3.png",
-                  alt: "5-Year Warranty",
-                  title: "5-Year Warranty",
+                  alt: "5-Year Workmanship Warranty",
+                  title: "5-Year Workmanship Warranty",
                 },
               ].map((badge) => (
                 <div key={badge.alt} className="flex flex-col items-center gap-3">

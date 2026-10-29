@@ -15,7 +15,7 @@ export const BUSINESS_SCHEMA = {
   description:
     "Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration across Western Washington. IICRC certified technicians, 60-minute response guarantee, and direct insurance billing since 2004.",
   url: BASE_URL,
-  telephone: "+1-360-345-1015",
+  telephone: "+1-360-456-1886",
   email: "office@firewaterstorm.com",
   foundingDate: "2004",
   priceRange: "$$",
@@ -252,6 +252,19 @@ export const CONTENTS_SERVICE_SCHEMA = buildServiceSchema(
   ]
 );
 
+export const COMMERCIAL_SERVICE_SCHEMA = buildServiceSchema(
+  "Commercial Restoration & Reconstruction",
+  "Commercial fire, water and storm damage restoration and rebuild for apartments, HOAs, medical and dental clinics, hotels, schools and offices across Western Washington. One crew and one contract from emergency board-up and drying through permits, reconstruction and final walkthrough.",
+  "/commercial",
+  [
+    "commercial restoration",
+    "commercial fire damage restoration",
+    "commercial water damage restoration",
+    "multi-family restoration",
+    "property manager restoration contractor",
+  ]
+);
+
 // ─── Location (city) landing page schema ────────────────────────────────────
 /**
  * Builds a JSON-LD @graph for a city service-area page: a LocalBusiness node
@@ -307,7 +320,7 @@ export const buildLocationSchema = (city: {
         name: `Heritage Restoration — ${city.full}`,
         description: `24/7 emergency fire, water, and storm damage restoration in ${city.full}. IICRC-certified technicians, 60-minute response, and direct insurance billing serving ${city.county} since 2004.`,
         url,
-        telephone: "+1-360-345-1015",
+        telephone: "+1-360-456-1886",
         email: "office@firewaterstorm.com",
         parentOrganization: { "@id": `${BASE_URL}/#business` },
         priceRange: "$$",
@@ -450,9 +463,9 @@ export const FAQ_SCHEMA_ITEMS = [
   },
   {
     question:
-      "Do you offer a warranty on your structural restoration and repair work?",
+      "Do you offer a warranty on your work?",
     answer:
-      "Yes. We back our craftsmanship, structural repairs, and reconstruction services with a comprehensive 5-year warranty.",
+      "Yes. We back our work with a 5-year warranty on workmanship. Written warranty terms are available on request.",
   },
   {
     question:

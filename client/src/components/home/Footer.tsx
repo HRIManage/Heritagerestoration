@@ -1,4 +1,4 @@
-﻿export default function Footer() {
+export default function Footer() {
   return (
     <footer id="contact" className="bg-brand-linen border-t border-brand-stone">
       {/* Main footer body */}
@@ -45,15 +45,15 @@
               North Office (Lacey)
             </h5>
             <div className="font-sans text-brand-ink/80 text-sm font-light leading-loose">
-              <p>8695 Martin Way E, Unit 102</p>
+              <p>8695 Martin Way E, Unit 103</p>
               <p>Lacey, WA 98516</p>
 
               <div className="pt-4 space-y-2">
                 <a
-                  href="tel:3604561015"
+                  href="tel:3604561886"
                   className="block font-sans font-semibold text-brand-charcoal hover:text-brand-green transition-colors text-base"
                 >
-                  (360) 456-1015
+                  (360) 456-1886
                 </a>
                 <a
                   href="mailto:office@firewaterstorm.com"
@@ -76,10 +76,10 @@
 
               <div className="pt-4 space-y-2">
                 <a
-                  href="tel:3604561886"
+                  href="tel:3603451015"
                   className="block font-sans font-semibold text-brand-charcoal hover:text-brand-green transition-colors text-base"
                 >
-                  (360) 456-1886
+                  (360) 345-1015
                 </a>
                 <a
                   href="mailto:office@firewaterstorm.com"
@@ -103,20 +103,20 @@
             <span>
               Lacey:{" "}
               <a
-                href="tel:3604561015"
+                href="tel:3604561886"
                 className="text-brand-charcoal/70 hover:text-brand-green transition-colors font-medium"
               >
-                (360) 456-1015
+                (360) 456-1886
               </a>
             </span>
             <span>·</span>
             <span>
               Chehalis:{" "}
               <a
-                href="tel:3604561886"
+                href="tel:3603451015"
                 className="text-brand-charcoal/70 hover:text-brand-green transition-colors font-medium"
               >
-                (360) 456-1886
+                (360) 345-1015
               </a>
             </span>
           </div>

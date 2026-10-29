@@ -58,7 +58,7 @@ export default function BottomCTA() {
           </p>
           <div className="flex justify-center flex-wrap gap-5">
             <a
-              href="tel:3604561015"
+              href="tel:3604561886"
               style={{ borderRadius: 0 }}
               className="inline-flex items-center justify-center gap-2.5 bg-brand-green text-brand-charcoal font-sans font-semibold text-xs tracking-widest uppercase px-6 py-4 transition-all duration-300 hover:bg-[#6fa53c] hover:text-white"
             >
@@ -69,7 +69,7 @@ export default function BottomCTA() {
               >
                 <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.3 1L6.6 10.8z" />
               </svg>
-              Call (360) 456-1015
+              Call (360) 456-1886
             </a>
             <a
               href="mailto:office@firewaterstorm.com"

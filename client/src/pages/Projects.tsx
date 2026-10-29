@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { useState, useRef } from "react";
 import { Phone } from "lucide-react";
@@ -71,6 +71,10 @@ export default function Projects() {
     <Layout>
       <Helmet>
         <title>Our Projects | Heritage Restoration</title>
+        <meta property="og:title" content="Our Projects | Heritage Restoration" />
+        <link rel="canonical" href="https://www.firewaterstorm.com/projects" />
+        <meta property="og:url" content="https://www.firewaterstorm.com/projects" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/Monnett%20Fire%20After.jpg" />
         <meta
           name="description"
           content="View our portfolio of fire, water, and storm damage restoration projects across Washington State."
@@ -237,10 +241,10 @@ export default function Projects() {
 
                 <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
                   <a
-                    href="tel:+13603451015"
+                    href="tel:+13604561886"
                     className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none hover:scale-[1.02]"
                   >
-                    <Phone size={14} /> Call 360-345-1015
+                    <Phone size={14} /> Call 360-456-1886
                   </a>
                   <a
                     href="mailto:office@firewaterstorm.com"
