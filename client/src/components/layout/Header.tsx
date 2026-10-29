@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 
-const LOGO = "/photo/heritage-logo.png";
+// Tightly cropped logo (the original file has ~40% empty padding).
+const LOGO = "/photo/heritage-logo-tight.png";
 
 interface HeaderProps {
   onFaqClick?: () => void;
@@ -124,7 +125,7 @@ export default function Header({
         ? location === "/"
         : location.startsWith(href)
       : false;
-    return `px-2 xl:px-2.5 2xl:px-3 min-[1900px]:px-4 py-2 text-[12px] xl:text-[13px] 2xl:text-[14px] min-[1900px]:text-[15px] uppercase font-extrabold transition-colors relative group whitespace-nowrap tracking-[0.06em] min-[1900px]:tracking-[0.08em] flex items-center gap-1.5 ${isActive ? "text-[#8DBD42]" : "text-white/90 hover:text-[#8DBD42]"}`;
+    return `px-2 xl:px-2.5 2xl:px-3 min-[1900px]:px-4 py-2 text-[13px] xl:text-[14px] 2xl:text-[15px] min-[1900px]:text-[16px] uppercase font-extrabold transition-colors relative group whitespace-nowrap tracking-[0.06em] min-[1900px]:tracking-[0.08em] flex items-center gap-1.5 ${isActive ? "text-[#8DBD42]" : "text-white/90 hover:text-[#8DBD42]"}`;
   };
 
   const dropdownPanelCls =
@@ -144,8 +145,8 @@ export default function Header({
   // Reserves the logo panel's width (plus a little air) ahead of the link row.
   const navSpacerStyle = { width: `calc(${logoPanel} + 12px)` };
 
-  const navHeight = scrolled ? "h-[72px]" : "h-[108px]";
-  const logoHeight = scrolled ? "h-[58px]" : "h-[72px] xl:h-[94px]";
+  const navHeight = scrolled ? "h-[64px]" : "h-[88px]";
+  const logoHeight = scrolled ? "h-[52px]" : "h-[64px] xl:h-[82px]";
 
   const handleResourceClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -160,33 +161,33 @@ export default function Header({
   return (
     <>
       {/* ── GREEN UTILITY BAR ── */}
-      <div className="bg-[#8DBD42] text-white absolute top-0 left-0 right-0 z-50">
+      <div className="bg-[#173d24] text-white absolute top-0 left-0 right-0 z-50">
         <div className="max-w-[1280px] mx-auto pl-4 pr-0 sm:px-6 flex items-stretch sm:items-center justify-between h-10 sm:h-11">
           {/* Desktop left: phone + email + tagline | Mobile: live tagline */}
           <div className="flex items-center gap-4">
             <a
               href="tel:+13604561886"
-              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#a9d468] transition-colors"
             >
-              <Phone size={15} />
+              <Phone size={15} className="text-[#8DBD42]" />
               <span>(360) 456-1886</span>
             </a>
             <span className="text-white/30 hidden sm:block">|</span>
             <a
               href="mailto:office@firewaterstorm.com"
-              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#3F4143] transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-[15.5px] font-bold hover:text-[#a9d468] transition-colors"
             >
-              <Mail size={15} />
+              <Mail size={15} className="text-[#8DBD42]" />
               <span>office@firewaterstorm.com</span>
             </a>
             <span className="text-white/30 hidden xl:block">|</span>
             <span className="hidden xl:flex items-center gap-2 text-[15px] font-semibold tracking-[0.06em] text-white/95">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse inline-block" />
+              <span className="w-2 h-2 rounded-full bg-[#8DBD42] animate-pulse inline-block" />
               Full Service Restoration – 24/7 Emergency Response
             </span>
             {/* Mobile-only live tagline */}
             <span className="sm:hidden flex items-center gap-2 text-[12px] font-bold tracking-[0.04em] text-white">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8DBD42] animate-pulse inline-block" />
               24/7 Emergency Response
             </span>
           </div>
@@ -204,7 +205,7 @@ export default function Header({
               href="https://www.facebook.com/heritagerestorationinc/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block hover:text-[#3F4143] transition-colors"
+              className="hidden sm:block hover:text-[#a9d468] transition-colors"
               aria-label="Facebook"
             >
               <Facebook size={15} />
@@ -213,7 +214,7 @@ export default function Header({
               href="https://www.instagram.com/heritagerestorationwa/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block hover:text-[#3F4143] transition-colors"
+              className="hidden sm:block hover:text-[#a9d468] transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={15} />
@@ -239,11 +240,11 @@ export default function Header({
           }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center h-[60px] flex-shrink-0">
+          <Link href="/" className="flex items-center h-[56px] flex-shrink-0">
             <img
               src={LOGO}
               alt="Heritage Restoration"
-              className="h-full w-auto object-contain max-w-[200px]"
+              className="h-full w-auto object-contain max-w-[230px]"
             />
           </Link>
 
@@ -357,13 +358,6 @@ export default function Header({
                   </AnimatePresence>
                 </div>
 
-                <Link
-                  href="/commercial"
-                  className="flex items-center px-6 py-4 text-white font-bold text-[16px] hover:text-[#8DBD42] hover:bg-white/5 transition-colors active:bg-white/10"
-                >
-                  Commercial
-                </Link>
-
                 {/* Resources accordion */}
                 <div>
                   <button
@@ -455,7 +449,7 @@ export default function Header({
         <div
           className={`relative ${navHeight} transition-all duration-500`}
           style={{
-            background: scrolled ? "rgba(20,22,23,0.97)" : "rgba(63,65,67,1)",
+            background: scrolled ? "rgba(16,20,18,0.97)" : "rgba(38,42,40,1)",
             backdropFilter: scrolled ? "blur(12px)" : "none",
             WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
             borderBottom: scrolled
@@ -475,7 +469,7 @@ export default function Header({
           >
             <Link
               href="/"
-              className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400 left-[calc(100%_-_236px)] xl:left-[max(212px,calc(50%_-_428px))]`}
+              className={`absolute ${logoHeight} w-auto flex items-center transition-all duration-400 left-[calc(100%_-_258px)] xl:left-[min(212px,calc(100%_-_325px))]`}
             >
               <img
                 src={LOGO}
@@ -485,10 +479,10 @@ export default function Header({
             </Link>
           </div>
 
-          <div className="pr-6 flex items-center justify-between h-full relative z-30">
+          <div className="pr-6 flex items-center justify-between h-full relative z-30 pointer-events-none">
             <div className="flex-shrink-0" style={navSpacerStyle} />
-            <div className="flex items-center gap-1 min-[1900px]:gap-3 h-full">
-              <Link href="/" className={`${navLinkCls("/")} hidden 2xl:flex`}>
+            <div className="flex items-center gap-1 min-[1900px]:gap-3 h-full pointer-events-auto">
+              <Link href="/" className={navLinkCls("/")}>
                 Home
                 <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
               </Link>
@@ -508,7 +502,7 @@ export default function Header({
                     setDesktopServicesOpen(v => !v);
                     setDesktopResourcesOpen(false);
                   }}
-                  className={navLinkCls("/services")}
+                  className={navLinkCls(location.startsWith("/commercial") ? "/commercial" : "/services")}
                 >
                   Services
                   <ChevronDown
@@ -568,11 +562,6 @@ export default function Header({
                   )}
                 </AnimatePresence>
               </div>
-
-              <Link href="/commercial" className={navLinkCls("/commercial")}>
-                Commercial
-                <span className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#8DBD42] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center rounded-t" />
-              </Link>
 
               {/* Resources dropdown */}
               <div
@@ -648,11 +637,11 @@ export default function Header({
               </Link>
             </div>
 
-            <div className="relative flex items-center ml-2 xl:ml-4 flex-shrink-0">
+            <div className="relative flex items-center ml-2 xl:ml-4 flex-shrink-0 pointer-events-auto">
               <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-25 pointer-events-none" />
               <a
                 href="tel:+13604561886"
-                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-3 xl:px-4 2xl:px-5 py-2.5 uppercase tracking-[0.1em] text-[11px] xl:text-xs 2xl:text-sm font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
+                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-3 xl:px-4 2xl:px-5 py-2.5 uppercase tracking-[0.1em] text-xs xl:text-[13px] 2xl:text-[15px] font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
               >
                 <Phone size={14} />
                 24/7 Dispatch

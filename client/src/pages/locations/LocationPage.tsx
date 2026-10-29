@@ -289,10 +289,10 @@ export default function LocationPage() {
   const canonical = `${BASE_URL}/service-area/${city.slug}`;
   const pageTitle =
     city.seo?.title ||
-    `Fire, Water & Storm Damage Restoration in ${city.full} | Heritage Restoration`;
+    `${city.full} Fire, Water & Storm Restoration | Heritage`;
   const metaDescription =
     city.seo?.description ||
-    `24/7 emergency fire, water & storm damage restoration in ${city.full}. IICRC-certified, 60-minute response, direct insurance billing. Serving ${city.county} since 2004. Call (360) 456-1886.`;
+    `24/7 fire, water & storm damage restoration in ${city.full}. IICRC certified, direct insurance billing across ${city.county}. Call (360) 456-1886.`;
   const schema = buildLocationSchema(city);
   const localFaqs =
     city.faqItems && city.faqItems.length > 0
@@ -319,7 +319,7 @@ export default function LocationPage() {
         title={pageTitle}
         description={metaDescription}
         canonical={canonical}
-        image={city.seo?.ogImage || HERO_IMAGE}
+        image={city.seo?.ogImage || "/photo/og-default.jpg"}
         imageAlt={city.seo?.heroImageAlt || `Property damage restoration in ${city.full}`}
         keywords={keywords}
         noIndex={city.seo?.noIndex}
@@ -332,10 +332,10 @@ export default function LocationPage() {
         schemas={[schema]}
       />
 
-      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[132px]">
 
         {/* ── Hero — with trust strip anchored at bottom ── */}
-        <section className="relative overflow-hidden bg-white">
+        <section className="relative overflow-hidden bg-white lg:min-h-[calc(100svh-132px)] lg:flex lg:flex-col">
           <img
             src={HERO_IMAGE}
             alt={`Property damage restoration in ${city.full}`}
@@ -362,14 +362,14 @@ export default function LocationPage() {
           {/* Mobile: extra white so text is readable on small screens */}
           <div className="absolute inset-0 bg-white/60 lg:hidden pointer-events-none" />
 
-          <div className="relative z-10 min-h-[400px] md:min-h-[460px] flex items-center w-full">
-            <div className="px-6 pt-14 pb-8 md:pt-8 md:pb-8 lg:pl-[192px] lg:pt-8 lg:pb-8 max-w-[880px]">
-              <FadeIn className="space-y-6" direction="up">
+          <div className="relative z-10 min-h-[400px] md:min-h-[460px] short:min-h-0 lg:flex-1 flex items-center w-full">
+            <div className="px-6 pt-11 pb-8 md:pt-8 md:pb-8 lg:pl-[192px] lg:pt-8 lg:pb-8 short:py-10 max-w-[880px]">
+              <FadeIn className="space-y-6 short:space-y-4" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.24em] text-[11px] font-black flex items-center gap-2.5">
                   <span className="w-8 h-[2px] bg-[#8DBD42]" />
                   {city.county} &middot; 24/7 Emergency Response
                 </span>
-                <h1 className="text-[34px] md:text-[50px] lg:text-[56px] font-bold leading-[1.1] font-serif text-[#2a2c2e]">
+                <h1 className="text-[31px] md:text-[50px] lg:text-[56px] midh:text-[48px] short:text-[42px] font-bold leading-[1.1] font-serif text-[#2a2c2e]">
                   Fire, Water &amp; Storm<br className="hidden sm:block" /> Damage Restoration<br className="hidden sm:block" /> in {city.name}, WA
                 </h1>
                 <p className="text-base md:text-[17px] text-[#3F4143]/75 leading-relaxed max-w-xl font-sans">
@@ -394,7 +394,7 @@ export default function LocationPage() {
           </div>
 
           {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#8DBD42] py-5 overflow-hidden">
+          <div className="relative z-10 bg-[#173d24] py-5 overflow-hidden">
             <style>{`
               @keyframes heritage-ticker {
                 from { transform: translateX(0); }
@@ -412,10 +412,10 @@ export default function LocationPage() {
                     "Locally Owned & Operated",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#145126]">
+                      <span className="px-7 font-black text-[15px] uppercase tracking-[0.18em] text-[#d3ebaa]">
                         {item}
                       </span>
-                      <span className="text-[#145126]/30 text-[10px]">✦</span>
+                      <span className="text-[#8DBD42]/70 text-[10px]">✦</span>
                     </span>
                   ))}
                 </div>
@@ -424,10 +424,11 @@ export default function LocationPage() {
           </div>
 
 
-          {/* Trust strip — badge images */}
-          <div className="relative z-10 bg-white border-t border-gray-100">
+          {/* Trust strip — badge images (hidden on short laptop screens so the hero fits;
+              the same badges appear again further down the page) */}
+          <div className="relative z-10 bg-white border-t border-gray-100 hidden md:block short:hidden">
             <Container>
-              <div className="flex items-center justify-center gap-10 md:gap-20 py-8 md:py-10">
+              <div className="flex items-center justify-center gap-10 md:gap-20 py-8 md:py-10 midh:py-4">
                 {[
                   { src: "/photo/emergency-badge-new-2.png", alt: "24 HR Emergency Response", label: "Emergency Response" },
                   { src: "/photo/iicrc-badge-new-3.png", alt: "IICRC Certified", label: "IICRC Certified" },
@@ -440,7 +441,7 @@ export default function LocationPage() {
                         alt={badge.alt}
                         loading="lazy"
                         decoding="async"
-                        className="h-28 md:h-32 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
+                        className="h-28 md:h-32 midh:h-20 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]"
                       />
                     </div>
                   </FadeIn>

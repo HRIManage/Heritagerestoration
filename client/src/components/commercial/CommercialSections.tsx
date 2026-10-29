@@ -29,13 +29,13 @@ const CREDENTIAL_BADGES: (string | null)[] = [
 /** Four-up licensing / certification / warranty / insurance strip. */
 export function CredentialStrip() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 border-y border-[#3F4143]/10 divide-y sm:divide-y-0 divide-[#3F4143]/10 bg-white">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-y border-[#3F4143]/10 divide-y sm:divide-y-0 divide-[#3F4143]/10 bg-white">
       {COMMERCIAL_CREDENTIALS.map((c, idx) => {
         const Icon = CREDENTIAL_ICONS[idx];
         return (
           <div
             key={c.title}
-            className={`flex items-start gap-4 p-6 ${idx % 2 === 1 ? "sm:border-l" : ""} ${idx >= 2 ? "sm:border-t xl:border-t-0" : ""} ${idx === 2 ? "xl:border-l" : ""} border-[#3F4143]/10`}
+            className={`flex items-start gap-4 lg:gap-3 xl:gap-4 p-6 lg:px-5 lg:py-5 xl:p-6 ${idx % 2 === 1 ? "sm:border-l" : ""} ${idx >= 2 ? "sm:border-t lg:border-t-0" : ""} ${idx === 2 ? "lg:border-l" : ""} border-[#3F4143]/10`}
           >
             <div className="w-11 h-12 flex-shrink-0 flex items-start justify-center">
               {Icon ? (
@@ -177,7 +177,7 @@ export function PriorityListBlock({ callChecklist }: { callChecklist: string }) 
 /** Full-width green call bar. */
 export function UrgentCallBar({ line }: { line: string }) {
   return (
-    <div className="bg-[#2f6b2a] text-white">
+    <div className="bg-[#173d24] text-white">
       <div className="mx-auto max-w-[1200px] px-6 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
           <p className="text-lg md:text-xl font-bold">{line}</p>
@@ -187,7 +187,7 @@ export function UrgentCallBar({ line }: { line: string }) {
         </div>
         <a
           href={MAIN_PHONE_TEL}
-          className="inline-flex items-center justify-center gap-3 bg-white text-[#2f6b2a] hover:bg-[#f1f7e8] font-black text-xl md:text-2xl px-6 py-4 transition-colors whitespace-nowrap"
+          className="inline-flex items-center justify-center gap-3 bg-white text-[#173d24] hover:bg-[#f1f7e8] font-black text-xl md:text-2xl px-6 py-4 transition-colors whitespace-nowrap"
         >
           <Phone size={22} /> {MAIN_PHONE}
         </a>
@@ -201,16 +201,16 @@ export function StatsBand() {
   return (
     <div className="relative bg-[#1f3a24] text-white overflow-hidden">
       <div className="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-[#8DBD42]/15 blur-3xl pointer-events-none" />
-      <div className="relative mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 py-10 md:py-12 grid grid-cols-2 lg:grid-cols-4 gap-y-8">
+      <div className="relative mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 py-6 md:py-7 grid grid-cols-2 lg:grid-cols-4 gap-y-5">
         {COMMERCIAL_STATS.map((s, idx) => (
           <div
             key={s.label}
             className={`px-2 md:px-6 ${idx % 2 === 1 ? "border-l border-white/15" : ""} ${idx === 2 ? "lg:border-l lg:border-white/15" : ""}`}
           >
-            <p className="text-4xl md:text-5xl font-bold font-serif text-[#a9d468] leading-none">
+            <p className="text-3xl md:text-4xl font-bold font-serif text-[#a9d468] leading-none">
               {s.value}
             </p>
-            <p className="mt-2 text-[11px] md:text-xs uppercase tracking-[0.18em] font-bold text-white/70">
+            <p className="mt-1.5 text-[11px] uppercase tracking-[0.18em] font-bold text-white/75">
               {s.label}
             </p>
           </div>
@@ -288,7 +288,7 @@ export function BeforeAfterSlider({
         className="absolute top-0 bottom-0 w-[3px] bg-white shadow-[0_0_12px_rgba(0,0,0,0.4)] pointer-events-none"
         style={{ left: `calc(${pos}% - 1.5px)` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white text-[#2f6b2a] flex items-center justify-center shadow-lg text-sm font-black">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white text-[#173d24] flex items-center justify-center shadow-lg text-sm font-black">
           ⇆
         </div>
       </div>

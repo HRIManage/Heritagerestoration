@@ -1,6 +1,6 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Route, Switch, useLocation, Router as WouterRouter } from "wouter";
-import { useEffect } from "react";
+import { Suspense, useEffect, type ComponentType } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -26,25 +26,92 @@ function ScrollToTop() {
   return null;
 }
 
-// Pages
-import Home from "@/pages/Home";
-import Contact from "@/pages/Contact";
-import Projects from "@/pages/Projects";
+// ─── Pages, loaded one chunk per page ───────────────────────────────────────
+// Each page's code is its own file, so a first visit downloads only what that
+// page needs. The page for the current URL is loaded *before* the app renders
+// (see preloadRoute in main.tsx / entry-server.tsx), so nothing flashes blank,
+// and every other page is fetched quietly in the background afterwards.
 import NotFound from "@/pages/NotFound";
-import FAQ from "@/pages/resources/FAQ";
-import Blog from "@/pages/resources/Blog";
-import BillOfRights from "@/pages/resources/BillOfRights";
-import FireRestoration from "@/pages/services/FireRestoration";
-import WaterRestoration from "@/pages/services/WaterRestoration";
-import StormRecovery from "@/pages/services/StormRecovery";
-import ContentsServices from "@/pages/services/ContentsServices";
-import ServiceAreas from "@/pages/locations/ServiceAreas";
-import LocationPage from "@/pages/locations/LocationPage";
-import Privacy from "@/pages/legal/Privacy";
-import Terms from "@/pages/legal/Terms";
-import ThankYou from "@/pages/ThankYou";
-import Commercial from "@/pages/commercial/Commercial";
-import CommercialService from "@/pages/commercial/CommercialService";
+
+type PageLoader = () => Promise<{ default: ComponentType<any> }>;
+
+function lazyPage(loader: PageLoader) {
+  let Loaded: ComponentType<any> | null = null;
+  let pending: Promise<void> | null = null;
+  const load = () =>
+    (pending ??= loader().then(m => {
+      Loaded = m.default;
+    }));
+  function Page(props: any) {
+    if (!Loaded) throw load(); // Suspense shows the fallback until it resolves
+    return <Loaded {...props} />;
+  }
+  return Object.assign(Page, { load }) as ComponentType<any> & { load: () => Promise<void> };
+}
+
+const Home = lazyPage(() => import("@/pages/Home"));
+const Contact = lazyPage(() => import("@/pages/Contact"));
+const Projects = lazyPage(() => import("@/pages/Projects"));
+const FAQ = lazyPage(() => import("@/pages/resources/FAQ"));
+const Blog = lazyPage(() => import("@/pages/resources/Blog"));
+const BillOfRights = lazyPage(() => import("@/pages/resources/BillOfRights"));
+const FireRestoration = lazyPage(() => import("@/pages/services/FireRestoration"));
+const WaterRestoration = lazyPage(() => import("@/pages/services/WaterRestoration"));
+const StormRecovery = lazyPage(() => import("@/pages/services/StormRecovery"));
+const ContentsServices = lazyPage(() => import("@/pages/services/ContentsServices"));
+const ServiceAreas = lazyPage(() => import("@/pages/locations/ServiceAreas"));
+const LocationPage = lazyPage(() => import("@/pages/locations/LocationPage"));
+const Privacy = lazyPage(() => import("@/pages/legal/Privacy"));
+const Terms = lazyPage(() => import("@/pages/legal/Terms"));
+const ThankYou = lazyPage(() => import("@/pages/ThankYou"));
+const Commercial = lazyPage(() => import("@/pages/commercial/Commercial"));
+const CommercialService = lazyPage(() => import("@/pages/commercial/CommercialService"));
+
+/** URL pattern -> page. Keep in step with the <Route>s in Router() below. */
+const PAGE_ROUTES: [string, { load: () => Promise<void> }][] = [
+  ["/", Home],
+  ["/home", Home],
+  ["/contact", Contact],
+  ["/projects", Projects],
+  ["/our-projects", Projects],
+  ["/resources/faq", FAQ],
+  ["/resources/blog", Blog],
+  ["/resources/vlog", Blog],
+  ["/vlog", Blog],
+  ["/resources/bill-of-rights", BillOfRights],
+  ["/services/fire-restoration", FireRestoration],
+  ["/services/water-restoration", WaterRestoration],
+  ["/services/storm-recovery", StormRecovery],
+  ["/services/contents-services", ContentsServices],
+  ["/commercial", Commercial],
+  ["/commercial-restoration", Commercial],
+  ["/commercial/fire-restoration", CommercialService],
+  ["/commercial/water-restoration", CommercialService],
+  ["/service-areas", ServiceAreas],
+  ["/service-area/:slug", LocationPage],
+  ["/privacy", Privacy],
+  ["/terms", Terms],
+  ["/thank-you", ThankYou],
+];
+
+/** Loads the page for `pathname` (so the first render never has to wait). */
+export function preloadRoute(pathname: string): Promise<void> {
+  const clean = pathname.replace(/\/+$/, "") || "/";
+  const hit = PAGE_ROUTES.find(([pattern]) =>
+    new RegExp("^" + pattern.replace(/:[^/]+/g, "[^/]+") + "$").test(clean)
+  );
+  return hit ? hit[1].load() : Promise.resolve();
+}
+
+/** Fetches every remaining page in the background so later clicks are instant. */
+export function preloadAllRoutes(): void {
+  const run = () => PAGE_ROUTES.forEach(([, page]) => page.load().catch(() => {}));
+  if ("requestIdleCallback" in window) {
+    (window as any).requestIdleCallback(run, { timeout: 4000 });
+  } else {
+    setTimeout(run, 2000);
+  }
+}
 
 function Router() {
   return (
@@ -105,7 +172,9 @@ function App({ ssrPath, helmetContext }: AppProps = {}) {
         <ThemeProvider defaultTheme="light">
           <WouterRouter ssrPath={ssrPath}>
             <ScrollToTop />
-            <Router />
+            <Suspense fallback={<div className="min-h-screen bg-[#FAF9F6]" aria-busy="true" />}>
+              <Router />
+            </Suspense>
           </WouterRouter>
         </ThemeProvider>
       </ErrorBoundary>

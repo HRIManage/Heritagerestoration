@@ -644,13 +644,10 @@ export default function Home() {
   return (
     <Layout>
       <Helmet>
-        <title>
-          Heritage Restoration | Fire, Water &amp; Storm Damage Experts in
-          Washington State
-        </title>
+        <title>Heritage Restoration | Fire, Water &amp; Storm Damage Experts</title>
         <meta
           name="description"
-          content="Heritage Restoration provides 24/7 emergency fire, water, and storm damage restoration for homes and commercial properties across Western Washington. IICRC certified, 60-minute response, direct insurance billing since 2004. Serving Lacey, Tacoma, Chehalis, Puyallup &amp; more."
+          content="24/7 fire, water &amp; storm damage restoration for homes and businesses in Western Washington. IICRC certified, direct insurance billing, locally owned since 2004."
         />
         <meta
           name="keywords"
@@ -658,7 +655,6 @@ export default function Home() {
         />
         <link rel="canonical" href="https://www.firewaterstorm.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Heritage Restoration" />
         <meta property="og:url" content="https://www.firewaterstorm.com/" />
         <meta
           property="og:title"
@@ -666,13 +662,12 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="Professional fire, water, and storm damage restoration across Western Washington. IICRC certified, 60-minute emergency response, direct insurance billing since 2004."
+          content="24/7 fire, water &amp; storm damage restoration for homes and businesses in Western Washington. IICRC certified, direct insurance billing, locally owned since 2004."
         />
         <meta
           property="og:image"
-          content="https://www.firewaterstorm.com/photo/hero-new.jpg"
+          content="https://www.firewaterstorm.com/photo/og-default.jpg"
         />
-        <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
           content="Heritage Restoration | 24/7 Fire, Water &amp; Storm Damage Experts"
@@ -699,7 +694,7 @@ export default function Home() {
         <section
           id="home-hero"
           ref={heroRef}
-          className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[120px]"
+          className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[132px] min-h-[calc(100svh-56px)] lg:min-h-[100svh] flex flex-col"
         >
           <img
             data-gsap-hero-image
@@ -714,7 +709,16 @@ export default function Home() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(105deg, rgba(250,249,246,1) 0%, rgba(250,249,246,0.98) 28%, rgba(250,249,246,0.82) 44%, rgba(250,249,246,0.25) 60%, transparent 78%)",
+                "linear-gradient(105deg, rgba(250,249,246,1) 0%, rgba(250,249,246,0.98) 36%, rgba(250,249,246,0.9) 50%, rgba(250,249,246,0.45) 64%, transparent 82%)",
+            }}
+          />
+          {/* Fixed-width white band behind the text column, so the headline stays
+              on a clean background on narrower laptops where % stops fall short */}
+          <div
+            className="absolute inset-0 hidden lg:block pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(100deg, rgba(250,249,246,0.96) 0px, rgba(250,249,246,0.93) 740px, rgba(250,249,246,0.5) 900px, transparent 1060px)",
             }}
           />
           {/* Bottom fade into dark ticker */}
@@ -722,7 +726,7 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(20,81,38,1) 100%)",
+                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(23,61,36,1) 100%)",
             }}
           />
           <div
@@ -757,12 +761,12 @@ export default function Home() {
           </motion.a>
 
           {/* Hero content */}
-          <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 min-[1570px]:px-0 py-8 lg:py-10">
-            <div className="max-w-[600px]">
+          <div className="relative z-10 w-full flex-1 flex flex-col justify-center max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 min-[1570px]:px-0 py-6 lg:py-12 midh:py-6 short:py-6">
+            <div className="max-w-[600px] short:max-w-[640px]">
               <FadeUp triggerImmediately={true} delay={0.05}>
                 <p
                   data-gsap-hero-item
-                  className="inline-flex items-center gap-3 uppercase tracking-[0.2em] text-[11px] font-extrabold mb-7 text-[#8DBD42]"
+                  className="inline-flex items-center gap-3 uppercase tracking-[0.2em] text-[12px] font-extrabold mb-6 midh:mb-5 short:mb-5 text-[#3f6e14]"
                   style={bodyStyle}
                 >
                   <span className="w-8 h-[2px] bg-[#8DBD42]" />
@@ -771,20 +775,16 @@ export default function Home() {
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
                 <h1 data-gsap-hero-item className="leading-[1.03]" style={headlineStyle}>
-                  <span
-                    className="block text-[13px] md:text-[15px] font-black uppercase tracking-[0.22em] text-[#145126] mb-4"
-                    style={bodyStyle}
-                  >
-                    Heritage Restoration
-                  </span>{" "}
-                  <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#1a1c1e] font-bold">
+                  {/* Brand name stays in the H1 for Google's site-name signal, but hidden visually */}
+                  <span className="sr-only">Heritage Restoration: </span>
+                  <span className="block text-[2.3rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] midh:text-[3.1rem] short:text-[2.55rem] text-[#1a1c1e] font-bold">
                     Restoring{" "}
-                    <br />
+                    <br className="short:hidden" />
                     Your Property.
                   </span>{" "}
-                  <span className="block text-[2.6rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] text-[#8DBD42] font-bold mt-1">
+                  <span className="block text-[2.3rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] midh:text-[3.1rem] short:text-[2.55rem] text-[#4f8a1f] font-bold mt-1">
                     Restoring Your{" "}
-                    <br />
+                    <br className="short:hidden" />
                     Peace of Mind.
                   </span>
                 </h1>
@@ -792,7 +792,7 @@ export default function Home() {
               <FadeUp triggerImmediately={true} delay={0.28}>
                 <p
                   data-gsap-hero-item
-                  className="mt-6 text-[17px] text-[#2f3133]/85 max-w-[480px] leading-[1.7]"
+                  className="mt-6 midh:mt-6 short:mt-6 text-[17px] short:text-[16px] text-[#2f3133]/85 max-w-[480px] leading-[1.7] short:leading-[1.55]"
                   style={bodyStyle}
                 >
                   For homeowners, property managers and businesses, we handle
@@ -804,7 +804,7 @@ export default function Home() {
               {/* CTAs */}
               <FadeUp triggerImmediately={true} delay={0.38}>
                 <motion.div
-                  className="mt-9 flex flex-wrap items-center gap-4"
+                  className="mt-8 lg:mt-10 midh:mt-9 short:mt-9 flex flex-wrap items-center gap-4"
                   initial="hidden"
                   animate="visible"
                   variants={{
@@ -828,8 +828,14 @@ export default function Home() {
                     <Phone size={14} className="stroke-[3]" />
                     Call 24/7 Dispatch
                   </motion.a>
-                  <Link href="/contact">
-                    <motion.a
+                  <motion.a
+                      href="/contact"
+                      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                        // plain click -> in-app navigation; modified clicks (new tab etc.) keep native behavior
+                        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                        e.preventDefault();
+                        setLocation("/contact");
+                      }}
                       data-gsap-hero-button
                       className="group inline-flex items-center gap-2 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-[14px] uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 cursor-pointer"
                       style={bodyStyle}
@@ -844,13 +850,12 @@ export default function Home() {
                       Request Assessment
                       <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </motion.a>
-                  </Link>
                 </motion.div>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.5}>
                 <Link
                   href="/commercial"
-                  className="mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#145126] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#8DBD42] transition-colors"
+                  className="mt-7 midh:mt-6 short:mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#145126] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#8DBD42] transition-colors"
                   style={bodyStyle}
                 >
                   Managing a commercial or multi-family property? See commercial restoration →
@@ -860,7 +865,7 @@ export default function Home() {
           </div>
 
           {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#8DBD42] py-6 md:py-8 overflow-hidden">
+          <div className="relative z-10 bg-[#173d24] py-4 md:py-8 short:py-4 overflow-hidden">
             <style>{`
               @keyframes home-ticker {
                 from { transform: translateX(0); }
@@ -880,8 +885,8 @@ export default function Home() {
                     "5-Year Workmanship Warranty",
                   ].map(item => (
                     <span key={item} className="flex items-center">
-                      <span className="px-8 md:px-12 font-semibold text-[16px] md:text-[22px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#145126]">{item}</span>
-                      <span className="text-[#145126]/30 text-[14px] md:text-[18px]">✦</span>
+                      <span className="px-8 md:px-12 font-semibold text-[14px] md:text-[22px] short:text-[17px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#d3ebaa]">{item}</span>
+                      <span className="text-[#8DBD42]/70 text-[14px] md:text-[18px]">✦</span>
                     </span>
                   ))}
                 </div>
@@ -1084,46 +1089,56 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Homes & Businesses — residential / commercial split */}
+        {/* Homes & Businesses — residential / commercial split (whole card is a link) */}
         <section className="bg-white border-y border-[#3F4143]/8">
           <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-14 md:py-20 grid md:grid-cols-2 gap-6 md:gap-8">
-            <FadeUp className="flex flex-col p-7 md:p-10 bg-[#F7F4EE] border-t-4 border-[#8DBD42]">
-              <p className="text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
-                For homeowners
-              </p>
-              <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold text-[#2F3335]" style={headlineStyle}>
-                Residential restoration
-              </h2>
-              <p className="mt-4 text-[16px] text-[#3F4143]/85 leading-relaxed flex-1" style={bodyStyle}>
-                Fire, water and storm damage to your home, handled start to
-                finish, with us on your side through the insurance claim.
-              </p>
+            <FadeUp className="h-full">
               <Link
                 href="/services/fire-restoration"
-                className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#145126] hover:text-[#8DBD42] transition-colors"
-                style={bodyStyle}
+                className="group flex flex-col h-full p-7 md:p-10 bg-[#F7F4EE] border-t-4 border-[#8DBD42] shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ecdf] hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4f8a1f]"
               >
-                Residential services →
+                <p className="text-[#3f6e14] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
+                  For homeowners
+                </p>
+                <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold text-[#2F3335]" style={headlineStyle}>
+                  Residential restoration
+                </h2>
+                <p className="mt-4 text-[16px] text-[#3F4143]/80 leading-relaxed flex-1" style={bodyStyle}>
+                  Fire, water and storm damage to your home, handled start to
+                  finish, with us on your side through the insurance claim.
+                </p>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#145126] group-hover:text-[#4f8a1f] transition-colors"
+                  style={bodyStyle}
+                >
+                  Residential services
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                </span>
               </Link>
             </FadeUp>
-            <FadeUp delay={0.08} className="flex flex-col p-7 md:p-10 bg-[#1f3a24] text-white border-t-4 border-[#8DBD42]">
-              <p className="text-[#a9d468] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
-                For property managers &amp; owners
-              </p>
-              <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold" style={headlineStyle}>
-                Commercial restoration
-              </h2>
-              <p className="mt-4 text-[16px] text-white/80 leading-relaxed flex-1" style={bodyStyle}>
-                Apartments, HOAs, medical, hotels, schools and offices. Cleanup
-                and rebuild under one contract, phased around your tenants and
-                operations.
-              </p>
+            <FadeUp delay={0.08} className="h-full">
               <Link
                 href="/commercial"
-                className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#a9d468] hover:text-white transition-colors"
-                style={bodyStyle}
+                className="group flex flex-col h-full p-7 md:p-10 bg-[#1f3a24] text-white border-t-4 border-[#8DBD42] shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#244529] hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#a9d468]"
               >
-                Commercial services →
+                <p className="text-[#a9d468] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
+                  For property managers &amp; owners
+                </p>
+                <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold" style={headlineStyle}>
+                  Commercial restoration
+                </h2>
+                <p className="mt-4 text-[16px] text-white/80 leading-relaxed flex-1" style={bodyStyle}>
+                  Apartments, HOAs, medical, hotels, schools and offices. Cleanup
+                  and rebuild under one contract, phased around your tenants and
+                  operations.
+                </p>
+                <span
+                  className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#a9d468] group-hover:text-white transition-colors"
+                  style={bodyStyle}
+                >
+                  Commercial services
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                </span>
               </Link>
             </FadeUp>
           </div>

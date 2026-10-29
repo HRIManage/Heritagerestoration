@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { CheckCircle, Phone, ArrowLeft } from "lucide-react";
@@ -21,7 +21,7 @@ export default function ThankYou() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
-      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(152px+2rem)] pb-16 bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(132px+2rem)] pb-16 bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white overflow-hidden">
         <div className="absolute top-[15%] right-[-8%] w-[460px] h-[460px] rounded-full bg-[#8DBD42]/10 blur-[140px] pointer-events-none" />
         <Container size="narrow" className="relative z-10">
           <FadeIn direction="up" className="max-w-2xl">

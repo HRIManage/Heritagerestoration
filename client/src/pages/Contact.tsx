@@ -129,9 +129,18 @@ export default function Contact() {
       <div className="min-h-screen bg-[#F7F4EE]">
 
         {/* Hero */}
-        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(120px+3rem)] pb-14 md:pb-20 bg-[#0f1f11] text-white overflow-hidden">
+        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(100px+3rem)] pb-14 md:pb-20 bg-[#0f1f11] text-white overflow-hidden">
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#145126]/90 via-[#0f1a10] to-[#0a1209] pointer-events-none" />
+          <img
+            src="/photo/contact-cta-woman-banner.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1209]/90 via-[#0f1a10]/60 to-[#0a1209]/55 pointer-events-none" />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#8DBD42]/8 blur-[120px] pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[#8DBD42]/5 blur-[100px] pointer-events-none" />
 
@@ -155,7 +164,7 @@ export default function Contact() {
         </section>
 
         {/* Ticker strip */}
-        <div className="relative z-10 bg-[#8DBD42] py-5 overflow-hidden">
+        <div className="relative z-10 bg-[#173d24] py-5 overflow-hidden">
           <style>{`
             @keyframes contact-ticker {
               from { transform: translateX(0); }
@@ -174,8 +183,8 @@ export default function Contact() {
                   "5-Year Workmanship Warranty",
                 ].map(item => (
                   <span key={item} className="flex items-center">
-                    <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#145126]">{item}</span>
-                    <span className="text-[#145126]/30 text-[10px]">✦</span>
+                    <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#d3ebaa]">{item}</span>
+                    <span className="text-[#8DBD42]/70 text-[10px]">✦</span>
                   </span>
                 ))}
               </div>

@@ -48,7 +48,7 @@ export default function CommercialService({
         <meta property="og:url" content={`${BASE_URL}${s.path}`} />
         <meta
           property="og:image"
-          content={`${BASE_URL}${encodeURI(s.gallery[s.gallery.length - 1].src)}`}
+          content={`${BASE_URL}/photo/og-commercial-${service}.jpg`}
         />
         <script type="application/ld+json">
           {JSON.stringify(
@@ -76,7 +76,7 @@ export default function CommercialService({
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero */}
         <section className="relative text-white overflow-hidden">
           <img
@@ -92,22 +92,17 @@ export default function CommercialService({
                 "linear-gradient(100deg, rgba(14,27,17,0.95) 0%, rgba(20,38,24,0.85) 50%, rgba(20,38,24,0.45) 80%, rgba(14,27,17,0.25) 100%)",
             }}
           />
-          <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 py-14 md:py-20 min-h-[440px] md:min-h-[500px] flex items-center">
-            <FadeIn className="max-w-[780px] space-y-6" direction="up" triggerImmediately>
-              <nav aria-label="Breadcrumb" className="text-xs text-white/65">
-                <Link href="/commercial" className="hover:text-white underline-offset-2 hover:underline">
-                  Commercial
-                </Link>{" "}
-                / <span className="text-white/90">{s.navLabel}</span>
-              </nav>
+          <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 lg:px-14 min-[1340px]:px-6 py-14 md:py-20 min-h-[440px] md:min-h-[500px] short:py-8 lg:min-h-[calc(100svh-132px)] flex items-center">
+            <FadeIn className="max-w-[780px] lg:max-w-[900px] xl:max-w-[1000px] space-y-6 short:space-y-4" direction="up" triggerImmediately>
               <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-xs font-black flex items-center gap-2">
                 <span className="w-6 h-[2px] bg-[#8DBD42]" /> For owners,
                 operators &amp; property managers
               </span>
-              <h1 className="text-[32px] leading-[1.12] sm:text-5xl lg:text-[56px] font-bold font-serif">
-                {s.title} <span className="text-[#a9d468]">{s.titleAccent}</span>
+              <h1 className="text-[32px] leading-[1.12] sm:text-5xl lg:text-[46px] xl:text-[48px] short:text-[40px] font-bold font-serif">
+                {s.title}{" "}
+                <span className="text-[#a9d468] lg:block">{s.titleAccent}</span>
               </h1>
-              <p className="text-base md:text-lg text-white/85 leading-relaxed font-light max-w-2xl">
+              <p className="text-base md:text-lg short:text-base text-white/85 leading-relaxed font-light max-w-2xl xl:max-w-3xl">
                 {s.intro}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -266,7 +261,7 @@ export default function CommercialService({
                 </p>
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#2f6b2a] hover:text-[#8DBD42] transition-colors"
+                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#8DBD42] transition-colors"
                 >
                   <Phone size={28} /> {MAIN_PHONE}
                 </a>

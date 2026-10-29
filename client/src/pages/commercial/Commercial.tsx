@@ -92,13 +92,10 @@ export default function Commercial() {
   return (
     <Layout>
       <Helmet>
-        <title>
-          Commercial Restoration & Rebuild | Multi-Family, Medical, Hotels |
-          Heritage Restoration
-        </title>
+        <title>Commercial Restoration & Rebuild | Heritage Restoration</title>
         <meta
           name="description"
-          content="Commercial fire, water and storm restoration and rebuild for property managers, owners and HOAs across Western Washington. One crew, one contract, direct insurance billing. 24/7 dispatch (360) 456-1886."
+          content="Commercial fire, water & storm restoration and rebuild for apartments, HOAs, medical, hotels and schools in Western Washington. One crew, one contract."
         />
         <link rel="canonical" href="https://www.firewaterstorm.com/commercial" />
         <meta
@@ -107,13 +104,13 @@ export default function Commercial() {
         />
         <meta
           property="og:description"
-          content="Fire, water and storm restoration and reconstruction for apartments, HOAs, medical, hotels and schools in Western Washington — under one contract."
+          content="Commercial fire, water & storm restoration and rebuild for apartments, HOAs, medical, hotels and schools in Western Washington. One crew, one contract."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.firewaterstorm.com/commercial" />
         <meta
           property="og:image"
-          content="https://www.firewaterstorm.com/photo/who-we-are.jpg"
+          content="https://www.firewaterstorm.com/photo/og-commercial.jpg"
         />
         <script type="application/ld+json">
           {JSON.stringify(COMMERCIAL_SERVICE_SCHEMA)}
@@ -131,7 +128,7 @@ export default function Commercial() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero */}
         <section className="relative text-white overflow-hidden">
           <img
@@ -147,17 +144,17 @@ export default function Commercial() {
                 "linear-gradient(100deg, rgba(14,27,17,0.94) 0%, rgba(20,38,24,0.82) 45%, rgba(20,38,24,0.35) 75%, rgba(14,27,17,0.15) 100%)",
             }}
           />
-          <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 py-14 md:py-20 lg:py-24 min-h-[460px] md:min-h-[540px] flex items-center">
-            <FadeIn className="max-w-[760px] space-y-6" direction="up" triggerImmediately>
+          <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 lg:px-14 min-[1340px]:px-6 py-14 md:py-20 lg:py-24 min-h-[460px] md:min-h-[540px] short:py-8 lg:min-h-[calc(100svh-132px)] flex items-center">
+            <FadeIn className="max-w-[760px] xl:max-w-[1020px] space-y-6 short:space-y-4" direction="up" triggerImmediately>
               <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-xs font-black flex items-center gap-2">
                 <span className="w-6 h-[2px] bg-[#8DBD42]" /> For owners,
                 operators &amp; property managers
               </span>
-              <h1 className="text-[34px] leading-[1.1] sm:text-5xl lg:text-6xl font-bold font-serif">
+              <h1 className="text-[34px] leading-[1.1] sm:text-5xl lg:text-[52px] xl:text-[56px] short:text-[42px] font-bold font-serif">
                 Commercial restoration and rebuild,{" "}
-                <span className="text-[#a9d468]">under one contract.</span>
+                <span className="text-[#a9d468] lg:block">under one contract.</span>
               </h1>
-              <p className="text-base md:text-lg text-white/85 leading-relaxed font-light max-w-2xl">
+              <p className="text-base md:text-lg short:text-base text-white/85 leading-relaxed font-light max-w-2xl">
                 Fire, water and storm losses at apartments, HOAs, clinics,
                 hotels, schools and offices. Heritage secures the building,
                 cleans it up and rebuilds it — one crew, one point of contact,
@@ -378,7 +375,7 @@ export default function Commercial() {
                 </p>
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#2f6b2a] hover:text-[#8DBD42] transition-colors"
+                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#8DBD42] transition-colors"
                 >
                   <Phone size={28} /> {MAIN_PHONE}
                 </a>

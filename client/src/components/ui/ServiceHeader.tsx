@@ -19,7 +19,7 @@ export default function ServiceHeader({
   ctaLink,
 }: ServiceHeaderProps) {
   return (
-    <section className="relative text-white overflow-hidden min-h-[380px] md:min-h-[480px]">
+    <section className="relative text-white overflow-hidden min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-232px)]">
       {/* Background image */}
       <img
         src={heroImg}
@@ -37,7 +37,7 @@ export default function ServiceHeader({
       {/* Bottom vignette */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
-      <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
+      <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-232px)]">
         <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
           {/* Breadcrumb */}
           <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/80">

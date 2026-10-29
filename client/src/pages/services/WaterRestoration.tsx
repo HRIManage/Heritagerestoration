@@ -78,9 +78,9 @@ export default function WaterRestoration() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero Section */}
-        <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px]">
+        <section className="relative text-white overflow-hidden border-b border-[#8DBD42]/20 min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-132px)]">
           <img
             src="/photo/water-flooded-hallway.jpg"
             alt="Water damage restoration"
@@ -95,7 +95,7 @@ export default function WaterRestoration() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
 
-          <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px]">
+          <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-132px)]">
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
               <FadeIn className="space-y-6" direction="up">
                 <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black flex items-center gap-2">

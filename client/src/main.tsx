@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { inject } from '@vercel/analytics';
-import App from "./App";
+import App, { preloadRoute, preloadAllRoutes } from "./App";
 import "./index.css";
 import { initAnalytics } from "./lib/analytics";
 
@@ -22,4 +22,11 @@ if (analyticsEndpoint && analyticsWebsiteId) {
   document.head.appendChild(script);
 }
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Load this URL's page chunk first so the prerendered HTML is swapped for the live
+// app in one step (no blank flash); then fetch the other pages in the background.
+preloadRoute(window.location.pathname)
+  .catch(() => {})
+  .finally(() => {
+    createRoot(document.getElementById("root")!).render(<App />);
+    preloadAllRoutes();
+  });

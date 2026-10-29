@@ -1,4 +1,4 @@
-﻿import {
+import {
   Camera,
   Package,
   Wind,
@@ -69,8 +69,8 @@ export default function ContentsServices() {
 
       <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[112px] sm:pt-[116px] lg:pt-[152px]">
-          <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-16 relative z-10">
+        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[112px] sm:pt-[116px] lg:pt-[132px]">
+          <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-16 relative z-10 lg:min-h-[calc(100svh-132px)] lg:flex lg:flex-col lg:justify-center">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
               <div className="col-span-12 md:col-span-6 lg:col-span-7 space-y-8 text-white">
@@ -110,7 +110,7 @@ export default function ContentsServices() {
               </div>
 
               {/* Right Column: Smaller collage image */}
-              <div className="col-span-12 md:col-span-6 lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="col-span-12 md:col-span-6 lg:col-span-5 hidden md:flex justify-center lg:justify-end">
                 <FadeIn
                   delay={0.15}
                   className="w-full max-w-md lg:max-w-full"

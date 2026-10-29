@@ -51,7 +51,7 @@ let ok = 0;
 const failed = [];
 for (const route of [...new Set(routes)]) {
   try {
-    const { html, head } = render(route);
+    const { html, head } = await render(route);
     const page = template
       .replace("</head>", `${head}\n  </head>`)
       .replace('<div id="root"></div>', `<div id="root">${html}</div>`);

@@ -103,13 +103,13 @@ export default function BillOfRights() {
         <meta property="og:image" content="https://www.firewaterstorm.com/photo/bill-of-rights-hero.jpg" />
         <meta
           name="description"
-          content="An educational overview of 12 provisions commonly found in standard homeowner insurance policies after property damage. General information from Heritage Restoration — not legal advice."
+          content="An educational overview of 12 provisions common in homeowner insurance policies after property damage. General information, not legal advice."
         />
       </Helmet>
 
-      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-brand-linen pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* ── Hero ── */}
-        <section className="relative py-16 md:py-24 bg-[#1e2020] text-white overflow-hidden">
+        <section className="relative py-16 md:py-24 short:py-6 bg-[#1e2020] text-white overflow-hidden lg:min-h-[calc(100svh-132px)] lg:flex lg:flex-col lg:justify-center">
           <img
             src="/photo/bill-of-rights-hero.jpg"
             alt="Disaster recovery team supporting homeowner"
@@ -126,7 +126,7 @@ export default function BillOfRights() {
               </div>
 
               <h1
-                className="text-4xl md:text-5xl font-bold mb-5 leading-tight font-serif"
+                className="text-4xl md:text-5xl short:text-4xl font-bold mb-5 short:mb-3 leading-tight font-serif"
               >
                 Homeowner <span className="text-[#8DBD42] drop-shadow-[0_0_12px_rgba(141,189,66,0.25)]">Bill of Rights</span>
               </h1>

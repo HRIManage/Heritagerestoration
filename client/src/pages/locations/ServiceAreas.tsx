@@ -19,9 +19,9 @@ export default function ServiceAreas() {
 
   const canonical = `${BASE_URL}/service-areas`;
   const pageTitle =
-    "Service Areas | Fire, Water & Storm Restoration Across Western Washington | Heritage Restoration";
+    "Service Areas in Western Washington | Heritage Restoration";
   const metaDescription =
-    "Heritage Restoration serves cities along the I-5 corridor from Chehalis to Tacoma, including Olympia, Lacey, Puyallup, Lakewood, DuPont and more. 24/7 emergency response, IICRC certified.";
+    "Fire, water & storm damage restoration in 23 cities along the I-5 corridor, from Chehalis to Tacoma. 24/7 emergency response, IICRC certified.";
 
   const serviceLocations = LOCATIONS;
   const north = serviceLocations.filter(l => l.office === "North");
@@ -115,7 +115,7 @@ export default function ServiceAreas() {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={`${BASE_URL}${HERO_IMAGE}`} />
+        <meta property="og:image" content={`${BASE_URL}/photo/og-default.jpg`} />
         <script type="application/ld+json">
           {JSON.stringify(itemListSchema)}
         </script>
@@ -124,7 +124,7 @@ export default function ServiceAreas() {
         </script>
       </Helmet>
 
-      <div className="bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         <ServiceHeader
           title="Areas We Serve"
           subtitle="Western Washington"

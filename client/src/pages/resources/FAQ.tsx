@@ -415,13 +415,10 @@ export default function FAQ() {
   return (
     <Layout>
       <Helmet>
-        <title>
-          Frequently Asked Questions | Heritage Restoration – Washington
-          Restoration Experts
-        </title>
+        <title>Restoration FAQ | Heritage Restoration</title>
         <meta
           name="description"
-          content="Get answers to 27 common questions about fire, water, and storm damage restoration, mold remediation, insurance claims, and your rights as a homeowner across Western Washington."
+          content="Answers to common questions about fire, water and storm damage restoration, mold, insurance claims and homeowner rights in Western Washington."
         />
         <meta
           name="keywords"
@@ -432,7 +429,7 @@ export default function FAQ() {
           href="https://www.firewaterstorm.com/resources/faq"
         />
         <meta property="og:title" content="FAQ | Heritage Restoration" />
-        <meta property="og:image" content="https://www.firewaterstorm.com/photo/hero-new.jpg" />
+        <meta property="og:image" content="https://www.firewaterstorm.com/photo/og-default.jpg" />
         <meta
           property="og:description"
           content="Answers to 27 common questions about restoration services, insurance claims, mold remediation, and homeowner rights across Western Washington."
@@ -455,10 +452,19 @@ export default function FAQ() {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[152px]">
+      <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
-          <div className="max-w-[800px] mx-auto text-center relative z-10 space-y-6">
+          <img
+            src="/photo/hero-truck.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0E1B11]/85 via-[#0E1B11]/55 to-[#0E1B11]/70" />
+          <div className="w-full max-w-[800px] mx-auto text-center relative z-10 space-y-6">
             <FadeUp className="inline-flex items-center gap-2 justify-center">
               <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
               <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black">

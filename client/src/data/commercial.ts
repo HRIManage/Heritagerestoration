@@ -112,10 +112,9 @@ export const COMMERCIAL_SERVICES: Record<CommercialServiceKey, CommercialService
     titleAccent: "and rebuild, under one contract.",
     intro:
       "After a fire, the building has to be secured, cleaned and rebuilt, and the business has to keep running. Heritage handles the board-up, the smoke, soot and water cleanup, and the full reconstruction with one crew and one point of contact.",
-    metaTitle:
-      "Commercial Fire Damage Restoration & Rebuild | Heritage Restoration",
+    metaTitle: "Commercial Fire Damage Restoration | Heritage Restoration",
     metaDescription:
-      "Commercial and multi-family fire restoration in Western Washington: board-up, smoke and soot cleanup, and full reconstruction under one contract. 24/7 dispatch (360) 456-1886.",
+      "Commercial and multi-family fire restoration in Western Washington: board-up, smoke and soot cleanup and full rebuild under one contract.",
     heroImg: "/photo/Fisher before.jpg",
     heroAlt: "Fire-damaged interior before Heritage commercial fire restoration",
     steps: [
@@ -159,10 +158,9 @@ export const COMMERCIAL_SERVICES: Record<CommercialServiceKey, CommercialService
     titleAccent: "and rebuild, under one contract.",
     intro:
       "Water doesn't stay where it starts. In a multi-unit building it moves through walls and ceilings into the spaces below, and every hour adds to the damage. Heritage extracts it, dries the structure and rebuilds what was lost, with one crew and one point of contact.",
-    metaTitle:
-      "Commercial Water Damage Restoration & Drying | Heritage Restoration",
+    metaTitle: "Commercial Water Damage Restoration | Heritage Restoration",
     metaDescription:
-      "Commercial and multi-family water damage restoration in Western Washington: extraction, measured structural drying and rebuild under one contract. 24/7 dispatch (360) 456-1886.",
+      "Commercial and multi-family water damage restoration in Western Washington: extraction, measured drying and rebuild under one contract.",
     heroImg: "/photo/water-flooded-hallway.jpg",
     heroAlt: "Flooded multi-unit hallway during commercial water mitigation",
     handles: [
