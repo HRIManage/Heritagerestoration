@@ -40,7 +40,7 @@
     { "source": "/fire-water-damage-tumwater-wa", "destination": "/service-area/tumwater-wa", "permanent": true },
     { "source": "/apply", "destination": "/404", "permanent": false }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/spa.html" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/spa" }],
   "headers": [
     {
       "source": "/assets/(.*)",
