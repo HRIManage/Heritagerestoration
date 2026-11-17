@@ -328,7 +328,7 @@ export default function Header({
                           <Link
                             key={item.label}
                             href={item.href}
-                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
+                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent transition-all active:bg-white/10"
                           >
                             <ChevronRight
                               size={14}
@@ -337,14 +337,14 @@ export default function Header({
                             {item.label}
                           </Link>
                         ))}
-                        <div className="pl-10 pr-6 pt-4 pb-1 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42]">
+                        <div className="pl-10 pr-6 pt-4 pb-1 text-[12px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42]">
                           Commercial
                         </div>
                         {commercialItems.map(item => (
                           <Link
                             key={item.label}
                             href={item.href}
-                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
+                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent transition-all active:bg-white/10"
                           >
                             <ChevronRight
                               size={14}
@@ -386,7 +386,7 @@ export default function Header({
                             key={item.label}
                             href={item.href}
                             onClick={e => handleResourceClick(e, item)}
-                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent hover:border-[#8DBD42] transition-all active:bg-white/10"
+                            className="flex items-center gap-2 pl-10 pr-6 py-4 text-white/85 font-semibold text-[15px] hover:text-[#8DBD42] hover:bg-white/5 border-l-2 border-transparent transition-all active:bg-white/10"
                           >
                             <ChevronRight
                               size={14}
@@ -520,7 +520,7 @@ export default function Header({
                       exit="exit"
                       className={`${dropdownPanelCls} w-[340px]`}
                     >
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">
+                      <div className="px-5 pt-2 pb-2 text-[12px] uppercase tracking-[0.2em] font-extrabold text-[#44781a] border-b border-neutral-200 mb-1">
                         Residential &amp; Commercial
                       </div>
                       {serviceItems.map(item => (
@@ -530,16 +530,16 @@ export default function Header({
                           onClick={() => setDesktopServicesOpen(false)}
                           className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group flex items-center justify-between gap-3"
                         >
-                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#44781a] transition-colors">
                             {item.label}
                           </span>
                           <ChevronRight
                             size={15}
-                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                            className="text-[#3F4143]/40 group-hover:text-[#44781a] transition-colors flex-shrink-0"
                           />
                         </Link>
                       ))}
-                      <div className="px-5 pt-3 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-y border-neutral-200 mt-1 mb-1">
+                      <div className="px-5 pt-3 pb-2 text-[12px] uppercase tracking-[0.2em] font-extrabold text-[#44781a] border-y border-neutral-200 mt-1 mb-1">
                         Commercial Properties
                       </div>
                       {commercialItems.map(item => (
@@ -549,12 +549,12 @@ export default function Header({
                           onClick={() => setDesktopServicesOpen(false)}
                           className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-3 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group flex items-center justify-between gap-3"
                         >
-                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#44781a] transition-colors">
                             {item.label}
                           </span>
                           <ChevronRight
                             size={15}
-                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                            className="text-[#3F4143]/40 group-hover:text-[#44781a] transition-colors flex-shrink-0"
                           />
                         </Link>
                       ))}
@@ -596,7 +596,7 @@ export default function Header({
                       exit="exit"
                       className={`${dropdownPanelCls} w-[360px]`}
                     >
-                      <div className="px-5 pt-2 pb-2 text-[10px] uppercase tracking-[0.2em] font-extrabold text-[#8DBD42] border-b border-neutral-200 mb-1">
+                      <div className="px-5 pt-2 pb-2 text-[12px] uppercase tracking-[0.2em] font-extrabold text-[#44781a] border-b border-neutral-200 mb-1">
                         Knowledge Center
                       </div>
                       {resourceItems.map(item => (
@@ -609,12 +609,12 @@ export default function Header({
                           }}
                           className="mx-2 mb-1 rounded-xl border border-transparent px-5 py-4 hover:bg-[#8DBD42]/10 hover:border-[#8DBD42]/30 transition-all duration-200 group cursor-pointer flex items-center justify-between gap-3"
                         >
-                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#8DBD42] transition-colors">
+                          <span className="text-[#2f3133] font-bold text-base group-hover:text-[#44781a] transition-colors">
                             {item.label}
                           </span>
                           <ChevronRight
                             size={15}
-                            className="text-[#3F4143]/40 group-hover:text-[#8DBD42] transition-colors flex-shrink-0"
+                            className="text-[#3F4143]/40 group-hover:text-[#44781a] transition-colors flex-shrink-0"
                           />
                         </Link>
                       ))}
@@ -641,7 +641,7 @@ export default function Header({
               <span className="absolute inset-0 bg-[#E32B2B] animate-ping opacity-25 pointer-events-none" />
               <a
                 href="tel:+13604561886"
-                className="relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-3 xl:px-4 2xl:px-5 py-2.5 uppercase tracking-[0.1em] text-xs xl:text-[13px] 2xl:text-[15px] font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
+                className="btn-3d relative bg-[#E32B2B] hover:bg-[#c42424] text-white inline-flex items-center gap-2 px-3 xl:px-4 2xl:px-5 py-2.5 uppercase tracking-[0.1em] text-xs xl:text-[13px] 2xl:text-[15px] font-bold shadow-lg hover:scale-105 hover:shadow-[0_4px_20px_rgba(227,43,43,0.5)] transition-all duration-200 whitespace-nowrap"
               >
                 <Phone size={14} />
                 24/7 Dispatch

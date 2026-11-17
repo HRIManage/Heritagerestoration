@@ -117,7 +117,7 @@ export default function CommercialInquiry({
   const inputClass =
     "w-full bg-[#FAFAF8] border border-[#3F4143]/12 focus:border-[#8DBD42] focus:ring-2 focus:ring-[#8DBD42]/20 focus:outline-none px-4 py-3.5 transition-all duration-300 text-[16px] text-[#2F3335] rounded-none placeholder:text-[#3F4143]/35 hover:border-[#3F4143]/25";
   const labelClass =
-    "block mb-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60";
+    "block mb-1.5 text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5 font-sans">
@@ -296,11 +296,11 @@ export default function CommercialInquiry({
       <button
         type="submit"
         disabled={sending}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#7bc034] disabled:opacity-60 text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md"
+        className="btn-3d w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] disabled:opacity-60 text-[#173d24] font-bold px-8 py-4 text-[15px] transition-colors rounded-none shadow-[0_4px_12px_rgba(23,61,36,0.08)]"
       >
         <Send size={14} /> {sending ? "Sending..." : "Send to our commercial team"}
       </button>
-      <p className="text-xs text-[#3F4143]/55">
+      <p className="text-xs text-[#3F4143]/80">
         Active damage? Don't wait on the form — call {MAIN_PHONE}, dispatch
         answers 24/7.
       </p>

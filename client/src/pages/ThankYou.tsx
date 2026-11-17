@@ -21,7 +21,7 @@ export default function ThankYou() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
-      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(132px+2rem)] pb-16 bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(132px+2rem)] pb-16 bg-[#173d24] text-white overflow-hidden">
         <div className="absolute top-[15%] right-[-8%] w-[460px] h-[460px] rounded-full bg-[#8DBD42]/10 blur-[140px] pointer-events-none" />
         <Container size="narrow" className="relative z-10">
           <FadeIn direction="up" className="max-w-2xl">
@@ -42,13 +42,13 @@ export default function ThankYou() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:+13604561886"
-                className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.14em] text-xs font-black transition-colors"
+                className="btn-3d inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-8 py-4 text-[15px] font-black transition-colors"
               >
                 <Phone size={16} /> 24/7 Hotline: (360) 456-1886
               </a>
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-[#8DBD42] hover:text-[#8DBD42] text-white px-8 py-4 uppercase tracking-[0.14em] text-xs font-bold transition-colors"
+                className="btn-3d inline-flex items-center justify-center gap-2 border border-white/30 hover:border-[#8DBD42] hover:text-[#8DBD42] text-white px-8 py-4 text-[15px] font-bold transition-colors"
               >
                 <ArrowLeft size={16} /> Back to Home
               </Link>

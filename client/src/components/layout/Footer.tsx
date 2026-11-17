@@ -34,7 +34,7 @@ export default function Footer({
   ];
 
   return (
-    <footer className="bg-[#FAF9F6] text-[#3F4143] pt-20 pb-10 border-t-2 border-[#8DBD42]/40">
+    <footer className="bg-white text-[#1f2a24] pt-20 pb-10 border-t border-[#E6E1D7]">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 lg:col-span-1">
@@ -45,7 +45,7 @@ export default function Footer({
                 className="h-[84px] w-auto mb-6 cursor-pointer"
               />
             </Link>
-            <p className="text-[#3F4143]/65 text-sm leading-relaxed mb-6">
+            <p className="text-[#1f2a24]/70 text-sm leading-relaxed mb-6">
               Professional fire, water, and storm restoration services serving
               Washington State since 2004. Locally owned and operated,
               representing your interests, not the insurance company's.
@@ -56,7 +56,7 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Heritage Restoration on Facebook"
-                className="w-10 h-10 rounded-full bg-[#3F4143]/8 flex items-center justify-center hover:bg-[#8DBD42] hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full bg-[#173d24]/8 text-[#173d24] flex items-center justify-center hover:bg-[#173d24] hover:text-white transition-colors"
               >
                 <Facebook size={18} />
               </a>
@@ -65,7 +65,7 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Heritage Restoration on Instagram"
-                className="w-10 h-10 rounded-full bg-[#3F4143]/8 flex items-center justify-center hover:bg-[#8DBD42] hover:text-white transition-colors"
+                className="w-10 h-10 rounded-full bg-[#173d24]/8 text-[#173d24] flex items-center justify-center hover:bg-[#173d24] hover:text-white transition-colors"
               >
                 <Instagram size={18} />
               </a>
@@ -73,7 +73,7 @@ export default function Footer({
           </div>
 
           <div>
-            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#111111] font-black uppercase text-xs tracking-widest mb-6">
               Services
             </h2>
             <ul className="space-y-4">
@@ -81,7 +81,7 @@ export default function Footer({
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-[#3F4143]/65 hover:text-[#8DBD42] text-sm font-bold transition-colors"
+                    className="text-[#1f2a24]/75 hover:text-[#173d24] text-sm font-bold transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -91,7 +91,7 @@ export default function Footer({
           </div>
 
           <div>
-            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#111111] font-black uppercase text-xs tracking-widest mb-6">
               Resources
             </h2>
             <ul className="space-y-4">
@@ -99,7 +99,7 @@ export default function Footer({
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-[#3F4143]/65 hover:text-[#8DBD42] text-sm font-bold transition-colors"
+                    className="text-[#1f2a24]/75 hover:text-[#173d24] text-sm font-bold transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -108,7 +108,7 @@ export default function Footer({
               <li>
                 <Link
                   href="/contact"
-                  className="text-[#3F4143]/65 hover:text-[#8DBD42] text-sm font-bold transition-colors"
+                  className="text-[#1f2a24]/75 hover:text-[#173d24] text-sm font-bold transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -117,24 +117,24 @@ export default function Footer({
           </div>
 
           <div>
-            <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+            <h2 className="text-[#111111] font-black uppercase text-xs tracking-widest mb-6">
               Office Locations
             </h2>
             <ul className="space-y-6 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin
                   size={18}
-                  className="text-[#8DBD42] flex-shrink-0 mt-1"
+                  className="text-[#173d24] flex-shrink-0 mt-1"
                 />
-                <span className="text-[#3F4143]/65 font-medium">
-                  <strong className="text-[#2f3133] block mb-1">
+                <span className="text-[#1f2a24]/75 font-medium">
+                  <strong className="text-[#111111] block mb-1">
                     North (Lacey · Olympia):
                   </strong>
                   <a
                     href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#8DBD42] hover:underline transition-colors"
+                    className="hover:text-[#173d24] hover:underline transition-colors"
                   >
                     8695 Martin Way E, Unit 103
                     <br />
@@ -142,7 +142,7 @@ export default function Footer({
                   </a>
                   <a
                     href="tel:+13604561886"
-                    className="block mt-1 font-bold text-[#2f3133] hover:text-[#8DBD42] transition-colors"
+                    className="block mt-1 font-bold text-[#173d24] hover:text-[#111111] transition-colors"
                   >
                     (360) 456-1886
                   </a>
@@ -151,17 +151,17 @@ export default function Footer({
               <li className="flex items-start gap-3">
                 <MapPin
                   size={18}
-                  className="text-[#8DBD42] flex-shrink-0 mt-1"
+                  className="text-[#173d24] flex-shrink-0 mt-1"
                 />
-                <span className="text-[#3F4143]/65 font-medium">
-                  <strong className="text-[#2f3133] block mb-1">
+                <span className="text-[#1f2a24]/75 font-medium">
+                  <strong className="text-[#111111] block mb-1">
                     South (Chehalis · Lewis County):
                   </strong>
                   <a
                     href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#8DBD42] hover:underline transition-colors"
+                    className="hover:text-[#173d24] hover:underline transition-colors"
                   >
                     1581 N. National Ave
                     <br />
@@ -169,26 +169,26 @@ export default function Footer({
                   </a>
                   <a
                     href="tel:+13603451015"
-                    className="block mt-1 font-bold text-[#2f3133] hover:text-[#8DBD42] transition-colors"
+                    className="block mt-1 font-bold text-[#173d24] hover:text-[#111111] transition-colors"
                   >
                     (360) 345-1015
                   </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Phone size={18} className="text-[#8DBD42] flex-shrink-0" />
+                <Phone size={18} className="text-[#173d24] flex-shrink-0" />
                 <a
                   href="tel:+13604561886"
-                  className="text-[#3F4143]/65 hover:text-[#8DBD42] font-bold transition-colors"
+                  className="text-[#1f2a24]/75 hover:text-[#173d24] font-bold transition-colors"
                 >
                   (360) 456-1886
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail size={18} className="text-[#8DBD42] flex-shrink-0" />
+                <Mail size={18} className="text-[#173d24] flex-shrink-0" />
                 <a
                   href="mailto:office@firewaterstorm.com"
-                  className="text-[#3F4143]/65 hover:text-[#8DBD42] font-bold transition-colors"
+                  className="text-[#1f2a24]/75 hover:text-[#173d24] font-bold transition-colors"
                 >
                   office@firewaterstorm.com
                 </a>
@@ -198,8 +198,8 @@ export default function Footer({
         </div>
 
         {/* Service Areas */}
-        <div className="pt-10 mb-12 border-t border-[#3F4143]/15">
-          <h2 className="text-[#2f3133] font-black uppercase text-xs tracking-widest mb-6">
+        <div className="pt-10 mb-12 border-t border-[#E6E1D7]">
+          <h2 className="text-[#111111] font-black uppercase text-xs tracking-widest mb-6">
             Service Areas
           </h2>
           <div className="flex flex-wrap gap-x-6 gap-y-3">
@@ -207,30 +207,30 @@ export default function Footer({
               <Link
                 key={loc.slug}
                 href={`/service-area/${loc.slug}`}
-                className="text-[#3F4143]/65 hover:text-[#8DBD42] text-sm font-bold transition-colors"
+                className="text-[#1f2a24]/75 hover:text-[#173d24] text-sm font-bold transition-colors"
               >
                 {loc.name}, WA
               </Link>
             ))}
             <Link
               href="/service-areas"
-              className="text-[#8DBD42] hover:underline text-sm font-black transition-colors"
+              className="text-[#173d24] hover:underline text-sm font-black transition-colors"
             >
               View All Areas →
             </Link>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-[#3F4143]/15 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[#3F4143]/40 text-[10px] font-black uppercase tracking-widest">
+        <div className="pt-10 border-t border-[#E6E1D7] flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[#1f2a24]/80 text-[12px] font-black uppercase tracking-widest">
             © 2026 Heritage Restoration Inc. All Rights Reserved. | License
             #HERITRI964J2 | IICRC Certified Firm
           </p>
-          <div className="flex gap-6 text-[#3F4143]/40 text-[10px] font-black uppercase tracking-widest">
-            <Link href="/privacy" className="hover:text-[#8DBD42] transition-colors">
+          <div className="flex gap-6 text-[#1f2a24]/80 text-[12px] font-black uppercase tracking-widest">
+            <Link href="/privacy" className="hover:text-[#173d24] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#8DBD42] transition-colors">
+            <Link href="/terms" className="hover:text-[#173d24] transition-colors">
               Terms of Service
             </Link>
           </div>

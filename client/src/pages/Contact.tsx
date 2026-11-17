@@ -11,6 +11,7 @@ import {
   mailtoFallback,
   submitIntake,
 } from "@/lib/web3forms";
+import TrustBadges from "@/components/TrustBadges";
 
 export default function Contact() {
   const [, setLocation] = useLocation();
@@ -129,9 +130,9 @@ export default function Contact() {
       <div className="min-h-screen bg-[#F7F4EE]">
 
         {/* Hero */}
-        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(100px+3rem)] pb-14 md:pb-20 bg-[#0f1f11] text-white overflow-hidden">
+        <section className="relative pt-[calc(112px+2rem)] sm:pt-[calc(116px+2rem)] lg:pt-[calc(100px+3rem)] pb-14 md:pb-20 bg-[#173d24] text-white overflow-hidden">
           {/* Subtle texture overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#145126]/90 via-[#0f1a10] to-[#0a1209] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#173d24]/90 via-[#173d24] to-[#173d24] pointer-events-none" />
           <img
             src="/photo/contact-cta-woman-banner.jpg"
             alt=""
@@ -140,13 +141,13 @@ export default function Contact() {
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1209]/90 via-[#0f1a10]/60 to-[#0a1209]/55 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#173d24]/90 via-[#173d24]/60 to-[#173d24]/55 pointer-events-none" />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#8DBD42]/8 blur-[120px] pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[#8DBD42]/5 blur-[100px] pointer-events-none" />
 
           <Container>
             <FadeIn className="relative z-10 max-w-3xl" direction="up">
-              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.22em] text-[11px] font-black mb-5">
+              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.22em] text-[12px] font-black mb-5">
                 <span className="w-5 h-px bg-[#8DBD42]" />
                 Get In Touch
               </p>
@@ -184,7 +185,7 @@ export default function Contact() {
                 ].map(item => (
                   <span key={item} className="flex items-center">
                     <span className="px-7 font-black text-[14px] md:text-[15px] uppercase tracking-[0.18em] text-[#d3ebaa]">{item}</span>
-                    <span className="text-[#8DBD42]/70 text-[10px]">✦</span>
+                    <span className="text-[#8DBD42]/70 text-[12px]">✦</span>
                   </span>
                 ))}
               </div>
@@ -202,7 +203,7 @@ export default function Contact() {
 
                 {/* Emergency call card */}
                 <FadeIn direction="up">
-                  <div className="bg-[#145126] overflow-hidden relative">
+                  <div className="bg-[#173d24] overflow-hidden relative">
                     {/* Glow accents */}
                     <div className="absolute right-[-40px] top-[-40px] w-64 h-64 rounded-full bg-[#8DBD42]/12 blur-[80px] pointer-events-none" />
                     <div className="absolute left-[-20px] bottom-[-20px] w-40 h-40 rounded-full bg-[#8DBD42]/8 blur-[60px] pointer-events-none" />
@@ -211,7 +212,7 @@ export default function Contact() {
                       {/* Label */}
                       <div className="flex items-center gap-3 mb-6">
                         <span className="w-5 h-px bg-[#8DBD42]" />
-                        <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-[11px] font-black">
+                        <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-[12px] font-black">
                           Emergency Dispatch
                         </span>
                       </div>
@@ -226,13 +227,13 @@ export default function Contact() {
                       {/* Phone CTA */}
                       <a
                         href="tel:+13604561886"
-                        className="flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-5 py-4 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
+                        className="btn-3d flex items-center gap-4 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-5 py-4 mb-6 transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(141,189,66,0.45)] active:translate-y-0 group"
                       >
-                        <div className="w-10 h-10 rounded-full bg-[#145126]/15 flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#173d24]/15 flex items-center justify-center flex-shrink-0">
                           <Phone size={18} className="stroke-[2.5]" />
                         </div>
                         <div>
-                          <p className="text-[11px] uppercase tracking-[0.18em] font-black opacity-70 mb-0.5">
+                          <p className="text-[12px] uppercase tracking-[0.18em] font-black mb-0.5">
                             Call Now — Free
                           </p>
                           <p className="text-[22px] font-black tracking-tight leading-none">
@@ -269,17 +270,17 @@ export default function Contact() {
 
                 {/* Office locations card */}
                 <FadeIn
-                  className="bg-white p-7 md:p-8 border border-[#3F4143]/8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] space-y-5"
+                  className="bg-white p-7 md:p-8 border border-[#E6E1D7] shadow-[0_4px_24px_rgba(23,61,36,0.04)] space-y-5"
                   direction="up"
                 >
-                  <h3 className="text-[16px] font-black uppercase tracking-[0.14em] text-[#2F3335] border-b border-[#3F4143]/10 pb-4">
+                  <h3 className="text-[16px] font-black uppercase tracking-[0.14em] text-[#2F3335] border-b border-[#E6E1D7] pb-4">
                     Office Locations
                   </h3>
 
                   <div className="space-y-5">
                     {/* North */}
                     <div>
-                      <p className="text-[11px] font-black text-[#8DBD42] uppercase tracking-[0.18em] mb-2">
+                      <p className="text-[12px] font-black text-[#44781a] uppercase tracking-[0.18em] mb-2">
                         North Office — Lacey
                       </p>
                       <div className="flex gap-3 items-start text-[14px] text-[#3F4143]/75">
@@ -289,14 +290,14 @@ export default function Contact() {
                             href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors block"
+                            className="font-semibold text-[#2F3335] hover:text-[#44781a] transition-colors block"
                           >
                             8695 Martin Way E, Unit 103
                           </a>
                           <span>Lacey, WA 98516</span>
                           <a
                             href="tel:+13604561886"
-                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors"
+                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#44781a] transition-colors"
                           >
                             (360) 456-1886
                           </a>
@@ -308,7 +309,7 @@ export default function Contact() {
 
                     {/* South */}
                     <div>
-                      <p className="text-[11px] font-black text-[#8DBD42] uppercase tracking-[0.18em] mb-2">
+                      <p className="text-[12px] font-black text-[#44781a] uppercase tracking-[0.18em] mb-2">
                         South Office — Chehalis
                       </p>
                       <div className="flex gap-3 items-start text-[14px] text-[#3F4143]/75">
@@ -318,14 +319,14 @@ export default function Contact() {
                             href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors block"
+                            className="font-semibold text-[#2F3335] hover:text-[#44781a] transition-colors block"
                           >
                             1581 N. National Ave
                           </a>
                           <span>Chehalis, WA 98532</span>
                           <a
                             href="tel:+13603451015"
-                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#8DBD42] transition-colors"
+                            className="block mt-1 font-semibold text-[#2F3335] hover:text-[#44781a] transition-colors"
                           >
                             (360) 345-1015
                           </a>
@@ -344,10 +345,10 @@ export default function Contact() {
                   ].map(pill => (
                     <div
                       key={pill.label}
-                      className="bg-white border border-[#3F4143]/8 flex flex-col items-center gap-2 py-4 px-2 text-center shadow-sm"
+                      className="bg-white border border-[#E6E1D7] flex flex-col items-center gap-2 py-4 px-2 text-center shadow-[0_1px_2px_rgba(23,61,36,0.06)]"
                     >
                       <span className="text-[#8DBD42]">{pill.icon}</span>
-                      <span className="text-[10px] font-black uppercase tracking-[0.1em] text-[#3F4143]/70 leading-tight">
+                      <span className="text-[12px] font-black uppercase tracking-[0.1em] text-[#3F4143]/80 leading-tight">
                         {pill.label}
                       </span>
                     </div>
@@ -358,7 +359,7 @@ export default function Contact() {
               {/* ── RIGHT: Intake form ── */}
               <div className="lg:col-span-7">
                 <FadeIn
-                  className="relative bg-white border border-[#3F4143]/8 shadow-[0_8px_40px_rgba(0,0,0,0.05)] overflow-hidden"
+                  className="relative bg-white border border-[#E6E1D7] shadow-[0_8px_40px_rgba(23,61,36,0.05)] overflow-hidden"
                   direction="up"
                 >
                   {/* Top accent bar */}
@@ -367,13 +368,13 @@ export default function Contact() {
                   <div className="p-8 md:p-12 space-y-8">
                     {/* Form header */}
                     <div className="space-y-2">
-                      <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-[11px] font-black block">
+                      <span className="text-[#44781a] uppercase tracking-[0.22em] text-[12px] font-black block">
                         Secure Portal
                       </span>
                       <h2 className="text-[28px] md:text-[32px] font-serif font-bold text-[#2F3335] leading-tight">
                         Submit an Intake Inquiry
                       </h2>
-                      <p className="text-[14px] text-[#3F4143]/55 leading-relaxed">
+                      <p className="text-[14px] text-[#3F4143]/80 leading-relaxed">
                         Fill in the details below and our team will reach out within 1 business day.
                         For emergencies, call us directly.
                       </p>
@@ -401,7 +402,7 @@ export default function Contact() {
                         <div className="space-y-1.5">
                           <label
                             htmlFor="name"
-                            className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
+                            className="text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80"
                           >
                             Full Name <span className="text-[#8DBD42]">*</span>
                           </label>
@@ -420,7 +421,7 @@ export default function Contact() {
                         <div className="space-y-1.5">
                           <label
                             htmlFor="phone"
-                            className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
+                            className="text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80"
                           >
                             Phone Number <span className="text-[#8DBD42]">*</span>
                           </label>
@@ -442,7 +443,7 @@ export default function Contact() {
                         <div className="space-y-1.5">
                           <label
                             htmlFor="email"
-                            className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
+                            className="text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80"
                           >
                             Email Address <span className="text-[#8DBD42]">*</span>
                           </label>
@@ -461,7 +462,7 @@ export default function Contact() {
                         <div className="space-y-1.5">
                           <label
                             htmlFor="service"
-                            className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
+                            className="text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80"
                           >
                             Restoration Service
                           </label>
@@ -486,7 +487,7 @@ export default function Contact() {
                       <div className="space-y-1.5">
                         <label
                           htmlFor="message"
-                          className="text-[11px] font-black uppercase tracking-[0.12em] text-[#3F4143]/60"
+                          className="text-[12px] font-black uppercase tracking-[0.12em] text-[#3F4143]/80"
                         >
                           Describe the Loss or Request <span className="text-[#8DBD42]">*</span>
                         </label>
@@ -506,13 +507,13 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={sending}
-                        className="w-full bg-[#145126] hover:bg-[#1a6932] disabled:opacity-60 disabled:cursor-not-allowed text-white font-black py-4 px-8 uppercase tracking-[0.16em] text-[12px] transition-all duration-300 flex items-center justify-center gap-2.5 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(20,81,38,0.3)] active:translate-y-0"
+                        className="btn-3d w-full bg-[#173d24] hover:bg-[#173d24]/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-black py-4 px-8 text-[12px] transition-all duration-300 flex items-center justify-center gap-2.5 hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(23,61,36,0.3)] active:translate-y-0"
                       >
                         <Send size={13} />
                         {sending ? "Sending..." : "Submit Intake Request"}
                       </button>
 
-                      <p className="text-[11px] text-[#3F4143]/40 text-center leading-relaxed">
+                      <p className="text-[12px] text-[#3F4143]/80 text-center leading-relaxed">
                         By submitting you agree to be contacted by our team. We never share your information.
                       </p>
                     </form>
@@ -525,41 +526,12 @@ export default function Contact() {
 
         {/* Trust badges — bottom of page */}
         <div className="bg-white border-t border-gray-100">
-          <div className="max-w-[860px] mx-auto px-8 py-14 md:py-16 text-center">
-            <p className="text-[11px] uppercase tracking-[0.22em] font-black text-[#8DBD42] mb-10">
+          <div className="max-w-[1120px] mx-auto px-6 sm:px-8 py-14 md:py-16 text-center">
+            <p className="text-[12px] uppercase tracking-[0.22em] font-black text-[#44781a] mb-10">
               Why Homeowners Trust Heritage
             </p>
-            <div className="flex items-center justify-center gap-10 md:gap-20 mb-10">
-              {[
-                {
-                  src: "/photo/emergency-badge-new-2.png",
-                  alt: "24 HR Emergency Response",
-                  title: "24/7 Emergency Response",
-                },
-                {
-                  src: "/photo/iicrc-badge-new-3.png",
-                  alt: "IICRC Certified",
-                  title: "IICRC Certified",
-                },
-                {
-                  src: "/photo/warranty-badge-new-3.png",
-                  alt: "5-Year Workmanship Warranty",
-                  title: "5-Year Workmanship Warranty",
-                },
-              ].map((badge) => (
-                <div key={badge.alt} className="flex flex-col items-center gap-3">
-                  <img
-                    src={badge.src}
-                    alt={badge.alt}
-                    className="h-20 md:h-24 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-                  />
-                  <p className="text-[11px] font-black text-[#2F3335] uppercase tracking-[0.1em] text-center">
-                    {badge.title}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="text-[13px] text-[#3F4143]/45 max-w-[520px] mx-auto leading-relaxed">
+            <TrustBadges className="mb-10" />
+            <p className="text-[13px] text-[#3F4143]/80 max-w-[520px] mx-auto leading-relaxed">
               Heritage Restoration has served Western Washington since 2004 — locally owned,
               licensed &amp; bonded, and committed to protecting homeowners through every step of recovery.
             </p>

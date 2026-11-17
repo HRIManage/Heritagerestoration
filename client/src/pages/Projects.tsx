@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import PageCTA from "@/components/PageCTA";
 import Layout from "@/components/layout/Layout";
 import { useState, useRef } from "react";
 import { Phone } from "lucide-react";
@@ -83,7 +84,7 @@ export default function Projects() {
 
       <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative bg-[#173d24] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <img
             src="/photo/hero-new.jpg"
             alt=""
@@ -92,7 +93,7 @@ export default function Projects() {
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0E1B11]/85 via-[#0E1B11]/55 to-[#0E1B11]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#173d24]/85 via-[#173d24]/55 to-[#173d24]/70" />
           <div className="w-full max-w-[800px] mx-auto text-center relative z-10 space-y-6">
             <FadeUp className="inline-flex items-center gap-2 justify-center">
               <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
@@ -125,7 +126,7 @@ export default function Projects() {
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`px-8 py-3 rounded-none font-bold uppercase text-xs tracking-widest transition-all hover:scale-[1.03] cursor-pointer ${filter === cat ? "bg-[#8DBD42] text-white shadow-[0_10px_20px_-10px_rgba(141,189,66,0.4)]" : "bg-white border border-[#3F4143]/10 text-[#3F4143] hover:bg-[#FAF9F6] shadow-sm"}`}
+                  className={`px-8 py-3 rounded-none font-bold uppercase text-xs tracking-widest transition-all hover:scale-[1.03] cursor-pointer ${filter === cat ? "bg-[#8DBD42] text-[#173d24] shadow-[0_10px_20px_-10px_rgba(141,189,66,0.4)]" : "bg-white border border-[#E6E1D7] text-[#3F4143] hover:bg-[#FAF9F6] shadow-[0_1px_2px_rgba(23,61,36,0.06)]"}`}
                 >
                   {cat}
                 </button>
@@ -147,25 +148,25 @@ export default function Projects() {
                     <div className="absolute w-[280px] h-[280px] rounded-none bg-[#8DBD42]/5 blur-[80px] pointer-events-none -z-10" />
 
                     {/* Before Image - Left/Back */}
-                    <div className="absolute left-6 md:left-12 top-6 w-[55%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-white/50 brightness-75 transition-all duration-500 hover:z-20 hover:scale-105 hover:brightness-100 group/before">
+                    <div className="absolute left-6 md:left-12 top-6 w-[55%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_10px_30px_rgba(23,61,36,0.06)] border border-white/50 brightness-75 transition-all duration-500 hover:z-20 hover:scale-105 hover:brightness-100 group/before">
                       <img
                         src={project.before}
                         alt="Before Restoration"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-4 left-4 bg-[#3F4143]/90 backdrop-blur-sm text-white px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-none shadow-sm font-sans">
+                      <div className="absolute top-4 left-4 bg-[#3F4143]/90 backdrop-blur-sm text-white px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider rounded-none shadow-[0_1px_2px_rgba(23,61,36,0.06)] font-sans">
                         Before
                       </div>
                     </div>
 
                     {/* After Image - Right/Front overlapping */}
-                    <div className="absolute right-6 md:right-12 bottom-6 w-[60%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border-[6px] border-white z-10 transition-all duration-500 hover:scale-105 group/after">
+                    <div className="absolute right-6 md:right-12 bottom-6 w-[60%] aspect-[4/5] rounded-none overflow-hidden shadow-[0_20px_50px_rgba(23,61,36,0.12)] border-[6px] border-white z-10 transition-all duration-500 hover:scale-105 group/after">
                       <img
                         src={project.after}
                         alt="After Restoration"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-4 right-4 bg-[#8DBD42] text-white px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-none shadow-md shadow-[#8DBD42]/20 font-sans">
+                      <div className="absolute top-4 right-4 bg-[#8DBD42] text-[#173d24] px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider rounded-none shadow-[0_4px_12px_rgba(23,61,36,0.08)] shadow-[#8DBD42]/20 font-sans">
                         After Restored
                       </div>
                     </div>
@@ -175,22 +176,22 @@ export default function Projects() {
                   <div
                     className={`flex flex-col justify-center ${idx % 2 !== 0 ? "lg:order-1 lg:pr-12" : "lg:pl-12"}`}
                   >
-                    <span className="text-[#8DBD42] font-extrabold uppercase text-xs tracking-[0.2em] mb-4 block font-sans">
+                    <span className="text-[#44781a] font-extrabold uppercase text-xs tracking-[0.2em] mb-4 block font-sans">
                       {project.type}
                     </span>
                     <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mb-6 leading-tight font-serif">
                       {project.title}
                     </h2>
-                    <div className="flex items-center gap-2 text-[#3F4143]/60 font-bold mb-6 text-sm font-sans">
+                    <div className="flex items-center gap-2 text-[#3F4143]/80 font-bold mb-6 text-sm font-sans">
                       <span className="w-1.5 h-1.5 rounded-none bg-[#8DBD42]" />
                       <span>{project.location}</span>
                     </div>
-                    <p className="text-base md:text-lg text-[#3F4143]/70 leading-relaxed mb-8 font-sans font-light">
+                    <p className="text-base md:text-lg text-[#3F4143]/80 leading-relaxed mb-8 font-sans font-light">
                       {project.desc}
                     </p>
-                    <div className="grid grid-cols-2 gap-8 border-t border-[#3F4143]/10 pt-6 font-sans">
+                    <div className="grid grid-cols-2 gap-8 border-t border-[#E6E1D7] pt-6 font-sans">
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-[#3F4143]/40 mb-1 font-sans">
+                        <div className="text-[12px] font-black uppercase tracking-widest text-[#3F4143]/80 mb-1 font-sans">
                           Duration
                         </div>
                         <div className="text-[#3F4143] font-bold text-sm font-sans">
@@ -198,7 +199,7 @@ export default function Projects() {
                         </div>
                       </div>
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-[#3F4143]/40 mb-1 font-sans">
+                        <div className="text-[12px] font-black uppercase tracking-widest text-[#3F4143]/80 mb-1 font-sans">
                           Outcome
                         </div>
                         <div className="text-[#3F4143] font-bold text-sm font-sans">
@@ -213,59 +214,18 @@ export default function Projects() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative bg-[#FAF9F6] pt-24 pb-36 overflow-hidden">
-          {/* Background image banner */}
-          <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
-            <img
-              src="/photo/who-we-are.jpg"
-              alt="Heritage team support"
-              className="w-full h-full object-cover object-center brightness-75"
-            />
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/35" />
-
-            {/* Diagonal graphic stripes on the right */}
-            <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block overflow-hidden pointer-events-none">
-              <div className="absolute right-[-100px] top-[-100px] w-[180px] h-[600px] bg-[#3F4143] transform rotate-[35deg] opacity-90 shadow-2xl" />
-              <div className="absolute right-[100px] top-[-100px] w-[80px] h-[600px] bg-[#8DBD42] transform rotate-[35deg] opacity-75" />
-              <div className="absolute right-[200px] top-[-100px] w-[40px] h-[600px] bg-[#7BB843] transform rotate-[35deg] opacity-60" />
-            </div>
-          </div>
-
-          {/* Centered Overlapping Card Container */}
-          <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
-            <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6 font-serif">
-                  Start Your Restoration Journey
-                </h2>
-                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
-                  <p>
-                    Heritage Restoration is available 24/7, 365 days a year. Our
-                    emergency response team will deploy and arrive within 60
-                    minutes of dispatch to secure your home.
-                  </p>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
-                  <a
-                    href="tel:+13604561886"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none hover:scale-[1.02]"
-                  >
-                    <Phone size={14} /> Call 360-456-1886
-                  </a>
-                  <a
-                    href="mailto:office@firewaterstorm.com"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md rounded-none hover:scale-[1.02]"
-                  >
-                    Email Us Now
-                  </a>
-                </div>
-              </div>
-            </FadeUp>
-          </div>
-        </section>
+        <PageCTA
+          title="Start Your Restoration Journey"
+          primary={{ href: "tel:+13604561886", label: "Call 360-456-1886" }}
+          secondary={{ href: "mailto:office@firewaterstorm.com", label: "Email Us Now" }}
+          image={{ src: "/photo/who-we-are.jpg", alt: "Heritage team support" }}
+        >
+          <p>
+              Heritage Restoration is available 24/7, 365 days a year. Our
+              emergency response team will deploy and arrive within 60
+              minutes of dispatch to secure your home.
+            </p>
+        </PageCTA>
       </div>
     </Layout>
   );

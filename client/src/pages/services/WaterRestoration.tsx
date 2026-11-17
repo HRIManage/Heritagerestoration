@@ -1,5 +1,6 @@
 import { Zap, Thermometer, Droplets, CheckCircle, Phone } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import PageCTA from "@/components/PageCTA";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
 import FadeIn from "@/components/ui/FadeIn";
@@ -90,10 +91,11 @@ export default function WaterRestoration() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)",
+                "linear-gradient(to right, rgba(23,61,36,0.92) 0%, rgba(23,61,36,0.88) 40%, rgba(23,61,36,0.6) 62%, rgba(23,61,36,0.15) 100%)",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[#173d24]/70 lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#173d24]/40 via-transparent to-transparent" />
 
           <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-132px)]">
             <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
@@ -132,7 +134,7 @@ export default function WaterRestoration() {
                   <FadeIn
                     key={idx}
                     delay={idx * 0.08}
-                    className="bg-white border border-[#3F4143]/8 shadow-[0_4px_20px_rgba(0,0,0,0.015)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] transition-all duration-300 grid md:grid-cols-12 gap-0 items-stretch rounded-none overflow-hidden"
+                    className="bg-white border border-[#E6E1D7] shadow-[0_4px_20px_rgba(23,61,36,0.015)] hover:shadow-[0_16px_35px_rgba(23,61,36,0.05)] transition-all duration-300 grid md:grid-cols-12 gap-0 items-stretch rounded-none overflow-hidden"
                     direction="up"
                   >
                     {/* Image Column - Alternates Left / Right */}
@@ -156,7 +158,7 @@ export default function WaterRestoration() {
                           {item.title}
                         </h3>
                       </div>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
+                      <p className="text-[#3F4143]/80 text-sm leading-relaxed font-sans">
                         {item.desc}
                       </p>
                     </div>
@@ -287,19 +289,19 @@ export default function WaterRestoration() {
                 <FadeIn
                   key={idx}
                   delay={idx * 0.05}
-                  className="bg-white p-8 border border-[#3F4143]/8 shadow-[0_6px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)] transition-all duration-300 relative rounded-none"
+                  className="card-3d bg-white p-8 border border-[#E6E1D7] shadow-[0_6px_20px_rgba(23,61,36,0.01)] hover:shadow-[0_15px_35px_rgba(23,61,36,0.05)] transition-all duration-300 relative rounded-none"
                   direction="up"
                 >
-                  <span className="absolute top-6 right-6 text-4xl font-black text-[#8DBD42]/10 select-none font-serif">
+                  <span aria-hidden="true" className="absolute top-6 right-6 text-4xl font-black text-[#8DBD42]/10 select-none font-serif">
                     {item.step}
                   </span>
-                  <div className="w-10 h-10 rounded-none bg-[#8DBD42]/10 text-[#8DBD42] flex items-center justify-center font-bold text-sm mb-4 font-serif">
+                  <div className="w-10 h-10 rounded-none bg-[#8DBD42]/10 text-[#44781a] flex items-center justify-center font-bold text-sm mb-4 font-serif">
                     {idx + 1}
                   </div>
                   <h3 className="font-bold text-[#3F4143] text-lg mb-2 font-serif">
                     {item.title}
                   </h3>
-                  <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
+                  <p className="text-[#3F4143]/80 text-sm leading-relaxed font-sans">
                     {item.desc}
                   </p>
                 </FadeIn>
@@ -348,60 +350,24 @@ export default function WaterRestoration() {
           </Container>
         </Section>
 
-        {/* CTA Section */}
-        <Section bg="white" className="border-t border-gray-100 pb-24">
-          <Container>
-            {/* Centered before/after banner */}
-            <div className="max-w-[800px] mx-auto relative z-0 mb-10">
-              <div className="border border-[#3F4143]/10 rounded-none overflow-hidden shadow-md">
-                <img
-                  src="/photo/water-cta-before-after.png"
-                  alt="Kitchen water damage before and after restoration"
-                  className="w-full h-auto block"
-                />
-              </div>
-            </div>
-
-            {/* Overlapping Card */}
-            <div className="relative max-w-[960px] mx-auto z-10">
-              <FadeIn direction="up">
-                <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
-                  <h2 className="text-2xl md:text-3.5xl font-bold text-[#3F4143] mb-6 font-serif">
-                    Your Water Damage Restoration Experts
-                  </h2>
-                  <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
-                    <p>
-                      Water damage is incredibly invasive and can quickly cause
-                      severe structural issues if left unaddressed. We map out
-                      all moisture using thermal imaging and deploy LGR dryout
-                      systems immediately.
-                    </p>
-                    <p>
-                      Our certified team manages the entire scope of claims,
-                      coordinate dryout reports for adjusters, and handles the
-                      reconstruction of flooring and walls back to code.
-                    </p>
-                  </div>
-
-                  <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
-                    <a
-                      href="tel:+13604561886"
-                      className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
-                    >
-                      <Phone size={14} /> Contact Us Now
-                    </a>
-                    <Link
-                      href="/resources/faq"
-                      className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md"
-                    >
-                      FAQ & Resources
-                    </Link>
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
-          </Container>
-        </Section>
+        <PageCTA
+          title="Your Water Damage Restoration Experts"
+          primary={{ href: "tel:+13604561886", label: "Contact Us Now" }}
+          secondary={{ href: "/resources/faq", label: "FAQ & Resources" }}
+          image={{ src: "/photo/water-cta-before-after.png", alt: "Kitchen water damage before and after restoration" }}
+        >
+          <p>
+            Water damage is incredibly invasive and can quickly cause
+            severe structural issues if left unaddressed. We map out
+            all moisture using thermal imaging and deploy LGR dryout
+            systems immediately.
+          </p>
+          <p>
+            Our certified team manages the entire scope of claims,
+            coordinate dryout reports for adjusters, and handles the
+            reconstruction of flooring and walls back to code.
+          </p>
+        </PageCTA>
       </div>
     </Layout>
   );

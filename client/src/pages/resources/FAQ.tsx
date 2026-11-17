@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import PageCTA from "@/components/PageCTA";
 import Layout from "@/components/layout/Layout";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Plus, Minus, Phone } from "lucide-react";
@@ -354,7 +355,7 @@ const faqCategories: FAQCategory[] = [
               ].map((hub, i) => (
                 <div
                   key={i}
-                  className="bg-[#3F4143]/5 border border-[#3F4143]/10 p-4 rounded-none font-sans"
+                  className="bg-[#3F4143]/5 border border-[#E6E1D7] p-4 rounded-none font-sans"
                 >
                   <p className="font-bold text-[#3F4143] text-sm mb-1 font-serif">
                     {hub.hub}
@@ -454,7 +455,7 @@ export default function FAQ() {
 
       <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative bg-[#173d24] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <img
             src="/photo/hero-truck.jpg"
             alt=""
@@ -463,7 +464,7 @@ export default function FAQ() {
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0E1B11]/85 via-[#0E1B11]/55 to-[#0E1B11]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#173d24]/85 via-[#173d24]/55 to-[#173d24]/70" />
           <div className="w-full max-w-[800px] mx-auto text-center relative z-10 space-y-6">
             <FadeUp className="inline-flex items-center gap-2 justify-center">
               <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
@@ -494,7 +495,7 @@ export default function FAQ() {
             {/* Sticky category navigation — desktop only */}
             <aside className="hidden lg:block">
               <div className="sticky top-[132px]">
-                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#8DBD42] mb-5">
+                <p className="text-[12px] font-black uppercase tracking-[0.22em] text-[#44781a] mb-5">
                   Browse Topics
                 </p>
                 <nav className="flex flex-col">
@@ -505,16 +506,16 @@ export default function FAQ() {
                         key={i}
                         type="button"
                         onClick={() => scrollToCat(i)}
-                        className={`group flex items-start gap-3 border-l-2 py-2.5 pl-4 pr-2 text-left transition-all duration-300 ${
-                          isActive
-                            ? "border-[#8DBD42] bg-[#8DBD42]/8 text-[#145126]"
-                            : "border-[#3F4143]/10 text-[#3F4143]/55 hover:border-[#8DBD42]/40 hover:text-[#3F4143]"
-                        }`}
+                        className={`group flex items-start gap-3 py-2.5 pl-4 pr-2 text-left transition-all duration-300 ${
+ isActive
+ ? "bg-[#8DBD42]/8 text-[#173d24]"
+ : "text-[#3F4143]/80 hover:text-[#3F4143]"
+ }`}
                       >
                         <span
-                          className={`mt-px text-[11px] font-black tabular-nums transition-colors duration-300 ${
-                            isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/60"
-                          }`}
+                          className={`mt-px text-[12px] font-black tabular-nums transition-colors duration-300 ${
+ isActive ? "text-[#44781a]" : "text-[#3F4143]/75"
+ }`}
                         >
                           {String(i + 1).padStart(2, "0")}
                         </span>
@@ -546,23 +547,16 @@ export default function FAQ() {
                 </div>
 
                 {/* Items */}
-                <div className="border-t border-[#3F4143]/10">
+                <div className="border-t border-[#E6E1D7]">
                   {cat.items.map((faq, itemIdx) => {
                     const key = `${catIdx}-${itemIdx}`;
                     const isOpen = openKey === key;
                     return (
                       <div
                         key={itemIdx}
-                        className="relative border-b border-[#3F4143]/10 group transition-all duration-300 rounded-none"
+                        className="relative border-b border-[#E6E1D7] group transition-all duration-300 rounded-none"
                       >
-                        {/* Green left bar */}
-                        <div
-                          className={`absolute left-0 top-5 bottom-5 w-[3px] bg-[#8DBD42] transition-transform duration-300 origin-left rounded-none ${
-                            isOpen
-                              ? "scale-y-100"
-                              : "scale-y-0 group-hover:scale-y-100 group-hover:opacity-40"
-                          }`}
-                        />
+                        
                         <button
                           id={`faq-${catIdx}-${itemIdx}`}
                           onClick={() => toggle(key)}
@@ -570,10 +564,10 @@ export default function FAQ() {
                         >
                           <span
                             className={`text-base md:text-lg font-bold transition-colors duration-300 pr-4 font-serif ${
-                              isOpen
-                                ? "text-[#8DBD42]"
-                                : "text-[#3F4143] group-hover:text-[#8DBD42]"
-                            }`}
+ isOpen
+ ? "text-[#44781a]"
+ : "text-[#3F4143] group-hover:text-[#44781a]"
+ }`}
                           >
                             {faq.question}
                           </span>
@@ -581,7 +575,7 @@ export default function FAQ() {
                             {isOpen ? (
                               <Minus className="text-[#8DBD42] w-5 h-5" />
                             ) : (
-                              <Plus className="text-[#3F4143]/60 group-hover:text-[#8DBD42] w-5 h-5 transition-colors duration-300" />
+                              <Plus className="text-[#3F4143]/60 group-hover:text-[#44781a] w-5 h-5 transition-colors duration-300" />
                             )}
                           </span>
                         </button>
@@ -611,51 +605,18 @@ export default function FAQ() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative bg-[#FAF9F6] pt-24 pb-36 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
-            <img
-              src="/photo/emergency-cta-banner.jpg"
-              alt="Emergency Response Team"
-              className="w-full h-full object-cover object-center brightness-90"
-            />
-            <div className="absolute inset-0 bg-black/10" />
-          </div>
-
-          <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
-            <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6 font-serif">
-                  Need Immediate Assistance?
-                </h2>
-                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
-                  <p>
-                    Heritage Restoration is available 24/7, 365 days a year. Our
-                    emergency response team will deploy and arrive within 60
-                    minutes of dispatch to secure your home.
-                  </p>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
-                  <a
-                    href="tel:+13604561886"
-                    id="faq-call-cta"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none"
-                  >
-                    <Phone size={14} /> Call 360-456-1886
-                  </a>
-                  <a
-                    href="mailto:office@firewaterstorm.com"
-                    id="faq-email-cta"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md rounded-none"
-                  >
-                    Email Us Now
-                  </a>
-                </div>
-              </div>
-            </FadeUp>
-          </div>
-        </section>
+        <PageCTA
+          title="Need Immediate Assistance?"
+          primary={{ href: "tel:+13604561886", label: "Call 360-456-1886" }}
+          secondary={{ href: "mailto:office@firewaterstorm.com", label: "Email Us Now" }}
+          image={{ src: "/photo/emergency-cta-banner.jpg", alt: "Emergency Response Team" }}
+        >
+          <p>
+              Heritage Restoration is available 24/7, 365 days a year. Our
+              emergency response team will deploy and arrive within 60
+              minutes of dispatch to secure your home.
+            </p>
+        </PageCTA>
       </div>
     </Layout>
   );

@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import PageCTA from "@/components/PageCTA";
 import Layout from "@/components/layout/Layout";
 import { Calendar, User, ArrowRight, Phone } from "lucide-react";
 import { useRef } from "react";
@@ -72,7 +73,7 @@ export default function Blog() {
 
       <div className="min-h-screen bg-[#FAF9F6] pt-[112px] sm:pt-[116px] lg:pt-[132px]">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
+        <section className="relative bg-[#173d24] text-white pt-24 pb-24 px-6 overflow-hidden border-b border-[#8DBD42]/20">
           <img
             src="/photo/20260109_095427.jpg"
             alt=""
@@ -81,7 +82,7 @@ export default function Blog() {
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0E1B11]/85 via-[#0E1B11]/55 to-[#0E1B11]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#173d24]/85 via-[#173d24]/55 to-[#173d24]/70" />
           <div className="w-full max-w-[800px] mx-auto text-center relative z-10 space-y-6">
             <FadeUp className="inline-flex items-center gap-2 justify-center">
               <span className="w-3 h-3 rounded-none bg-[#8DBD42] animate-pulse" />
@@ -118,7 +119,7 @@ export default function Blog() {
                   <FadeUp
                     key={idx}
                     delay={idx * 0.1}
-                    className={`group cursor-pointer bg-white rounded-none overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.015)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] hover:-translate-y-1.5 border border-[#3F4143]/8 transition-all duration-400 flex flex-col justify-between min-h-[460px] ${staggerClass}`}
+                    className={`group cursor-pointer bg-white rounded-none overflow-hidden shadow-[0_4px_20px_rgba(23,61,36,0.015)] hover:shadow-[0_16px_35px_rgba(23,61,36,0.05)] hover:-translate-y-1.5 border border-[#E6E1D7] transition-all duration-400 flex flex-col justify-between min-h-[460px] ${staggerClass}`}
                   >
                     <div>
                       {/* Image frame */}
@@ -135,7 +136,7 @@ export default function Blog() {
 
                       {/* Text content */}
                       <div className="p-8">
-                        <div className="flex items-center gap-4 text-[10px] text-[#3F4143]/50 mb-4 font-bold uppercase tracking-wider font-sans">
+                        <div className="flex items-center gap-4 text-[12px] text-[#3F4143]/80 mb-4 font-bold uppercase tracking-wider font-sans">
                           <span className="flex items-center gap-1.5 flex-nowrap">
                             <Calendar
                               size={12}
@@ -152,11 +153,11 @@ export default function Blog() {
                           </span>
                         </div>
 
-                        <h3 className="text-xl font-bold text-[#3F4143] group-hover:text-[#8DBD42] transition-colors duration-300 leading-snug mb-3 font-serif">
+                        <h3 className="text-xl font-bold text-[#3F4143] group-hover:text-[#44781a] transition-colors duration-300 leading-snug mb-3 font-serif">
                           {post.title}
                         </h3>
 
-                        <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
+                        <p className="text-[#3F4143]/80 text-sm leading-relaxed font-sans">
                           {post.excerpt}
                         </p>
                       </div>
@@ -165,7 +166,7 @@ export default function Blog() {
                     {/* Read more footer with divider line */}
                     <div className="px-8 pb-8">
                       <div className="w-full h-[1px] bg-[#3F4143]/5 mb-6" />
-                      <div className="flex items-center gap-2 text-[#8DBD42] font-extrabold uppercase text-xs tracking-widest group-hover:gap-4 transition-all duration-300 font-sans">
+                      <div className="flex items-center gap-2 text-[#44781a] font-extrabold uppercase text-xs tracking-widest group-hover:gap-4 transition-all duration-300 font-sans">
                         Read Full Guide <ArrowRight size={14} />
                       </div>
                     </div>
@@ -176,59 +177,18 @@ export default function Blog() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="relative bg-[#FAF9F6] pt-24 pb-36 overflow-hidden">
-          {/* Background image banner */}
-          <div className="absolute top-0 left-0 w-full h-[320px] md:h-[400px]">
-            <img
-              src="/photo/who-we-are.jpg"
-              alt="Heritage team support"
-              className="w-full h-full object-cover object-center brightness-75"
-            />
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/35" />
-
-            {/* Diagonal graphic stripes on the right */}
-            <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block overflow-hidden pointer-events-none">
-              <div className="absolute right-[-100px] top-[-100px] w-[180px] h-[600px] bg-[#3F4143] transform rotate-[35deg] opacity-90 shadow-2xl" />
-              <div className="absolute right-[100px] top-[-100px] w-[80px] h-[600px] bg-[#8DBD42] transform rotate-[35deg] opacity-75" />
-              <div className="absolute right-[200px] top-[-100px] w-[40px] h-[600px] bg-[#7BB843] transform rotate-[35deg] opacity-60" />
-            </div>
-          </div>
-
-          {/* Centered Overlapping Card Container */}
-          <div className="relative max-w-[960px] mx-auto px-6 pt-[180px] md:pt-[240px] z-10">
-            <FadeUp>
-              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#3F4143] mb-6 font-serif">
-                  Need Immediate Assistance?
-                </h2>
-                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
-                  <p>
-                    Heritage Restoration is available 24/7, 365 days a year. Our
-                    emergency response team will deploy and arrive within 60
-                    minutes of dispatch to secure your home.
-                  </p>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-4 justify-center font-sans">
-                  <a
-                    href="tel:+13604561886"
-                    className="bg-[#8DBD42] hover:bg-[#7BB843] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md flex items-center gap-2 rounded-none"
-                  >
-                    <Phone size={14} /> Call 360-456-1886
-                  </a>
-                  <a
-                    href="mailto:office@firewaterstorm.com"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors shadow-md rounded-none"
-                  >
-                    Email Us Now
-                  </a>
-                </div>
-              </div>
-            </FadeUp>
-          </div>
-        </section>
+        <PageCTA
+          title="Need Immediate Assistance?"
+          primary={{ href: "tel:+13604561886", label: "Call 360-456-1886" }}
+          secondary={{ href: "mailto:office@firewaterstorm.com", label: "Email Us Now" }}
+          image={{ src: "/photo/who-we-are.jpg", alt: "Heritage team support" }}
+        >
+          <p>
+              Heritage Restoration is available 24/7, 365 days a year. Our
+              emergency response team will deploy and arrive within 60
+              minutes of dispatch to secure your home.
+            </p>
+        </PageCTA>
       </div>
     </Layout>
   );

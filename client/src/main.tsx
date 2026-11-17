@@ -27,6 +27,9 @@ if (analyticsEndpoint && analyticsWebsiteId) {
 preloadRoute(window.location.pathname)
   .catch(() => {})
   .finally(() => {
+    // The prerender copied this page's title/meta/JSON-LD into <head>; the app
+    // renders its own, so remove the copies first to avoid duplicates.
+    document.querySelectorAll("[data-ssr-head]").forEach(el => el.remove());
     createRoot(document.getElementById("root")!).render(<App />);
     preloadAllRoutes();
   });

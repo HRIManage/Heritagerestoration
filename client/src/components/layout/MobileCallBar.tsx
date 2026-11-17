@@ -14,7 +14,7 @@ export default function MobileCallBar() {
     >
       <a
         href="tel:+13604561886"
-        className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-[#8DBD42] text-[#12301b] font-black text-[13px] uppercase tracking-[0.1em] active:bg-[#7bb033]"
+        className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-[#8DBD42] text-[#173d24] font-black text-[13px] uppercase tracking-[0.1em] active:bg-[#7bb033]"
       >
         <Phone size={16} className="stroke-[2.5]" /> Call 24/7
       </a>

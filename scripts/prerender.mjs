@@ -47,13 +47,31 @@ const routes = [
     .filter(r => r && !/\.[a-z0-9]+$/i.test(r) && !r.startsWith("/google") && r !== "/spa"),
 ];
 
+// React 19 renders a page's <title>, <meta>, canonical link and JSON-LD where
+// Helmet sits in the tree, i.e. inside #root in the body. Crawlers expect them in
+// <head>, so move them there. Each gets data-ssr-head so main.tsx can drop them
+// before the client app mounts and adds its own (no duplicate tags).
+const HEAD_TAGS =
+  /<title\b[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*\b(?:name|property)="[^"]*"[^>]*\/?>|<link\b[^>]*\brel="(?:canonical|alternate)"[^>]*\/?>|<script\b[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g;
+
+function hoistHeadTags(html) {
+  const tags = [];
+  const body = html.replace(HEAD_TAGS, tag => {
+    tags.push(tag.replace(/^<(\w+)/, "<$1 data-ssr-head"));
+    return "";
+  });
+  return { body, tags: tags.join("\n    ") };
+}
+
 let ok = 0;
 const failed = [];
 for (const route of [...new Set(routes)]) {
   try {
-    const { html, head } = await render(route);
+    const rendered = await render(route);
+    const { body: html, tags } = hoistHeadTags(rendered.html);
+    const head = [rendered.head, tags].filter(Boolean).join("\n    ");
     const page = template
-      .replace("</head>", `${head}\n  </head>`)
+      .replace("</head>", `    ${head}\n  </head>`)
       .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
     if (!page.includes(html.slice(0, 40))) throw new Error("root div not found");
     const file =

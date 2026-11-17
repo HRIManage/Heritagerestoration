@@ -4,11 +4,13 @@ import {
   useInView,
   animate,
   useScroll,
+  useMotionValueEvent,
   useTransform,
   useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
 import {
+  ArrowLeft,
   ArrowRight,
   Phone,
   MapPin,
@@ -33,11 +35,15 @@ import {
   Send,
   Mail,
   Quote,
+  ChevronRight,
+  Check,
+  Building2,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { Link, useLocation } from "wouter";
 import { buildBreadcrumbSchema } from "@/seo";
+import { LOCATIONS } from "@/data/locations";
 import {
   isWeb3FormsConfigured,
   mailtoFallback,
@@ -50,14 +56,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HERO_IMAGE = "/photo/hero-new.jpg";
 const ABOUT_IMAGE = "/photo/who-we-are.jpg";
-const SERVICE_FIRE = "/photo/hero-new.jpg";
-const SERVICE_WATER = "/photo/20240403_095638.jpg";
-const SERVICE_STORM = "/photo/hero-tarp.jpg";
-const SERVICE_CONTENTS = "/photo/recent-project-4.jpg";
+const SERVICE_FIRE = "/photo/card-fire.jpg";
+const SERVICE_WATER = "/photo/card-water.jpg";
+const SERVICE_STORM = "/photo/card-storm.jpg";
+const SERVICE_CONTENTS = "/photo/card-contents.jpg";
 const PROJECT_ONE = "/photo/recent-project-1.jpg";
 const PROJECT_TWO = "/photo/recent-project-2.jpg";
-const DECK_KITCHEN = "/photo/Before-After-Kitchen.jpg";
-const DECK_STAIRS = "/photo/Before-After-staircase.jpg";
 const BEFORE_IMAGE = "/photo/Monnett Fire Before.jpg";
 const AFTER_IMAGE = "/photo/Monnett Fire After.jpg";
 
@@ -94,6 +98,8 @@ const fallbackTestimonials: DisplayReview[] = [
 ];
 
 import FadeIn from "@/components/ui/FadeIn";
+import TrustBadges from "@/components/TrustBadges";
+import StaticTrustBar from "@/components/StaticTrustBar";
 
 function FadeUp({
   children,
@@ -108,6 +114,14 @@ function FadeUp({
   style?: React.CSSProperties;
   triggerImmediately?: boolean;
 }) {
+  // Only the hero animates in; everything below it is simply there on scroll.
+  if (!triggerImmediately) {
+    return (
+      <div className={className} style={style}>
+        {children}
+      </div>
+    );
+  }
   return (
     <FadeIn
       delay={delay}
@@ -117,6 +131,110 @@ function FadeUp({
     >
       {children}
     </FadeIn>
+  );
+}
+
+/** Past projects for the rotating before/after deck in the "neighbors" section. */
+const PROJECT_DECK = [
+  { slug: "kitchen-fire", title: "Kitchen fire, interior rebuild" },
+  { slug: "storm", title: "Storm damage, tree removal and repair" },
+  { slug: "exterior-fire", title: "House fire, exterior rebuild" },
+  { slug: "living-room", title: "Fire damage, living room restored" },
+  { slug: "kitchen", title: "Kitchen fire, full rebuild" },
+];
+
+/**
+ * A stack of project cards, each showing the before photo over the after photo.
+ * Clicking (or pressing Enter on) the stack brings up the next project; it also
+ * advances every few seconds, pausing on hover or focus, and never auto-advances
+ * for people who prefer reduced motion. On desktops its width follows the screen
+ * height so the whole section fits on one screen.
+ */
+function ProjectDeck() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const total = PROJECT_DECK.length;
+  const next = () => setIndex(i => (i + 1) % total);
+
+  useEffect(() => {
+    if (paused || reduceMotion) return;
+    const timer = setInterval(() => setIndex(i => (i + 1) % total), 5000);
+    return () => clearInterval(timer);
+  }, [paused, reduceMotion, total]);
+
+  // Resting pose for the top card and the two cards peeking out behind it
+  const poses = [
+    { x: 0, y: 0, rotate: 0, scale: 1 },
+    { x: 18, y: 10, rotate: 3, scale: 0.96 },
+    { x: -16, y: 18, rotate: -3, scale: 0.92 },
+  ];
+
+  return (
+    <div
+      className="relative mx-auto w-full max-w-[520px] lg:max-w-[min(540px,calc((100svh_-_290px)/1.25))]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+      style={{ fontFamily: "'Hanken Grotesk', sans-serif" }}
+    >
+      <div
+        className="grid cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#44781a]"
+        role="button"
+        tabIndex={0}
+        aria-label={`Project ${index + 1} of ${total}: ${PROJECT_DECK[index].title}. Show the next project`}
+        onClick={next}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            next();
+          }
+        }}
+      >
+        <AnimatePresence initial={false}>
+          {[2, 1, 0].map(depth => {
+            const project = PROJECT_DECK[(index + depth) % total];
+            return (
+              <motion.figure
+                key={project.slug}
+                className="[grid-area:1/1] bg-white p-3 shadow-[0_18px_40px_rgba(23,61,36,0.16)] border border-[#E6E1D7]"
+                style={{ zIndex: 3 - depth }}
+                initial={{ ...poses[2], opacity: 0 }}
+                animate={{ ...poses[depth], opacity: 1 }}
+                exit={{ x: -90, y: -10, rotate: -8, opacity: 0, transition: { duration: 0.45 } }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                aria-hidden={depth !== 0}
+              >
+                {(["before", "after"] as const).map(stage => (
+                  <div key={stage} className={`relative aspect-[8/5] overflow-hidden bg-[#e9e5dc] ${stage === "after" ? "mt-2" : ""}`}>
+                    <img
+                      src={`/photo/proj-${project.slug}-${stage}.jpg`}
+                      alt={depth === 0 ? `${project.title}, ${stage}` : ""}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <span
+                      className={`absolute left-3 top-3 px-3 py-1 text-[13px] font-semibold ${
+                        stage === "before" ? "bg-black/75 text-white" : "bg-[#173d24] text-white"
+                      }`}
+                    >
+                      {stage === "before" ? "Before" : "After"}
+                    </span>
+                  </div>
+                ))}
+                <figcaption className="px-1 pt-3 pb-1 text-[15px] font-semibold text-[#1f2a24]">
+                  {project.title}
+                </figcaption>
+              </motion.figure>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      <p className="mt-6 text-center text-[14px] text-[#3F4143]/80">Click the photo to see the next project</p>
+    </div>
   );
 }
 
@@ -175,128 +293,30 @@ function SpinCounter({ value, suffix = "" }: { value: number; suffix?: string })
   );
 }
 
-function Parallax({
-  children,
-  amount = 30,
-  className = "",
-}: {
-  children: React.ReactNode;
-  amount?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduce ? [0, 0] : [amount, -amount]
-  );
-  return (
-    <motion.div ref={ref} style={{ y }} className={className}>
-      {children}
-    </motion.div>
-  );
-}
-
-function PhotoDeck() {
-  const images = [
-    "/photo/contents-gallery-5.jpg",
-    "/photo/contents-gallery-4.jpg",
-    "/photo/contents-gallery-9.jpg",
-    "/photo/contents-gallery-2.jpg",
-    "/photo/contents-gallery-10.jpg",
-    "/photo/contents-gallery-3.jpg",
-    "/photo/contents-gallery-8.jpg",
-    "/photo/contents-gallery-6.jpg",
-    "/photo/contents-gallery-11.jpg",
-    "/photo/contents-gallery-7.jpg",
-    "/photo/contents-gallery-12.jpg",
-    "/photo/contents-gallery-13.jpg",
-    "/photo/contents-gallery-14.jpg",
-    "/photo/contents-gallery-15.jpg",
-  ];
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % images.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [images.length]);
-
-  const handleNext = () => {
-    setCurrentIndex(prev => (prev + 1) % images.length);
-  };
-
-  return (
-    <div
-      className="relative w-full max-w-[580px] aspect-[1.35] cursor-pointer select-none group"
-      onClick={handleNext}
-    >
-      {images.map((img, idx) => {
-        const stackPos = (idx - currentIndex + images.length) % images.length;
-        const isVisible = stackPos < 4;
-
-        let rotate = 0;
-        let zIndex = 10 - stackPos;
-        let scale = 1 - stackPos * 0.035;
-        let translateY = stackPos * 12;
-        let translateX = stackPos * 8;
-
-        if (stackPos === 0) {
-          rotate = 4;
-        } else if (stackPos === 1) {
-          rotate = 1;
-        } else {
-          rotate = -3;
-        }
-
-        return (
-          <motion.div
-            key={img}
-            style={{
-              zIndex,
-              originX: 0.5,
-              originY: 0.5,
-              display: isVisible ? "flex" : "none",
-            }}
-            animate={{
-              rotate: rotate,
-              scale: scale,
-              y: translateY,
-              x: translateX,
-              opacity: stackPos === 3 ? 0.75 : 1,
-            }}
-            whileHover={
-              stackPos === 0 ? { scale: 1.015, rotate: rotate + 0.5 } : {}
-            }
-            transition={{ type: "spring", stiffness: 130, damping: 26, mass: 0.8 }}
-            className="absolute inset-0 rounded-none overflow-hidden shadow-[0_12px_36px_rgba(20,81,38,0.04)] border border-[#3F4143]/12 bg-white p-2 flex items-center justify-center"
-          >
-            <img
-              src={img}
-              alt={`Heritage Restoration contents cleaning and pack-out work, photo ${idx + 1}`}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover rounded-none pointer-events-none"
-            />
-            {stackPos === 0 && (
-              <div className="absolute inset-0 bg-black/5 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
-            )}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
-
 export default function Home() {
   const [sliderPercent, setSliderPercent] = useState(50);
   const [activeStep, setActiveStep] = useState(0);
+  // Desktop: the process section is tall and its content sticks to the screen;
+  // scrolling through it moves the active step from 1 to 8. Hover still picks
+  // a step directly (until the next scroll).
+  const processRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress: processProgress } = useScroll({
+    target: processRef,
+    offset: ["start 64px", "end end"],
+  });
+  useMotionValueEvent(processProgress, "change", v => {
+    if (typeof window === "undefined" || window.innerWidth < 1024) return;
+    const step = Math.min(7, Math.max(0, Math.floor(v * 8)));
+    setActiveStep(prev => (prev === step ? prev : step));
+  });
+  const [activeService, setActiveService] = useState(2);
+  // Wait briefly before switching services so sweeping the mouse across the
+  // row doesn't flash through every photo.
+  const serviceHoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previewService = (i: number, delay = 90) => {
+    if (serviceHoverTimer.current) clearTimeout(serviceHoverTimer.current);
+    serviceHoverTimer.current = setTimeout(() => setActiveService(i), delay);
+  };
   const [reviews, setReviews] = useState<DisplayReview[]>(fallbackTestimonials);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const pageRef = useRef<HTMLDivElement | null>(null);
@@ -406,6 +426,36 @@ export default function Home() {
     return () => controller.abort();
   }, []);
 
+  // Page-wide scroll reveal for [data-reveal] / [data-reveal-stagger] blocks.
+  // The "reveal-ready" class is added only here, so prerendered HTML and
+  // no-JS visitors always see everything; reduced motion skips the effect.
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+    const targets = root.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-stagger]");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      targets.forEach(el => el.classList.add("is-revealed"));
+      return;
+    }
+    document.documentElement.classList.add("reveal-ready");
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+    );
+    targets.forEach(el => io.observe(el));
+    return () => {
+      io.disconnect();
+      document.documentElement.classList.remove("reveal-ready");
+    };
+  }, [reduceMotion]);
+
   useEffect(() => {
     if (reduceMotion || !heroRef.current) return;
 
@@ -451,12 +501,13 @@ export default function Home() {
       image: SERVICE_FIRE,
       description:
         "Comprehensive cleaning, structural repair, and odor removal to return your property to pre-loss condition.",
+      backdrop: "/photo/svc-bg-fire.jpg",
       href: "/services/fire-restoration",
       icon: <Flame size={20} />,
       accentColor: "#E05A47",
       accentBarClass: "bg-[#E05A47]",
       iconColor:
-        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
+        "text-[#173d24] bg-[#8DBD42]/10 group-hover:bg-[#E05A47] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#E05A47]",
     },
     {
@@ -465,12 +516,13 @@ export default function Home() {
       image: SERVICE_WATER,
       description:
         "Rapid extraction, structural drying, and mold prevention using IICRC-certified mitigation standards.",
+      backdrop: "/photo/svc-bg-water.jpg",
       href: "/services/water-restoration",
       icon: <Droplets size={20} />,
       accentColor: "#3A82F6",
       accentBarClass: "bg-[#3A82F6]",
       iconColor:
-        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
+        "text-[#173d24] bg-[#8DBD42]/10 group-hover:bg-[#3A82F6] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#3A82F6]",
     },
     {
@@ -479,27 +531,43 @@ export default function Home() {
       image: SERVICE_STORM,
       description:
         "Emergency tarping, debris removal, and structural rebuilds following severe PNW weather events.",
+      backdrop: "/photo/svc-bg-storm.jpg",
       href: "/services/storm-recovery",
       icon: <CloudLightning size={20} />,
       accentColor: "#4F46E5",
       accentBarClass: "bg-[#4F46E5]",
       iconColor:
-        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
+        "text-[#173d24] bg-[#8DBD42]/10 group-hover:bg-[#4F46E5] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#4F46E5]",
     },
     {
       number: "04",
-      title: "Contents Cleaning",
+      title: "Contents Services",
       image: SERVICE_CONTENTS,
       description:
         "Specialized cleaning and restoration of personal contents, textiles, and salvageable valuables.",
+      backdrop: "/photo/svc-bg-contents.jpg",
       href: "/services/contents-services",
       icon: <ShieldCheck size={20} />,
       accentColor: "#D97706",
       accentBarClass: "bg-[#D97706]",
       iconColor:
-        "text-[#145126] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
+        "text-[#173d24] bg-[#8DBD42]/10 group-hover:bg-[#D97706] group-hover:text-white",
       hoverTextColor: "group-hover:text-[#D97706]",
+    },
+    {
+      number: "05",
+      title: "Commercial Restoration",
+      image: "/photo/og-commercial.jpg",
+      description:
+        "Apartments, HOAs, medical, hotels and schools: cleanup and rebuild under one contract, phased around your operations.",
+      backdrop: "/photo/svc-bg-commercial.jpg",
+      href: "/commercial",
+      icon: <Layers size={20} />,
+      accentColor: "#173d24",
+      accentBarClass: "bg-[#173d24]",
+      iconColor: "",
+      hoverTextColor: "",
     },
   ];
 
@@ -507,7 +575,6 @@ export default function Home() {
     {
       number: "01",
       title: "Immediate Emergency Response (Day of Loss)",
-      icon: <Flame size={20} />,
       items: [
         {
           label: "Claim Initialization",
@@ -522,7 +589,6 @@ export default function Home() {
     {
       number: "02",
       title: "Advanced Forensic Documentation",
-      icon: <Layers size={20} />,
       items: [
         {
           label: "Comprehensive 3D Site Mapping",
@@ -537,7 +603,6 @@ export default function Home() {
     {
       number: "03",
       title: "Asset Preservation & Sentimental Salvage",
-      icon: <ShieldCheck size={20} />,
       items: [
         {
           label: "Sentimental Item Recovery",
@@ -556,7 +621,6 @@ export default function Home() {
     {
       number: "04",
       title: "Scope Alignment & Regulatory Coordination",
-      icon: <Calculator size={20} />,
       items: [
         {
           label: "Joint Preliminary Estimation",
@@ -571,7 +635,6 @@ export default function Home() {
     {
       number: "05",
       title: "Site Clearance & Content Auditing",
-      icon: <HardHat size={20} />,
       items: [
         {
           label: "Strategic Debris Removal",
@@ -586,7 +649,6 @@ export default function Home() {
     {
       number: "06",
       title: "Project Initiation & Design Selection",
-      icon: <Clock size={20} />,
       items: [
         {
           label: "Repair Process Activation",
@@ -605,7 +667,6 @@ export default function Home() {
     {
       number: "07",
       title: "Precision Reconstruction",
-      icon: <Hammer size={20} />,
       items: [
         {
           label: "Structural Rebuild",
@@ -616,7 +677,6 @@ export default function Home() {
     {
       number: "08",
       title: "Project Handover & Warranty Execution",
-      icon: <House size={20} />,
       items: [
         {
           label: "Closeout & Content Return",
@@ -684,32 +744,33 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Heritage Restoration",
+            alternateName: "Heritage Restoration Inc.",
             url: "https://www.firewaterstorm.com/",
           })}
         </script>
       </Helmet>
 
-      <div ref={pageRef} className="bg-[#FAF9F6]">
+      <div ref={pageRef} className="bg-white">
         {/* Homepage Hero */}
         <section
           id="home-hero"
           ref={heroRef}
-          className="relative overflow-hidden bg-[#0f1a10] pt-[112px] sm:pt-[116px] lg:pt-[132px] min-h-[calc(100svh-56px)] lg:min-h-[100svh] flex flex-col"
+          className="relative overflow-hidden bg-[#173d24] pt-[112px] sm:pt-[116px] lg:pt-[132px] min-h-[calc(100svh-56px)] lg:min-h-[100svh] flex flex-col"
         >
           <img
             data-gsap-hero-image
-            src="/photo/hero-tarp.jpg"
-            alt="Heritage Restoration crew tarping storm damage on a Washington home"
+            src="/photo/hero-crew-tarp.jpg"
+            alt="Heritage Restoration crew tarping and boarding up a fire-damaged home"
             fetchPriority="high"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover object-[80%_bottom]"
+            className="absolute inset-0 h-full w-full object-cover object-[70%_75%]"
           />
           {/* Left column: heavy white fade for text legibility */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(105deg, rgba(250,249,246,1) 0%, rgba(250,249,246,0.98) 36%, rgba(250,249,246,0.9) 50%, rgba(250,249,246,0.45) 64%, transparent 82%)",
+                "linear-gradient(105deg, rgba(250,249,246,0.97) 0%, rgba(250,249,246,0.94) 34%, rgba(250,249,246,0.72) 46%, rgba(250,249,246,0.2) 58%, transparent 68%)",
             }}
           />
           {/* Fixed-width white band behind the text column, so the headline stays
@@ -718,15 +779,7 @@ export default function Home() {
             className="absolute inset-0 hidden lg:block pointer-events-none"
             style={{
               background:
-                "linear-gradient(100deg, rgba(250,249,246,0.96) 0px, rgba(250,249,246,0.93) 740px, rgba(250,249,246,0.5) 900px, transparent 1060px)",
-            }}
-          />
-          {/* Bottom fade into dark ticker */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent 55%, rgba(15,26,16,0.55) 85%, rgba(23,61,36,1) 100%)",
+                "linear-gradient(100deg, rgba(250,249,246,0.95) 0px, rgba(250,249,246,0.9) 700px, rgba(250,249,246,0.35) 840px, transparent 960px)",
             }}
           />
           <div
@@ -736,53 +789,34 @@ export default function Home() {
                 "radial-gradient(ellipse at 10% 88%, rgba(250,249,246,0.96) 0%, rgba(250,249,246,0.82) 20%, rgba(250,249,246,0.38) 42%, transparent 68%)",
             }}
           />
+          <p className="hidden lg:block short:hidden absolute right-8 bottom-[92px] xl:bottom-[96px] z-10 bg-[#173d24]/90 px-4 py-2.5 text-[13px] text-white/90" style={bodyStyle}>
+            Heritage crew tarping and boarding up a fire-damaged home
+          </p>
           {/* Mobile-only extra white overlay */}
-          <div className="absolute inset-0 bg-[#FAF9F6]/60 lg:hidden pointer-events-none" />
-
-          <motion.a
-            data-gsap-explore
-            href="#services"
-            className="hidden lg:flex absolute right-8 bottom-[108px] z-20 flex-col items-center gap-4 text-[#2F3335]/75 hover:text-[#8DBD42] transition-colors duration-500"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span
-              className="text-[11px] font-black uppercase tracking-[0.26em] [writing-mode:vertical-rl]"
-              style={bodyStyle}
-            >
-              Explore
-            </span>
-            <motion.span
-              className="h-16 w-px bg-current origin-top"
-              animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.35, 0.9, 0.35] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.a>
+          <div className="absolute inset-0 bg-[#FAF9F6]/80 lg:hidden pointer-events-none" />
 
           {/* Hero content */}
           <div className="relative z-10 w-full flex-1 flex flex-col justify-center max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 min-[1570px]:px-0 py-6 lg:py-12 midh:py-6 short:py-6">
-            <div className="max-w-[600px] short:max-w-[640px]">
+            <div className="max-w-[640px] xl:max-w-[720px] short:max-w-[780px]">
               <FadeUp triggerImmediately={true} delay={0.05}>
                 <p
                   data-gsap-hero-item
-                  className="inline-flex items-center gap-3 uppercase tracking-[0.2em] text-[12px] font-extrabold mb-6 midh:mb-5 short:mb-5 text-[#3f6e14]"
+                  className="text-[15px] sm:text-[16px] font-semibold mb-4 sm:mb-5 midh:mb-4 short:mb-4 text-[#173d24]"
                   style={bodyStyle}
                 >
-                  <span className="w-8 h-[2px] bg-[#8DBD42]" />
-                  Residential &amp; Commercial Restoration
+                  Residential and commercial restoration in Western Washington
                 </p>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.15}>
                 <h1 data-gsap-hero-item className="leading-[1.03]" style={headlineStyle}>
                   {/* Brand name stays in the H1 for Google's site-name signal, but hidden visually */}
                   <span className="sr-only">Heritage Restoration: </span>
-                  <span className="block text-[2.3rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] midh:text-[3.1rem] short:text-[2.55rem] text-[#1a1c1e] font-bold">
+                  <span className="block text-[2.1rem] sm:text-[2.5rem] md:text-[3.7rem] lg:text-[4.4rem] xl:text-[5.3rem] midh:text-[3.6rem] short:text-[2.95rem] text-[#1a1c1e] font-bold">
                     Restoring{" "}
                     <br className="short:hidden" />
                     Your Property.
                   </span>{" "}
-                  <span className="block text-[2.3rem] md:text-[3.4rem] lg:text-[4rem] xl:text-[4.8rem] midh:text-[3.1rem] short:text-[2.55rem] text-[#4f8a1f] font-bold mt-1">
+                  <span className="block text-[2.1rem] sm:text-[2.5rem] md:text-[3.7rem] lg:text-[4.4rem] xl:text-[5.3rem] midh:text-[3.6rem] short:text-[2.95rem] text-[#44781a] font-bold mt-1">
                     Restoring Your{" "}
                     <br className="short:hidden" />
                     Peace of Mind.
@@ -792,7 +826,7 @@ export default function Home() {
               <FadeUp triggerImmediately={true} delay={0.28}>
                 <p
                   data-gsap-hero-item
-                  className="mt-6 midh:mt-6 short:mt-6 text-[17px] short:text-[16px] text-[#2f3133]/85 max-w-[480px] leading-[1.7] short:leading-[1.55]"
+                  className="mt-5 sm:mt-6 midh:mt-5 short:mt-6 text-[16px] sm:text-[17px] short:text-[16px] text-[#2f3133]/85 max-w-[480px] leading-[1.6] sm:leading-[1.7] short:leading-[1.55]"
                   style={bodyStyle}
                 >
                   For homeowners, property managers and businesses, we handle
@@ -804,7 +838,7 @@ export default function Home() {
               {/* CTAs */}
               <FadeUp triggerImmediately={true} delay={0.38}>
                 <motion.div
-                  className="mt-8 lg:mt-10 midh:mt-9 short:mt-9 flex flex-wrap items-center gap-4"
+                  className="mt-7 sm:mt-10 lg:mt-12 midh:mt-10 short:mt-10 flex flex-wrap items-center gap-3 sm:gap-4"
                   initial="hidden"
                   animate="visible"
                   variants={{
@@ -815,7 +849,7 @@ export default function Home() {
                   <motion.a
                     data-gsap-hero-button
                     href="tel:+13604561886"
-                    className="group inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
+                    className="btn-3d group inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-7 py-4 text-[15px] font-bold transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
                     style={bodyStyle}
                     variants={{
                       hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -825,8 +859,8 @@ export default function Home() {
                     whileHover={{ y: -2, scale: 1.025 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Phone size={14} className="stroke-[3]" />
-                    Call 24/7 Dispatch
+                    <Phone size={16} className="stroke-[2.5]" />
+                    Call 24/7 dispatch
                   </motion.a>
                   <motion.a
                       href="/contact"
@@ -837,7 +871,7 @@ export default function Home() {
                         setLocation("/contact");
                       }}
                       data-gsap-hero-button
-                      className="group inline-flex items-center gap-2 border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-[14px] uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 cursor-pointer"
+                      className="group inline-flex items-center gap-2 border-2 border-[#173d24]/30 hover:border-[#173d24] text-[#173d24] px-7 py-[14px] text-[15px] font-bold transition-all duration-300 bg-white/60 hover:bg-white/90 hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 cursor-pointer"
                       style={bodyStyle}
                       variants={{
                         hidden: { opacity: 0, y: 18, scale: 0.92 },
@@ -847,415 +881,511 @@ export default function Home() {
                       whileHover={{ y: -2, scale: 1.025 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      Request Assessment
-                      <span className="text-[#145126] text-base leading-none ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      Request an assessment
                     </motion.a>
                 </motion.div>
               </FadeUp>
               <FadeUp triggerImmediately={true} delay={0.5}>
                 <Link
                   href="/commercial"
-                  className="mt-7 midh:mt-6 short:mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#145126] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#8DBD42] transition-colors"
+                  className="mt-6 sm:mt-8 midh:mt-7 short:mt-6 inline-flex items-center gap-2 text-[14px] font-bold text-[#173d24] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#44781a] transition-colors"
                   style={bodyStyle}
                 >
-                  Managing a commercial or multi-family property? See commercial restoration →
+                  Managing a commercial or multi-family property? See commercial restoration
                 </Link>
               </FadeUp>
             </div>
           </div>
 
-          {/* Scrolling ticker strip */}
-          <div className="relative z-10 bg-[#173d24] py-4 md:py-8 short:py-4 overflow-hidden">
-            <style>{`
-              @keyframes home-ticker {
-                from { transform: translateX(0); }
-                to { transform: translateX(-50%); }
-              }
-              .home-ticker { animation: home-ticker 45s linear infinite; }
-              .home-ticker:hover { animation-play-state: paused; }
-            `}</style>
-            <div className="home-ticker flex whitespace-nowrap w-max">
-              {[...Array(2)].map((_, setIdx) => (
-                <div key={setIdx} className="flex">
-                  {[
-                    "Direct Insurance Billing",
-                    "Licensed & Bonded in WA",
-                    "22+ Years Serving Washington",
-                    "Locally Owned & Operated",
-                    "5-Year Workmanship Warranty",
-                  ].map(item => (
-                    <span key={item} className="flex items-center">
-                      <span className="px-8 md:px-12 font-semibold text-[14px] md:text-[22px] short:text-[17px] uppercase tracking-[0.18em] md:tracking-[0.22em] text-[#d3ebaa]">{item}</span>
-                      <span className="text-[#8DBD42]/70 text-[14px] md:text-[18px]">✦</span>
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Trust bar — fixed, every message visible at once (replaces the old scrolling ticker) */}
+          <StaticTrustBar
+            items={[
+              "Licensed & Bonded in WA",
+              "22+ Years Serving Washington",
+              "Locally Owned & Operated",
+            ]}
+          />
         </section>
 
-        {/* Office Locations + Trust Badges — unified section */}
-        <section data-gsap-section className="bg-white border-t border-gray-100">
-          <div className="max-w-[860px] mx-auto px-8 pt-14 pb-0 md:pt-18">
-            {/* Label */}
-            <FadeUp>
-              <p className="text-[#8DBD42] uppercase tracking-[0.18em] text-sm font-black text-center mb-10" style={bodyStyle}>
-                Local Office Locations
-              </p>
-            </FadeUp>
+        {/* Office Locations + Trust Badges.
+            Each office sits plainly on white; on hover it turns into a
+            liquid-glass card (.office-glass in index.css). No divider lines. */}
+        <section className="relative bg-white">
+          <div className="relative max-w-[860px] mx-auto px-6 sm:px-8 pt-14 md:pt-18">
+            <p data-reveal className="text-[#44781a] uppercase tracking-[0.18em] text-sm font-black text-center mb-10" style={bodyStyle}>
+              Local Office Locations
+            </p>
 
-            {/* Two offices */}
-            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#3F4143]/10">
-              <FadeUp delay={0.05} className="flex flex-col gap-5 pb-10 md:pb-0 md:pr-12 md:items-center md:text-center">
-                <div data-gsap-reveal className="contents">
+            {/* Two office cards */}
+            <div data-reveal-stagger className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+              <div className="office-glass flex flex-col items-center gap-5 px-7 py-9 md:px-8 md:py-10 text-center">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>North Office</h3>
-                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
-                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
-                  <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
+                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2 text-left" style={bodyStyle}>
+                  <MapPin size={15} aria-hidden="true" className="text-[#44781a] mt-1 shrink-0" />
+                  <a href="https://maps.google.com/?q=8695+Martin+Way+E+Unit+103+Lacey+WA+98516" target="_blank" rel="noopener noreferrer" className="hover:text-[#1f2a24]">
                     8695 Martin Way E, Unit 103<br />Lacey, WA 98516
                   </a>
                 </p>
-                <a href="tel:+13604561886" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> North: (360) 456-1886
+                <a href="tel:+13604561886" className="btn-3d inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
+                  <Phone size={13} aria-hidden="true" className="stroke-[3]" /> North: (360) 456-1886
                 </a>
-                </div>
-              </FadeUp>
-              <FadeUp delay={0.1} className="flex flex-col gap-5 pt-10 md:pt-0 md:pl-12 md:items-center md:text-center">
-                <div data-gsap-reveal className="contents">
+              </div>
+              <div className="office-glass flex flex-col items-center gap-5 px-7 py-9 md:px-8 md:py-10 text-center">
                 <h3 className="text-[26px] font-bold text-[#2a2c2e]" style={headlineStyle}>South Office</h3>
-                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2" style={bodyStyle}>
-                  <MapPin size={15} className="text-[#8DBD42] mt-1 shrink-0" />
-                  <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#3F4143] transition-colors">
+                <p className="text-[#3F4143]/80 text-[16px] leading-relaxed flex items-start gap-2 text-left" style={bodyStyle}>
+                  <MapPin size={15} aria-hidden="true" className="text-[#44781a] mt-1 shrink-0" />
+                  <a href="https://maps.google.com/?q=1581+N.+National+Ave+Chehalis+WA+98532" target="_blank" rel="noopener noreferrer" className="hover:text-[#1f2a24]">
                     1581 N. National Ave<br />Chehalis, WA 98532
                   </a>
                 </p>
-                <a href="tel:+13603451015" className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
-                  <Phone size={13} className="stroke-[3]" /> South: (360) 345-1015
+                <a href="tel:+13603451015" className="btn-3d inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7dac35] text-[#2b2d2f] px-7 py-3 uppercase tracking-wider text-[12px] font-black transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[0_6px_18px_rgba(141,189,66,0.35)] active:translate-y-0 active:shadow-none w-fit" style={bodyStyle}>
+                  <Phone size={13} aria-hidden="true" className="stroke-[3]" /> South: (360) 345-1015
                 </a>
-                </div>
-              </FadeUp>
+              </div>
             </div>
 
-            {/* 24hr bar + badges combined */}
-            <FadeUp delay={0.15}>
-              <div className="mt-10 border-t border-[#3F4143]/10 pt-8 pb-10 flex flex-col items-center gap-8">
-                <div className="flex items-center justify-center gap-2 px-2">
-                  <Clock size={15} className="text-[#8DBD42] shrink-0" />
-                  <span className="text-center text-[#3F4143]/75 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[11px] sm:text-[13px] font-extrabold" style={bodyStyle}>
-                    24 Hours a Day · 7 Days a Week · 365 Days a Year
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 w-full max-w-[960px] mx-auto bg-white border border-[#3F4143]/10 divide-y sm:divide-y-0 sm:divide-x divide-[#3F4143]/10 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-                  {[
-                    { src: "/photo/emergency-badge-icon.png", alt: "24 HR Emergency Response", title: "24/7 Emergency Response", text: "Dispatch answers day and night, every day of the year." },
-                    { src: "/photo/iicrc-badge-icon.png", alt: "IICRC Certified", title: "IICRC Certified Firm", text: "Industry-standard fire, smoke and water restoration." },
-                    { src: "/photo/warranty-badge-icon.png", alt: "5-Year Workmanship Warranty", title: "5-Year Workmanship Warranty", text: "Written warranty terms available on request." },
-                  ].map((badge, i) => (
-                    <div key={badge.alt} className="flex sm:flex-col items-center gap-5 sm:gap-4 px-6 py-6 sm:py-8 text-left sm:text-center">
-                      <motion.img
-                        src={badge.src}
-                        alt={badge.alt}
-                        initial={{ opacity: 0, scale: 0.7, y: 24 }}
-                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.6 }}
-                        transition={{ duration: 0.9, delay: i * 0.16, ease: [0.16, 1, 0.3, 1] }}
-                        whileHover={{ scale: 1.04, y: -3 }}
-                        className="h-20 w-20 sm:h-28 sm:w-28 md:h-32 md:w-32 shrink-0 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]"
+            {/* 24hr line + badges (no divider line above any more) */}
+            <div data-reveal className="mt-12 pb-12 flex flex-col items-center gap-8">
+              <div className="flex items-center justify-center gap-2 px-2">
+                <Clock size={15} aria-hidden="true" className="text-[#44781a] shrink-0" />
+                <span className="text-center text-[#3F4143]/75 uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[12px] sm:text-[13px] font-extrabold" style={bodyStyle}>
+                  24 Hours a Day · 7 Days a Week · 365 Days a Year
+                </span>
+              </div>
+              <TrustBadges className="lg:w-[min(1120px,calc(100vw-4rem))] lg:self-start lg:relative lg:left-1/2 lg:-translate-x-1/2" />
+            </div>
+          </div>
+        </section>
+
+        {/* Services — dark showcase. Desktop: the five services as a fixed list on
+            the left; hovering or focusing one fades its job photo (shown whole,
+            never cropped) and a caption card with its description into the stage
+            on the right. Rows never resize, so nothing moves. Each row links to
+            its page. Phones and tablets: stacked photo cards. */}
+        <section id="services" className="bg-[#173d24] text-white">
+          <div className="max-w-[1240px] mx-auto px-6 py-20 md:py-24 lg:py-14 midh:py-12 short:py-8 lg:min-h-[calc(100svh-64px)] lg:flex lg:flex-col lg:justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              <div data-reveal className="lg:col-span-5">
+                <h2 className="text-[38px] md:text-[52px] midh:text-[46px] short:text-[38px] leading-[1.04] font-bold" style={headlineStyle}>
+                  What we restore
+                </h2>
+                <p className="mt-5 short:mt-3 text-[16.5px] md:text-[17.5px] short:text-[15.5px] leading-relaxed text-white/75 max-w-[44ch]" style={bodyStyle}>
+                  One local team handles the emergency response, the insurance
+                  documentation and the full rebuild, for homes and commercial
+                  properties.
+                </p>
+
+                <ul className="hidden lg:block mt-9 midh:mt-7 short:mt-5 border-t border-white/12" style={bodyStyle}>
+                  {services.map((service, i) => {
+                    const open = i === activeService;
+                    return (
+                      <li key={service.title} className="border-b border-white/12">
+                        <Link
+                          href={service.href}
+                          onMouseEnter={() => previewService(i)}
+                          onMouseLeave={() => serviceHoverTimer.current && clearTimeout(serviceHoverTimer.current)}
+                          onFocus={() => previewService(i, 0)}
+                          aria-current={open ? "true" : undefined}
+                          className="group relative flex items-center gap-4 py-4 midh:py-3.5 short:py-3 pl-5 pr-4 transition-colors duration-300 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#a9d468]"
+                        >
+                          {/* One highlight panel that glides from row to row */}
+                          {open && (
+                            <motion.span
+                              layoutId="service-highlight"
+                              aria-hidden="true"
+                              className="absolute inset-0 bg-white/[0.08]"
+                              transition={{ type: "spring", stiffness: 260, damping: 32, mass: 0.9 }}
+                            />
+                          )}
+                          <span
+                            className={`relative flex h-10 w-10 short:h-9 short:w-9 shrink-0 items-center justify-center border transition-all duration-500 ease-out ${
+                              open
+                                ? "border-[#8DBD42] bg-[#8DBD42] text-[#173d24]"
+                                : "border-white/20 text-white/65 group-hover:border-[#8DBD42]/70 group-hover:text-white"
+                            }`}
+                          >
+                            {service.icon}
+                          </span>
+                          <h3
+                            className={`relative flex-1 text-[21px] xl:text-[23px] short:text-[19px] leading-tight font-bold transition-all duration-500 ease-out ${
+                              open ? "text-white translate-x-1" : "text-white/55 group-hover:text-white/90 group-hover:translate-x-1"
+                            }`}
+                            style={headlineStyle}
+                          >
+                            {service.title}
+                          </h3>
+                          <ArrowRight
+                            size={18}
+                            aria-hidden="true"
+                            className={`relative shrink-0 transition-all duration-500 ease-out ${
+                              open ? "translate-x-0 text-[#a9d468] opacity-100" : "-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-60"
+                            }`}
+                          />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <a
+                  href="tel:+13604561886"
+                  className="btn-3d mt-9 midh:mt-7 short:mt-5 hidden lg:inline-flex items-center gap-2.5 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-7 py-4 short:py-3 text-[15px] font-bold transition-colors"
+                  style={bodyStyle}
+                >
+                  <Phone size={16} aria-hidden="true" /> Call 24/7 dispatch (360) 456-1886
+                </a>
+              </div>
+
+              {/* Photo stage */}
+              <div data-reveal style={{ animationDelay: "0.12s" }} className="hidden lg:block lg:col-span-7">
+                <div className="relative h-[min(640px,calc(100svh-64px-7rem))] min-h-[460px] overflow-hidden bg-[#173d24] border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
+                  {services.map((service, i) => (
+                    <div
+                      key={service.backdrop}
+                      aria-hidden={i !== activeService}
+                      className={`absolute inset-0 transition-opacity duration-[900ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                        i === activeService ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      <img
+                        src={service.backdrop}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover blur-2xl scale-110 opacity-50"
                       />
-                      <div>
-                        <p className="font-extrabold text-[#2F3335] text-[15px] md:text-[16px] leading-snug" style={bodyStyle}>
-                          {badge.title}
-                        </p>
-                        <p className="mt-1.5 text-[14px] text-[#3F4143]/80 leading-snug" style={bodyStyle}>
-                          {badge.text}
-                        </p>
-                      </div>
+                      <img
+                        src={service.backdrop}
+                        alt={`${service.title} job by Heritage Restoration`}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-contain"
+                      />
                     </div>
                   ))}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#173d24]/80 to-transparent pointer-events-none" />
+
+                  {/* Caption: one white card that stays in place; the five services'
+                      text is stacked inside it (card sized to the longest) and only the
+                      text swaps — old fades out fast, new fades in just after. */}
+                  <div
+                    className="absolute left-6 bottom-6 right-6 xl:right-auto xl:w-[440px] grid bg-white text-[#1f2a24] p-6 short:p-5 shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
+                    style={bodyStyle}
+                  >
+                    {services.map((service, i) => {
+                      const shown = i === activeService;
+                      return (
+                        <div
+                          key={service.title}
+                          aria-hidden={!shown}
+                          className={`[grid-area:1/1] self-start transition-[opacity,transform] ease-out ${
+                            shown
+                              ? "opacity-100 translate-y-0 duration-500 delay-150"
+                              : "opacity-0 translate-y-1.5 duration-200 pointer-events-none"
+                          }`}
+                        >
+                          <p className="text-[24px] short:text-[21px] leading-tight font-bold" style={headlineStyle}>
+                            {service.title}
+                          </p>
+                          <p className="mt-2 text-[15px] leading-relaxed text-[#3F4143]/80">{service.description}</p>
+                          <Link
+                            href={service.href}
+                            tabIndex={shown ? undefined : -1}
+                            className="mt-4 inline-flex items-center gap-2 text-[15px] font-bold text-[#173d24] border-b border-[#173d24]/30 pb-0.5 hover:border-[#173d24]"
+                          >
+                            View service <ArrowRight size={16} aria-hidden="true" />
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </FadeUp>
-          </div>
-        </section>
+            </div>
 
-        {/* Specialized Restoration Section */}
-        <section
-          className="relative py-16 md:py-24 overflow-hidden bg-[#F7F4EE]"
-          id="services"
-        >
-          <div className="max-w-[1160px] mx-auto px-6 md:px-8">
-            {/* Header */}
-            <FadeUp className="mb-14 md:mb-16">
-              <p
-                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
-                style={bodyStyle}
-              >
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                Our Expertise
-              </p>
-              <h2
-                className="mt-3 text-[40px] md:text-[52px] leading-[1.02] font-bold text-[#2F3335]"
-                style={headlineStyle}
-              >
-                Specialized Restoration
-              </h2>
-            </FadeUp>
-
-            {/* Service columns — clean, open, no borders */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
-              }}
+            {/* Phones: a swipeable row of cards. Tablets: two-column grid.
+                Photo and description are always shown. */}
+            <p className="sm:hidden mt-8 text-[14px] text-white/60" style={bodyStyle}>Swipe to see all five services</p>
+            <ul
+              className="lg:hidden mt-4 sm:mt-10 -mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-pl-6 pb-2 [scrollbar-width:none] sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible"
+              style={bodyStyle}
             >
-              {services.map((service) => (
-                <motion.div
-                  key={service.title}
-                  variants={{
-                    hidden: { opacity: 0, y: 18 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <motion.div
-                    className="group border border-transparent p-4 sm:p-6 -mx-4 sm:-mx-6 cursor-pointer"
-                    style={{ borderWidth: "0.5px" }}
-                    initial="rest"
-                    whileHover="hovered"
-                    animate="rest"
-                    variants={{
-                      rest: {
-                        borderColor: "rgba(0,0,0,0)",
-                        backgroundColor: "rgba(0,0,0,0)",
-                        y: 0,
-                      },
-                      hovered: {
-                        borderColor: service.accentColor,
-                        backgroundColor: "rgba(255,255,255,0.72)",
-                        y: -4,
-                      },
-                    }}
-                    transition={{ type: "spring", stiffness: 140, damping: 20 }}
+              {services.map(service => (
+                <li key={service.title} className="snap-start shrink-0 w-[84%] sm:w-auto">
+                  <Link
+                    href={service.href}
+                    className="card-3d group flex h-full flex-col bg-white text-[#1f2a24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a9d468]"
                   >
-                    <Link href={service.href} className="block">
-                      {/* Icon */}
-                      <span
-                        className={`inline-flex items-center justify-center w-11 h-11 transition-all duration-500 group-hover:scale-105 ${service.iconColor}`}
-                      >
-                        {service.icon}
+                    <span className="relative block aspect-[16/10] overflow-hidden bg-[#173d24]">
+                      <img src={service.backdrop} alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover blur-xl scale-110 opacity-50" />
+                      <img src={service.backdrop} alt={`${service.title} job by Heritage Restoration`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-contain" />
+                    </span>
+                    <span className="flex flex-1 flex-col p-5">
+                      <span className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#8DBD42] text-[#173d24]">{service.icon}</span>
+                        <h3 className="text-[21px] leading-tight font-bold" style={headlineStyle}>{service.title}</h3>
                       </span>
-
-                      {/* Title — color matches border accent via variant propagation */}
-                      <motion.h3
-                        className="mt-6 text-[22px] md:text-[24px] leading-tight font-bold"
-                        style={headlineStyle}
-                        variants={{
-                          rest: { color: "#2F3335" },
-                          hovered: { color: service.accentColor },
-                        }}
-                        transition={{ type: "spring", stiffness: 140, damping: 20 }}
-                      >
-                        {service.title}
-                      </motion.h3>
-
-                      {/* Description */}
-                      <p
-                        className="mt-4 text-[15px] leading-relaxed text-[#3F4143]/80"
-                        style={bodyStyle}
-                      >
-                        {service.description}
-                      </p>
-
-                      {/* CTA */}
-                      <span
-                        className="mt-5 inline-flex items-center gap-1.5 text-[11.5px] font-black uppercase tracking-[0.14em] text-[#3F4143]/75 group-hover:text-[#2F3335] transition-colors duration-500"
-                        style={bodyStyle}
-                      >
-                        Learn More
-                        <ArrowRight size={13} className="transition-transform duration-500 group-hover:translate-x-1" />
+                      <span className="mt-3 block flex-1 text-[15px] leading-relaxed text-[#3F4143]/80">{service.description}</span>
+                      <span className="mt-4 inline-flex items-center gap-2 text-[15px] font-bold text-[#173d24]">
+                        View service <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
                       </span>
-                    </Link>
-                  </motion.div>
-
-
-                </motion.div>
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </motion.div>
+            </ul>
+            <a
+              href="tel:+13604561886"
+              className="btn-3d lg:hidden mt-8 inline-flex items-center gap-2.5 bg-[#8DBD42] text-[#173d24] px-6 py-4 text-[15px] font-bold"
+              style={bodyStyle}
+            >
+              <Phone size={16} aria-hidden="true" /> Call (360) 456-1886
+            </a>
           </div>
         </section>
 
-        {/* Homes & Businesses — residential / commercial split (whole card is a link) */}
-        <section className="bg-white border-y border-[#3F4143]/8">
-          <div className="max-w-[1160px] mx-auto px-6 md:px-8 py-14 md:py-20 grid md:grid-cols-2 gap-6 md:gap-8">
-            <FadeUp className="h-full">
+        {/* Homes & businesses — two solid-colour panels, each fully clickable */}
+        <section className="bg-white py-14 md:py-20">
+          <div data-reveal-stagger className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6" style={bodyStyle}>
+            {[
+              {
+                href: "/services/fire-restoration",
+                icon: <House size={22} aria-hidden="true" />,
+                kicker: "For homeowners",
+                title: "Residential restoration",
+                text: "Fire, water and storm damage to your home, handled start to finish, with us on your side through the insurance claim.",
+                link: "Residential services",
+                panel: "bg-[#EEF3E6] text-[#1f2a24]",
+                kickerColor: "text-[#173d24]",
+                body: "text-[#3F4143]/85",
+                linkColor: "text-[#173d24] border-[#173d24]/30 group-hover:border-[#173d24]",
+                iconBox: "bg-white text-[#173d24]",
+              },
+              {
+                href: "/commercial",
+                icon: <Building2 size={22} aria-hidden="true" />,
+                kicker: "For property managers and owners",
+                title: "Commercial restoration",
+                text: "Apartments, HOAs, medical offices, hotels and schools. Cleanup and rebuild under one contract, phased around your tenants and operations.",
+                link: "Commercial restoration",
+                panel: "bg-[#173d24] text-white",
+                kickerColor: "text-[#cfe6a3]",
+                body: "text-white/85",
+                linkColor: "text-white border-white/40 group-hover:border-[#a9d468] group-hover:text-[#cfe6a3]",
+                iconBox: "bg-[#8DBD42] text-[#173d24]",
+              },
+            ].map(panel => (
               <Link
-                href="/services/fire-restoration"
-                className="group flex flex-col h-full p-7 md:p-10 bg-[#F7F4EE] border-t-4 border-[#8DBD42] shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f1ecdf] hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#4f8a1f]"
+                key={panel.title}
+                href={panel.href}
+                className={`card-3d card-3d--raised group flex flex-col p-7 md:p-9 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#44781a] ${panel.panel}`}
               >
-                <p className="text-[#3f6e14] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
-                  For homeowners
-                </p>
-                <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold text-[#2F3335]" style={headlineStyle}>
-                  Residential restoration
+                <span className={`flex h-12 w-12 items-center justify-center ${panel.iconBox}`}>{panel.icon}</span>
+                <p className={`mt-6 text-[15px] font-semibold ${panel.kickerColor}`}>{panel.kicker}</p>
+                <h2 className="mt-1.5 text-[28px] md:text-[32px] leading-[1.1] font-bold" style={headlineStyle}>
+                  {panel.title}
                 </h2>
-                <p className="mt-4 text-[16px] text-[#3F4143]/80 leading-relaxed flex-1" style={bodyStyle}>
-                  Fire, water and storm damage to your home, handled start to
-                  finish, with us on your side through the insurance claim.
-                </p>
-                <span
-                  className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#145126] group-hover:text-[#4f8a1f] transition-colors"
-                  style={bodyStyle}
-                >
-                  Residential services
-                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+                <p className={`mt-3 max-w-[46ch] text-[15.5px] leading-relaxed ${panel.body}`}>{panel.text}</p>
+                <span className={`mt-5 inline-flex w-fit items-center gap-2 border-b pb-1 text-[15px] font-bold transition-colors ${panel.linkColor}`}>
+                  {panel.link} <ChevronRight size={16} aria-hidden="true" />
                 </span>
               </Link>
-            </FadeUp>
-            <FadeUp delay={0.08} className="h-full">
-              <Link
-                href="/commercial"
-                className="group flex flex-col h-full p-7 md:p-10 bg-[#1f3a24] text-white border-t-4 border-[#8DBD42] shadow-[0_0_0_rgba(0,0,0,0)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#244529] hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#a9d468]"
-              >
-                <p className="text-[#a9d468] uppercase tracking-[0.2em] text-[11px] font-extrabold" style={bodyStyle}>
-                  For property managers &amp; owners
-                </p>
-                <h2 className="mt-3 text-[30px] md:text-[36px] leading-[1.1] font-bold" style={headlineStyle}>
-                  Commercial restoration
-                </h2>
-                <p className="mt-4 text-[16px] text-white/80 leading-relaxed flex-1" style={bodyStyle}>
-                  Apartments, HOAs, medical, hotels, schools and offices. Cleanup
-                  and rebuild under one contract, phased around your tenants and
-                  operations.
-                </p>
-                <span
-                  className="mt-6 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.14em] text-[#a9d468] group-hover:text-white transition-colors"
-                  style={bodyStyle}
-                >
-                  Commercial services
-                  <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-                </span>
-              </Link>
-            </FadeUp>
+            ))}
           </div>
         </section>
 
-        {/* Our Promise Section */}
-        <section
-          id="promise"
-          className="pb-14 md:pb-20 pt-10 md:pt-14 text-[#3F4143] relative overflow-hidden"
-          style={{ background: "#FFFFFF" }}
-        >
-          {/* Soft Seattle Green Glow */}
-          <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-[#8DBD42]/4.5 blur-[130px] pointer-events-none select-none z-0" />
-          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 xl:gap-24 items-center relative z-10">
-            {/* LEFT: Premium Editorial Image Deck */}
-            <FadeUp className="lg:col-span-6 min-w-0 order-2 lg:order-1 flex flex-col gap-4 mt-8 lg:mt-0 items-center justify-center">
-              <Parallax amount={22} className="w-full flex justify-center lg:justify-start">
-                <PhotoDeck />
-              </Parallax>
-            </FadeUp>
-
-            {/* RIGHT: text content + buttons */}
-            <FadeUp delay={0.08} className="lg:col-span-6 min-w-0 order-1 lg:order-2">
-              <p className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold font-sans mb-4">
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                Our Promise
-              </p>
-              <h2 className="text-[26px] sm:text-[30px] md:text-[40px] lg:text-[44px] mt-3 leading-[1.08] text-[#3F4143] font-serif font-bold">
-                <span className="block min-[1440px]:whitespace-nowrap">We Are Not Just Technicians.</span>
-                <span className="block min-[1440px]:whitespace-nowrap">We Are Your Neighbors.</span>
+        {/* Our promise — statement + rotating before/after deck of past projects */}
+        <section id="promise" className="bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F5F0_14%,#F7F5F0_86%,#FFFFFF_100%)] py-20 md:py-28 lg:py-16 midh:py-14 short:py-10">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div data-reveal className="lg:col-span-6">
+              <h2 className="text-[34px] md:text-[48px] short:text-[40px] leading-[1.06] font-bold text-[#1f2a24]" style={headlineStyle}>
+                We are not just technicians. We are your neighbors.
               </h2>
-              <p className="mt-6 text-[#3F4143]/80 text-lg leading-relaxed font-sans font-light">
+              <p className="mt-6 text-[17px] leading-relaxed text-[#3F4143]/80 max-w-[56ch]" style={bodyStyle}>
                 We are proudly local and homeowner focused. When you call
                 Heritage, you are not getting an out-of-town franchise. You are
                 getting a team that lives in this community and stands behind
                 every repair decision.
               </p>
-
-              <div className="border-l-2 border-[#8DBD42] pl-5 italic text-[#3F4143]/90 text-[17px] leading-relaxed font-serif mt-8">
-                "Most importantly, we are advocates for you. Our priority is protecting your home and your best interests, not the insurance company."
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4 font-sans">
+              <blockquote className="mt-8 short:mt-6 text-[20px] md:text-[22px] short:text-[19px] leading-[1.45] text-[#1f2a24] max-w-[46ch]" style={headlineStyle}>
+                Most importantly, we are advocates for you. Our priority is
+                protecting your home and your best interests, not the insurance
+                company.
+              </blockquote>
+              <div className="mt-10 short:mt-7 flex flex-wrap gap-4" style={bodyStyle}>
                 <a
                   href="tel:+13604561886"
-                  className="bg-[#8DBD42] hover:bg-[#97cf4f] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 inline-flex items-center gap-2 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
+                  className="btn-3d inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-7 py-4 text-[14px] font-bold transition-colors"
                 >
-                  <Phone size={12} /> Start Your Recovery
+                  <Phone size={15} aria-hidden="true" /> Start your recovery
                 </a>
                 <Link
                   href="/contact"
-                  className="border-2 border-[#145126]/30 hover:border-[#145126] text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] active:translate-y-0 text-center"
+                  className="btn-3d inline-flex items-center gap-2 border border-[#173d24]/30 hover:border-[#173d24] text-[#173d24] px-7 py-4 text-[14px] font-bold transition-colors"
                 >
-                  Request Assessment
+                  Request an assessment
                 </Link>
               </div>
-            </FadeUp>
+            </div>
+            <div data-reveal style={{ animationDelay: "0.12s" }} className="lg:col-span-6">
+              <ProjectDeck />
+            </div>
           </div>
         </section>
 
-        {/* Process Section */}
+        {/* Process — the eight steps are a real sequence, so they read as a numbered
+            stepper with a progress line. Desktop: the section is ~3 screens tall
+            and its content stays pinned while you scroll, advancing one step per
+            stretch of scroll; hover, focus or click also picks a step. All eight
+            detail panels share one grid cell, so switching only cross-fades.
+            Phones: a vertical timeline whose steps slide in as they scroll into
+            view; tap a step to open it. */}
         <section
-          className="py-14 md:py-20 overflow-hidden relative bg-transparent text-[#3F4143]"
           id="process"
+          ref={processRef}
+          className="py-20 md:py-24 lg:py-0 lg:h-[330svh] bg-white text-[#3F4143]"
         >
-          <div className="max-w-[1180px] mx-auto px-6 relative z-10">
-            <motion.div
-              className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 mb-8 md:mb-10"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="lg:col-span-5">
-                <p
-                  className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold"
-                  style={bodyStyle}
-                >
-                  What To Expect
-                </p>
-                <h2
-                  className="text-[34px] md:text-[50px] mt-2 text-[#2F3335] font-bold leading-tight"
-                  style={headlineStyle}
-                >
-                  What happens after you call.
-                </h2>
-              </div>
-              <div className="lg:col-span-6 lg:col-start-7" />
-            </motion.div>
+          <div className="max-w-[1200px] mx-auto px-6 lg:sticky lg:top-16 lg:h-[calc(100svh-64px)] lg:flex lg:flex-col lg:justify-center">
+            <div data-reveal className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
+              <h2
+                className="lg:col-span-8 text-[36px] md:text-[48px] short:text-[36px] text-[#1f2a24] font-bold leading-[1.05]"
+                style={headlineStyle}
+              >
+                What happens after you call.
+              </h2>
+              <p
+                className="lg:col-span-4 text-[16.5px] short:text-[15px] leading-relaxed short:leading-snug text-[#3F4143]/80"
+                style={bodyStyle}
+              >
+                Eight steps from the day of the loss to the warranty handover,
+                with one team and one point of contact the whole way through.
+              </p>
+            </div>
 
-            {/* MOBILE — accordion: each step's detail expands directly below its title */}
-            <div className="lg:hidden border-t border-[#145126]/10">
+            {/* DESKTOP — stepper + detail panel */}
+            <div className="hidden lg:block mt-12 midh:mt-10 short:mt-6" style={bodyStyle}>
+              <ol className="relative grid grid-cols-8">
+                <span aria-hidden="true" className="absolute top-[21px] left-[6.25%] right-[6.25%] h-[2px] bg-[#173d24]/12" />
+                <span
+                  aria-hidden="true"
+                  className="absolute top-[21px] left-[6.25%] h-[2px] bg-[#8DBD42] transition-[width] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{ width: `${activeStep * 12.5}%` }}
+                />
+                {process.map((step, idx) => {
+                  const isActive = activeStep === idx;
+                  const isDone = idx < activeStep;
+                  return (
+                    <li key={step.number} className="relative">
+                      <button
+                        type="button"
+                        onMouseEnter={() => setActiveStep(idx)}
+                        onFocus={() => setActiveStep(idx)}
+                        onClick={() => setActiveStep(idx)}
+                        aria-pressed={isActive}
+                        className="group flex w-full flex-col items-center px-2 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#44781a]"
+                      >
+                        <span
+                          className={`relative flex h-11 w-11 items-center justify-center border-2 text-[16px] font-bold transition-all duration-500 ${
+                            isActive
+                              ? "border-[#173d24] bg-[#173d24] text-white shadow-[0_0_0_6px_rgba(141,189,66,0.25)]"
+                              : isDone
+                                ? "border-[#8DBD42] bg-[#8DBD42] text-[#173d24]"
+                                : "border-[#173d24]/20 bg-white text-[#3F4143]/80 group-hover:border-[#8DBD42] group-hover:text-[#173d24]"
+                          }`}
+                        >
+                          {idx + 1}
+                        </span>
+                        <span
+                          className={`mt-4 short:mt-3 text-[13.5px] xl:text-[14px] short:text-[13px] leading-snug font-semibold transition-colors duration-300 ${
+                            isActive ? "text-[#1f2a24]" : "text-[#3F4143]/80 group-hover:text-[#1f2a24]"
+                          }`}
+                        >
+                          {step.title}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+
+              <div className="mt-10 midh:mt-8 short:mt-5 grid border border-[#E6E1D7] bg-[#FAF9F6]">
+                {process.map((step, idx) => {
+                  const shown = activeStep === idx;
+                  return (
+                    <div
+                      key={step.number}
+                      aria-hidden={!shown}
+                      className={`[grid-area:1/1] grid grid-cols-12 gap-10 short:gap-7 p-9 midh:p-8 short:p-6 transition-opacity ease-out ${
+                        shown ? "opacity-100 duration-500 delay-100" : "opacity-0 duration-200 pointer-events-none"
+                      }`}
+                    >
+                      <div className="col-span-4">
+                        <p className="text-[15px] font-semibold text-[#44781a]">
+                          Step {idx + 1} of {process.length}
+                        </p>
+                        <h3 className="mt-2 text-[28px] xl:text-[30px] leading-[1.12] font-bold text-[#1f2a24]" style={headlineStyle}>
+                          {step.title}
+                        </h3>
+                      </div>
+                      <div className="col-span-8 grid grid-cols-2 content-start gap-x-10 short:gap-x-7 gap-y-7 short:gap-y-5 border-l border-[#E6E1D7] pl-10 short:pl-7">
+                        {step.items.map(item => (
+                          <div key={item.label}>
+                            <p className="flex items-center gap-2 text-[15px] font-bold text-[#1f2a24]">
+                              <Check size={16} strokeWidth={3} aria-hidden="true" className="shrink-0 text-[#44781a]" />
+                              {item.label}
+                            </p>
+                            <p className="mt-2 text-[15px] leading-relaxed text-[#3F4143]/80">{item.text}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* MOBILE — vertical timeline; tap a step to open it */}
+            <ol className="lg:hidden relative mt-10" style={bodyStyle}>
+              <span aria-hidden="true" className="absolute left-[21px] top-3 bottom-3 w-[2px] bg-[#173d24]/12" />
               {process.map((step, idx) => {
                 const isActive = activeStep === idx;
+                const isDone = idx < activeStep;
                 return (
-                  <div key={step.number} className="border-b border-[#145126]/10">
+                  <motion.li
+                    key={step.number}
+                    className="relative pl-16 pb-5 last:pb-0"
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <button
                       type="button"
                       onClick={() => setActiveStep(idx)}
                       aria-expanded={isActive}
-                      className={`group flex w-full items-center gap-3 py-5 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75"}`}
+                      className="flex w-full items-start gap-3 text-left"
                     >
                       <span
-                        className={`w-8 shrink-0 text-[12px] font-black tracking-[0.16em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
-                        style={bodyStyle}
+                        className={`absolute left-0 top-0 flex h-11 w-11 items-center justify-center border-2 text-[16px] font-bold transition-colors duration-300 ${
+                          isActive
+                            ? "border-[#173d24] bg-[#173d24] text-white"
+                            : isDone
+                              ? "border-[#8DBD42] bg-[#8DBD42] text-[#173d24]"
+                              : "border-[#173d24]/20 bg-white text-[#3F4143]/60"
+                        }`}
                       >
-                        {step.number}
+                        {idx + 1}
                       </span>
                       <span
-                        className={`flex-1 text-[17px] leading-[1.2] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/80"}`}
+                        className={`flex-1 pt-2 text-[18px] leading-snug font-bold ${isActive ? "text-[#1f2a24]" : "text-[#3F4143]/75"}`}
                         style={headlineStyle}
                       >
                         {step.title}
                       </span>
                       <ChevronDown
                         size={18}
-                        className={`shrink-0 text-[#8DBD42] transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
+                        aria-hidden="true"
+                        className={`mt-3 shrink-0 text-[#44781a] transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
                       />
                     </button>
                     <AnimatePresence initial={false}>
@@ -1268,167 +1398,49 @@ export default function Home() {
                           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="pb-6 pl-11 pr-1 space-y-4">
+                          <div className="mt-4 space-y-4 bg-[#FAF9F6] border border-[#E6E1D7] p-5">
                             {step.items.map(item => (
-                              <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
-                                <p
-                                  className="text-[13.5px] font-black text-[#3F4143]"
-                                  style={bodyStyle}
-                                >
+                              <div key={item.label}>
+                                <p className="flex items-center gap-2 text-[14.5px] font-bold text-[#1f2a24]">
+                                  <Check size={15} strokeWidth={3} aria-hidden="true" className="shrink-0 text-[#44781a]" />
                                   {item.label}
                                 </p>
-                                <p
-                                  className="mt-1 text-[14px] leading-relaxed text-[#3F4143]/80"
-                                  style={bodyStyle}
-                                >
-                                  {item.text}
-                                </p>
+                                <p className="mt-1.5 text-[14.5px] leading-relaxed text-[#3F4143]/80">{item.text}</p>
                               </div>
                             ))}
                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.li>
                 );
               })}
-            </div>
-
-            {/* DESKTOP — step titles (hover/tap) + sticky detail panel */}
-            <div className="hidden lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-12 border-t border-[#145126]/10 pt-9">
-              {/* LEFT — step titles (hover/tap to expand on the right) */}
-              <div className="flex flex-col">
-                {process.map((step, idx) => {
-                  const isActive = activeStep === idx;
-                  return (
-                    <motion.button
-                      key={step.number}
-                      type="button"
-                      initial={{ opacity: 0, y: 18 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.4 }}
-                      transition={{ duration: 0.75, delay: idx * 0.045, ease: [0.22, 1, 0.36, 1] }}
-                      onMouseEnter={() => setActiveStep(idx)}
-                      onFocus={() => setActiveStep(idx)}
-                      onClick={() => setActiveStep(idx)}
-                      aria-pressed={isActive}
-                      className={`group flex items-center gap-5 py-6 text-left transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75 hover:text-[#2F3335]"}`}
-                    >
-                      <span
-                        className={`w-10 shrink-0 text-[13px] font-black tracking-[0.18em] transition-colors duration-300 ${isActive ? "text-[#8DBD42]" : "text-[#8DBD42]/75"}`}
-                        style={bodyStyle}
-                      >
-                        {step.number}
-                      </span>
-                      <span
-                        className={`flex-1 text-[24px] leading-[1.15] font-bold transition-colors duration-300 ${isActive ? "text-[#145126]" : "text-[#3F4143]/75 group-hover:text-[#2F3335]"}`}
-                        style={headlineStyle}
-                      >
-                        {step.title}
-                      </span>
-                      <span
-                        className={`shrink-0 transition-all duration-300 ${isActive ? "translate-x-0 text-[#8DBD42] opacity-100" : "-translate-x-1 text-[#8DBD42]/80 opacity-0 group-hover:opacity-100"}`}
-                      >
-                        <ArrowRight size={18} />
-                      </span>
-                    </motion.button>
-                  );
-                })}
-              </div>
-
-              {/* RIGHT — active step detail expands here */}
-              <div
-                className={`lg:sticky self-start ${
-                  activeStep >= 5 ? "lg:top-[6.5rem] xl:top-[7.5rem]" : "lg:top-28"
-                }`}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeStep}
-                    initial={{ opacity: 0, x: -24, scale: 0.97 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      scale: 1,
-                      y: activeStep >= 5 ? 60 : 0,
-                    }}
-                    exit={{ opacity: 0, x: 18, scale: 0.97 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="border border-[#E2E2DD] bg-white p-8 md:p-12 text-[#145126] shadow-[0_18px_45px_rgba(63,65,67,0.06)]"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span className="grid h-12 w-12 place-items-center border border-[#8DBD42]/18 bg-[#F4F8EE] text-[#145126]">
-                        {process[activeStep].icon}
-                      </span>
-                      <span
-                        className="text-[13px] font-black uppercase tracking-[0.16em] text-[#8DBD42]"
-                        style={bodyStyle}
-                      >
-                        Step {process[activeStep].number}
-                      </span>
-                    </div>
-                    <h3
-                      className="mt-5 text-[26px] md:text-[32px] leading-[1.1] font-bold text-[#3F4143]"
-                      style={headlineStyle}
-                    >
-                      {process[activeStep].title}
-                    </h3>
-                    <div className="mt-6 space-y-5">
-                      {process[activeStep].items.map(item => (
-                        <div key={item.label} className="border-l-2 border-[#8DBD42] pl-4">
-                          <p
-                            className="text-[14px] font-black text-[#3F4143]"
-                            style={bodyStyle}
-                          >
-                            {item.label}
-                          </p>
-                          <p
-                            className="mt-1 text-[14px] md:text-[15px] leading-relaxed text-[#3F4143]/80"
-                            style={bodyStyle}
-                          >
-                            {item.text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
+            </ol>
           </div>
         </section>
 
         {/* Case Study / Proven Results Section */}
         <section
           id="case-study"
-          className="py-14 md:py-20 text-[#3F4143] relative overflow-hidden bg-white border-t border-gray-100"
+          className="py-20 md:py-28 text-[#3F4143] relative overflow-hidden bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F5F0_14%,#F7F5F0_86%,#FFFFFF_100%)]"
         >
-          {/* Soft Seattle Green Glow */}
-          <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#8DBD42]/4 blur-[140px] pointer-events-none select-none z-0" />
-
-          <div className="max-w-[1080px] mx-auto px-6 relative z-10">
-            <FadeUp className="text-center max-w-2xl mx-auto mb-12">
-              <p
-                className="inline-flex items-center gap-2.5 text-[#8DBD42] uppercase tracking-[0.2em] text-[11px] font-extrabold"
-                style={bodyStyle}
-              >
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-                Proven Results
-                <span className="w-5 h-px bg-[#8DBD42] inline-block" />
-              </p>
+          <div data-reveal className="max-w-[1200px] mx-auto px-6 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 mb-10 md:mb-12">
               <h2
-                className="text-[34px] md:text-[46px] mt-4 leading-[1.1] text-[#3F4143] font-bold"
+                className="lg:col-span-6 text-[36px] md:text-[48px] leading-[1.05] text-[#1f2a24] font-bold"
                 style={headlineStyle}
               >
-                Proven Transformation
+                Proven transformation
               </h2>
               <p
-                className="mt-4 text-[#3F4143]/80 text-base md:text-lg leading-relaxed"
+                className="lg:col-span-5 lg:col-start-8 self-end text-[#3F4143]/80 text-[16.5px] leading-relaxed"
                 style={bodyStyle}
               >
-                Compare the detailed progress of a full structural rebuild. Drag the slider to reveal the craftsmanship that goes into every home restoration project.
+                Compare the detailed progress of a full structural rebuild.
+                Drag the slider to reveal the craftsmanship that goes into every
+                restoration project.
               </p>
-            </FadeUp>
+            </div>
 
             {/* Before/After Slider container */}
             <div className="relative">
@@ -1436,7 +1448,7 @@ export default function Home() {
                 <FadeUp>
                   <div
                     ref={sliderRef}
-                    className="motion-soft-lift relative rounded-none overflow-hidden select-none cursor-col-resize shadow-[0_25px_60px_rgba(20,81,38,0.04)] border border-[#3F4143]/12"
+                    className="relative rounded-none overflow-hidden select-none cursor-col-resize border border-[#E0DACE]"
                     onMouseMove={event => updateSlider(event.clientX)}
                     onTouchMove={event => updateSlider(event.touches[0].clientX)}
                   >
@@ -1469,19 +1481,19 @@ export default function Home() {
                           transform: "translateX(-50%)",
                         }}
                       >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-none bg-white border border-[#8DBD42] text-[#145126] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-none bg-white border border-[#8DBD42] text-[#173d24] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105">
                           <ChevronsLeftRight size={18} />
                         </div>
                       </div>
 
                       <span
-                        className="absolute top-5 left-5 rounded-none bg-black/75 text-white border border-white/10 px-4 py-1.5 uppercase tracking-[0.16em] text-[10px] font-black select-none z-10"
+                        className="absolute top-5 left-5 rounded-none bg-black/75 text-white border border-white/10 px-3.5 py-1.5 text-[13px] font-semibold select-none z-10"
                         style={bodyStyle}
                       >
                         Before
                       </span>
                       <span
-                        className="absolute top-5 right-5 rounded-none bg-[#145126] text-white border border-[#145126]/20 px-4 py-1.5 uppercase tracking-[0.16em] text-[10px] font-black select-none z-10"
+                        className="absolute top-5 right-5 rounded-none bg-[#173d24] text-white border border-[#173d24]/20 px-3.5 py-1.5 text-[13px] font-semibold select-none z-10"
                         style={bodyStyle}
                       >
                         After
@@ -1492,165 +1504,154 @@ export default function Home() {
               </div>
             </div>
 
-            <FadeUp delay={0.08} className="mt-10 flex justify-center">
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={bodyStyle}>
+              <p className="text-[14.5px] text-[#3F4143]/75">
+                Exterior of a fire-damaged home, rebuilt by Heritage crews.
+              </p>
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#3F4143] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0"
-                style={bodyStyle}
+                className="inline-flex items-center gap-2 text-[15px] font-bold text-[#173d24] border-b border-[#173d24]/30 pb-1 hover:border-[#173d24] w-fit"
               >
-                View Full Portfolio <ArrowRight size={13} />
+                See more projects <ChevronRight size={16} aria-hidden="true" />
               </Link>
-            </FadeUp>
+            </div>
           </div>
         </section>
 
-        {/* Testimonials (Editorial Layout) */}
-        <section id="testimonials" className="py-14 md:py-20 bg-transparent relative overflow-hidden text-[#3F4143]">
-          <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-            <FadeUp>
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-                <div>
-                  <p
-                    className="text-[#8DBD42] uppercase tracking-[0.16em] text-xs font-extrabold"
-                    style={bodyStyle}
-                  >
-                    Testimonials
-                  </p>
-                  <h2
-                    className="text-[34px] md:text-[44px] mt-3 !text-[#145126] font-bold leading-tight font-serif"
-                    style={headlineStyle}
-                  >
-                    Rebuilding Dreams, One Story At A Time
-                  </h2>
-                </div>
-                {/* Clean Top-Right Carousel Navigation Controls */}
-                <div className="flex items-center gap-3 self-start md:self-end">
-                  <button
-                    onClick={handlePrevReview}
-                    className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
-                    aria-label="Previous testimonial"
-                  >
-                    <span className="rotate-180 block text-base font-black leading-none">→</span>
-                  </button>
-                  <button
-                    onClick={handleNextReview}
-                    className="w-10 h-10 border border-[#3F4143]/12 hover:bg-[#145126] hover:text-white hover:border-[#145126] transition-all flex items-center justify-center rounded-none text-[#145126] cursor-pointer"
-                    aria-label="Next testimonial"
-                  >
-                    <span className="block text-base font-black leading-none">→</span>
-                  </button>
-                </div>
+        {/* Reviews — one featured review in a cream card (the arrows change
+            which one is featured), the next two as smaller cards, and the
+            commercial client list beside them. Featured quotes are stacked in one
+            grid cell and cross-fade, so the panel never changes size. */}
+        <section id="testimonials" className="py-20 md:py-24 lg:py-20 bg-white text-[#3F4143]">
+          <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16" style={bodyStyle}>
+            <div data-reveal className="lg:col-span-4">
+              <h2 className="text-[36px] md:text-[46px] text-[#1f2a24] font-bold leading-[1.06]" style={headlineStyle}>
+                Rebuilding dreams, one story at a time
+              </h2>
+              <div className="mt-8 border-t border-[#E6E1D7] pt-6">
+                <p className="text-[15px] font-semibold text-[#1f2a24]">Commercial clients include</p>
+                <ul className="mt-4 space-y-2.5">
+                  {[
+                    "Providence Hospital",
+                    "Washington Orthopedic",
+                    "Aberdeen High School",
+                    "Essex Property Management",
+                    "Rants Group",
+                    "Reliable Enterprises",
+                  ].map(client => (
+                    <li key={client} className="flex items-center gap-3 text-[15.5px] text-[#3F4143]/85">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-[#8DBD42]" />
+                      {client}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </FadeUp>
+              <a
+                href="https://g.page/r/CWy4NzZ8yjqCEBM/review"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-3d mt-9 inline-flex items-center gap-2 border border-[#173d24]/30 px-6 py-3.5 text-[15px] font-bold text-[#173d24] transition-colors hover:border-[#173d24] hover:bg-[#173d24] hover:text-white"
+              >
+                Leave a review on Google <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            </div>
 
-            {/* Testimonials Grid Wrapper */}
-            <div className="relative mt-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-transparent">
-                {[0, 1, 2].map(offset => {
-                  const review = reviews[(currentReviewIndex + offset) % reviews.length];
-                  if (!review) return null;
-
-                  const rating = Math.round(review.rating || 5);
-                  const isGoogleReview = review.role.includes("Google");
-
-                  return (
-                    <FadeUp
-                      key={`${offset}-${currentReviewIndex}-${review.name}`}
-                      className={`${offset === 1 ? "hidden md:block" : offset === 2 ? "hidden lg:block" : "block"} w-full`}
-                    >
-                      <article className="group relative flex h-full min-h-[250px] flex-col justify-between bg-white px-7 py-9 text-left border border-[#3F4143]/8 shadow-[0_20px_50px_rgba(20,81,38,0.015)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(20,81,38,0.03)] rounded-none">
-                        <div className="relative z-10 flex flex-col">
-                          <div className="mb-5 flex items-center justify-between gap-4">
-                            {review.profilePhotoUrl ? (
-                              <img
-                                src={review.profilePhotoUrl}
-                                alt={review.name}
-                                className="h-10 w-10 rounded-full border border-black/5 object-cover"
-                                referrerPolicy="no-referrer"
-                              />
-                            ) : (
-                              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-[#FAF9F6] text-[#145126]">
-                                <Quote size={15} className="stroke-[1.7]" />
-                              </div>
-                            )}
-                            <div className="flex justify-center gap-1 text-[#8DBD42]">
-                              {Array.from({ length: 5 }).map((_, starIndex) => (
-                                <Star
-                                  key={starIndex}
-                                  size={13}
-                                  fill={starIndex < rating ? "currentColor" : "none"}
-                                  className={starIndex < rating ? "" : "text-slate-200"}
-                                />
-                              ))}
-                            </div>
-                          </div>
-
-                          <p
-                            className="text-[14px] leading-relaxed text-[#3F4143]/80 transition-colors duration-300 font-serif italic"
-                            style={bodyStyle}
-                          >
-                            "{review.quote}"
-                          </p>
+            <div data-reveal style={{ animationDelay: "0.12s" }} className="lg:col-span-8">
+              {/* Featured review */}
+              <figure className="card-3d relative bg-[#FAF9F6] border border-[#E6E1D7] border-t-[3px] border-t-[#173d24] p-7 md:p-9">
+                <Quote aria-hidden="true" size={36} className="absolute right-7 top-7 text-[#8DBD42]/50" strokeWidth={1.5} />
+                <div className="grid">
+                  {reviews.map((review, i) => {
+                    const shown = i === currentReviewIndex;
+                    const rating = Math.round(review.rating || 5);
+                    return (
+                      <div
+                        key={`${review.name}-${i}`}
+                        aria-hidden={!shown}
+                        className={`[grid-area:1/1] flex flex-col transition-opacity ease-out ${
+                          shown ? "opacity-100 duration-500 delay-100" : "opacity-0 duration-200 pointer-events-none"
+                        }`}
+                      >
+                        <div className="flex gap-1 text-[#44781a]" aria-label={`${rating} out of 5 stars`}>
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <Star key={starIndex} size={15} fill={starIndex < rating ? "currentColor" : "none"} aria-hidden="true" />
+                          ))}
                         </div>
-
-                        <div className="relative z-10 mt-6 border-t border-[#3F4143]/6 pt-4">
-                          <h4
-                            className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#145126]"
-                            style={bodyStyle}
-                          >
-                            {review.name}
-                          </h4>
-                          <p
-                            className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#3F4143]/70"
-                            style={bodyStyle}
-                          >
-                            {review.role}
-                          </p>
-                          {isGoogleReview ? (
-                            <span
-                              className="mt-3.5 inline-flex w-fit items-center gap-1.5 border border-[#8DBD42]/30 bg-[#8DBD42]/6 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-[#145126]"
-                              style={bodyStyle}
-                            >
-                              <ShieldCheck size={10} />
-                              Google Verified
-                            </span>
+                        <blockquote className="mt-5 text-[19px] md:text-[21px] leading-[1.5] text-[#1f2a24] max-w-[46ch]" style={headlineStyle}>
+                          &ldquo;{review.quote}&rdquo;
+                        </blockquote>
+                        <figcaption className="mt-6 flex items-center gap-4">
+                          {review.profilePhotoUrl ? (
+                            <img src={review.profilePhotoUrl} alt="" className="h-11 w-11 rounded-full object-cover" referrerPolicy="no-referrer" />
                           ) : null}
+                          <span>
+                            <span className="block text-[15px] font-bold text-[#1f2a24]">{review.name}</span>
+                            <span className="block text-[13.5px] text-[#3F4143]/80">{review.role}</span>
+                          </span>
+                        </figcaption>
+                      </div>
+                    );
+                  })}
+                </div>
+                {reviews.length > 1 && (
+                  <div className="mt-6 flex justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={handlePrevReview}
+                      className="flex h-10 w-10 items-center justify-center border border-[#173d24]/25 text-[#173d24] transition-colors hover:border-[#173d24] hover:bg-[#173d24] hover:text-white"
+                      aria-label="Previous review"
+                    >
+                      <ArrowLeft size={18} aria-hidden="true" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNextReview}
+                      className="flex h-10 w-10 items-center justify-center border border-[#173d24]/25 text-[#173d24] transition-colors hover:border-[#173d24] hover:bg-[#173d24] hover:text-white"
+                      aria-label="Next review"
+                    >
+                      <ArrowRight size={18} aria-hidden="true" />
+                    </button>
+                  </div>
+                )}
+              </figure>
+
+              {/* The next two reviews */}
+              {reviews.length > 1 && (
+                <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {[1, 2].slice(0, Math.min(2, reviews.length - 1)).map(offset => {
+                    const review = reviews[(currentReviewIndex + offset) % reviews.length];
+                    const rating = Math.round(review.rating || 5);
+                    return (
+                      <figure key={`${review.name}-${offset}`} className="card-3d flex h-full flex-col bg-[#FAF9F6] border border-[#E6E1D7] p-7">
+                        <div className="flex gap-1 text-[#44781a]" aria-label={`${rating} out of 5 stars`}>
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <Star key={starIndex} size={14} fill={starIndex < rating ? "currentColor" : "none"} aria-hidden="true" />
+                          ))}
                         </div>
-                      </article>
-                    </FadeUp>
-                  );
-                })}
-              </div>
-              <div className="mt-10 flex justify-center">
-                <a
-                  href="https://g.page/r/CWy4NzZ8yjqCEBM/review"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-[#8DBD42] bg-[#8DBD42] px-6 py-3.5 text-[11px] font-black uppercase tracking-[0.14em] text-[#145126] transition-all duration-300 hover:-translate-y-[2px] hover:bg-[#7dac35] rounded-none hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)]"
-                  style={bodyStyle}
-                >
-                  Leave a review
-                  <ArrowRight size={14} />
-                </a>
-              </div>
+                        <blockquote className="mt-4 flex-1 text-[17px] leading-[1.55] text-[#1f2a24]" style={headlineStyle}>
+                          &ldquo;{review.quote}&rdquo;
+                        </blockquote>
+                        <figcaption className="mt-6">
+                          <span className="block text-[15px] font-bold text-[#1f2a24]">{review.name}</span>
+                          <span className="block text-[13.5px] text-[#3F4143]/80">{review.role}</span>
+                        </figcaption>
+                      </figure>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </section>
 
         {/* Bottom CTA + Contact Form */}
-        <section id="home-contact" className="bg-transparent py-16 md:py-24">
-          <div className="max-w-[1180px] mx-auto px-6 md:px-8">
+        <section id="home-contact" className="bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F5F0_22%)] py-20 md:py-28">
+          <div className="max-w-[1200px] mx-auto px-6">
             <FadeUp>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-                <div className="lg:col-span-7">
-                  <p
-                    className="text-[#8DBD42] uppercase tracking-[0.18em] text-xs font-extrabold mb-4"
-                    style={bodyStyle}
-                  >
-                    Request Help
-                  </p>
+              <div data-reveal-stagger className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+                <div className="lg:col-span-7 lg:order-2">
                   <h2
-                    className="mt-3 text-[34px] md:text-[52px] leading-[1.04] font-bold text-[#145126]"
+                    className="text-[36px] md:text-[48px] leading-[1.05] font-bold text-[#1f2a24]"
                     style={headlineStyle}
                   >
                     Need restoration support today?
@@ -1660,6 +1661,12 @@ export default function Home() {
                     style={bodyStyle}
                   >
                     Send a quick message and our dispatch team will help you decide the next step, whether it is emergency stabilization, documentation, or a full repair assessment.
+                  </p>
+                  <p className="mt-3 text-[15px] text-[#3F4143]/75" style={bodyStyle}>
+                    Managing a commercial property?{" "}
+                    <Link href="/commercial#commercial-inquiry" className="font-bold text-[#173d24] underline decoration-[#8DBD42] decoration-2 underline-offset-4 hover:text-[#44781a]">
+                      Use the commercial inquiry form
+                    </Link>
                   </p>
 
                   <form
@@ -1676,9 +1683,9 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-name"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
+                          className="text-[14px] font-semibold text-[#1f2a24]"
                         >
-                          Full Name *
+                          Full name *
                         </label>
                         <input
                           id="home-name"
@@ -1694,9 +1701,9 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-phone"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
+                          className="text-[14px] font-semibold text-[#1f2a24]"
                         >
-                          Phone Number *
+                          Phone number *
                         </label>
                         <input
                           id="home-phone"
@@ -1714,9 +1721,9 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-email"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
+                          className="text-[14px] font-semibold text-[#1f2a24]"
                         >
-                          Email Address *
+                          Email address *
                         </label>
                         <input
                           id="home-email"
@@ -1732,9 +1739,9 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="home-service"
-                          className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
+                          className="text-[14px] font-semibold text-[#1f2a24]"
                         >
-                          Restoration Service
+                          Service needed
                         </label>
                         <select
                           id="home-service"
@@ -1756,9 +1763,9 @@ export default function Home() {
                     <div className="space-y-2">
                       <label
                         htmlFor="home-message"
-                        className="text-xs font-bold uppercase tracking-wider text-[#3F4143]/80"
+                        className="text-[14px] font-semibold text-[#1f2a24]"
                       >
-                        Describe the Loss or Request
+                        What happened?
                       </label>
                       <textarea
                         id="home-message"
@@ -1774,55 +1781,47 @@ export default function Home() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] disabled:opacity-60 disabled:cursor-not-allowed text-[#145126] px-8 py-4 uppercase tracking-[0.16em] text-xs font-black transition-all duration-300 rounded-none hover:-translate-y-[2px] hover:shadow-[0_8px_20px_rgba(141,189,66,0.25)] active:translate-y-0 cursor-pointer"
+                      className="btn-3d inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] disabled:opacity-60 disabled:cursor-not-allowed text-[#173d24] px-8 py-4 text-[14px] font-bold transition-colors cursor-pointer"
                     >
-                      <Send size={14} /> {sending ? "Sending..." : "Send Message"}
+                      <Send size={14} /> {sending ? "Sending..." : "Send message"}
                     </button>
                   </form>
                 </div>
 
-                <div className="lg:col-span-5">
-                  <div className="relative overflow-hidden bg-[#145126] p-8 md:p-10 text-white shadow-[0_28px_80px_rgba(20,81,38,0.22)]">
-                    <div className="absolute right-[-70px] top-[-70px] h-56 w-56 rounded-full bg-[#8DBD42]/18 blur-3xl" />
-                    <div className="absolute left-[-60px] bottom-[-70px] h-52 w-52 rounded-full bg-white/10 blur-3xl" />
+                <div className="lg:col-span-5 lg:order-1">
+                  <div className="relative overflow-hidden bg-[#173d24] p-8 md:p-10 text-white lg:mt-2">
                     <div className="relative z-10">
-                      <p
-                        className="text-[#B7DC73] uppercase tracking-[0.18em] text-[11px] font-black"
-                        style={bodyStyle}
-                      >
-                        24/7 Dispatch
-                      </p>
                       <h3
-                        className="mt-3 text-[28px] md:text-[34px] leading-tight font-bold text-white"
+                        className="text-[28px] md:text-[32px] leading-tight font-bold text-white"
                         style={headlineStyle}
                       >
                         Fast answers when the damage cannot wait.
                       </h3>
                       <div className="mt-8 space-y-5">
                         <a href="tel:+13604561886" className="flex items-start gap-4 group">
-                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#173d24] transition-transform duration-300 group-hover:scale-105">
                             <Phone size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Call Now</span>
+                            <span className="block text-[13px] font-semibold text-white/60">Call now</span>
                             <span className="mt-1 block text-[18px] font-bold text-white">(360) 456-1886</span>
                           </span>
                         </a>
                         <a href="mailto:office@firewaterstorm.com" className="flex items-start gap-4 group">
-                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126] transition-transform duration-300 group-hover:scale-105">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#173d24] transition-transform duration-300 group-hover:scale-105">
                             <Mail size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Email</span>
+                            <span className="block text-[13px] font-semibold text-white/60">Email</span>
                             <span className="mt-1 block text-[15px] font-bold text-white">office@firewaterstorm.com</span>
                           </span>
                         </a>
                         <div className="flex items-start gap-4">
-                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#145126]">
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#8DBD42] text-[#173d24]">
                             <MapPin size={18} />
                           </span>
                           <span>
-                            <span className="block text-[11px] font-black uppercase tracking-[0.16em] text-white/55">Local Offices</span>
+                            <span className="block text-[13px] font-semibold text-white/60">Local offices</span>
                             <span className="mt-1 block text-[15px] font-bold text-white">Lacey and Chehalis, WA</span>
                           </span>
                         </div>

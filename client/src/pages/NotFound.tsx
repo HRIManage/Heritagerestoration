@@ -17,7 +17,7 @@ export default function NotFound() {
         <title>Page Not Found | Heritage Restoration</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-      <Card className="w-full max-w-lg mx-4 border border-[#3F4143]/10 bg-white rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.04)]">
+      <Card className="w-full max-w-lg mx-4 border border-[#E6E1D7] bg-white rounded-none shadow-[0_20px_40px_rgba(23,61,36,0.04)]">
         <CardContent className="pt-10 pb-10 text-center">
           <div className="flex justify-center mb-6">
             <div className="relative">
@@ -40,7 +40,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
 
-          <p className="text-[#3F4143]/70 mb-8 leading-relaxed text-sm md:text-base">
+          <p className="text-[#3F4143]/80 mb-8 leading-relaxed text-sm md:text-base">
             Sorry, the page you are looking for doesn't exist.
             <br />
             It may have been moved or deleted.
@@ -49,7 +49,7 @@ export default function NotFound() {
           <div className="flex justify-center">
             <Button
               onClick={handleGoHome}
-              className="bg-[#8DBD42] hover:bg-[#7bb843] text-white px-8 py-3 rounded-full font-bold transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer"
+              className="bg-[#8DBD42] hover:bg-[#7bb843] text-[#173d24] px-8 py-3 rounded-full font-bold transition-all duration-200 shadow-[0_4px_12px_rgba(23,61,36,0.08)] hover:shadow-[0_10px_24px_rgba(23,61,36,0.10)] flex items-center gap-2 cursor-pointer"
             >
               <Home className="w-4 h-4" />
               Go Home

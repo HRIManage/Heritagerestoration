@@ -11,6 +11,9 @@
 html,
 body {
   overflow-x: hidden;
+  /* clip (where supported) also stops sideways scroll but, unlike hidden, doesn't
+     turn body into a scroll container, which would stop position: sticky working */
+  overflow-x: clip;
   width: 100%;
 }
 
@@ -71,6 +74,7 @@ body {
   font-size: 17px;
   line-height: 1.7;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1,
@@ -103,11 +107,11 @@ h6 {
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-green);
+  color: #44781a;
 }
 .overline-label::before {
   content: '';
@@ -283,7 +287,7 @@ a:hover .motion-link-arrow {
   gap: 0.4rem;
 }
 .legal-prose a {
-  color: var(--color-green);
+  color: #44781a;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -323,4 +327,156 @@ a:hover .motion-link-arrow {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-green);
+}
+
+
+/* ── Liquid-glass office cards (homepage "Local office locations") ──────────
+   Resting: nothing — the office simply sits on the white section.
+   Hover (mouse devices only): it becomes a liquid-glass card — a pale frosted
+   pane with a faint sage tint, bright top edge, soft layered shadow, gentle
+   lift and one light sweep. Touch screens keep the plain resting look. */
+.office-glass {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: transparent;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(238, 243, 230, 0));
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 rgba(23, 61, 36, 0);
+  /* the lift uses `translate`, not `transform`, so the scroll-reveal animation
+     (which animates transform) can't cancel it */
+  transition: translate 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.45s ease,
+    border-color 0.45s ease, box-shadow 0.45s ease, -webkit-backdrop-filter 0.45s ease,
+    backdrop-filter 0.45s ease;
+}
+.office-glass::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: -60%;
+  width: 45%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  transform: translateX(0) skewX(-14deg);
+}
+@media (hover: hover) {
+  .office-glass:hover {
+    translate: 0 -4px;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(238, 243, 230, 0.7) 100%);
+    border-color: rgba(23, 61, 36, 0.08);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    backdrop-filter: blur(14px) saturate(150%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(23, 61, 36, 0.04),
+      0 2px 4px rgba(23, 61, 36, 0.05), 0 18px 40px rgba(23, 61, 36, 0.12);
+  }
+  .office-glass:hover::before {
+    animation: glass-shine 1.1s ease forwards;
+  }
+}
+@keyframes glass-shine {
+  0% { opacity: 0; transform: translateX(0) skewX(-14deg); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(420%) skewX(-14deg); }
+}
+/* Browsers without backdrop-filter: same hover card, just without the blur */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .office-glass:hover {
+    background-color: #f7f9f3;
+  }
+}
+
+/* ── Page-wide scroll reveal (homepage) ────────────────────────────────────
+   Blocks marked data-reveal fade up once as they scroll into view;
+   data-reveal-stagger does the same for each direct child, one after another.
+   Uses an animation (not a transition) so the elements' own hover transitions
+   keep working. Only active once JS adds .reveal-ready to <html>. */
+.reveal-ready [data-reveal]:not(.is-revealed),
+.reveal-ready [data-reveal-stagger]:not(.is-revealed) > * {
+  opacity: 0;
+}
+.reveal-ready [data-reveal].is-revealed,
+.reveal-ready [data-reveal-stagger].is-revealed > * {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-ready [data-reveal-stagger].is-revealed > :nth-child(2) { animation-delay: 0.1s; }
+.reveal-ready [data-reveal-stagger].is-revealed > :nth-child(3) { animation-delay: 0.2s; }
+.reveal-ready [data-reveal-stagger].is-revealed > :nth-child(4) { animation-delay: 0.3s; }
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Smooth colour changes on every link and button that doesn't set its own
+   (zero specificity, so any Tailwind transition class still wins) */
+:where(a, button) {
+  transition-property: color, background-color, border-color, text-decoration-color, box-shadow, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  .office-glass {
+    transition: none;
+  }
+  .office-glass:hover {
+    translate: none;
+  }
+  .office-glass:hover::before {
+    animation: none;
+  }
+}
+
+/* ── 3D hover lift for buttons and cards (site-wide) ───────────────────────
+   One shared look: a soft green-tinted layered shadow that deepens as the
+   element lifts on hover. Uses `translate` (not `transform`) so it works
+   alongside the scroll-reveal animation and Framer Motion. Mouse devices only;
+   reduced motion keeps the shadow change but drops the lift. */
+.btn-3d {
+  box-shadow: 0 1px 2px rgba(23, 61, 36, 0.1), 0 2px 6px rgba(23, 61, 36, 0.08);
+  transition-property: translate, box-shadow, background-color, color, border-color, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-3d {
+  box-shadow: 0 1px 2px rgba(23, 61, 36, 0.05), 0 6px 16px rgba(23, 61, 36, 0.06);
+  transition-property: translate, box-shadow, background-color, border-color;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* cards that should look raised even at rest (residential / commercial panels) */
+.card-3d--raised {
+  box-shadow: 0 1px 2px rgba(23, 61, 36, 0.06), 0 8px 18px rgba(23, 61, 36, 0.08),
+    0 22px 44px rgba(23, 61, 36, 0.1);
+}
+@media (hover: hover) {
+  .btn-3d:hover {
+    translate: 0 -2px;
+    box-shadow: 0 2px 4px rgba(23, 61, 36, 0.12), 0 8px 16px rgba(23, 61, 36, 0.14),
+      0 16px 32px rgba(23, 61, 36, 0.1);
+  }
+  .card-3d:hover {
+    translate: 0 -5px;
+    box-shadow: 0 2px 4px rgba(23, 61, 36, 0.07), 0 14px 28px rgba(23, 61, 36, 0.12),
+      0 34px 64px rgba(23, 61, 36, 0.16);
+  }
+}
+.btn-3d:active {
+  translate: 0 0;
+  box-shadow: 0 1px 2px rgba(23, 61, 36, 0.18);
+  transition-duration: 0.08s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-3d:hover,
+  .card-3d:hover {
+    translate: none;
+  }
 }

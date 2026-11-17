@@ -89,9 +89,10 @@ export default function CommercialService({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(100deg, rgba(14,27,17,0.95) 0%, rgba(20,38,24,0.85) 50%, rgba(20,38,24,0.45) 80%, rgba(14,27,17,0.25) 100%)",
+                "linear-gradient(100deg, rgba(23,61,36,0.95) 0%, rgba(23,61,36,0.87) 55%, rgba(23,61,36,0.5) 80%, rgba(23,61,36,0.25) 100%)",
             }}
           />
+          <div className="absolute inset-0 bg-[#173d24]/70 lg:hidden" />
           <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 lg:px-14 min-[1340px]:px-6 py-14 md:py-20 min-h-[440px] md:min-h-[500px] short:py-8 lg:min-h-[calc(100svh-132px)] flex items-center">
             <FadeIn className="max-w-[780px] lg:max-w-[900px] xl:max-w-[1000px] space-y-6 short:space-y-4" direction="up" triggerImmediately>
               <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-xs font-black flex items-center gap-2">
@@ -108,13 +109,13 @@ export default function CommercialService({
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-7 py-4 uppercase tracking-[0.12em] text-xs transition-colors shadow-md"
+                  className="btn-3d inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] font-bold px-7 py-4 text-[15px] transition-colors shadow-[0_4px_12px_rgba(23,61,36,0.08)]"
                 >
                   <Phone size={15} /> 24/7 Dispatch {MAIN_PHONE}
                 </a>
                 <a
                   href="#commercial-inquiry"
-                  className="inline-flex items-center justify-center gap-2 border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold px-7 py-4 uppercase tracking-[0.12em] text-xs transition-colors"
+                  className="btn-3d inline-flex items-center justify-center gap-2 border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold px-7 py-4 text-[15px] transition-colors"
                 >
                   Request a site walk <ArrowRight size={15} />
                 </a>
@@ -140,7 +141,7 @@ export default function CommercialService({
                 {s.handles.map((h, idx) => (
                   <FadeIn key={h.title} delay={idx * 0.04} direction="up" className="border-t-2 border-[#8DBD42] pt-5">
                     <h3 className="font-bold text-[#2F3335] text-lg">{h.title}</h3>
-                    <p className="text-[#3F4143]/70 text-[15px] leading-relaxed mt-2">
+                    <p className="text-[#3F4143]/80 text-[15px] leading-relaxed mt-2">
                       {h.text}
                     </p>
                   </FadeIn>
@@ -171,7 +172,7 @@ export default function CommercialService({
                     decoding="async"
                     className="w-full h-full object-cover"
                   />
-                  <figcaption className="absolute left-2 bottom-2 bg-[#1f2122]/85 text-white text-[11px] font-black uppercase tracking-[0.14em] px-2.5 py-1">
+                  <figcaption className="absolute left-2 bottom-2 bg-[#1f2122]/85 text-white text-[12px] font-black uppercase tracking-[0.14em] px-2.5 py-1">
                     {g.label}
                   </figcaption>
                 </figure>
@@ -181,7 +182,7 @@ export default function CommercialService({
         </Section>
 
         {/* Why + clients */}
-        <Section bg={s.handles ? "none" : "white"} className="border-t border-[#3F4143]/8">
+        <Section bg={s.handles ? "none" : "white"} className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-7">
@@ -223,7 +224,7 @@ export default function CommercialService({
         </Section>
 
         {/* Process */}
-        <Section bg="none" className="border-t border-[#3F4143]/8">
+        <Section bg="none" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <FadeIn className="lg:col-span-4" direction="up">
@@ -231,7 +232,7 @@ export default function CommercialService({
                 <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mt-2 font-serif">
                   How a commercial {service} job runs with us
                 </h2>
-                <p className="text-[#3F4143]/70 text-base mt-4 leading-relaxed">
+                <p className="text-[#3F4143]/80 text-base mt-4 leading-relaxed">
                   You get a clear scope before major work starts, one contact
                   the whole way through, and a building handed back ready to
                   use.
@@ -248,7 +249,7 @@ export default function CommercialService({
         </Section>
 
         {/* Inquiry */}
-        <Section bg="white" className="border-t border-[#3F4143]/8" id="commercial-inquiry">
+        <Section bg="white" className="border-t border-[#E6E1D7]" id="commercial-inquiry">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <div className="lg:col-span-5 space-y-6">
@@ -261,18 +262,18 @@ export default function CommercialService({
                 </p>
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#8DBD42] transition-colors"
+                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#44781a] transition-colors"
                 >
                   <Phone size={28} /> {MAIN_PHONE}
                 </a>
                 <Link
                   href={other.path}
-                  className="inline-flex items-center gap-1 text-[12px] font-black uppercase tracking-[0.14em] text-[#5f8f22] hover:text-[#2F3335]"
+                  className="inline-flex items-center gap-1 text-[12px] font-black uppercase tracking-[0.14em] text-[#44781a] hover:text-[#2F3335]"
                 >
                   See {other.navLabel.toLowerCase()} <ArrowRight size={14} />
                 </Link>
               </div>
-              <div className="lg:col-span-7 bg-[#FBFBF9] border border-[#3F4143]/8 p-6 md:p-10">
+              <div className="lg:col-span-7 bg-[#FAF9F6] border border-[#E6E1D7] p-6 md:p-10">
                 <CommercialInquiry />
               </div>
             </div>

@@ -13,6 +13,7 @@ import {
   Phone,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import PageCTA from "@/components/PageCTA";
 import Layout from "@/components/layout/Layout";
 import { Link } from "wouter";
 import FadeIn from "@/components/ui/FadeIn";
@@ -69,7 +70,7 @@ export default function ContentsServices() {
 
       <div className="min-h-screen">
         {/* Editorial Collage Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#145126] via-[#142618] to-[#0E1B11] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[112px] sm:pt-[116px] lg:pt-[132px]">
+        <section className="relative bg-[#173d24] text-white border-b border-[#8DBD42]/20 overflow-hidden pt-[112px] sm:pt-[116px] lg:pt-[132px]">
           <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-16 relative z-10 lg:min-h-[calc(100svh-132px)] lg:flex lg:flex-col lg:justify-center">
             <div className="grid md:grid-cols-12 items-center gap-12">
               {/* Left Column: Heading and description details */}
@@ -102,7 +103,7 @@ export default function ContentsServices() {
                 <FadeIn delay={0.2} className="pt-2" direction="up">
                   <a
                     href="tel:+13604561886"
-                    className="inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#72a232] text-white px-8 py-4 uppercase tracking-[0.16em] text-xs font-bold transition-all duration-300 shadow-md hover:-translate-y-0.5 rounded-none"
+                    className="btn-3d inline-flex items-center gap-3 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] px-8 py-4 text-[15px] font-bold transition-all duration-300 shadow-[0_4px_12px_rgba(23,61,36,0.08)] hover:-translate-y-0.5 rounded-none"
                   >
                     Contact Us: (360) 456-1886
                   </a>
@@ -134,7 +135,7 @@ export default function ContentsServices() {
               {/* Left Column - 40% Width Sticky Text Anchor */}
               <div className="lg:col-span-5 lg:sticky lg:top-40 space-y-6">
                 <FadeIn direction="up">
-                  <span className="text-[#8DBD42] uppercase tracking-[0.2em] text-xs font-black block">
+                  <span className="text-[#44781a] uppercase tracking-[0.2em] text-xs font-black block">
                     TRUSTED CUSTODY
                   </span>
                   <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] leading-tight font-serif">
@@ -142,7 +143,7 @@ export default function ContentsServices() {
                   </h2>
 
                   {/* Progress Sidebar Tracker */}
-                  <div className="hidden lg:block relative mt-8 pl-4 border-l border-[#3F4143]/10 space-y-6">
+                  <div className="hidden lg:block relative mt-8 pl-4 border-l border-[#E6E1D7] space-y-6">
                     {[
                       { index: "01", label: "Inventory Logging" },
                       { index: "02", label: "Careful Extraction" },
@@ -151,9 +152,9 @@ export default function ContentsServices() {
                     ].map((step, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-3 text-xs tracking-wider uppercase font-bold text-[#3F4143]/40 hover:text-[#8DBD42] transition-colors cursor-default"
+                        className="flex items-center gap-3 text-xs tracking-wider uppercase font-bold text-[#3F4143]/80 hover:text-[#44781a] transition-colors cursor-default"
                       >
-                        <span className="font-mono text-[10px]">
+                        <span className="font-mono text-[12px]">
                           {step.index}
                         </span>
                         <span>{step.label}</span>
@@ -194,23 +195,23 @@ export default function ContentsServices() {
                   <FadeIn
                     key={idx}
                     delay={idx * 0.08}
-                    className="group border-b border-[#3F4143]/10 pb-10 last:border-0 last:pb-0"
+                    className="group border-b border-[#E6E1D7] pb-10 last:border-0 last:pb-0"
                     direction="up"
                   >
                     <div className="flex items-start gap-4">
                       {/* Icon & Index Module */}
-                      <div className="flex-shrink-0 w-10 h-10 rounded-none bg-white border border-[#3F4143]/10 text-[#8DBD42] flex items-center justify-center shadow-sm group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42]/5 transition-all duration-300">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-none bg-white border border-[#E6E1D7] text-[#8DBD42] flex items-center justify-center shadow-[0_1px_2px_rgba(23,61,36,0.06)] group-hover:border-[#8DBD42] group-hover:bg-[#8DBD42]/5 transition-all duration-300">
                         {item.icon}
                       </div>
 
                       <div className="space-y-2">
-                        <div className="text-xs font-black text-[#8DBD42] tracking-widest uppercase">
+                        <div className="text-xs font-black text-[#44781a] tracking-widest uppercase">
                           {item.num} / PROCESS MODULE
                         </div>
-                        <h3 className="font-bold text-xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors font-serif">
+                        <h3 className="font-bold text-xl text-[#3F4143] group-hover:text-[#44781a] transition-colors font-serif">
                           {item.title}
                         </h3>
-                        <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1 font-sans font-light">
+                        <p className="text-[#3F4143]/80 text-sm leading-relaxed pt-1 font-sans font-light">
                           {item.desc}
                         </p>
                       </div>
@@ -227,7 +228,7 @@ export default function ContentsServices() {
           <Container>
             <div className="max-w-3xl mx-auto">
               <FadeIn className="mb-20" direction="up">
-                <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-3">
+                <span className="text-[#44781a] uppercase tracking-[0.25em] text-xs font-black block mb-3">
                   THE PATH TO RESTORATION
                 </span>
                 <h2 className="text-3xl md:text-5xl font-bold text-[#3F4143] font-serif">
@@ -235,8 +236,7 @@ export default function ContentsServices() {
                 </h2>
               </FadeIn>
 
-              {/* Vertical axis line */}
-              <div className="relative pl-10 border-l-2 border-[#8DBD42]/20 space-y-12 py-4">
+              <div className="relative pl-10 space-y-12 py-4">
                 {[
                   {
                     num: "01",
@@ -272,22 +272,22 @@ export default function ContentsServices() {
                   <FadeIn
                     key={idx}
                     delay={idx * 0.06}
-                    className="relative group bg-white/40 hover:bg-white/90 border border-[#3F4143]/5 hover:border-[#8DBD42]/20 p-6 sm:p-8 rounded-none transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1"
+                    className="card-3d relative group bg-white/40 hover:bg-white/90 border border-[#E6E1D7] hover:border-[#8DBD42]/20 p-6 sm:p-8 rounded-none transition-all duration-300 shadow-[0_4px_20px_rgba(23,61,36,0.01)] hover:shadow-[0_15px_30px_rgba(23,61,36,0.04)] hover:-translate-y-1"
                     direction="up"
                   >
                     {/* Node badge centered exactly on the border line */}
-                    <div className="absolute left-[-58px] top-7 w-8 h-8 rounded-none bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-md z-10 group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute left-[-58px] top-7 w-8 h-8 rounded-none bg-white border-2 border-[#8DBD42] text-[#8DBD42] flex items-center justify-center shadow-[0_4px_12px_rgba(23,61,36,0.08)] z-10 group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
                     </div>
 
                     <div className="space-y-2">
-                      <div className="text-xs font-bold text-[#8DBD42] tracking-wider uppercase flex items-center gap-2">
+                      <div className="text-xs font-bold text-[#44781a] tracking-wider uppercase flex items-center gap-2">
                         <span>PHASE {item.num}</span>
                       </div>
-                      <h3 className="font-bold text-[#3F4143] text-xl group-hover:text-[#8DBD42] transition-colors font-serif">
+                      <h3 className="font-bold text-[#3F4143] text-xl group-hover:text-[#44781a] transition-colors font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed pt-1 font-sans">
+                      <p className="text-[#3F4143]/80 text-sm leading-relaxed pt-1 font-sans">
                         {item.desc}
                       </p>
                     </div>
@@ -302,7 +302,7 @@ export default function ContentsServices() {
         <Section bg="none" className="border-t border-gray-100">
           <Container>
             <FadeIn className="mb-20 text-center" direction="up">
-              <span className="text-[#8DBD42] uppercase tracking-[0.25em] text-xs font-black block mb-3">
+              <span className="text-[#44781a] uppercase tracking-[0.25em] text-xs font-black block mb-3">
                 ASSETS WE PROTECT
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-[#3F4143] font-serif">
@@ -337,7 +337,7 @@ export default function ContentsServices() {
                 <FadeIn
                   key={idx}
                   delay={idx * 0.08}
-                  className="group bg-white border border-[#3F4143]/10 hover:border-[#8DBD42] rounded-none p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                  className="card-3d group bg-white border border-[#E6E1D7] hover:border-[#8DBD42] rounded-none p-8 shadow-[0_1px_2px_rgba(23,61,36,0.06)] hover:shadow-[0_18px_40px_rgba(23,61,36,0.12)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
                   direction="up"
                 >
                   <div className="space-y-5">
@@ -347,17 +347,17 @@ export default function ContentsServices() {
                     </div>
 
                     <div className="space-y-3">
-                      <h3 className="font-bold text-2xl text-[#3F4143] group-hover:text-[#8DBD42] transition-colors font-serif">
+                      <h3 className="font-bold text-2xl text-[#3F4143] group-hover:text-[#44781a] transition-colors font-serif">
                         {item.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-sm leading-relaxed font-sans">
+                      <p className="text-[#3F4143]/80 text-sm leading-relaxed font-sans">
                         {item.desc}
                       </p>
                     </div>
                   </div>
 
                   {/* Detailed list inclusions */}
-                  <div className="pt-6 mt-6 border-t border-[#3F4143]/10 font-sans">
+                  <div className="pt-6 mt-6 border-t border-[#E6E1D7] font-sans">
                     <h4 className="text-xs font-black text-[#8DBD42] uppercase tracking-widest mb-3">
                       Includes:
                     </h4>
@@ -371,59 +371,25 @@ export default function ContentsServices() {
           </Container>
         </Section>
 
-        {/* CTA Section */}
-        <section className="relative bg-white pt-24 pb-36 overflow-hidden border-t border-gray-100">
-          {/* Background image banner */}
-          <div className="absolute top-0 left-0 w-full h-[450px] md:h-[550px]">
-            <img
-              src="/photo/contents-cta.png"
-              alt="Completed contents inventory cleaning and storage"
-              className="w-full h-full object-cover object-center brightness-75"
-            />
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-
-          {/* Centered Overlapping Card Container */}
-          <div className="relative max-w-[960px] mx-auto px-6 pt-[260px] md:pt-[340px] z-10">
-            <FadeIn direction="up">
-              <div className="bg-white border border-[#3F4143]/10 p-8 md:p-12 shadow-[0_24px_50px_rgba(0,0,0,0.06)] text-center rounded-none">
-                <h2 className="text-2xl md:text-3.5xl font-bold text-[#3F4143] mb-6 font-serif">
-                  Protect Your Valuables
-                </h2>
-                <div className="text-sm md:text-base text-[#3F4143]/85 space-y-6 leading-relaxed max-w-3xl mx-auto font-sans font-light">
-                  <p>
-                    We understand that your personal belongings represent a
-                    lifetime of memories and investments. When disaster strikes,
-                    it's not just the building structure that needs care; it's
-                    the cherished contents inside.
-                  </p>
-                  <p>
-                    Our professional contents pack-out, digital inventory, and
-                    specialized cleaning services ensure that your valuables are
-                    protected, restored, and securely stored in our
-                    climate-controlled vaults while reconstruction is underway.
-                  </p>
-                </div>
-
-                <div className="mt-10 flex flex-wrap gap-4 justify-center font-sans">
-                  <a
-                    href="tel:+13604561886"
-                    className="bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md flex items-center gap-2"
-                  >
-                    <Phone size={14} /> Contact Us Now
-                  </a>
-                  <Link
-                    href="/resources/faq"
-                    className="bg-[#3F4143] hover:bg-[#292b2d] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md"
-                  >
-                    FAQ & Resources
-                  </Link>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        <PageCTA
+          title="Protect Your Valuables"
+          primary={{ href: "tel:+13604561886", label: "Contact Us Now" }}
+          secondary={{ href: "/resources/faq", label: "FAQ & Resources" }}
+          image={{ src: "/photo/contents-cta.png", alt: "Completed contents inventory cleaning and storage" }}
+        >
+          <p>
+            We understand that your personal belongings represent a
+            lifetime of memories and investments. When disaster strikes,
+            it's not just the building structure that needs care; it's
+            the cherished contents inside.
+          </p>
+          <p>
+            Our professional contents pack-out, digital inventory, and
+            specialized cleaning services ensure that your valuables are
+            protected, restored, and securely stored in our
+            climate-controlled vaults while reconstruction is underway.
+          </p>
+        </PageCTA>
       </div>
     </Layout>
   );

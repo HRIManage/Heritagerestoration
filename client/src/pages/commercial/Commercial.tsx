@@ -141,9 +141,10 @@ export default function Commercial() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(100deg, rgba(14,27,17,0.94) 0%, rgba(20,38,24,0.82) 45%, rgba(20,38,24,0.35) 75%, rgba(14,27,17,0.15) 100%)",
+                "linear-gradient(100deg, rgba(23,61,36,0.94) 0%, rgba(23,61,36,0.86) 55%, rgba(23,61,36,0.5) 80%, rgba(23,61,36,0.2) 100%)",
             }}
           />
+          <div className="absolute inset-0 bg-[#173d24]/70 lg:hidden" />
           <div className="relative z-10 mx-auto max-w-[1200px] 2xl:max-w-[1400px] px-6 lg:px-14 min-[1340px]:px-6 py-14 md:py-20 lg:py-24 min-h-[460px] md:min-h-[540px] short:py-8 lg:min-h-[calc(100svh-132px)] flex items-center">
             <FadeIn className="max-w-[760px] xl:max-w-[1020px] space-y-6 short:space-y-4" direction="up" triggerImmediately>
               <span className="text-[#8DBD42] uppercase tracking-[0.22em] text-xs font-black flex items-center gap-2">
@@ -163,18 +164,18 @@ export default function Commercial() {
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#7bc034] text-white font-bold px-7 py-4 uppercase tracking-[0.12em] text-xs transition-colors shadow-md"
+                  className="btn-3d inline-flex items-center justify-center gap-2 bg-[#8DBD42] hover:bg-[#97cf4f] text-[#173d24] font-bold px-7 py-4 text-[15px] transition-colors shadow-[0_4px_12px_rgba(23,61,36,0.08)]"
                 >
                   <Phone size={15} /> 24/7 Dispatch {MAIN_PHONE}
                 </a>
                 <a
                   href="#commercial-inquiry"
-                  className="inline-flex items-center justify-center gap-2 border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold px-7 py-4 uppercase tracking-[0.12em] text-xs transition-colors"
+                  className="btn-3d inline-flex items-center justify-center gap-2 border border-white/40 hover:border-white hover:bg-white/10 text-white font-bold px-7 py-4 text-[15px] transition-colors"
                 >
                   Request a site walk <ArrowRight size={15} />
                 </a>
               </div>
-              <p className="text-sm text-white/70">
+              <p className="text-sm text-white/85">
                 Locally owned since 2004 · Lacey &amp; Chehalis offices ·
                 Serving Western Washington
               </p>
@@ -193,7 +194,7 @@ export default function Commercial() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] mt-2 font-serif">
                 One team from first call to final walkthrough
               </h2>
-              <p className="text-[#3F4143]/70 text-base md:text-lg mt-4 leading-relaxed">
+              <p className="text-[#3F4143]/80 text-base md:text-lg mt-4 leading-relaxed">
                 Most commercial losses get split between a mitigation company
                 and a general contractor. We do both, so the schedule and the
                 scope stay with one team.
@@ -204,7 +205,7 @@ export default function Commercial() {
                 <FadeIn key={s.href} delay={idx * 0.06} direction="up" className="h-full">
                   <Link
                     href={s.href}
-                    className="group flex flex-col h-full bg-white border border-[#3F4143]/8 hover:shadow-[0_16px_35px_rgba(0,0,0,0.06)] transition-shadow"
+                    className="group flex flex-col h-full bg-white border border-[#E6E1D7] hover:shadow-[0_16px_35px_rgba(23,61,36,0.06)] transition-shadow"
                   >
                     <div className="h-[200px] lg:h-[220px] 2xl:h-[260px] overflow-hidden">
                       <img
@@ -220,10 +221,10 @@ export default function Commercial() {
                       <h3 className="font-bold text-[#3F4143] text-xl font-serif mt-3">
                         {s.title}
                       </h3>
-                      <p className="text-[#3F4143]/70 text-[15px] leading-relaxed mt-2 flex-1">
+                      <p className="text-[#3F4143]/80 text-[15px] leading-relaxed mt-2 flex-1">
                         {s.text}
                       </p>
-                      <span className="mt-5 text-[12px] font-black uppercase tracking-[0.14em] text-[#5f8f22] group-hover:text-[#2F3335] inline-flex items-center gap-1">
+                      <span className="mt-5 text-[12px] font-black uppercase tracking-[0.14em] text-[#44781a] group-hover:text-[#2F3335] inline-flex items-center gap-1">
                         Learn more <ArrowRight size={14} />
                       </span>
                     </div>
@@ -235,7 +236,7 @@ export default function Commercial() {
         </Section>
 
         {/* Property types */}
-        <Section bg="white" className="border-t border-[#3F4143]/8">
+        <Section bg="white" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <FadeIn className="mb-10 md:mb-12 max-w-3xl" direction="up">
               <span className="overline-label">Who we work for</span>
@@ -247,12 +248,12 @@ export default function Commercial() {
               {PROPERTY_TYPES.map((p, idx) => {
                 const Icon = PROPERTY_ICONS[idx];
                 return (
-                <FadeIn key={p.title} delay={idx * 0.04} direction="up" className="group border border-[#3F4143]/8 bg-[#FBFBF9] p-6 hover:border-[#8DBD42]/50 hover:bg-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.05)] transition-all duration-300">
-                  <span className="w-12 h-12 flex items-center justify-center bg-[#8DBD42]/12 text-[#4f7d1c] group-hover:bg-[#8DBD42] group-hover:text-white transition-colors">
+                <FadeIn key={p.title} delay={idx * 0.04} direction="up" className="card-3d group border border-[#E6E1D7] bg-[#FAF9F6] p-6 hover:border-[#8DBD42]/50 hover:bg-white hover:shadow-[0_12px_30px_rgba(23,61,36,0.05)] transition-all duration-300">
+                  <span className="w-12 h-12 flex items-center justify-center bg-[#8DBD42]/12 text-[#173d24] group-hover:bg-[#8DBD42] group-hover:text-white transition-colors">
                     <Icon size={22} />
                   </span>
                   <h3 className="font-bold text-[#2F3335] text-lg mt-4">{p.title}</h3>
-                  <p className="text-[#3F4143]/70 text-[15px] leading-relaxed mt-2">
+                  <p className="text-[#3F4143]/80 text-[15px] leading-relaxed mt-2">
                     {p.text}
                   </p>
                 </FadeIn>
@@ -263,7 +264,7 @@ export default function Commercial() {
         </Section>
 
         {/* Why + clients */}
-        <Section bg="none" className="border-t border-[#3F4143]/8">
+        <Section bg="none" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
               <div className="lg:col-span-7">
@@ -292,7 +293,7 @@ export default function Commercial() {
         </Section>
 
         {/* Before / after */}
-        <Section bg="white" className="border-t border-[#3F4143]/8">
+        <Section bg="white" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               <FadeIn className="lg:col-span-4 space-y-5" direction="up">
@@ -300,13 +301,13 @@ export default function Commercial() {
                 <h2 className="text-3xl md:text-4xl font-bold text-[#3F4143] font-serif">
                   Fire rebuilds, start to finish
                 </h2>
-                <p className="text-[#3F4143]/70 text-base leading-relaxed">
+                <p className="text-[#3F4143]/80 text-base leading-relaxed">
                   Board-up, smoke and soot cleanup, then the full rebuild — the
                   same team on every phase. Drag the slider to compare.
                 </p>
                 <Link
                   href={COMMERCIAL_SERVICES.fire.path}
-                  className="inline-flex items-center gap-1 text-[12px] font-black uppercase tracking-[0.14em] text-[#5f8f22] hover:text-[#2F3335]"
+                  className="inline-flex items-center gap-1 text-[12px] font-black uppercase tracking-[0.14em] text-[#44781a] hover:text-[#2F3335]"
                 >
                   Commercial fire restoration <ArrowRight size={14} />
                 </Link>
@@ -323,7 +324,7 @@ export default function Commercial() {
         </Section>
 
         {/* Process */}
-        <Section bg="none" className="border-t border-[#3F4143]/8">
+        <Section bg="none" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <FadeIn className="lg:col-span-4" direction="up">
@@ -344,7 +345,7 @@ export default function Commercial() {
         </Section>
 
         {/* FAQ */}
-        <Section bg="none" className="border-t border-[#3F4143]/8">
+        <Section bg="none" className="border-t border-[#E6E1D7]">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <FadeIn className="lg:col-span-4" direction="up">
@@ -361,7 +362,7 @@ export default function Commercial() {
         </Section>
 
         {/* Inquiry */}
-        <Section bg="white" className="border-t border-[#3F4143]/8" id="commercial-inquiry">
+        <Section bg="white" className="border-t border-[#E6E1D7]" id="commercial-inquiry">
           <Container className="2xl:max-w-[1400px]">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <div className="lg:col-span-5 space-y-6">
@@ -375,7 +376,7 @@ export default function Commercial() {
                 </p>
                 <a
                   href={MAIN_PHONE_TEL}
-                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#8DBD42] transition-colors"
+                  className="inline-flex items-center gap-3 text-3xl md:text-4xl font-bold text-[#173d24] hover:text-[#44781a] transition-colors"
                 >
                   <Phone size={28} /> {MAIN_PHONE}
                 </a>
@@ -397,7 +398,7 @@ export default function Commercial() {
                   </p>
                 </div>
               </div>
-              <div className="lg:col-span-7 bg-[#FBFBF9] border border-[#3F4143]/8 p-6 md:p-10">
+              <div className="lg:col-span-7 bg-[#FAF9F6] border border-[#E6E1D7] p-6 md:p-10">
                 <CommercialInquiry />
               </div>
             </div>

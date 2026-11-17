@@ -31,11 +31,12 @@ export default function ServiceHeader({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to right, rgba(14,27,17,0.92) 0%, rgba(20,38,24,0.70) 30%, rgba(20,38,24,0.25) 55%, rgba(14,27,17,0.05) 100%)",
+            "linear-gradient(to right, rgba(23,61,36,0.92) 0%, rgba(23,61,36,0.88) 40%, rgba(23,61,36,0.6) 62%, rgba(23,61,36,0.15) 100%)",
         }}
       />
       {/* Bottom vignette */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B11]/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-[#173d24]/70 lg:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#173d24]/40 via-transparent to-transparent" />
 
       <div className="relative z-10 grid lg:grid-cols-12 min-h-[380px] md:min-h-[480px] lg:min-h-[calc(100svh-232px)]">
         <div className="lg:col-span-7 flex flex-col justify-center px-6 py-10 md:py-16 max-w-[720px] mx-auto lg:mx-0 lg:pl-16">
@@ -59,7 +60,7 @@ export default function ServiceHeader({
           {ctaText && ctaLink && (
             <Link
               href={ctaLink}
-              className="mt-8 inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7BC034] text-white font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DBD42]"
+              className="mt-8 inline-flex items-center gap-2 bg-[#8DBD42] hover:bg-[#7BC034] text-[#173d24] font-bold px-8 py-4 uppercase tracking-[0.14em] text-xs transition-colors rounded-none shadow-[0_4px_12px_rgba(23,61,36,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DBD42]"
             >
               <Phone size={16} /> {ctaText}
             </Link>
